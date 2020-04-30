@@ -1,0 +1,3 @@
+FROM erpukraine/custom:odoo-13.0ee-erpu-latest
+
+COPY --chown=odoo:odoo extra-addons/ /mnt/extra-addons
