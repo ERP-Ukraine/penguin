@@ -8,6 +8,9 @@ from datetime import timedelta, date
 from odoo.http import request
 from odoo.tools.safe_eval import safe_eval
 from werkzeug.exceptions import NotFound
+from odoo.exceptions import UserError
+from odoo.addons.auth_signup.models.res_users import SignupError
+import werkzeug
 
 from odoo import http
 import odoo
@@ -25,6 +28,11 @@ from psycopg2 import Error
 _logger = logging.getLogger(__name__)
 
 class EmiproThemeBase(http.Controller):
+
+    @http.route('/get_test_homepage_data', type='json', auth="user")
+    def get_homepage_test_data(self):
+        response = http.Response(template="theme_clarico_vega.js_home_page_1_test")
+        return response.render()
 
     @http.route('/web/login_custom', type='json', auth="none", methods=['GET', 'POST'],)
     def web_login_custom(self, login, password, redirect=None, **kw):
@@ -109,6 +117,48 @@ class EmiproThemeBase(http.Controller):
                 result.update({'is_success': False, 'error': 'Could not create a new account.'})
                 return result
 
+    @http.route('/web/reset_password_custom', type='json', auth='public', website=True, sitemap=False)
+    def web_auth_reset_password(self, *args, **kw):
+        qcontext = kw
+
+        result = {}
+
+        if 'error' not in qcontext and request.httprequest.method == 'POST':
+            try:
+                values = {key: qcontext.get(key) for key in ('login', )}
+                if not values:
+                    result.update({'is_success': False, 'error': 'The form was not properly filled in.'})
+                    return result
+                if request.env["res.users"].sudo().search([("login", "=", qcontext.get("login"))]):
+                    login = qcontext.get('login')
+                    _logger.info(
+                        "Password reset attempt for <%s> by user <%s> from %s",
+                        login, request.env.user.login, request.httprequest.remote_addr)
+                    result.update({'is_success': True,
+                                   'message': 'An email has been sent with credentials to reset your password'})
+                    request.env['res.users'].sudo().reset_password(login)
+                    return result
+
+                if not request.env["res.users"].sudo().search([("login", "=", qcontext.get("login"))]):
+                    result.update({'is_success': False,'error': 'Reset password: invalid username or email'})
+                    return result
+
+            except Error as e:
+                result.update({'is_success': False, 'error': 'error when resetting password'})
+                return result
+            except Exception as e:
+                result.update({'is_success': False, 'error': str(e)})
+                return result
+            except UserError as e:
+                result.update({'is_success': False, 'error': str(e.value or e.name)})
+                return result
+            except SignupError:
+                qcontext['error'] = _("Could not reset your password")
+                result.update({'is_success': False, 'error': "Could not reset your password"})
+                _logger.exception('error when resetting password')
+                return result
+
+
     @http.route(['/ajax_check_user_status'], type='json', auth="public", website=True)
     def ajax_check_user_status(self):
         user_id = request.session.get('uid', False)
@@ -118,6 +168,16 @@ class EmiproThemeBase(http.Controller):
                 return 'internal'
             else:
                 return 'portal'
+
+    @http.route(['/mega_menu_content_dynamic'], type='json', auth="public", website=True)
+    def mega_menu_content_dynamic(self, menu_id):
+        response = http.Response(template="emipro_theme_base.website_dynamic_category")
+        current_menu = request.env['website.menu'].sudo().search([('id', '=', menu_id)])
+        if current_menu.is_dynamic_menu and current_menu.mega_menu_content_dynamic !=  response.render().decode():
+            current_menu.write({"mega_menu_content_dynamic": response.render().decode(), "is_dynamic_menu_json": False})
+            return response.render().decode()
+        else:
+            return False
 
     @http.route(['/quick_view_item_data'], type='json', auth="public", website=True)
     def get_quick_view_item(self, product_id=None):
@@ -353,7 +413,8 @@ class EmiproThemeBase(http.Controller):
                 vals = {
                     'slider_obj': slider_obj,
                     'filter_data': product,
-                    'active_filter_data': filter_id if filter_id else slider_obj.slider_filter_ids[0].filter_id.id,
+                    # 'active_filter_data': filter_id if filter_id else slider_obj.slider_filter_ids[0].filter_id.id,
+                    'active_filter_data': filter_id if filter_id else slider_obj.slider_filter_ids[0].id,
                     'is_default': False if filter_id else True,
                     'show_view_all': True
                 }
@@ -524,9 +585,10 @@ class EmiproThemeBaseExtended(WebsiteSaleWishlist):
         """
         filter_id = request.httprequest.values.get('filter_id', False)
         if filter_id:
-            curr_filter = request.env['ir.filters'].sudo().search([('id', '=', int(filter_id))])
-            if filter:
-                domain = safe_eval(curr_filter.domain)
+            # curr_filter = request.env['ir.filters'].sudo().search([('id', '=', int(filter_id))])
+            curr_filter = request.env['slider.filter'].sudo().search([('id', '=', int(filter_id))])
+            if curr_filter and curr_filter.filter_id and curr_filter.filter_id.domain:
+                domain = safe_eval(curr_filter.filter_id.domain)
                 slider_products = request.env['product.template'].sudo().search(domain)
                 if slider_products:
                     request.env['product.template'].sudo().search([('id', 'in', slider_products.ids)])

@@ -174,12 +174,26 @@
                                         </div>
                                     </div>
                                 </t>
-                                <a role="button"
-                                   class="btn btn-primary btn-lg mt16 a-submit te_theme_button quick-add-to-cart"
-                                   href="#" t-att-quick-view-ajax-cart="'1' if product.optional_product_ids else '0'">
-                                    <span class="fa fa-shopping-cart"/>
-                                    Add to Cart
-                                </a>
+                                <t t-set="configurator_state"
+                                   t-value="request.env['ir.module.module'].sudo().search([['name', '=', 'sale_product_configurator']])"/>
+                                <t t-if="configurator_state and configurator_state.state == 'installed'">
+                                    <a role="button"
+                                       t-att-id="'add_to_cart' if not product.optional_product_ids else ''"
+                                       t-attf-class="btn btn-primary btn-lg mt16 a-submit te_theme_button quick-add-to-cart #{'disabled out_of_stock' if product.virtual_available &lt; 1 else ''}"
+                                       href="#">
+                                        <span class="fa fa-shopping-cart"/>
+                                        Add to Cart
+                                    </a>
+                                </t>
+                                <t t-else="">
+                                    <a role="button"
+                                       id="add_to_cart"
+                                       t-attf-class="btn btn-primary btn-lg mt16 a-submit te_theme_button quick-add-to-cart #{'disabled out_of_stock' if product.virtual_available &lt; 1 else ''}"
+                                       href="#">
+                                        <span class="fa fa-shopping-cart"/>
+                                        Add to Cart
+                                    </a>
+                                </t>
                                 <t t-if="buy_now_show">
                                     <a role="button" id="buy_now"
                                        class="btn btn-outline-primary btn-lg mt16 d-block d-sm-inline-block te_theme_button"

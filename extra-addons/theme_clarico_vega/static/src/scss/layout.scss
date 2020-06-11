@@ -24,7 +24,6 @@ INDEX:
 		padding: 0.55rem 1.5rem;
 		border-bottom: 1px solid #ededed;
 		font-size:nth($f_sizes,3);
-		text-transform: capitalize;
 
 		> span.fa
 		{
@@ -185,7 +184,6 @@ INDEX:
 .te_signup_login_link
 {
 	@include style(18,4,inherit);
-	text-transform: none;
 }
 
 .te_user_account_icon, .te_currency_symbol{

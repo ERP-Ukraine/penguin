@@ -302,7 +302,6 @@ header.affixed > nav.navbar
 		.te_header_pricelist, .te_header_lang{
 			a.dropdown-toggle{
 				padding:0px;
-				text-transform: capitalize;
 			}
 		}
 		.te_header_pricelist
@@ -394,7 +393,6 @@ header.affixed > nav.navbar
 {
 	a.btn
 	{
-		text-transform: capitalize;
 		@include style(3,4);
 		padding: 10px;
 		&:hover

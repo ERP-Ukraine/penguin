@@ -16,7 +16,6 @@
 		}
 		.btn
 		{
-			text-transform:capitalize;
 			padding: 0.375rem;
 		}
 	}
@@ -190,7 +189,6 @@
 		{
 			color : nth($f_color,5);
 			font-family: inherit;
-            text-transform: capitalize;
 			padding: 0.8rem 0.8rem;
 			border-top: 2px solid nth($f_color,27);
 		}

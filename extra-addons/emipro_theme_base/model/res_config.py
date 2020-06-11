@@ -23,8 +23,8 @@ class res_config(models.TransientModel):
         ('button', 'Button- on click button')
         ], string="Loading type for products", related='website_id.button_or_scroll',
         required=True, default='automatic', readonly=False,help="Define how to show the pagination of products in a shop page with on scroll or button.")
-    prev_button_label = fields.Char(string='Label for the Prev Button', related='website_id.prev_button_label', required=True, readonly=False, translate=True)
-    next_button_label = fields.Char(string='Label for the Next Button', related='website_id.next_button_label', required=True, readonly=False, translate=True)
+    prev_button_label = fields.Char(string='Label for the Prev Button', related='website_id.prev_button_label', readonly=False, translate=True)
+    next_button_label = fields.Char(string='Label for the Next Button', related='website_id.next_button_label', readonly=False, translate=True)
     is_lazy_load = fields.Boolean(string='Lazyload', related='website_id.is_lazy_load', readonly=False,
                                  help="Lazy load will be enabled.")
     lazy_load_image = fields.Binary(string='Lazyload Image', related='website_id.lazy_load_image', readonly=False,
@@ -35,7 +35,8 @@ class res_config(models.TransientModel):
         ('2', '2'),
         ('3', '3')
         ], string="Number of lines for product name", related='website_id.number_of_product_line',
-        required=True, default='1', readonly=False, help="Number of lines to show in product name for shop.")
+        default='1', readonly=False, help="Number of lines to show in product name for shop.")
+    is_auto_play = fields.Boolean(string='Slider Auto Play', related='website_id.is_auto_play', default=True, readonly=False)
 
     @api.onchange('is_load_more')
     def get_value_icon_load_more(self):
@@ -51,3 +52,16 @@ class res_config(models.TransientModel):
             with tools.file_open(img_path, 'rb') as f:
                 self.lazy_load_image = base64.b64encode(f.read())
 
+    @api.onchange('module_sale_product_configurator')
+    def install_child_modules(self):
+        if self.module_sale_product_configurator:
+            irModuleObject = self.env['ir.module.module']
+            irModuleObject.update_list()
+            emiproInheritModuleId = irModuleObject.search(
+                [
+                    ('state', '!=', 'installed'),
+                    ('name', '=', 'emipro_theme_sale_product_configurator')
+                ]
+            )
+            if emiproInheritModuleId:
+                emiproInheritModuleId[0].button_immediate_install()

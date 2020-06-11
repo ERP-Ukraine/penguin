@@ -105,7 +105,6 @@
 	#time_lbl
 	{
 		@include style(3,5);
-		text-transform: capitalize;
 		background-color:nth($f_color,19);
 		padding: 5px;
 	}
@@ -114,7 +113,6 @@
 {
 	display: none;
 	@include style(4,19);
-	text-transform: capitalize;
 	line-height: unset;
 	font-weight: 600;
 }
@@ -133,14 +131,25 @@
 		}
 	}
 }
-.timer_data
-{
+.timer_data {
 	display: inline-block;
 	@include position(absolute,10px,auto,auto,25px);
 	background: nth($f_color,5);
 	padding: 0 5px;
 }
-.te_time_main_div
-{
+.te_time_main_div {
 	@include position(relative);
+}
+#product_details .js_product .te_product_quantity {
+	margin-bottom: 1rem;
+}
+#product_option_block {
+	.o_add_compare_dyn,.o_add_wishlist_dyn {
+		span {
+			line-height: 1.5;
+		}
+	}
+}
+.oe_share_icon span {
+	line-height: 38px;
 }

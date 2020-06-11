@@ -238,7 +238,6 @@ td.text-center.text-xl-right.border-0
 .table thead th
 {
 	font-weight: normal;
-	text-transform:uppercase;
 }
 .te_cart_del
 {
@@ -246,7 +245,6 @@ td.text-center.text-xl-right.border-0
 }
 .js_cart_summary > .card-body > h4
 {
-	text-transform:uppercase;
 	text-align: right;
 }
 .card.js_cart_summary,.te_cart_summary_card
@@ -346,7 +344,6 @@ td.text-center.text-xl-right.border-0
 	.progress-wizard .progress-wizard-step.active .progress-wizard-steplabel
 	{
 		font-size:nth($f_sizes,7);
-		text-transform: capitalize;
 	}
 	.te_page_header
 	{
@@ -386,10 +383,6 @@ td.text-center.text-xl-right.border-0
 	}
 }
 /*----------------- Suggested Products --------------------*/
-.te_cart_sugg_h5
-{
-	text-transform:uppercase;
-}
 #suggested_products
 {
 	.td-product_name a
@@ -868,7 +861,6 @@ form.checkout_autoformat
 	}
 	thead th
 	{
-		text-transform:capitalize !important;
 		color: nth($f_color,3);
 	}
 }
@@ -951,7 +943,6 @@ form.checkout_autoformat
 .oe_cart h3
 {
 	font-family:inherit;
-	text-transform: capitalize;
 	@include spacing(0,0);
 	>strong
 	{
@@ -1405,7 +1396,6 @@ li.nav-item.dropdown.o_extra_menu_items.show > ul.dropdown-menu.dropdown-menu-ri
     .js_language_selector
     {
         button.btn.btn-sm.btn-secondary.dropdown-toggle {
-            text-transform: capitalize;
             font-size: nth($f_sizes,3);
             color: nth($f_color,4);
             padding: 0 4px;

@@ -41,11 +41,9 @@ odoo.define('website_slider.front_js', function (require) {
                 }
                 self.initOwlSlider();
                 $(self.$target).find(".js_filter_change").first().addClass( "active" );
-                if ($('#ajax_cart_template').val() != 1) {
-                    $(self.$target).find(".a-submit").click(function (event) {
-                        sale._onClickSubmit(event)
-                     });
-                 }
+                $(self.$target).find(".a-submit").click(function (event) {
+                    sale._onClickSubmit(event)
+                 });
                 self.addToWishlist($(self.$target));
                 self.slider_render($(self.$target));
             });
@@ -88,7 +86,7 @@ odoo.define('website_slider.front_js', function (require) {
                 lazyLoad:true,
                 dots: false,
                 navText : ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-                autoplay: true,
+                autoplay: $('.te_auto_play_value span').text() == "True" ? true : false,
                 autoplayTimeout: 4000,
                 autoplayHoverPause:true,
                 items: 4,
@@ -149,11 +147,9 @@ odoo.define('website_slider.front_js', function (require) {
                         $('.cus_theme_loader_layout').addClass('d-none');
                         $('.cus_theme_loader_layout').addClass('hidden');
                         $(target).find(".js_data_container").append($(data).find(".js_filter_data"));
-                        if ($('#ajax_cart_template').val() != 1) {
-                            $(target).find(".a-submit").click(function (event) {
-                                sale._onClickSubmit(event)
-                            });
-                        }
+                        $(target).find(".a-submit").click(function (event) {
+                            sale._onClickSubmit(event)
+                        });
                         self.addToWishlist(target);
                         self.initOwlSlider();
                         if($('#id_lazyload').length) {

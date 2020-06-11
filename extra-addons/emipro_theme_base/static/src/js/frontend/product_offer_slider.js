@@ -8,6 +8,55 @@ odoo.define('website_slider.product_offer_slider', function (require) {
     var sAnimations = require('website.content.snippets.animation');
     var publicWidget = require('web.public.widget');
     var sale = new sAnimations.registry.WebsiteSale();
+//
+    publicWidget.registry.test_js_homepage_style = publicWidget.Widget.extend({
+        selector: ".test_js_homepage_style",
+        start: function () {
+            this.redrow();
+        },
+        stop: function () {
+            this.clean();
+        },
+        redrow: function (debug) {
+            this.clean(debug);
+            this.build(debug);
+        },
+        clean: function (debug) {
+            this.$target.empty();
+        },
+        build: function (debug) {
+//        alert("Build Calling........");
+        var self = this;
+        var registryData = publicWidget.registry;
+        var style_id = self.$target.attr("data-slider-style-id");
+        ajax.jsonRpc('/get_test_homepage_data', 'call', {}).then(function (data) {
+            $(self.$target).html(data);
+        });
+
+//            var self = this;
+//            var registryData = publicWidget.registry;
+//            if(registryData.js_slider_snippet)
+//            {
+//                var productSlider = new publicWidget.registry.js_slider_snippet();
+//                var style_id = self.$target.attr("data-slider-style-id");
+//                ajax.jsonRpc('/get_new_product_data', 'call', {'style_id': style_id}).then(function (data) {
+//                    $(self.$target).html(data);
+//                    if($('#id_lazyload').length) {
+//                        $("img.lazyload").lazyload();
+//                    }
+//                    productSlider.initOwlSlider();
+//                    $(self.$target).find(".a-submit").click(function (event) {
+//                        sale._onClickSubmit(event)
+//                     });
+//                    productSlider.addToWishlist($(self.$target));
+//                    productSlider.slider_render($(self.$target));
+//                });
+//            }
+        }
+    });
+
+
+//
 
     publicWidget.registry.js_category_discount = publicWidget.Widget.extend({
         selector: ".js_category_discount",

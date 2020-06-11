@@ -1,3 +1,23 @@
+Version 13.0.1.5.0 - 09 June 20
+===================================
+Note: First upgrade emipro_theme_base and update theme.
+Improvement
+
+ - Double Qty issue in product page.
+ - CSS imporvement after AJAX functionality Changes.
+ - Removed text-transform property from all the css.
+
+Features
+ - Introduce slider auto-play setting from backend (For Owl slider).
+
+Version 13.0.1.4.3 - 14 May 20
+===================================
+Note:update theme.
+Improvement
+
+ - Double Qty issue in product page.
+
+
 Version 13.0.1.4.2 - 11 April 20
 ===================================
 Note: First upgrade emipro_theme_base and update theme.

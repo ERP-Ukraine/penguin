@@ -42,4 +42,11 @@
             </div>
         </xpath>
     </template>
+    <template id="slider_auto_play" inherit_id="website.layout">
+        <xpath expr="//header" position="before">
+            <div class="te_auto_play_value d-none">
+                <span t-if="website.is_auto_play" t-esc="website.is_auto_play"></span>
+            </div>
+        </xpath>
+    </template>
 </odoo>

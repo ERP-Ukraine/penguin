@@ -11,11 +11,10 @@ odoo.define('theme_clarico_vega.ajax_cart', function (require) {
         '/website_sale_stock/static/src/xml/website_sale_stock_product_availability.xml',
         QWeb
     );
-    var OptionalProductsModal = require('sale_product_configurator.OptionalProductsModal');
+    /*var OptionalProductsModal = require('sale_product_configurator.OptionalProductsModal');*/
     var flag = 1;
 
-    OptionalProductsModal.include({
-    /** Ajax cart for the optional product popup */
+/*    OptionalProductsModal.include({
         init: function (parent, params) {
             this._super.apply(this, arguments);
             this.isWebsite = params.isWebsite;
@@ -38,14 +37,10 @@ odoo.define('theme_clarico_vega.ajax_cart', function (require) {
                             ajaxCart.ajaxCartSucess(product_id);
                         });
                     }
-                     /*var $quantity = $(".my_cart_quantity");
-                    $('.my_cart_quantity').text('');
-                    var cart_qty = $('input.cart_qty').val();
-                    $quantity.html(cart_qty).hide().fadeIn(600);*/
                 }
             },800);
         }
-    });
+    });*/
 
     publicWidget.registry.WebsiteSale.include({
         _submitForm: function () {
@@ -210,6 +205,8 @@ odoo.define('theme_clarico_vega.ajax_cart', function (require) {
                     });
                 } else {
                     $aSubmit.closest('form').submit();
+                    $('.ajax_cart_modal > .close').trigger('click');
+                    $('.quick_view_modal > .close').trigger('click');
                 }
             }
             if ($aSubmit.hasClass('a-submit-disable')){
@@ -247,12 +244,17 @@ odoo.define('theme_clarico_vega.ajax_cart', function (require) {
     $(document).on('click', '.ajax-sucess-continue', function(){
         $('.ajax_cart_modal > .close').trigger('click');
     });
-    $(document).on('click', '.oe_website_sale #add_to_cart', async function(ev){
-        if($('#add_to_cart').attr('quick-view-ajax-cart') == 1 || $('.a-submit').attr('optional-product') == 1) {
-            ev.preventDefault();
-        } else {
-            ev.preventDefault();
-            WebsiteSale._onClickAdd(ev);
-        }
-    });
+    if (!$('#ajax_cart_product_template').length) {
+        $(document).on('click', '.oe_website_sale #add_to_cart', async function(ev){
+            if($('#add_to_cart').hasClass('quick-add-to-cart') || $('.a-submit').attr('optional-product') == 1) {
+                ev.preventDefault();
+            } else {
+                var is_quick_view = $('#add_to_cart').hasClass('quick-add-to-cart');
+                if(!is_quick_view) {
+                    ev.preventDefault();
+                    WebsiteSale._onClickAdd(ev);
+                }
+            }
+        });
+    }
 });

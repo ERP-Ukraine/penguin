@@ -300,7 +300,6 @@ INDEX:
 }
 .te_megamenu_service_content_heading {
 	color: nth($f_color,3);
-	text-transform: uppercase;
 }
 @include media-breakpoint-down(md)
 {
@@ -584,7 +583,6 @@ INDEX:
 }
 .te_designation_name_sub_ti{
 	color: nth($f_color,4);
-	text-transform: capitalize;
 }
 .te_feature_image_1{
 	max-width: 100%;	

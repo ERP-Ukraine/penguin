@@ -755,9 +755,9 @@ class Website(models.Model):
         ('button', 'Button- on click button')
     ], string="Loading type for products",
         required=True, default='automatic', readonly=False)
-    prev_button_label = fields.Char(string='Label for the Prev Button', required=True, readonly=False,
+    prev_button_label = fields.Char(string='Label for the Prev Button', readonly=False,
                                     default="Load prev", translate=True)
-    next_button_label = fields.Char(string='Label for the Next Button', required=True, readonly=False,
+    next_button_label = fields.Char(string='Label for the Next Button', readonly=False,
                                     default="Load next", translate=True)
     is_lazy_load = fields.Boolean(string='Lazyload', help="Lazy load will be enabled", readonly=False)
     lazy_load_image = fields.Binary('Lazyload Image', help="Display this image while lazy load applies.",
@@ -767,7 +767,7 @@ class Website(models.Model):
         ('1', '1'),
         ('2', '2'),
         ('3', '3')
-    ], string="Number of lines for product name", required=True, default='1', readonly=False, help="Number of lines to show in product name for shop.")
+    ], string="Number of lines for product name", default='1', readonly=False, help="Number of lines to show in product name for shop.")
     website_company_info = fields.Text(string="Company Information", translate=True,
                                        default="We are a team of passionate people whose goal is to improve "
                                                "everyone's life through disruptive products. We build great products to solve your business problems.")
@@ -791,6 +791,7 @@ class Website(models.Model):
                                            default=_get_default_header_extra_links)
     website_vertical_menu_ept = fields.Html(string="Vertical Menu Content", translate=True, sanitize=False,
                                            default=_get_default_vertical_menu)
+    is_auto_play = fields.Boolean(string='Slider Auto Play', default=True, readonly=False)
 
     # @api.depends('banner_video_url')
     # def _compute_embed_code(self):

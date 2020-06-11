@@ -22,7 +22,6 @@
             {
                 color : nth($f_color,5);
                 font-family: inherit;
-                text-transform: capitalize;
                 padding: 0.8rem 0.8rem;
                 @include position(relative)
 
@@ -112,7 +111,6 @@
 		}
 		.btn
 		{
-			text-transform:capitalize;
 			padding: 0.375rem;
 		}
 		.te_user_account .dropdown-menu

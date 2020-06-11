@@ -578,7 +578,6 @@
             padding-top: 1rem;
             .te_quick_filter_name {
                 color: nth($f_color,20);
-                text-transform: capitalize;
                 .te_clear_all_variant {
                     font-size: 0.75rem;
                     color: nth($f_color,19);
@@ -978,9 +977,7 @@
 }
 .o_product_feature_panel .o_product_panel .o_product_panel_header
 {
-	.o_product_text {
-    	text-transform: capitalize;
-	}
+	
 	.o_product_circle
 	{
 		padding: 1px 5px 0px 4px;
@@ -1011,7 +1008,6 @@
 .te_wish_h3{
 	font-weight: normal;
 	font-size:nth($f_sizes,12);
-	text-transform: uppercase;
 }
 .wishlist-section{
 	input#b2b_wish
@@ -1216,7 +1212,6 @@
 	th
 	{
 		border-top:none;
-        text-transform: capitalize;
 	}
 	@include media-breakpoint-down(md)
 	{
@@ -1410,7 +1405,6 @@ button:focus {
 	}
 	.te_product_alt_h3 {
         color:nth($f_color,28);
-        text-transform:capitalize;
 		margin: 0 0.4rem;
 	}
 	.alternative_product_main,.accessory_product_main {
@@ -1913,4 +1907,19 @@ button:focus {
             }
         }
     }
+}
+
+
+#product_details .js_product .te_product_quantity {
+    margin-bottom: 1rem;
+}
+#product_option_block {
+    .o_add_compare_dyn,.o_add_wishlist_dyn {
+        span {
+            line-height: 1.5;
+        }
+    }
+}
+.oe_share_icon span {
+    line-height: 38px;
 }

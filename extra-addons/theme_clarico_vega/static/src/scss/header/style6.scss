@@ -7,7 +7,6 @@
     {
         >li > a.nav-link
         {
-            text-transform: capitalize;
             color:nth($f_color,3);
             border-top: 2px solid nth($f_color,27);
             padding: 0.8rem;
@@ -318,7 +317,6 @@
         vertical-align: middle;
 		.btn
 		{
-			text-transform:capitalize;
 			padding: 0 0.375rem;
 		}
 	}

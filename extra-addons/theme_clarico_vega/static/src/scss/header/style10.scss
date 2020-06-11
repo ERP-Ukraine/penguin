@@ -242,7 +242,6 @@ a.dropdown-item.js_change_lang,
             display: none !important;
         }
         button.btn.btn-sm.btn-secondary.dropdown-toggle {
-            text-transform: capitalize;
             font-size: nth($f_sizes,7);
             color:theme-color('secondary');
             padding: 0 4px;

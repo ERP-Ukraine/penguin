@@ -50,7 +50,14 @@ odoo.define('emipro_theme_base.quick_view', function(require) {
                     theme_script.productGallery();
                     $('#mainSlider .owl-carousel').trigger('refresh.owl.carousel');
                     $('#thumbnailSlider .owl-carousel').trigger('refresh.owl.carousel');
+                    $('.quick_view_content').find('.quantity').val('1').trigger('change');
+
                 }, 200);
+                setTimeout(function(){
+                    if($(this).find('.a-submit').hasClass('out_of_stock')) {
+                        $(this).find('.a-submit').addClass('disabled');
+                    }
+                }, 1000);
                 $('.variant_attribute  .list-inline-item').first().addClass('active_li');
                 $(".variant_attribute li").each(function() {
                     if($(this).find('.css_attribute_color').hasClass('active')) {

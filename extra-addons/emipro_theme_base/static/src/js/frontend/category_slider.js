@@ -26,7 +26,7 @@ odoo.define('theme_clarico_vega.category_slider', function(require) {
                         nav: true,
                         lazyLoad:true,
                         dots: false,
-                        autoplay: true,
+                        autoplay: $('.te_auto_play_value span').text() == "True" ? true : false,
                         autoplayTimeout: 4000,
                         navText : ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
                         autoplayHoverPause:true,

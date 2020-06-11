@@ -64,10 +64,6 @@
 		}
 	}
 }
-.te_header_language > .btn
-{
-	text-transform: capitalize;
-}
 /*------- Header Offer Text, Company Logo, Cart Icon, Search Box, Wishlist Icon --------*/
 .te_header_style_2_main{
      .te_header_search {
@@ -83,7 +79,6 @@
 		padding: 0;
 		& a.btn-link{
 			padding: 13px 5px;
-			text-transform: capitalize;
 			font-size: nth($f_sizes,3);
 		}
 	}
@@ -104,7 +99,6 @@
 			& .te_login_right{
 				& a.btn-link{
 					padding: 13px 0px;
-					text-transform: capitalize;
 				}
 			}
 		}
@@ -182,10 +176,6 @@
 /*------ User Administrator Text --------*/
 .te_user_account
 {
-	> a.dropdown-toggle
-	{
-		text-transform:capitalize;
-	}
 	@include media-breakpoint-down(lg) {
 		.te_user_account_name
 		{

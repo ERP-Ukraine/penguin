@@ -44,7 +44,41 @@
             </div>
             <div class="te_time_main_div">
                 <div class="timer_data"/>
-                <div class="te_display_end_date"/>
+                <div class="te_time_main_div">
+                    <div class="timer_data">
+                        <div class="timer_input">
+
+                        </div>
+                    </div>
+                    <div id="timer_portion_content_ept" class="te_display_end_date d-none">
+                        <div class='product_offer_timer'>
+                            <span class='text-center d-inline-block'>
+                                <div class='rounded_digit_product'>
+                                    <span id='days' class='d-block  te_days_hr_min_sec'></span>
+                                    <div id='time_lbl' class='d-block'>Days</div>
+                                </div>
+                            </span>
+                            <span class='text-center d-inline-block'>
+                                <div class='rounded_digit_product'>
+                                    <span id='hours' class='d-block  te_days_hr_min_sec'></span>
+                                    <div id='time_lbl' class='d-block'>Hours</div>
+                                </div>
+                            </span>
+                            <span class='text-center d-inline-block'>
+                                <div class='rounded_digit_product'>
+                                    <span id='minutes' class='d-block te_days_hr_min_sec'></span>
+                                    <div id='time_lbl' class=' d-block'>Mins</div>
+                                </div>
+                            </span>
+                            <span class='text-center d-inline-block'>
+                                <div class='rounded_digit_product'>
+                                    <span id='seconds' class='d-block te_days_hr_min_sec'></span>
+                                    <div id='time_lbl' class='d-block'>Secs</div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </xpath>
         <xpath expr="//t[@t-call='website_sale.pricelist_list']"
@@ -216,7 +250,7 @@
             </t>
         </xpath>
     </template>
-    <template id="product_sticky_gallary" inherit_id="website_sale.product" name="sticky product gallary" priority="16">
+    <template id="product_sticky_gallary" inherit_id="website_sale.product" name="sticky product gallary" priority="17">
         <xpath expr="//div[hasclass('row')][2]" position="attributes">
             <attribute name="class">row te_row_main</attribute>
         </xpath>
@@ -302,19 +336,19 @@
         <xpath expr="//div[@id='o-carousel-product']" position="replace">
             <div id="mainSlider" class="position-relative">
                 <div class="owl-carousel carousel-inner">
-                    <t t-foreach="product_images" t-as="product_image">
-                        <div t-attf-class="#{' active' if product_image_first else ''}">
-                            <div t-if="product_image._name == 'product.image' and product_image.embed_code"
-                                 class="d-flex align-items-center justify-content-center h-100 embed-responsive embed-responsive-16by9">
-                                <t t-raw="product_image.embed_code"/>
-                            </div>
-                            <div t-else="" t-field="product_image.image_1920"
-                                 class="d-flex align-items-center justify-content-center h-100"
-                                 t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920"}'/>
-                        </div>
-                    </t>
+                <t t-foreach="product_images" t-as="product_image">
+                <div t-attf-class="#{' active' if product_image_first else ''}">
+                <div t-if="product_image._name == 'product.image' and product_image.embed_code"
+                class="">
+                <t t-raw="product_image.embed_code"/>
                 </div>
-            </div>
+                <div t-else="" t-field="product_image.image_1920"
+                class=""
+                t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920"}'/>
+                </div>
+                </t>
+                </div>
+                </div>
             <div t-ignore="True" id="thumbnailSlider" class="">
                 <input id="len-ept-image" type="hidden" t-attf-value="#{len(product_images)}"/>
                 <ol t-if="len(product_images) > 1" class="owl-carousel d-inline-block my-0 py-1 px-0 text-left">

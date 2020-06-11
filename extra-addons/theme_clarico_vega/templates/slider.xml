@@ -87,8 +87,8 @@
                                                     <a t-att-href="product.website_url"
                                                        class="text-decoration-none">
                                                         <h6
-                                                            t-attf-class="my-2 mb-0 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
-                                                            t-raw="product.display_name"/>
+                                                                t-attf-class="my-2 mb-0 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                t-raw="product.display_name"/>
                                                     </a>
                                                     <div itemprop="offers" itemscope="itemscope"
                                                          itemtype="http://schema.org/Offer"
@@ -132,21 +132,46 @@
                                                     </div>
                                                     <section class="te_prod_cart_wish">
                                                         <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                            <t t-set="ajax_cart" t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
-                                                            <a role="button"
+                                                            <t t-set="ajax_cart"
+                                                               t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
+                                                            <t t-set="configurator_state"
+                                                               t-value="request.env['ir.module.module'].sudo().search([['name', '=', 'sale_product_configurator']])"/>
+                                                            <t t-if="configurator_state and configurator_state.state == 'installed'">
+                                                                <a role="button"
+                                                                   t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                   title="Shopping cart"
+                                                                   t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''"
+                                                                   t-att-product-id="product.id"
+                                                                   t-att-variant-count="product.product_variant_count">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                    Add to Cart
+                                                                </a>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <a role="button"
+                                                                   t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                   title="Shopping cart"
+                                                                   t-att-id="'add_to_cart' if ajax_cart else ''"
+                                                                   t-att-product-id="product.id"
+                                                                   t-att-variant-count="product.product_variant_count">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                    Add to Cart
+                                                                </a>
+                                                            </t>
+                                                            <!--<a role="button"
                                                                class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page"
                                                                title="Shopping cart" t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''" t-att-product-id="product.id"
                                                                t-att-variant-count="product.product_variant_count">
                                                                 <span class="fa fa-shopping-cart"/>
                                                                 Add to Cart
-                                                            </a>
+                                                            </a>-->
                                                         </t>
                                                         <t t-set="quick_view"
                                                            t-value="request.website.viewref('theme_clarico_vega.quickview_icon_shop_product_item').active"/>
                                                         <t t-if="quick_view">
                                                             <button title="Quick View"
-                                                               class="btn btn-secondary btn-sm px-3 py-2 quick-view-a te_quick_view"
-                                                               t-att-data-id="'%s' % product.id">
+                                                                    class="btn btn-secondary btn-sm px-3 py-2 quick-view-a te_quick_view"
+                                                                    t-att-data-id="'%s' % product.id">
                                                                 <span class="fa fa-eye"/>
                                                             </button>
                                                         </t>
@@ -269,8 +294,8 @@
                                                         <a t-att-href="product.website_url"
                                                            class="text-decoration-none">
                                                             <h6
-                                                                t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
-                                                                t-raw="product.display_name"/>
+                                                                    t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                    t-raw="product.display_name"/>
                                                         </a>
                                                         <div itemprop="offers" itemscope="itemscope"
                                                              itemtype="http://schema.org/Offer"
@@ -314,12 +339,30 @@
                                                         </div>
                                                         <section class="te_prod_cart_wish_2">
                                                             <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                                <t t-set="ajax_cart" t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
-                                                                <a role="button" class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page"
-                                                                   title="Shopping cart" t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''" t-att-product-id="product.id"
-                                                                    t-att-variant-count="product.product_variant_count" >
-                                                                    <span class="fa fa-shopping-cart"/>
-                                                                </a>
+                                                                <t t-set="ajax_cart"
+                                                                   t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
+                                                                <t t-set="configurator_state"
+                                                                   t-value="request.env['ir.module.module'].sudo().search([['name', '=', 'sale_product_configurator']])"/>
+                                                                <t t-if="configurator_state and configurator_state.state == 'installed'">
+                                                                    <a role="button"
+                                                                       t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                       title="Shopping cart"
+                                                                       t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''"
+                                                                       t-att-product-id="product.id"
+                                                                       t-att-variant-count="product.product_variant_count">
+                                                                        <span class="fa fa-shopping-cart"/>
+                                                                    </a>
+                                                                </t>
+                                                                <t t-else="">
+                                                                    <a role="button"
+                                                                       t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                       title="Shopping cart"
+                                                                       t-att-id="'add_to_cart' if ajax_cart else ''"
+                                                                       t-att-product-id="product.id"
+                                                                       t-att-variant-count="product.product_variant_count">
+                                                                        <span class="fa fa-shopping-cart"/>
+                                                                    </a>
+                                                                </t>
                                                             </t>
                                                             <t t-call="theme_clarico_vega.product_slider_btn"/>
                                                         </section>
@@ -421,8 +464,8 @@
                                                     <a t-att-href="product.website_url"
                                                        class="text-decoration-none">
                                                         <h6
-                                                            t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
-                                                            t-raw="product.display_name"/>
+                                                                t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                t-raw="product.display_name"/>
                                                     </a>
                                                     <div itemprop="offers" itemscope="itemscope"
                                                          itemtype="http://schema.org/Offer"
@@ -466,12 +509,30 @@
                                                     </div>
                                                     <section class="te_prod_cart_wish_3">
                                                         <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                            <t t-set="ajax_cart" t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
-                                                            <a role="button" class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page"
-                                                               title="Shopping cart" t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''" t-att-product-id="product.id"
-                                                                t-att-variant-count="product.product_variant_count" >
-                                                                <span class="fa fa-shopping-cart"/>
-                                                            </a>
+                                                            <t t-set="ajax_cart"
+                                                               t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
+                                                            <t t-set="configurator_state"
+                                                               t-value="request.env['ir.module.module'].sudo().search([['name', '=', 'sale_product_configurator']])"/>
+                                                            <t t-if="configurator_state and configurator_state.state == 'installed'">
+                                                                <a role="button"
+                                                                   t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                   title="Shopping cart"
+                                                                   t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''"
+                                                                   t-att-product-id="product.id"
+                                                                   t-att-variant-count="product.product_variant_count">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                </a>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <a role="button"
+                                                                   t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                   title="Shopping cart"
+                                                                   t-att-id="'add_to_cart' if ajax_cart else ''"
+                                                                   t-att-product-id="product.id"
+                                                                   t-att-variant-count="product.product_variant_count">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                </a>
+                                                            </t>
                                                         </t>
                                                         <t t-call="theme_clarico_vega.product_slider_btn"/>
                                                     </section>
@@ -575,8 +636,8 @@
                                                 <section class="d-block te_prod_info_sub">
                                                     <a t-att-href="product.website_url" class="text-decoration-none">
                                                         <h6
-                                                            t-attf-class="my-2 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
-                                                            t-raw="product.display_name"/>
+                                                                t-attf-class="my-2 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                t-raw="product.display_name"/>
                                                     </a>
                                                     <t t-if="product.description_sale">
                                                         <div class="te_slider_4_desc">
@@ -623,12 +684,30 @@
                                                     </div>
                                                     <section class="te_prod_cart_wish_4">
                                                         <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                            <t t-set="ajax_cart" t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
-                                                            <a role="button" class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page"
-                                                               title="Shopping cart" t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''" t-att-product-id="product.id"
-                                                                t-att-variant-count="product.product_variant_count" >
-                                                                <span class="fa fa-shopping-cart"/>
-                                                            </a>
+                                                            <t t-set="ajax_cart"
+                                                               t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
+                                                            <t t-set="configurator_state"
+                                                               t-value="request.env['ir.module.module'].sudo().search([['name', '=', 'sale_product_configurator']])"/>
+                                                            <t t-if="configurator_state and configurator_state.state == 'installed'">
+                                                                <a role="button"
+                                                                   t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                   title="Shopping cart"
+                                                                   t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''"
+                                                                   t-att-product-id="product.id"
+                                                                   t-att-variant-count="product.product_variant_count">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                </a>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <a role="button"
+                                                                   t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                   title="Shopping cart"
+                                                                   t-att-id="'add_to_cart' if ajax_cart else ''"
+                                                                   t-att-product-id="product.id"
+                                                                   t-att-variant-count="product.product_variant_count">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                </a>
+                                                            </t>
                                                         </t>
                                                         <t t-call="theme_clarico_vega.product_slider_btn"/>
                                                     </section>
@@ -750,8 +829,8 @@
                                                        t-value="request.website.viewref('theme_clarico_vega.quickview_icon_shop_product_item').active"/>
                                                     <t t-if="quick_view">
                                                         <button title="Quick View"
-                                                           class="btn btn-secondary quick-view-a te_quick_view"
-                                                           t-att-data-id="'%s' % product.id">
+                                                                class="btn btn-secondary quick-view-a te_quick_view"
+                                                                t-att-data-id="'%s' % product.id">
                                                             <span class="fa fa-eye"/>
                                                         </button>
                                                     </t>
@@ -762,8 +841,8 @@
                                                     <a t-att-href="product.website_url"
                                                        class="text-decoration-none">
                                                         <h6
-                                                            t-attf-class="my-2 mb-0 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
-                                                            t-raw="product.display_name"/>
+                                                                t-attf-class="my-2 mb-0 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                t-raw="product.display_name"/>
                                                     </a>
                                                     <div itemprop="offers" itemscope="itemscope"
                                                          itemtype="http://schema.org/Offer"
@@ -807,14 +886,32 @@
                                                     </div>
                                                     <section class="te_prod_cart_wish pt-3">
                                                         <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                            <t t-set="ajax_cart" t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
-                                                            <a role="button"
-                                                               class="btn btn-secondary btn-sm px-3 py-2 te_theme_button a-submit not_product_page"
-                                                               title="Shopping cart" t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''" t-att-product-id="product.id"
-                                                                t-att-variant-count="product.product_variant_count">
-                                                                <span class="fa fa-shopping-cart"/>
-                                                                Add to Cart
-                                                            </a>
+                                                            <t t-set="ajax_cart"
+                                                               t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
+                                                            <t t-set="configurator_state"
+                                                               t-value="request.env['ir.module.module'].sudo().search([['name', '=', 'sale_product_configurator']])"/>
+                                                            <t t-if="configurator_state and configurator_state.state == 'installed'">
+                                                                <a role="button"
+                                                                   t-attf-class="btn btn-secondary te_theme_button btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                   title="Shopping cart"
+                                                                   t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''"
+                                                                   t-att-product-id="product.id"
+                                                                   t-att-variant-count="product.product_variant_count">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                    Add to Cart
+                                                                </a>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <a role="button"
+                                                                   t-attf-class="btn btn-secondary te_theme_button btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                                   title="Shopping cart"
+                                                                   t-att-id="'add_to_cart' if ajax_cart else ''"
+                                                                   t-att-product-id="product.id"
+                                                                   t-att-variant-count="product.product_variant_count">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                    Add to Cart
+                                                                </a>
+                                                            </t>
                                                         </t>
                                                     </section>
                                                 </section>
@@ -933,20 +1030,39 @@
                                                            t-value="request.website.viewref('theme_clarico_vega.quickview_icon_shop_product_item').active"/>
                                                         <t t-if="quick_view">
                                                             <button title="Quick View"
-                                                               class="btn btn-secondary quick-view-a te_quick_view"
-                                                               t-att-data-id="'%s' % product.id">
+                                                                    class="btn btn-secondary quick-view-a te_quick_view"
+                                                                    t-att-data-id="'%s' % product.id">
                                                                 <span class="fa fa-eye"/>
                                                             </button>
                                                         </t>
                                                     </div>
                                                     <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                        <t t-set="ajax_cart" t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
-                                                        <a role="button" class="btn btn-primary a-submit not_product_page"
-                                                           title="Shopping cart" t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''" t-att-product-id="product.id"
-                                                            t-att-variant-count="product.product_variant_count">
-                                                            <span class="fa fa-shopping-cart"/>
-                                                            Add to Cart
-                                                        </a>
+                                                        <t t-set="ajax_cart"
+                                                           t-value="request.website.viewref('theme_clarico_vega.ajax_add_to_cart').active"/>
+                                                        <t t-set="configurator_state"
+                                                           t-value="request.env['ir.module.module'].sudo().search([['name', '=', 'sale_product_configurator']])"/>
+                                                        <t t-if="configurator_state and configurator_state.state == 'installed'">
+                                                            <a role="button" src=""
+                                                               t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                               title="Shopping cart"
+                                                               t-att-id="'add_to_cart' if ajax_cart and not product.optional_product_ids else ''"
+                                                               t-att-product-id="product.id"
+                                                               t-att-variant-count="product.product_variant_count">
+                                                                <span class="fa fa-shopping-cart"/>
+                                                                Add to Cart
+                                                            </a>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <a role="button" src=""
+                                                               t-attf-class="btn btn-secondary btn-sm px-3 py-2 a-submit not_product_page #{'disabled out_of_stock' if product.virtual_available &lt; 1 and product.inventory_availability in ['always', 'threshold'] else ''}"
+                                                               title="Shopping cart"
+                                                               t-att-id="'add_to_cart' if ajax_cart else ''"
+                                                               t-att-product-id="product.id"
+                                                               t-att-variant-count="product.product_variant_count">
+                                                                <span class="fa fa-shopping-cart"/>
+                                                                Add to Cart
+                                                            </a>
+                                                        </t>
                                                     </t>
                                                 </section>
                                                 <div class="te_prod_info_2">
@@ -954,8 +1070,8 @@
                                                         <a t-att-href="product.website_url"
                                                            class="text-decoration-none">
                                                             <h6
-                                                                t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
-                                                                t-raw="product.display_name"/>
+                                                                    t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                    t-raw="product.display_name"/>
                                                         </a>
                                                         <div itemprop="offers" itemscope="itemscope"
                                                              itemtype="http://schema.org/Offer"
@@ -1181,7 +1297,7 @@
            t-value="request.website.viewref('theme_clarico_vega.quickview_icon_shop_product_item').active"/>
         <t t-if="quick_view">
             <button title="Quick View" class="btn btn-secondary btn-sm px-3 py-2 quick-view-a te_quick_view"
-               t-att-data-id="'%s' % product.id">
+                    t-att-data-id="'%s' % product.id">
                 <span class="fa fa-eye"/>
             </button>
         </t>

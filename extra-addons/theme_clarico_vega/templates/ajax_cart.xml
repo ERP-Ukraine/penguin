@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="ajaxcart_popup_product" inherit_id="website_sale.product">
+        <xpath expr="//t[@t-call='website.layout']" position="before">
+            <input type="hidden" id="ajax_cart_product_template" value="1"/>
+        </xpath>
+    </template>
     <template id="ajaxcart_popup" inherit_id="web.frontend_layout">
         <xpath expr="//div[@id='wrapwrap']/main" position="before">
             <!-- ajax View Popup Model -->
@@ -178,14 +183,14 @@
                                     <span class="fa fa-shopping-cart"/>
                                     Add to Cart
                                 </a>
-                                <!--<t t-if="buy_now_show">
+                                <t t-if="buy_now_show">
                                     <a role="button" id="buy_now"
                                        class="btn btn-outline-primary btn-lg mt16 d-block d-sm-inline-block te_theme_button"
                                        href="javascript:void(0)">
                                         <span class="fa fa-bolt"/>
                                         Buy Now
                                     </a>
-                                </t>-->
+                                </t>
                                 <div class="availability_messages o_not_editable"/>
                                 <div id="product_option_block"/>
                             </div>
@@ -249,17 +254,6 @@
                     </div>
                 </div>
             </section>
-        </xpath>
-    </template>
-    <template id="product_optional_checker" inherit_id="website_sale.product" name="product Optional Checker">
-        <xpath expr="//a[hasclass('a-submit')]" position="attributes">
-            <attribute name="t-att-optional-product">'1' if product.optional_product_ids else '0'</attribute>
-        </xpath>
-    </template>
-    <template id="product_optional_checker_sticky" inherit_id="theme_clarico_vega.product_sticky_details_container"
-              name="product Optional Checker Sticky">
-        <xpath expr="//a[hasclass('a-submit')]" position="attributes">
-            <attribute name="t-att-optional-product">'1' if product.optional_product_ids else '0'</attribute>
         </xpath>
     </template>
 </odoo>
