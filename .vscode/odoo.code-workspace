@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{	"name": "Project Addons",
+			"path": "/mnt/extra-addons"
+		},
+		{	"name": "Odoo Core",
+			"path": "/usr/lib/python3/dist-packages/odoo"
+		},
+		{	"name": "Odoo EE",
+			"path": "/mnt/enterprise-addons"
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"curr",
+			"exigibility",
+			"tax",
+			"penguin"
+		]
+	}
+}
