@@ -109,7 +109,7 @@
 /*=================== 02. 4 Blocks =====================*/
 .te_block_heading 
 {
-	@include style(7,28,inherit,null,capitalize)
+	@include style(7,28)
 	@include media-breakpoint-down(sm)
 	{
 		font-size:nth($f_sizes,3);
@@ -363,7 +363,7 @@
 	}
 	.te_main_title
 	{
-		@include style(13,28,inherit,null,capitalize);
+		@include style(13,28);
 		margin-bottom: 30px;
 		font-weight: 600;
 		margin-top: 10px;
@@ -780,7 +780,7 @@
 // This class is use as ( 3 Columns all style and Mega Menus Style 6 ) snippet
 //(This Class is use style-1, style-2)
 .te_three_columns_heading {
-  @include style(8,28,inherit,null,capitalize)
+  @include style(8,28)
   font-weight: bold;
   @include media-breakpoint-down(md)
   {
@@ -1564,7 +1564,7 @@
 		}
 		.te_slider_heading
 		{
-			@include style(7,28,inherit,null,capitalize);
+			@include style(7,28);
 			padding-bottom: 10px;
 			@include media-breakpoint-down(xs)
 			{
@@ -1573,7 +1573,7 @@
 		}
 		.te_slider_main_heading
 		{
-			@include style(15,28,inherit,null,capitalize);
+			@include style(15,28);
 			padding-bottom: 20px;
 			@include media-breakpoint-down(md)
 			{
@@ -2896,7 +2896,7 @@
 			}
 			.te_banner_title_5
 			{
-				@include style(3,5,inherit,null,capitalize)
+				@include style(3,5)
 				margin-bottom: 44px;
 			    font-weight: 300;
 			    @include spacing(7px,null)
@@ -2948,7 +2948,7 @@
 			}
 			.te_banner_title_6
 			{
-				@include style(19,5,inherit,null,capitalize)
+				@include style(19,5)
 				font-weight: 700;
 				margin-bottom: 12px;
 				@include media-breakpoint-down(xs)
@@ -4262,7 +4262,7 @@
 	{
 		span
 		{
-			@include style(18,13,inherit,null,capitalize);
+			@include style(18,13);
 			font-weight:600; 
 			padding-right: 8px;
 		}

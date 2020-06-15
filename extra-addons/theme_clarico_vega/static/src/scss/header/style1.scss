@@ -68,7 +68,7 @@ header.affixed > nav.navbar
 		margin:0px auto;
 		>li > a.nav-link {
 			border-top: 2px solid nth($f_color,27);
-			@include style(2,6,inherit,null,capitalize)
+			@include style(2,6)
 			font-weight: 600;
 			@include position(relative) 
 			padding-top:1rem;
@@ -99,7 +99,7 @@ header.affixed > nav.navbar
 {
 	.te_currency_name, .te_currency_symbol
 	{
-		@include style(3,4,inherit,null,capitalize);
+		@include style(3,4);
 		padding: 0 4px;
 		&:hover
 		{

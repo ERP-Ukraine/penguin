@@ -130,7 +130,7 @@
 				padding: 10px 0px;
 
 				& .btn-link, a.dropdown-toggle, .te_signin > a{
-					@include style(3,3,inherit,null,capitalize);
+					@include style(3,3);
 				}
 				& .px-2 .te_signin a.btn.btn-link {
                     padding-left: 0px;

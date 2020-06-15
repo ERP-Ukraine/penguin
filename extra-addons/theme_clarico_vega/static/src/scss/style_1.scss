@@ -269,7 +269,7 @@ td.text-center.text-xl-right.border-0
 	width:100%;
 	& .te_attr_span
 	{
-		@include style(3,2,inherit,null,capitalize);
+		@include style(3,2);
 	}
 }
 .te_rmv_cart_product a
@@ -403,7 +403,7 @@ td.text-center.text-xl-right.border-0
 	}
 	.js_add_suggested_products
 	{
-		@include style(2,19,inherit,null,capitalize);
+		@include style(2,19);
 		border-bottom: $input-border-width solid $input-border-color;
 		padding-left:0;
 		padding-right:0;
@@ -707,7 +707,7 @@ td.text-center.text-xl-right.border-0
 		> .progress-wizard-steplabel
 		{
 			margin: 10px 0 10px 5px;
-			@include style(2,5,inherit,null,capitalize);
+			@include style(2,5);
 			font-weight: bold;
 		}
 		> span.progress-wizard-dot
@@ -775,7 +775,7 @@ form.checkout_autoformat
 	& label.col-form-label
 	{
 		font-weight: normal;
-		@include style(3,1,inherit,null,capitalize);
+		@include style(3,1);
 	}
 	.checkbox
 	{
@@ -801,7 +801,7 @@ form.checkout_autoformat
 /*----------------------- Checkout Address -------------------*/
 .all_shipping .te_add_address
 {
-	@include style(2,19,inherit,null,capitalize);
+	@include style(2,19);
 	border: 0;
 	background: 0;
 	text-align: right;
@@ -874,7 +874,7 @@ form.checkout_autoformat
 	width:100%;
 	& .te_attr_span
 	{
-		@include style(3,6,inherit,null,capitalize);
+		@include style(3,6);
 	}
 }
 @include media-breakpoint-down(md)

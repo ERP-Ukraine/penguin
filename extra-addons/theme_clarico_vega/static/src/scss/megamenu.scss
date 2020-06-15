@@ -361,7 +361,7 @@ INDEX:
 		}
 		.te_icon_text a
 		{
-			@include style(7,20,inherit,null,capitalize);
+			@include style(7,20);
 			padding-bottom:4px;
 			@include position(relative);
 			overflow: hidden;

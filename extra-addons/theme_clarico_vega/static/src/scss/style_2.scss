@@ -26,7 +26,7 @@
 {
 	.modal-title
 	{
-		@include style(4,13,inherit,null,capitalize);
+		@include style(4,13);
 		font-weight: normal;
 	}
 	.te_table_popover
@@ -884,13 +884,13 @@
 	padding-top:15px;
 	h3{
 		text-align: left !important;
-		@include style(1,6,inherit,null,capitalize);
+		@include style(1,6);
 	}
 }
 #myCarousel_alt_prod{
 	>div a.btn.btn-primary{
 		background: nth($f_color,5);
-		@include style(3,3,inherit,null,capitalize);
+		@include style(3,3);
 		padding:0;
 		margin-left:10px;
 	}
@@ -1133,7 +1133,7 @@
 		{
 			padding:0;
 			margin-right:8px;
-			@include style(3,2,inherit,null,capitalize);
+			@include style(3,2);
 			vertical-align: top;
 		}
 	}
@@ -1332,7 +1332,7 @@
 {
 	.modal-title
 	{
-		@include style(4,13,inherit,null,capitalize);
+		@include style(4,13);
 		font-weight: normal;
 	}
 	.modal-dialog .te_table_popover tr td.td-price
@@ -1568,7 +1568,7 @@ button:focus {
 			}
         }
         .prod_name {
-            @include style(2,22,inherit,null,capitalize);
+            @include style(2,22);
         }
         .product_price {
             @include position(relative);
