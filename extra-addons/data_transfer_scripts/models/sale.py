@@ -57,7 +57,8 @@ class SaleOrderTransfer(models.AbstractModel):
         taxes_dict = {t[0]: AT.search([('name', '=', t[1])], limit=1).id for t in taxes_list}
 
         sql = '''
-            SELECT so.id external_id, so.partner_id, so.partner_invoice_id, so.partner_shipping_id, so.company_id,
+            SELECT so.name, so.id external_id, so.partner_id, so.partner_invoice_id, 
+                   so.partner_shipping_id, so.company_id,
                    CASE
                        WHEN so.state IN ('future_sale', 'future_sale_confirmation') THEN so.state
                        ELSE 'done'

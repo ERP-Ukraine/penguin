@@ -145,7 +145,7 @@ class ProductTemplateTransfer(models.AbstractModel):
         sql = '''
             SELECT id external_id, name, sale_ok, purchase_ok, type, hs_code, categ_id, washing_instruction_id,
                    material_id, gender, list_price, company_id, purchase_method, description_sale, 
-                   description_purchase, description_picking, tracking
+                   description_purchase, description_picking, tracking, website_published
             FROM product_template
             WHERE active IS TRUE;
         '''
