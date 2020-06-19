@@ -33,5 +33,17 @@ model.transfer_models_data([
 ])
             </field>
         </record>
+
+        <record model="ir.actions.server" id="action_transfer_sale_order_data">
+            <field name="name">Penguin: Sale Order import</field>
+            <field name="model_id" ref="model_db_data_transfer"/>
+            <field name="binding_model_id" ref="base.model_ir_actions_server" />
+            <field name="state">code</field>
+            <field name="code">
+model.transfer_models_data([
+    'sale.order',
+])
+            </field>
+        </record>
     </data>
 </odoo>

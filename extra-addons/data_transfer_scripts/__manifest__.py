@@ -6,11 +6,14 @@
         'base_penguin',
         'product_penguin',
         'website_sale_penguin',
+        'sale_penguin',
         'crm',
         'account',
         'delivery',
         'purchase',
         'stock',
+        'l10n_ch',
+        'l10n_de_skr03'
     ],
     'data': [
         'data/ir_actions_server_data.xml',
