@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="base.public_partner" model="res.partner">
+            <field name="external_id">469</field>
+        </record>
+
+        <record id="base.public_user" model="res.users">
+            <field name="external_id">13</field>
+        </record>
+
+        <record id="base.partner_admin"  model="res.partner">
+            <field name="external_id">1</field>
+        </record>
+        <record id="base.user_admin" model="res.users">
+            <field name="external_id">1</field>
+        </record>
+
+        <record id="base.main_company"  model="res.company">
+            <field name="external_id">1</field>
+        </record>
+
+    </data>
+</odoo>
