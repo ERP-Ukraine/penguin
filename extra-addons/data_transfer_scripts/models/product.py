@@ -130,7 +130,6 @@ class ProductTemplateTransfer(models.AbstractModel):
         vals.update({
             'categ_id': utils.browse_ext_id('product.category', vals['categ_id']).id,
             'material_id': utils.browse_ext_id('product.material', vals['material_id']).id,
-            'company_id': utils.browse_ext_id('res.company', vals['company_id']).id,
             'washing_instruction_id': utils.browse_ext_id('product.washing.instruction',
                                                           vals['washing_instruction_id']).id
         })
@@ -144,7 +143,7 @@ class ProductTemplateTransfer(models.AbstractModel):
         # select active products
         sql = '''
             SELECT id external_id, name, sale_ok, purchase_ok, type, hs_code, categ_id, washing_instruction_id,
-                   material_id, gender, list_price, company_id, purchase_method, description_sale, 
+                   material_id, gender, list_price, purchase_method, description_sale, 
                    description_purchase, description_picking, tracking, website_published
             FROM product_template
             WHERE active IS TRUE;
@@ -163,8 +162,8 @@ class ProductTemplateTransfer(models.AbstractModel):
             FROM ir_attachment
             WHERE res_model = 'product.template' AND res_field = 'image'
         '''
-        # key (product_template_external_id, company_id)
         images_dict = self.get_parsed_images(self.fetch(sql))
+
         # select public categories
         sql = '''
             SELECT product_template_id external_id, array_agg(product_public_category_id) public_categ_ids

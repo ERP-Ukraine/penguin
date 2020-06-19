@@ -180,7 +180,3 @@ class SaleOrderTransfer(models.AbstractModel):
                 _logger.debug(tmpl % 'SO created; id="%s", external_id="%s"', so_id.id, so_id.external_id)
             if not idx % 200:
                 _logger.info(tmpl % 'processed %s sale orders', idx)
-
-        _logger.info(tmpl, '4. bring product company information back')
-        for company_id, product_ids in product_company_dict.items():
-            product_ids.write({'company_id': company_id})
