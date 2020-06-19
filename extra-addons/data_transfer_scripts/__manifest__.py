@@ -4,8 +4,13 @@
     'category': 'Tools',
     'depends': [
         'base_penguin',
+        'product_penguin',
+        'website_sale_penguin',
         'crm',
         'account',
+        'delivery',
+        'purchase',
+        'stock',
     ],
     'data': [
         'data/ir_actions_server_data.xml',

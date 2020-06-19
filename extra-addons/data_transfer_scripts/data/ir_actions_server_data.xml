@@ -14,5 +14,24 @@ model.transfer_models_data([
 ])
             </field>
         </record>
+
+        <record model="ir.actions.server" id="action_transfer_product_data">
+            <field name="name">Penguin: Product import</field>
+            <field name="model_id" ref="model_db_data_transfer"/>
+            <field name="binding_model_id" ref="base.model_ir_actions_server" />
+            <field name="state">code</field>
+            <field name="code">
+model.transfer_models_data([
+    'product.washing.instruction',
+    'product.material',
+    'product.feature',
+    'product.public.category',
+    'product.attribute',
+    'product.attribute.value',
+    'product.template',
+    'product.product'
+])
+            </field>
+        </record>
     </data>
 </odoo>
