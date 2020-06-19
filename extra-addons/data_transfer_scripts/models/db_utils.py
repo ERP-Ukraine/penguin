@@ -76,6 +76,7 @@ class DBTransferMixin(models.AbstractModel):
             return dict(row)
         return row.copy()
 
+
 class DBCatalogMixin(models.AbstractModel):
     _name = 'db.transfer.catalog.mixin'
     _inherit = 'db.transfer.mixin'

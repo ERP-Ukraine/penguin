@@ -7,6 +7,11 @@ from odoo import api, models
 _logger = logging.getLogger(__name__)
 
 
+class ProductNotFound(Exception):
+    """Raised when SO product not found"""
+    pass
+
+
 class SaleOrderTransfer(models.AbstractModel):
     _name = 'sale.order.transfer'
     _inherit = 'db.transfer.mixin'
@@ -26,7 +31,7 @@ class SaleOrderTransfer(models.AbstractModel):
         return vals
 
     @api.model
-    def get_prepared_sol_vals(self, row, taxes_dict):
+    def get_prepared_sol_vals(self, row, taxes_dict, variant_combination_dict):
         vals = self.get_prepared_vals(row)
 
         utils = self.env['transfer.utils']
@@ -34,9 +39,29 @@ class SaleOrderTransfer(models.AbstractModel):
         tax_id = taxes_dict.get(vals['tax_id'], False)
         if tax_id:
             tax_ids.append(tax_id)
+        # 1. check if product with passing external id exist
+        product_id = utils.get_product_variant(vals['product_id']).id
+        if not product_id:
+            # 2. check if product variant combination exist
+            sql = '''
+                SELECT string_agg(pp.product_tmpl_id || ',' || pav.attribute_id || ',' || pav.name, 
+                                  ',' ORDER BY pav.attribute_id, pav.name) combo_id
+                FROM product_product pp
+                JOIN product_attribute_value_product_product_rel pavppr ON pp.id = pavppr.product_product_id
+                JOIN product_attribute_value pav ON pavppr.product_attribute_value_id = pav.id
+                WHERE pp.id = %s
+                GROUP BY pp.product_tmpl_id, pp.id
+            ''' % vals['product_id']
+            variant_rows = self.fetch(sql)
+            if not variant_rows:
+                raise ProductNotFound
+            variant = variant_rows[0]
+            product_id = variant_combination_dict.get(variant['combo_id'])
+            if not product_id:
+                raise ProductNotFound
         vals.update({
             'company_id': utils.browse_ext_id('res.company', vals['company_id']).id,
-            'product_id': utils.browse_ext_id('product.product', vals['product_id']).id,
+            'product_id': product_id,
             'currency_id': utils.get_currency_by_code(vals['currency_id']).id,
             'tax_id': [(6, 0, tax_ids)]
         })
@@ -56,6 +81,7 @@ class SaleOrderTransfer(models.AbstractModel):
                       (39, '19 % Umsatzsteuer EU Lieferung'))
         taxes_dict = {t[0]: AT.search([('name', '=', t[1])], limit=1).id for t in taxes_list}
 
+        # select all active sale orders
         sql = '''
             SELECT so.name, so.id external_id, so.partner_id, so.partner_invoice_id, 
                    so.partner_shipping_id, so.company_id,
@@ -69,6 +95,7 @@ class SaleOrderTransfer(models.AbstractModel):
         '''
         so_rows = self.fetch(sql)
 
+        # select all sale order with active products
         sql = '''
             SELECT sol.id external_id, sol.order_id, sol.qty_to_invoice, sol.price_unit, sol.product_uom_qty,
                    sol.qty_invoiced, sol.price_tax, sol.company_id, sol.price_subtotal,
@@ -84,11 +111,36 @@ class SaleOrderTransfer(models.AbstractModel):
         '''
         sol_rows = self.fetch(sql)
 
-        sol_grouped_dict = defaultdict(list)
+        # select all product variant combination
+        sql = '''
+            SELECT string_agg(pt.external_id || ',' || pa.external_id::CHAR || ',' || pav.name, 
+                              ',' ORDER BY pa.external_id, pav.name) combo_id,
+                   pp.id product_id
+            FROM product_variant_combination pvc
+            JOIN product_product pp ON pvc.product_product_id = pp.id
+            JOIN product_template pt ON pp.product_tmpl_id = pt.id
+            JOIN product_template_attribute_value ptav ON pvc.product_template_attribute_value_id = ptav.id
+            JOIN product_attribute pa ON ptav.attribute_id = pa.id
+            JOIN product_attribute_value pav ON ptav.product_attribute_value_id = pav.id
+            WHERE pt.external_id NOTNULL and pa.external_id NOTNULL
+            GROUP BY pt.external_id, pp.id;
+        '''
+        self.env.cr.execute(sql)
+        combination_rows = self.env.cr.dictfetchall()
+        _logger.info(tmpl % 'group combination by product tmpl external id and attr values')
+        variant_combination_dict = {r['combo_id']: r['product_id'] for r in combination_rows}
+
         # group sale order lines by external order id
+        sol_grouped_dict = defaultdict(list)
         _logger.info(tmpl % 'group sale order lines by order id; len="%s"', len(sol_rows))
         for idx, sol in enumerate(sol_rows, 1):
-            vals = self.get_prepared_sol_vals(sol, taxes_dict)
+            try:
+                vals = self.get_prepared_sol_vals(sol, taxes_dict, variant_combination_dict)
+            except ProductNotFound:
+                warn_msg = tmpl % ('product not found, SOL was skipped; '
+                                   'product external_id="%s", SOL external_id="%s", SO external_id="%s"')
+                _logger.warning(warn_msg, sol['product_id'], sol['external_id'], sol['order_id'])
+                continue
             order_id = vals.pop('order_id')
             sol_grouped_dict[order_id].append(vals)
             if not idx % 200:
