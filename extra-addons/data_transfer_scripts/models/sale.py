@@ -40,7 +40,7 @@ class SaleOrderTransfer(models.AbstractModel):
         if tax_id:
             tax_ids.append(tax_id)
         # 1. check if product with passing external id exist
-        product_id = utils.get_product_variant(vals['product_id']).id
+        product_id = utils.browse_ext_id('product.product', vals['product_id']).id
         if not product_id:
             # 2. check if product variant combination exist
             sql = '''
