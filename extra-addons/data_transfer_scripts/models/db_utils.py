@@ -51,6 +51,8 @@ class DBTransferMixin(models.AbstractModel):
             'dbname': get_param('database.old.dbname'),
             'user': get_param('database.old.user'),
             'password': get_param('database.old.password'),
+            'host': get_param('database.old.host'),
+            'port': get_param('database.old.port'),
             **params
         }
 
