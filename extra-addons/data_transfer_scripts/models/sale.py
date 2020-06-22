@@ -84,7 +84,7 @@ class SaleOrderTransfer(models.AbstractModel):
         # select all active sale orders
         sql = '''
             SELECT so.name, so.id external_id, so.partner_id, so.partner_invoice_id, 
-                   so.partner_shipping_id, so.company_id,
+                   so.partner_shipping_id, so.company_id, so.date_order,
                    CASE
                        WHEN so.state IN ('future_sale', 'future_sale_confirmation') THEN so.state
                        ELSE 'done'
@@ -156,7 +156,7 @@ class SaleOrderTransfer(models.AbstractModel):
         _logger.info(tmpl, '2. clear company information for all products')
         product_ids.write({'company_id': False})
 
-        _logger.info(tmpl % '3. create sale orders; len="%s"', len(so_rows))
+        _logger.info(tmpl % '3. create or update sale orders; len="%s"', len(so_rows))
         SO = self.env['sale.order']
         so_dict = {so.external_id: so for so in SO.search([])}
         for idx, so in enumerate(so_rows, 1):
