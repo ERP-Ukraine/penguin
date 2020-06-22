@@ -84,7 +84,7 @@ class SaleOrderTransfer(models.AbstractModel):
         # select all active sale orders
         sql = '''
             SELECT so.name, so.id external_id, so.partner_id, so.partner_invoice_id, 
-                   so.partner_shipping_id, so.company_id, so.date_order,
+                   so.partner_shipping_id, so.company_id, so.date_order, so.create_date,
                    CASE
                        WHEN so.state IN ('future_sale', 'future_sale_confirmation') THEN so.state
                        ELSE 'done'
