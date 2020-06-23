@@ -635,8 +635,14 @@ class EmiproThemeBaseExtended(WebsiteSaleWishlist):
         cust_max_val = request.httprequest.values.get('max_price', False)
 
         if cust_max_val and cust_min_val:
-            if not cust_max_val.isnumeric() and cust_min_val.isnumeric():
+            try:
+                cust_max_val = float(cust_max_val)
+                cust_min_val = float(cust_min_val)
+            except ValueError:
                 raise NotFound()
+
+            # if not cust_max_val.isunumeric() or not cust_min_val.isnumeric():
+            #     raise NotFound()
             products = request.env['product.template'].sudo().search(domain)
             new_prod_ids = []
             pricelist = request.website.pricelist_id

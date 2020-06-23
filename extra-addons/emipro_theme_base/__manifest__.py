@@ -4,7 +4,7 @@
     'name': 'Emipro Theme Base',
     'category': 'Base',
     'summary': 'Base module containing common libraries for all Emipro eCommerce themes.',
-    'version': '2.0.7',
+    'version': '2.1.0',
     'license': 'OPL-1',
     'depends': [
         'website_theme_install',
@@ -17,6 +17,7 @@
         'templates/template.xml',
 	    'security/ir.model.access.csv',
         'views/social_sharing.xml',
+        'views/product_template.xml'
     ],
 
     #Odoo Store Specific

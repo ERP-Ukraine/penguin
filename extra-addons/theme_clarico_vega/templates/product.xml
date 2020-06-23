@@ -336,19 +336,19 @@
         <xpath expr="//div[@id='o-carousel-product']" position="replace">
             <div id="mainSlider" class="position-relative">
                 <div class="owl-carousel carousel-inner">
-                <t t-foreach="product_images" t-as="product_image">
-                <div t-attf-class="#{' active' if product_image_first else ''}">
-                <div t-if="product_image._name == 'product.image' and product_image.embed_code"
-                class="">
-                <t t-raw="product_image.embed_code"/>
+                    <t t-foreach="product_images" t-as="product_image">
+                        <div t-attf-class="#{' active' if product_image_first else ''}">
+                            <div t-if="product_image._name == 'product.image' and product_image.embed_code"
+                                 class="">
+                                <t t-raw="product_image.embed_code"/>
+                            </div>
+                            <div t-else="" t-field="product_image.image_1920"
+                                 class=""
+                                 t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920"}'/>
+                        </div>
+                    </t>
                 </div>
-                <div t-else="" t-field="product_image.image_1920"
-                class=""
-                t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920"}'/>
-                </div>
-                </t>
-                </div>
-                </div>
+            </div>
             <div t-ignore="True" id="thumbnailSlider" class="">
                 <input id="len-ept-image" type="hidden" t-attf-value="#{len(product_images)}"/>
                 <ol t-if="len(product_images) > 1" class="owl-carousel d-inline-block my-0 py-1 px-0 text-left">
@@ -456,6 +456,18 @@
                                             </a>
                                         </li>
                                     </t>
+                                    <t t-if="product.sudo().document_ids">
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               id="nav_tabs_link_doc"
+                                               data-toggle="tab"
+                                               href="#nav_tabs_content_doc"
+                                               role="tab"
+                                               aria-controls="nav_tabs_content_doc"
+                                               aria-selected="false">Documents
+                                            </a>
+                                        </li>
+                                    </t>
                                     <t t-if="request.website.viewref('website_sale.product_comment').active">
                                         <li class="nav-item">
                                             <a class="nav-link"
@@ -556,6 +568,44 @@
                                         </t>
                                     </section>
                                 </div>
+
+                                <t t-if="product.sudo().document_ids">
+                                    <div class="tab-pane fade py-3"
+                                         id="nav_tabs_content_doc"
+                                         role="tabpanel"
+                                         aria-labelledby="nav_tabs_link_doc">
+                                        <div itemprop="doc" id="product_documents">
+                                            <t t-foreach="product.sudo().document_ids" t-as="doc">
+                                                <t t-if="not user_id._is_public()">
+                                                    <ul>
+                                                        <li>
+                                                            <t t-esc="doc.name"/>
+                                                            <a t-att-href="doc.sudo().website_url"
+                                                               t-att-download="doc.name">
+                                                                <i class="o_image o_image_thumbnail"
+                                                                   t-att-data-mimetype="doc.sudo().mimetype"/>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </t>
+                                                <t t-else="">
+                                                    <t t-if="doc.public">
+                                                        <ul>
+                                                            <li>
+                                                                <t t-esc="doc.name"/>
+                                                                <a t-att-href="doc.sudo().website_url"
+                                                                   t-att-download="doc.name">
+                                                                    <i class="o_image o_image_thumbnail"
+                                                                       t-att-data-mimetype="doc.sudo().mimetype"/>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </t>
+                                                </t>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </t>
                                 <t t-if="request.website.viewref('website_sale.product_comment').active">
                                     <div class="tab-pane fade o_not_editable py-3"
                                          id="nav_tabs_content_3"

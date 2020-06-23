@@ -579,7 +579,7 @@ INDEX:
 	}
 }
 .te_employee_name_ti{
-	@include style(7,10,null,null,capitalize);
+	@include style(7,10);
 }
 .te_designation_name_sub_ti{
 	color: nth($f_color,4);

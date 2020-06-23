@@ -179,7 +179,7 @@
                                 <t t-if="configurator_state and configurator_state.state == 'installed'">
                                     <a role="button"
                                        t-att-id="'add_to_cart' if not product.optional_product_ids else ''"
-                                       t-attf-class="btn btn-primary btn-lg mt16 a-submit te_theme_button quick-add-to-cart #{'disabled out_of_stock' if product.virtual_available &lt; 1 else ''}"
+                                       t-attf-class="btn btn-primary btn-lg mt16 a-submit te_theme_button quick-add-to-cart #{'disabled out_of_stock' if product.sudo().virtual_available &lt; 1 else ''}"
                                        href="#">
                                         <span class="fa fa-shopping-cart"/>
                                         Add to Cart
@@ -188,7 +188,7 @@
                                 <t t-else="">
                                     <a role="button"
                                        id="add_to_cart"
-                                       t-attf-class="btn btn-primary btn-lg mt16 a-submit te_theme_button quick-add-to-cart #{'disabled out_of_stock' if product.virtual_available &lt; 1 else ''}"
+                                       t-attf-class="btn btn-primary btn-lg mt16 a-submit te_theme_button quick-add-to-cart #{'disabled out_of_stock' if product.sudo().virtual_available &lt; 1 else ''}"
                                        href="#">
                                         <span class="fa fa-shopping-cart"/>
                                         Add to Cart

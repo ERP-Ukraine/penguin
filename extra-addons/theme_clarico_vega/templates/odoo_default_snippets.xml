@@ -147,7 +147,7 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <h2 class="text-capitalize te_s_it_heading">My Heading 2</h2>
+                            <h2 class=" te_s_it_heading">My Heading 2</h2>
                             <div class="s_hr text-left pb32 pt8">
                                 <hr class="border-600 aos-init s_hr_solid w-25 mr-auto s_hr_4px border-alpha aos-animate"
                                     data-aos="s_hr_4px"/>
@@ -176,7 +176,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
-                            <h2 class="text-capitalize te_s_it_heading">My Heading 2</h2>
+                            <h2 class=" te_s_it_heading">My Heading 2</h2>
                             <div class="s_hr text-left pb32 pt8">
                                 <hr class="border-600 s_hr_solid w-25 mr-auto s_hr_4px border-alpha"/>
                             </div>

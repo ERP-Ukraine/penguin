@@ -17,7 +17,7 @@
                                     Video URL for the banner
                                 </div>
                                 <div class="mt8">
-                                    <field name="banner_video_url" />
+                                    <field name="banner_video_url" domain="[('mimetype', '=', 'video/mp4')]" />
                                 </div>
                             </div>
                         </div>
@@ -26,5 +26,4 @@
             </div>
         </field>
     </record>
-
 </odoo>

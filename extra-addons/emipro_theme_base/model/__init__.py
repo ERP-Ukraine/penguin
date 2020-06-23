@@ -1,3 +1,4 @@
+from . import ir_attachment
 from . import website
 from . import product_label
 from . import product_label_line

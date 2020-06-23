@@ -29,7 +29,7 @@ class res_config(models.TransientModel):
                                  help="Lazy load will be enabled.")
     lazy_load_image = fields.Binary(string='Lazyload Image', related='website_id.lazy_load_image', readonly=False,
                                    help="Display this image while lazy load applies.")
-    banner_video_url = fields.Char(string='Video URL', related='website_id.banner_video_url', help='URL of a video for banner.', readonly=False)
+    banner_video_url = fields.Many2one('ir.attachment', "Video URL", related='website_id.banner_video_url', help='URL of a video for banner.', readonly=False)
     number_of_product_line = fields.Selection([
         ('1', '1'),
         ('2', '2'),
