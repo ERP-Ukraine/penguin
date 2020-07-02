@@ -4,7 +4,9 @@
     'category': 'Sales/Sales',
     'summary': 'Sales internal machinery',
     'depends': ['sale'],
-    'data': [],
+    'data': [
+        'report/sale_report_templates.xml'
+    ],
     'installable': True,
     'auto_install': True
 }

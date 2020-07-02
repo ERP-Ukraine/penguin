@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="website_product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.website.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='description']" position="after">
+                <group string="Website Description" name="website_description">
+                    <field name="website_sale_description" nolabel="1" placeholder="This note is added to website product page."/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

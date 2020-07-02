@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document_pricelist" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div t-if="doc.pricelist_id" class="col-auto mw-100 mb-2">
+                <strong>Pricelist:</strong>
+                <p class="m-0" t-field="doc.pricelist_id"/>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

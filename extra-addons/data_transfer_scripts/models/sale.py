@@ -95,10 +95,10 @@ class SaleOrderTransfer(models.AbstractModel):
         '''
         so_rows = self.fetch(sql)
 
-        # select all sale order with active products
+        # select all sale order lines with active products
         sql = '''
             SELECT sol.id external_id, sol.order_id, sol.qty_to_invoice, sol.price_unit, sol.product_uom_qty,
-                   sol.qty_invoiced, sol.price_tax, sol.company_id, sol.price_subtotal,
+                   sol.qty_invoiced, sol.price_tax, sol.company_id, sol.price_subtotal, sol.name,
                    sol.discount, sol.price_reduce, sol.qty_delivered, sol.price_total,
                    sol.product_id, sol.price_reduce_taxexcl, sol.price_reduce_taxinc, rc.name currency_id,
                    atsolr.account_tax_id tax_id
@@ -110,6 +110,7 @@ class SaleOrderTransfer(models.AbstractModel):
             WHERE so.state != 'draft' AND pp.active IS TRUE;
         '''
         sol_rows = self.fetch(sql)
+        sol_external_ids = tuple(sol['external_id'] for sol in sol_rows)
 
         # select all product variant combination
         sql = '''
@@ -146,6 +147,9 @@ class SaleOrderTransfer(models.AbstractModel):
             if not idx % 200:
                 _logger.info(tmpl % 'processed %s sale order lines', idx)
         _logger.info(tmpl, 'all sale order lines was grouped')
+        _logger.info(tmpl, '0. remove existed sale order lines')
+        sql = 'DELETE FROM sale_order_line WHERE external_id IN {}'.format(sol_external_ids)
+        self.env.cr.execute(sql)
         _logger.info(tmpl, '1. prepare defaultdict with key as company id and product recordset as value')
         PP = self.env['product.product']
         product_ids = PP.search([])

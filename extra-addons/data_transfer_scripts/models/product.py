@@ -143,8 +143,8 @@ class ProductTemplateTransfer(models.AbstractModel):
         # select active products
         sql = '''
             SELECT id external_id, name, sale_ok, purchase_ok, type, hs_code, categ_id, washing_instruction_id,
-                   material_id, gender, list_price, purchase_method, description_sale, 
-                   description_purchase, description_picking, tracking, website_published
+                   material_id, gender, list_price, purchase_method, description_sale website_sale_description, 
+                   description_purchase, description_picking, tracking, website_published, '' description_sale
             FROM product_template
             WHERE active IS TRUE;
         '''
@@ -271,7 +271,8 @@ class ProductProductTransfer(models.AbstractModel):
         self = self.with_context(allowed_company_ids=company_ids.ids)
         # select product variants
         sql = '''
-            SELECT pp.id external_id, pp.product_tmpl_id product_tmpl_id, pp.default_code,
+            SELECT pp.id external_id, pp.product_tmpl_id product_tmpl_id, pp.default_code, 
+                   description_sale website_sale_description, '' description_sale,
                    array_agg(pav.name || ';' || pav.attribute_id) attr_value_combination
             FROM product_product pp
             LEFT JOIN product_attribute_value_product_product_rel pavppr on pp.id = pavppr.product_product_id
