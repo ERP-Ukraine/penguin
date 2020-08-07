@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Custom pricelist list in navbar -->
+    <template id="nav_pricelist_list" name="Nav Pricelists Dropdown">
+        <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)" />
+        <li t-attf-class="nav-item dropdown#{'' if website_sale_pricelists and len(website_sale_pricelists)&gt;1 else ' d-none'} #{_classes}">
+            <t t-set="curr_pl" t-value="website.get_current_pricelist()" />
+            <a role="button" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                <b><t t-esc="curr_pl.name or ' - '" /></b>
+            </a>
+            <div class="dropdown-menu" role="menu">
+                <t t-foreach="website_sale_pricelists" t-as="pl">
+                    <a role="menuitem" t-att-href="'/shop/change_pricelist/%s' % pl.id" class="dropdown-item">
+                        <span class="switcher_pricelist" t-att-data-pl_id="pl.id" t-esc="pl.name" />
+                    </a>
+                </t>
+            </div>
+        </li>
+    </template>
+
+    <!-- Customized website.layout -->
+    <template id="penguin_frontend_layout" inherit_id="portal.frontend_layout">
+        <!-- top menu pricelist selector -->
+        <xpath expr="//header//ul[@id='top_menu']" position="inside">
+            <li class="nav-item divider"/>
+            <t t-call="website_sale_penguin.nav_pricelist_list"/>
+        </xpath>
+    </template>
+
+    <!-- Main Categories -->
+    <template id="main_categories">
+        <div t-attf-class="category-group #{_classes}">
+            <a t-att-href="keep('/shop', category=0)" t-attf-class="category-link #{'' if category else 'active'} o_not_editable">All Products</a>
+            <t t-foreach="categories" t-as="c">
+                <a t-att-href="keep('/shop/category/' + slug(c), category=0)" t-attf-class="category-link #{'active' if category in c + c.child_id  else ''} o_not_editable">
+                    <span t-field="c.name"/>
+                </a>
+            </t>
+        </div>
+    </template>
+
+    <!-- Sub Categories -->
+    <template id="sub_categories">
+        <t t-set="sub_categories" t-value="category.parent_id or category"/>
+        <div t-attf-class="category-group #{_classes} #{'d-none' if not sub_categories.child_id else None}">
+            <t t-foreach="sub_categories.child_id" t-as="c">
+                <a t-att-href="keep('/shop/category/' + slug(c), category=0)" t-attf-class="category-link #{'active' if c.id == category.id else ''} o_not_editable">
+                    <span t-field="c.name"/>
+                </a>
+            </t>
+        </div>
+    </template>
+
+    <!-- Product -->
+    <template id="penguin_product" inherit_id="website_sale.product">
+        <xpath expr="//section/div[hasclass('row')][1]" position="replace"/>
+        <xpath expr="//section/div[hasclass('row')][1]" position="before">
+            <div class="row">
+                <div class="col col-md-5 col-lg-4 offset-lg-2">
+                    <t t-call="website_sale.search">
+                        <t t-set="search" t-value="False"/>
+                        <t t-set="_classes">py-2</t>
+                    </t>
+                </div>
+                <t t-call="website_sale_penguin.main_categories">
+                    <!-- select root or first one eCommerce category -->
+                    <t t-set="category" t-value="product.public_categ_ids.filtered(lambda c: not c.parent_id)[:1] or product.public_categ_ids[:1]"/>
+                    <t t-set="_classes">col-md-7 col-lg-6 py-2 order-md-first</t>
+                </t>
+            </div>
+            <div class="row mb-5">
+                <t t-call="website_sale_penguin.sub_categories">
+                    <t t-set="category" t-value="product.public_categ_ids.filtered(lambda c: not c.parent_id)[:1] or product.public_categ_ids[:1]"/>
+                    <t t-set="_classes">col-12 py-2</t>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Products (Shop) -->
+    <template id="penguin_products" inherit_id="website_sale.products">
+        <xpath expr="//t[@t-call='website.pager'][1]" position="replace"/>
+
+        <xpath expr="//t[@t-call='website_sale.pricelist_list']" position="replace"/>
+
+        <xpath expr="//t[@t-call='website_sale.search']/t" position="replace">
+            <t t-set="_classes">col py-2 pr-0</t>
+        </xpath>
+
+        <xpath expr="//div[hasclass('products_pager')][1]" position="attributes">
+            <attribute name="class" remove="form-inline flex-md-nowrap justify-content-between justify-content-md-center" separator=" "/>
+            <attribute name="class" add="row" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('products_pager')][1]" position="inside">
+            <t t-call="website_sale_penguin.main_categories">
+                <t t-set="_classes">col-md-7 col-lg-6 py-2 order-md-first</t>
+            </t>
+            <t t-call="website_sale_penguin.sub_categories">
+                <t t-set="_classes">col-12 py-2</t>
+            </t>
+        </xpath>
+    </template>
+
+    <!-- Sort -->
+    <template id="penguin_sort" inherit_id="website_sale.sort">
+        <xpath expr="//div[hasclass('dropdown_sorty_by')]" position="attributes">
+            <attribute name="class" remove="ml-md-2 mt-2" separator=" "/>
+            <attribute name="class" add="col-auto py-2" separator=" "/>
+        </xpath>
+    </template>
+
+
+</odoo>

@@ -1,0 +1,29 @@
+.category-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: inherit;
+
+    @include media-breakpoint-down(xs) {
+        overflow-y: hidden;
+        overflow-x: auto;
+        -webkit-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    }
+
+    .category-link {
+        font-size: (16 / 14) * $o-theme-font-size-base;
+        font-weight: $font-weight-bold;
+        color: gray('900');
+        padding: map-get($spacers, 2);
+        white-space: nowrap;
+
+        &.active {
+            color: theme-color('primary');
+        }
+
+        @include hover-focus() {
+            text-decoration: none;
+            color: theme-color('primary');
+        }
+    }
+}
