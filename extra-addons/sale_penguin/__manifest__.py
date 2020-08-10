@@ -5,7 +5,9 @@
     'summary': 'Sales internal machinery',
     'depends': ['sale'],
     'data': [
-        'report/sale_report_templates.xml'
+        'report/sale_report_templates.xml',
+
+        'views/variant_templates.xml'
     ],
     'installable': True,
     'auto_install': True

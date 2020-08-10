@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="variants" inherit_id="sale.variants">
+        <xpath expr="//ul[1]//t[@t-if][last()]/ul" position="attributes">
+            <attribute name="t-attf-class" add="custom-color-picker" separator=" "/>
+        </xpath>
+
+        <xpath expr="//ul[1]//t[@t-if][last()]/ul//label" position="inside">
+            <span class="custom-color-picker-label" t-esc="ptav.name"/>
+        </xpath>
+    </template>
+</odoo>
