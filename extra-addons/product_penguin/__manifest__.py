@@ -1,6 +1,6 @@
 {
     'name': 'Penguin Products & Pricelists',
-    'version': '1.0',
+    'version': '13.0.1.0',
     'category': 'Sales/Sales',
     'depends': ['product'],
     'data': [

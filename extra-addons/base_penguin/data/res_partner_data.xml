@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="industry_collab_europe" model="res.partner.industry">
+            <field name="name">Collab Europe</field>
+        </record>
+
+        <record id="industry_collab_swiss" model="res.partner.industry">
+            <field name="name">Collab Switzerland</field>
+        </record>
+
+        <record id="industry_retail_shop_zurich" model="res.partner.industry">
+            <field name="name">Retail Shop Zurich</field>
+        </record>
+
+        <record id="industry_retail_germany" model="res.partner.industry">
+            <field name="name">Retail Germany</field>
+        </record>
+
+        <record id="industry_retail_austria" model="res.partner.industry">
+            <field name="name">Retail Austria</field>
+        </record>
+
+        <record id="industry_retail_europe" model="res.partner.industry">
+            <field name="name">Retail Europe</field>
+        </record>
+
+        <record id="industry_retail_swiss" model="res.partner.industry">
+            <field name="name">Retail Switzerland</field>
+        </record>
+
+        <record id="industry_private_cust_swiss" model="res.partner.industry">
+            <field name="name">Private Customer Switzerland</field>
+        </record>
+
+        <record id="industry_private_cust_europe" model="res.partner.industry">
+            <field name="name">Private Customer Europe</field>
+        </record>
+
+        <record id="industry_online_cust_swiss" model="res.partner.industry">
+            <field name="name">Online Customer Switzerland</field>
+        </record>
+
+        <record id="industry_online_cust_europe" model="res.partner.industry">
+            <field name="name">Online Customer Europe</field>
+        </record>
+
+        <record id="industry_teamwear_swiss" model="res.partner.industry">
+            <field name="name">Teamwear Switzerland</field>
+        </record>
+
+        <record id="industry_teamwear_europe" model="res.partner.industry">
+            <field name="name">Teamwear Europe</field>
+        </record>
+
+        <record id="industry_ambassadors_agents" model="res.partner.industry">
+            <field name="name">Ambassadors + Agents</field>
+        </record>
+
+        <record id="industry_j_S_swiss" model="res.partner.industry">
+            <field name="name">J+S Switzerland</field>
+        </record>
+
+        <record id="industry_kalisti_test_buss" model="res.partner.industry">
+            <field name="name">Kalisti Textile Business</field>
+        </record>
+
+        <record id="industry_benjamin_boss" model="res.partner.industry">
+            <field name="name">Benjamin Boss (Kalisti Europe)</field>
+        </record>
+
+        <record id="industry_textile_buss" model="res.partner.industry">
+            <field name="name">Textile Business</field>
+        </record>
+    </data>
+</odoo>
