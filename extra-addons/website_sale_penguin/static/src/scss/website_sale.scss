@@ -1,29 +1,74 @@
-.category-group {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: inherit;
+.oe_category_group {
+    overflow: hidden;
+    position: relative;
+    padding-left: 15px;
+    padding-right: 15px;
 
-    @include media-breakpoint-down(xs) {
-        overflow-y: hidden;
-        overflow-x: auto;
-        -webkit-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-    }
+    .category-group {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
 
-    .category-link {
-        font-size: (16 / 14) * $o-theme-font-size-base;
-        font-weight: $font-weight-bold;
-        color: gray('900');
-        padding: map-get($spacers, 2);
-        white-space: nowrap;
+        .category-link {
+            font-size: (16 / 14) * $o-theme-font-size-base;
+            font-weight: $font-weight-bold;
+            color: gray('900');
+            padding: map-get($spacers, 2);
+            white-space: nowrap;
 
-        &.active {
-            color: theme-color('primary');
+            &.active {
+                color: theme-color('primary');
+            }
+
+            @include hover-focus() {
+                text-decoration: none;
+                color: theme-color('primary');
+            }
         }
 
-        @include hover-focus() {
-            text-decoration: none;
-            color: theme-color('primary');
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .arrow-wrapper {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        .fa {
+            width: 30px;
+            padding-left: 10px;
+        }
+
+        &.oe_category_move {
+            &_right {
+                right: 0;
+            }
+
+            &_left {
+                left: 0;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(xs) {
+        padding-left: 30px;
+        padding-right: 30px;
+
+        .category-group {
+            overflow-y: hidden;
+            overflow-x: auto;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        }
+
+        .arrow-wrapper.show {
+            display: flex
         }
     }
 }

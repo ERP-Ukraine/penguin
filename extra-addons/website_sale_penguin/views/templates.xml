@@ -2,16 +2,18 @@
 <odoo>
     <!-- Custom pricelist list in navbar -->
     <template id="nav_pricelist_list" name="Nav Pricelists Dropdown">
-        <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)" />
+        <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)"/>
         <li t-attf-class="nav-item dropdown#{'' if website_sale_pricelists and len(website_sale_pricelists)&gt;1 else ' d-none'} #{_classes}">
-            <t t-set="curr_pl" t-value="website.get_current_pricelist()" />
+            <t t-set="curr_pl" t-value="website.get_current_pricelist()"/>
             <a role="button" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <b><t t-esc="curr_pl.name or ' - '" /></b>
+                <b>
+                    <t t-esc="curr_pl.name or ' - '"/>
+                </b>
             </a>
             <div class="dropdown-menu" role="menu">
                 <t t-foreach="website_sale_pricelists" t-as="pl">
                     <a role="menuitem" t-att-href="'/shop/change_pricelist/%s' % pl.id" class="dropdown-item">
-                        <span class="switcher_pricelist" t-att-data-pl_id="pl.id" t-esc="pl.name" />
+                        <span class="switcher_pricelist" t-att-data-pl_id="pl.id" t-esc="pl.name"/>
                     </a>
                 </t>
             </div>
@@ -29,25 +31,42 @@
 
     <!-- Main Categories -->
     <template id="main_categories">
-        <div t-attf-class="category-group #{_classes}">
-            <a t-att-href="keep('/shop', category=0)" t-attf-class="category-link #{'' if category else 'active'} o_not_editable">All Products</a>
-            <t t-foreach="categories" t-as="c">
-                <a t-att-href="keep('/shop/category/' + slug(c), category=0)" t-attf-class="category-link #{'active' if category in c + c.child_id  else ''} o_not_editable">
-                    <span t-field="c.name"/>
-                </a>
-            </t>
+        <div t-attf-class="oe_category_group #{_classes}">
+            <div class="arrow-wrapper oe_category_move_left">
+                <i class="fa fa-chevron-left"/>
+            </div>
+            <div class="category-group py-2 px-0">
+                <a t-att-href="keep('/shop', category=0)" t-attf-class="category-link #{'' if category else 'active'} o_not_editable">All Products</a>
+                <t t-foreach="categories" t-as="c">
+                    <a t-att-href="keep('/shop/category/' + slug(c), category=0)" t-attf-class="category-link #{'active' if category in c + c.child_id  else ''} o_not_editable">
+                        <span t-field="c.name"/>
+                    </a>
+                </t>
+            </div>
+            <div class="arrow-wrapper oe_category_move_right">
+                <i class="fa fa-chevron-right"/>
+            </div>
         </div>
+
     </template>
 
     <!-- Sub Categories -->
     <template id="sub_categories">
         <t t-set="sub_categories" t-value="category.parent_id or category"/>
-        <div t-attf-class="category-group #{_classes} #{'d-none' if not sub_categories.child_id else None}">
-            <t t-foreach="sub_categories.child_id" t-as="c">
-                <a t-att-href="keep('/shop/category/' + slug(c), category=0)" t-attf-class="category-link #{'active' if c.id == category.id else ''} o_not_editable">
-                    <span t-field="c.name"/>
-                </a>
-            </t>
+        <div t-attf-class="oe_category_group #{_classes} #{'d-none' if not sub_categories.child_id else None}">
+            <div class="arrow-wrapper oe_category_move_left">
+                <i class="fa fa-chevron-left"/>
+            </div>
+            <div class="category-group py-2 px-0">
+                <t t-foreach="sub_categories.child_id" t-as="c">
+                    <a t-att-href="keep('/shop/category/' + slug(c), category=0)" t-attf-class="category-link #{'active' if c.id == category.id else ''} o_not_editable">
+                        <span t-field="c.name"/>
+                    </a>
+                </t>
+            </div>
+            <div class="arrow-wrapper oe_category_move_right">
+                <i class="fa fa-chevron-right"/>
+            </div>
         </div>
     </template>
 
@@ -65,13 +84,13 @@
                 <t t-call="website_sale_penguin.main_categories">
                     <!-- select root or first one eCommerce category -->
                     <t t-set="category" t-value="product.public_categ_ids.filtered(lambda c: not c.parent_id)[:1] or product.public_categ_ids[:1]"/>
-                    <t t-set="_classes">col-md-7 col-lg-6 py-2 order-md-first</t>
+                    <t t-set="_classes">col-md-7 col-lg-6 order-md-first</t>
                 </t>
             </div>
             <div class="row mb-5">
                 <t t-call="website_sale_penguin.sub_categories">
                     <t t-set="category" t-value="product.public_categ_ids.filtered(lambda c: not c.parent_id)[:1] or product.public_categ_ids[:1]"/>
-                    <t t-set="_classes">col-12 py-2</t>
+                    <t t-set="_classes">col-12</t>
                 </t>
             </div>
         </xpath>
@@ -94,10 +113,10 @@
 
         <xpath expr="//div[hasclass('products_pager')][1]" position="inside">
             <t t-call="website_sale_penguin.main_categories">
-                <t t-set="_classes">col-md-7 col-lg-6 py-2 order-md-first</t>
+                <t t-set="_classes">col-md-7 col-lg-6 order-md-first</t>
             </t>
             <t t-call="website_sale_penguin.sub_categories">
-                <t t-set="_classes">col-12 py-2</t>
+                <t t-set="_classes">col-12</t>
             </t>
         </xpath>
     </template>
