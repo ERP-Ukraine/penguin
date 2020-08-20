@@ -7,7 +7,6 @@
     'data': [
         'report/sale_report_templates.xml',
 
-        'views/assets.xml',
         'views/variant_templates.xml'
     ],
     'installable': True,

@@ -67,4 +67,31 @@ odoo.define('website_sale_penguin.website_sale', function (require) {
             this._horizontalScroll();
         }
     })
+
+    publicWidget.registry.variantColorSelection = publicWidget.Widget.extend({
+        selector: '#products_grid',
+        events: {
+            'click .css_attribute_color': '_onClickColorAttribute'
+        },
+        _onClickColorAttribute: function (ev) {
+            var $checkbox = $(ev.currentTarget).find('input');
+            this._setActiveLabel($checkbox);
+            this._setProductImg($checkbox);
+        },
+        _setActiveLabel: function ($checkbox) {
+            $checkbox.closest('.oe_variant_color_selector').find('.css_attribute_color').removeClass('active');
+            $checkbox.closest('.css_attribute_color').addClass('active');
+        },
+        _setProductImg: function ($checkbox) {
+            var data = $checkbox.data();
+            var url = '/web/image/product.product/{0}/image_256/{1}.jpeg?unique={2}'
+            var src = url
+                .replace('{0}', data.product_id)
+                .replace('{1}', data.product_id)
+                .replace('{2}', data.unique)
+
+            $checkbox.closest('form').find('img').attr('src', src)
+
+        }
+    })
 })

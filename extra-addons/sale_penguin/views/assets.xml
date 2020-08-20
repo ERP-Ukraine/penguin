@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <template id="assets_frontend_inherit_sale_penguin" inherit_id="web.assets_frontend">
-        <xpath expr="link[last()]" position="after">
-            <link rel="stylesheet" type="text/scss" href="/sale_penguin/static/src/scss/product_configurator.scss"/>
-        </xpath>
-    </template>
-</odoo>
