@@ -4,26 +4,17 @@
         <xpath expr="//t[@t-call='website.language_selector']" position="replace"/>
     </template>
 
-    <template id="language_flag">
-        <t t-set="flag_code" t-value="lang[0].split('_')[-1].lower()"/>
-        <img style="width:24px" class="img" t-attf-src="/website_penguin/static/src/img/flags/svg/#{flag_code}.svg" t-attf-alt="#{lang[2]} flag" t-attf-title="#{lang[2]} flag"/>
-    </template>
-
     <template id="nav_language_selector">
         <li class="js_language_selector nav-item dropdown" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
             <button class="btn btn-link nav-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <t t-call="website_penguin.language_flag">
-                    <t t-set="lang" t-value="list(filter(lambda lg : lg[0] == lang, languages))[0]"/>
-                </t>
+                <t t-set="lang" t-value="list(filter(lambda lg : lg[0] == lang, languages))[0]"/>
+                <t t-esc="lang[2].split('/').pop().split()[0]"/>
                 <span class="caret ml4"/>
             </button>
             <div class="dropdown-menu" role="menu">
                 <t t-foreach="languages" t-as="lg">
                     <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code=lg[0])" class="dropdown-item js_change_lang" t-att-data-url_code="lg[1]">
-                        <t t-call="website_penguin.language_flag">
-                            <t t-set="lang" t-value="lg"/>
-                        </t>
-                        <t t-esc="lg[2].split('/').pop()"/>
+                        <t t-esc="lg[2].split('/').pop().split()[0]"/>
                     </a>
                 </t>
                 <t t-set="url_return" t-value="quote_plus(url_for('', '[lang]') + '?' + keep_query())"/>
