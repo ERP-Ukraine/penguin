@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_penguin_form" model="ir.ui.view">
+        <field name="name">sale.order.penguin.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm'][last()]" position="after">
+                <button name="action_preorder" string="Pre-order" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['sent', 'future_sale'])]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel'][last()]" position="attributes">
+                <attribute name="states" add="future_sale" separator=","/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
