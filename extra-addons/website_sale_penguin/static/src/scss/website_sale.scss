@@ -84,10 +84,6 @@
             li {
                 display: inline !important;
             }
-
-            label {
-                padding: 2px;
-            }
         }
     }
 }
@@ -118,6 +114,10 @@
                 margin: 0;
             }
         }
+    }
+
+    label {
+        padding: 2px;
     }
 
     &-label {

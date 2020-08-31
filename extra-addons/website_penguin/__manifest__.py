@@ -8,6 +8,7 @@
         'website'
     ],
     'data': [
+        'views/assets.xml',
         'views/website_templates.xml'
     ],
     'demo': [],

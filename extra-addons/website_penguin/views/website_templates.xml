@@ -6,7 +6,7 @@
 
     <template id="nav_language_selector">
         <li class="js_language_selector nav-item dropdown" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
-            <button class="btn btn-link nav-link dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <button class="btn btn-link nav-link dropdown-toggle w-100 text-right" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <t t-set="lang" t-value="list(filter(lambda lg : lg[0] == lang, languages))[0]"/>
                 <t t-esc="lang[2].split('/').pop().split()[0]"/>
                 <span class="caret ml4"/>
@@ -37,6 +37,95 @@
     <template id="penguin_pager" inherit_id="website.pager">
         <xpath expr="//li[last()]" position="attributes">
             <attribute name="t-attf-class" add="#{'d-none d-md-inline' if page_index > 4 else None}" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="penguin_footer" inherit_id="website.layout" name="Footer">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                    <section class="s_text_block pb8 pt56" data-name="Text block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5>Connect with us</h5>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="/contactus">Contact us</a>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-phone"/>
+                                            <span class="o_force_ltr" t-field="res_company.phone"/>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-envelope"/>
+                                            <span t-field="res_company.email"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>Customer Service</h5>
+                                    <ul class="list-unstyled">
+                                        <li>Penguin Care, warranty</li>
+                                        <li>Shipping &amp;amp; delivery</li>
+                                        <li>FAQ</li>
+                                        <li>Terms &amp;amp; conditions</li>
+                                        <li>Privacy Policy</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>Penguin Powderwear. Designed in Switzerland.</h5>
+                                    <p>We are an independent Swiss clothing brand, creating highly technical and stylish outerwear for powder enthusiasts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="s_text_block pt16 pb8" data-name="Text block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="share-icons-block mb-4">
+                                                <a href="https://www.facebook.com/penguin.swiss/" class="d-inline-block" target="_blank">
+                                                    <i class="fa fa-3x fa-facebook text-white"/>
+                                                </a>
+                                                <a href="https://www.instagram.com/penguinpowderwear/" class="d-inline-block pl-5" target="_blank">
+                                                    <i class="fa fa-3x fa-instagram text-white"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <section class="s_newsletter_block mb-4">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="text-center">
+                                                                <h1 class="text-uppercase font-weight-bold">Always First.</h1>
+                                                                <p>Be the first to find out all the latest news, products and trends.</p>
+                                                                <div class="input-group js_subscribe" data-list-id="1">
+                                                                    <input type="email" name="email" class="js_subscribe_email form-control" placeholder="your email..."/>
+                                                                    <span class="input-group-append">
+                                                                        <a role="button" href="#" class="btn btn-primary js_subscribe_btn">Subscribe</a>
+                                                                        <a role="button" href="#" class="btn btn-success js_subscribed_btn d-none" disabled="disabled">Thanks</a>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-md-right text-center">
+                                    <img class="img img-fluid" src="/website_penguin/static/src/img/footer/logo.png" style="max-height:50px"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </xpath>
     </template>
 </odoo>

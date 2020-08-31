@@ -1,0 +1,10 @@
+.o_footer {
+    .s_newsletter_block {
+        input {
+            @if color('footer') {
+                @include o-bg-color(lighten(color('footer'), 10%));
+                border-color: lighten(color('footer'), 10%);
+            }
+        }
+    }
+}
