@@ -3,7 +3,7 @@
     'version': '1.0',
     'category': 'Sales/Sales',
     'summary': 'Sales internal machinery',
-    'depends': ['sale'],
+    'depends': ['sale', 'product_penguin'],
     'data': [
         'data/mail_data.xml',
 

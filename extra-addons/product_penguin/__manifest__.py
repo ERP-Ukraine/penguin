@@ -1,6 +1,6 @@
 {
     'name': 'Penguin Products & Pricelists',
-    'version': '13.0.1.0',
+    'version': '13.0.1.1',
     'category': 'Sales/Sales',
     'depends': ['product'],
     'data': [
@@ -8,7 +8,8 @@
 
         'data/product_data.xml',
 
-        'views/product_views.xml'
+        'views/product_attribute_views.xml',
+        'views/product_views.xml',
     ],
     'installable': True,
     'auto_install': True,
