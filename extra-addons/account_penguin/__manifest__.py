@@ -4,7 +4,9 @@
     'summary': 'Invoices & Payments',
     'category': 'Accounting/Accounting',
     'depends': ['account'],
-    'data': [],
+    'data': [
+        'report/report_invoice.xml'
+    ],
     'demo': [],
     'qweb': [],
     'installable': True,

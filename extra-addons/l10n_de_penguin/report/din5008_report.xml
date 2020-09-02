@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="penguin_external_layout_din5008" inherit_id="l10n_de.external_layout_din5008">
+        <xpath expr="//span[@t-field='company.partner_id']" position="replace">
+            <t t-set="company_address" t-value="custom_company_address or company.partner_id"/>
+            <span t-esc="company_address"
+                  t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+        </xpath>
+    </template>
+</odoo>

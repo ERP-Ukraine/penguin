@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="penguin_external_layout_standard" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[@name='company_address']" position="replace">
+            <div class="col-6" name="company_address">
+                <t t-if="custom_company_address">
+                    <div>
+                        <strong t-field="company.partner_id.name"/>
+                    </div>
+                    <div t-esc="custom_company_address"
+                         t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                </t>
+                <t t-else="">
+                    <div t-field="company.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'
+                    />
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="penguin_report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//t[@t-call='web.external_layout']" position="before">
+            <t t-set="custom_company_address" t-value="o.picking_type_id.warehouse_id.partner_id"/>
+        </xpath>
+    </template>
+</odoo>
