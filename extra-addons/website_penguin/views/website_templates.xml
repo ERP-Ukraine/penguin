@@ -101,8 +101,6 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="text-center">
-                                                                <h1 class="text-uppercase font-weight-bold">Always First.</h1>
-                                                                <p>Be the first to find out all the latest news, products and trends.</p>
                                                                 <div class="input-group js_subscribe" data-list-id="1">
                                                                     <input type="email" name="email" class="js_subscribe_email form-control" placeholder="your email..."/>
                                                                     <span class="input-group-append">
