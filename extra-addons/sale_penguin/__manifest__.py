@@ -1,6 +1,6 @@
 {
     'name': 'Penguin Sales',
-    'version': '1.0',
+    'version': '1.1',
     'category': 'Sales/Sales',
     'summary': 'Sales internal machinery',
     'depends': ['sale', 'product_penguin'],

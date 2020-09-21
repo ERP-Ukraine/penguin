@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="stock.action_report_delivery" model="ir.actions.report">
+        <field name="paperformat_id" ref="report_tmpl_penguin.paperformat_penguin"/>
+    </record>
+
+    <record id="stock.action_report_picking" model="ir.actions.report">
+        <field name="paperformat_id" ref="report_tmpl_penguin.paperformat_penguin"/>
+    </record>
+
+    <template id="report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//t[@t-set='o']" position="after">
+            <t t-set="warehouse" t-value="o.picking_type_id.warehouse_id"/>
+        </xpath>
+
+        <xpath expr="//table[@name='stock_move_table']//span[@t-field='move.product_uom_qty']" position="replace">
+            <span t-if="move.product_uom_qty.is_integer()" t-esc="int(move.product_uom_qty)"/>
+            <span t-else="" t-field="move.product_uom_qty"/>
+        </xpath>
+        <xpath expr="//table[@name='stock_move_line_table']//span[@t-field='move_line.qty_done']" position="replace">
+            <span t-if="move_line.qty_done.is_integer()" t-esc="int(move_line.qty_done)"/>
+            <span t-else="" t-field="move_line.qty_done"/>
+        </xpath>
+    </template>
+
+    <template id="report_picking" inherit_id="stock.report_picking">
+        <xpath expr="//t[@t-call='web.external_layout']" position="before">
+            <t t-set="warehouse" t-value="o.picking_type_id.warehouse_id"/>
+        </xpath>
+
+        <xpath expr="//div[@name='div_outgoing_address']" position="attributes">
+            <attribute name="class">col-4 offset-2</attribute>
+        </xpath>
+        <xpath expr="//div[@name='div_incoming_address']" position="attributes">
+            <attribute name="class">col-4 offset-2</attribute>
+        </xpath>
+
+        <xpath expr="//span[@t-field='ml.product_uom_qty']/parent::td" position="replace">
+            <td t-if="o.state != 'done'">
+                <span t-if="ml.product_uom_qty.is_integer()" t-esc="int(ml.product_uom_qty)"/>
+                <span t-else="" t-field="ml.product_uom_qty"/>
+            </td>
+            <td t-else="">
+                <span t-if="ml.qty_done.is_integer()" t-esc="int(ml.qty_done)"/>
+                <span t-else="" t-field="ml.qty_done"/>
+            </td>
+            <span t-field="ml.product_uom_id" groups="uom.group_uom"/>
+        </xpath>
+    </template>
+
+</odoo>

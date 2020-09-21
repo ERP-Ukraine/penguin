@@ -7,5 +7,18 @@
                 <p class="m-0" t-field="o.invoice_partner_bank_id.acc_number"/>
             </div>
         </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_priceunit']" position="replace">
+            <th name="th_list_price" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>RRP/pc</span></th>
+            <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Net Price/pc</span></th>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]//span[@t-field='line.price_unit']/parent::td" position="replace">
+            <td t-attf-class="text-right td_list_price {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                <span class="text-nowrap" t-field="line.product_id.lst_price"/>
+            </td>
+            <td t-attf-class="text-right td_priceunit {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                <span class="text-nowrap" t-field="line.price_unit"/>
+            </td>
+        </xpath>
     </template>
 </odoo>

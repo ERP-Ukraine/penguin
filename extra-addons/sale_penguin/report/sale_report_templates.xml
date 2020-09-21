@@ -10,4 +10,45 @@
         </xpath>
     </template>
 
+    <template id="report_saleorder_document_title" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[hasclass('page')]/h2" position="replace">
+            <h2 class="mt16">
+                <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                    <span>Pro-Forma Invoice # </span>
+                </t>
+                <t t-elif="doc.state in ['draft','sent']">
+                    <span>Quotation # </span>
+                </t>
+                <t t-elif="doc.state == 'future_sale'">
+                    <span>Acknowledgement of order # </span>
+                </t>
+                <t t-elif="doc.state == 'future_sale_confirmation'">
+                    <span>Order confirmation # </span>
+                </t>
+                <t t-else="">
+                    <span>Order # </span>
+                </t>
+                <span t-field="doc.name"/>
+            </h2>
+        </xpath>
+    </template>
+
+    <template id="report_saleorder_document_custom_main_table" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div t-if="doc.expected_date" class="col-auto mw-100 mb-2">
+                <strong>Planned Delivery Date:</strong>
+                <p class="m-0" t-field="doc.expected_date"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_priceunit']" position="replace">
+            <th name="th_list_price" class="text-right">RRP/pc</th>
+            <th name="th_priceunit" class="text-right">Net Price/pc</th>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_priceunit']" position="replace">
+            <td name="td_list_price" class="text-right"><span t-field="line.product_id.lst_price"/></td>
+            <td name="td_priceunit" class="text-right"><span t-field="line.price_unit"/></td>
+        </xpath>
+    </template>
+
 </odoo>

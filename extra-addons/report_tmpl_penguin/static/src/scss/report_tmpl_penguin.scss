@@ -1,0 +1,67 @@
+// all elements have common style
+.penguin-header *,
+.penguin-footer *,
+.penguin-body * {
+    color: black !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 12px !important;
+
+    .text-bolder, .text-bolder * {
+        font-weight: 700 !important;
+    }
+
+    .text-bold, .text-bold * {
+        font-weight: 700 !important;
+        font-size: 14px !important;
+    }
+}
+
+.penguin-header, .penguin-footer {
+    hr {
+        border-color: #000;
+        margin: 0;
+        padding: 0;
+    }
+
+    // custom tables used to display key-value pair both right and left aligned;
+    // the padding rule add some space between a pair
+    table td {
+        padding: 0 5px;
+    }
+}
+
+.penguin-header {
+    // pull to right side
+    .logo-container {
+        float: right;
+        text-align: center;
+    }
+}
+
+.penguin-body {
+    // make some elements pretty
+    h1, h2                          { @extend .text-bold; }
+    table thead th                  { @extend .text-bolder; @extend .text-black; }
+    strong:not(.skip-text-bolder)   { @extend .text-bolder; @extend .text-black; }
+    tr.o_total > td {
+        padding-top: 1rem;
+        @extend .text-bolder;
+    }
+
+    // whatever you want
+    h1, h1 *,
+    h2, h2 *
+    { color:  #555 !important; }
+
+    // fullwide tables
+    table {
+        margin-left: -0.3rem;
+        margin-right: -0.3rem;
+    }
+
+    // all body tables must be borderless
+    .table th, .table td, .table thead th, .table tbody + tbody {
+        border: 0;
+    }
+}
