@@ -32,9 +32,3 @@ class SaleOrder(models.Model):
     def action_preorder(self):
         self.write({'state': 'future_sale'})
         self._send_confirmation_email()
-
-
-class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
-
-    external_id = fields.Integer('External ID', copy=False)

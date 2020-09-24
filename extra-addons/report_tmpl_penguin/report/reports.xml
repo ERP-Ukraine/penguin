@@ -12,24 +12,19 @@
         <field name="default" eval="False"/>
         <field name="format">A4</field>
         <field name="orientation">Portrait</field>
-        <field name="margin_top">60</field>
-        <field name="margin_bottom">18</field>
+        <field name="margin_top">40</field>
+        <field name="margin_bottom">22</field>
         <field name="margin_left">7</field>
         <field name="margin_right">7</field>
         <field name="header_line" eval="False"/>
-        <field name="header_spacing">55</field>
+        <field name="header_spacing">35</field>
     </record>
 
     <!-- Don't forget to set `warehouse` variable. -->
     <template id="external_layout_penguin">
         <div t-attf-class="header penguin-header o_company_#{company.id}_layout">
 
-            <div class="logo-container">
-                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
-                <div class="text-bold">Powderwear for Powderpeople</div>
-            </div>
-
-            <div class="row pt-3">
+            <div class="row">
                 <div t-if="report_type == 'pdf'" class="col-6">
                     Page: <span class="page"/> of <span class="topage"/>
                 </div>
@@ -39,30 +34,28 @@
             <hr class="mt-1 mb-1"/>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-3 mr-0-25px ml-25px">
                     <t t-if="company.partner_id">
                         <div>Invoice address:</div>
                         <div t-esc="company.partner_id" t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": true}'/>
                     </t>
                 </div>
-                <div class="col-4">
-                    <t t-if="warehouse.partner_id">
-                        <br/>
-                        <table>
-                            <tr>
-                                <td t-if="warehouse.partner_id.phone">Tel.:</td>
-                                <td t-if="warehouse.partner_id.phone" t-esc="warehouse.partner_id.phone" class="text-right"/>
-                            </tr>
-                            <tr>
-                                <td t-if="warehouse.partner_id.email">Email:</td>
-                                <td t-if="warehouse.partner_id.email" t-esc="warehouse.partner_id.email" class="text-right"/>
-                            </tr>
-                            <tr>
-                                <td t-if="warehouse.partner_id.vat">UID:</td>
-                                <td t-if="warehouse.partner_id.vat" t-esc="warehouse.partner_id.vat" class="text-right"/>
-                            </tr>
-                        </table>
-                    </t>
+                <div class="col-5 pl-35px">
+                    <br/>
+                    <table>
+                        <tr>
+                            <td t-if="company.partner_id.phone">Tel.:</td>
+                            <td t-if="company.partner_id.phone" t-esc="company.partner_id.phone" class="text-right"/>
+                        </tr>
+                        <tr>
+                            <td t-if="company.partner_id.email">Email:</td>
+                            <td t-if="company.partner_id.email" t-esc="company.partner_id.email" class="text-right"/>
+                        </tr>
+                        <tr>
+                            <td t-if="warehouse.partner_id.vat">UID:</td>
+                            <td t-if="warehouse.partner_id.vat" t-esc="warehouse.partner_id.vat" class="text-right"/>
+                        </tr>
+                    </table>
                 </div>
                 <div class="col-4">
                     <t t-if="warehouse.partner_id">
@@ -76,30 +69,43 @@
         </div>
 
         <div t-attf-class="article penguin-body o_report_layout_standard o_company_#{company.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
-            <!-- ommit information_block -->
-            <div t-if="address" name="address" class="col-4 offset-8">
-                <t t-raw="address"/>
+            <div class="row">
+                <!-- ommit information_block -->
+                <div t-if="address" name="address" class="col-4 offset-8">
+                    <t t-raw="address"/>
+                </div>
             </div>
             <t t-raw="0"/>
         </div>
 
         <div t-attf-class="footer penguin-footer o_standard_footer o_company_#{company.id}_layout">
             <t t-if="warehouse">
-                <hr class="mb-1"/>
-                <table>
-                    <tr t-if="warehouse.penguin_report_tmpl_iban">
-                        <td>IBAN:</td>
-                        <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_iban"/></td>
-                    </tr>
-                    <tr t-if="warehouse.penguin_report_tmpl_acc_nr">
-                        <td>EUR Acc. Nr.:</td>
-                        <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_acc_nr"/></td>
-                    </tr>
-                    <tr t-if="warehouse.penguin_report_tmpl_swift">
-                        <td>Swift:</td>
-                        <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_swift"/></td>
-                    </tr>
-                </table>
+                <hr class="mb-3"/>
+
+                <div class="row">
+                    <div class="col-8">
+                        <table>
+                            <tr t-if="warehouse.penguin_report_tmpl_iban">
+                                <td>IBAN:</td>
+                                <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_iban"/></td>
+                            </tr>
+                            <tr t-if="warehouse.penguin_report_tmpl_acc_nr">
+                                <td>EUR Acc. Nr.:</td>
+                                <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_acc_nr"/></td>
+                            </tr>
+                            <tr t-if="warehouse.penguin_report_tmpl_swift">
+                                <td>Swift:</td>
+                                <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_swift"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-4">
+                        <div class="logo-container">
+                            <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+                            <div class="text-bold">Powderwear for Powderpeople</div>
+                        </div>
+                    </div>
+                </div>
             </t>
         </div>
     </template>
