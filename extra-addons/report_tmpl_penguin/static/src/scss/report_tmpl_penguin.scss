@@ -16,14 +16,12 @@
         font-size: 14px !important;
     }
 
-    .pl-35px {
-        padding-left: 35px !important;
+    .pr-50px {
+        padding-right: 50px !important;
     }
-    .mr-0-25px {
-        margin-right: -25px !important;
-    }
-    .ml-25px {
-        margin-left: 25px !important;
+
+    .va-bottom {
+        vertical-align: bottom !important;
     }
 }
 
@@ -42,8 +40,18 @@
 
     // pull to right side
     .logo-container {
-        float: right;
+        display: inline-block;
+        margin: 0 0 0 auto;
         text-align: center;
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .logo-calm {
+            white-space: nowrap;
+        }
     }
 }
 

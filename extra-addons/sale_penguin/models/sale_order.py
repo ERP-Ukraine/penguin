@@ -7,7 +7,6 @@ class SaleOrder(models.Model):
     external_id = fields.Integer('External ID', copy=False)
     state = fields.Selection(selection_add=[
         ('future_sale', 'Pre-ordered'),
-        ('future_sale_confirmation', 'Order Confirmation')
     ])
 
     def _find_mail_template(self, force_confirmation_template=False):

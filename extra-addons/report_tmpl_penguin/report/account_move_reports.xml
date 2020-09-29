@@ -16,7 +16,7 @@
 
         <xpath expr="//table[hasclass('o_main_table')]//span[@t-field='line.quantity']" position="replace">
             <span t-if="line.quantity.is_integer()" t-esc="int(line.quantity)"/>
-            <span t-else="" t-field="line.quantity"/>
+            <span t-else="" t-field="line.quantity" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
         </xpath>
 
         <xpath expr="//tr[hasclass('o_subtotal')]/td/strong" position="attributes">

@@ -44,7 +44,7 @@ class SaleOrderTransfer(models.AbstractModel):
         if not product_id:
             # 2. check if product variant combination exist
             sql = '''
-                SELECT string_agg(pp.product_tmpl_id || ',' || pav.attribute_id || ',' || pav.name, 
+                SELECT string_agg(pp.product_tmpl_id || ',' || pav.attribute_id || ',' || pav.name,
                                   ',' ORDER BY pav.attribute_id, pav.name) combo_id
                 FROM product_product pp
                 JOIN product_attribute_value_product_product_rel pavppr ON pp.id = pavppr.product_product_id
@@ -83,10 +83,10 @@ class SaleOrderTransfer(models.AbstractModel):
 
         # select all active sale orders
         sql = '''
-            SELECT so.name, so.id external_id, so.partner_id, so.partner_invoice_id, 
+            SELECT so.name, so.id external_id, so.partner_id, so.partner_invoice_id,
                    so.partner_shipping_id, so.company_id, so.date_order, so.create_date,
                    CASE
-                       WHEN so.state IN ('future_sale', 'future_sale_confirmation') THEN so.state
+                       WHEN so.state = 'future_sale' THEN so.state
                        ELSE 'done'
                     END state
             FROM sale_order so
@@ -114,7 +114,7 @@ class SaleOrderTransfer(models.AbstractModel):
 
         # select all product variant combination
         sql = '''
-            SELECT string_agg(pt.external_id || ',' || pa.external_id::CHAR || ',' || pav.name, 
+            SELECT string_agg(pt.external_id || ',' || pa.external_id::CHAR || ',' || pav.name,
                               ',' ORDER BY pa.external_id, pav.name) combo_id,
                    pp.id product_id
             FROM product_variant_combination pvc

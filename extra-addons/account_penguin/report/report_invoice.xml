@@ -14,15 +14,26 @@
         </xpath>
         <xpath expr="//table[hasclass('o_main_table')]//span[@t-field='line.price_unit']/parent::td" position="replace">
             <td t-attf-class="text-right td_list_price {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                <span class="text-nowrap" t-esc="line.product_id.lst_price"/>
+                <span class="text-nowrap" t-esc="line.product_id.lst_price" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
             </td>
             <td t-attf-class="text-right td_priceunit {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                <span class="text-nowrap" t-esc="line.penguin_net_price_pc"/>
+                <span class="text-nowrap" t-esc="line.penguin_net_price_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
             </td>
         </xpath>
 
-        <xpath expr="//th[@name='th_subtotal']/span[@groups='account.group_show_line_subtotals_tax_excluded']" position="replace">
-            <span groups="account.group_show_line_subtotals_tax_excluded">Total Net</span>
+        <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_subtotal']" position="replace">
+            <th name="th_subtotal" class="text-right">
+                <span groups="account.group_show_line_subtotals_tax_excluded">Total Net</span>
+                <span groups="account.group_show_line_subtotals_tax_included">Total Net</span>
+            </th>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]//t[@t-set='current_subtotal'][@groups='account.group_show_line_subtotals_tax_included']" position="attributes">
+            <!-- compute in the same way as `group_show_line_subtotals_tax_excluded` -->
+            <attribute name="t-value">current_subtotal + line.price_subtotal</attribute>
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]//td[hasclass('o_price_total')]/span[@groups='account.group_show_line_subtotals_tax_included']" position="attributes">
+            <!-- compute in the same way as `group_show_line_subtotals_tax_excluded` -->
+            <attribute name="t-field">line.price_subtotal</attribute>
         </xpath>
     </template>
 </odoo>
