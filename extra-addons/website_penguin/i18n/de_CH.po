@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_penguin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200903\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-29 11:00+0000\n"
+"PO-Revision-Date: 2020-09-29 11:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.nav_language_selector
+msgid ""
+"<i class=\"fa fa-plus-circle\"/>\n"
+"                    Add a language..."
+msgstr ""
+"<i class=\"fa fa-plus-circle\"/>\n"
+"                    Add a language..."
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Connect with us"
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Contact us"
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Customer Service"
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "FAQ"
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Penguin Care, warranty"
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Penguin Powderwear. Designed in Switzerland."
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Privacy Policy"
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Shipping &amp;amp; delivery"
+msgstr "Shipping &amp;amp; delivery"
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Subscribe"
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Terms &amp;amp; conditions"
+msgstr "Terms &amp;amp; conditions"
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "Thanks"
+msgstr ""
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid ""
+"We are an independent Swiss clothing brand, creating highly technical and "
+"stylish outerwear for powder enthusiasts."
+msgstr ""
+"We are an independent Swiss clothing brand, creating highly technical and "
+"stylish outerwear for powder enthusiasts."
+
+#. module: website_penguin
+#: model_terms:ir.ui.view,arch_db:website_penguin.penguin_footer
+msgid "your email..."
+msgstr ""
