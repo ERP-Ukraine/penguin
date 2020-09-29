@@ -2,7 +2,7 @@
 
 {
     'name': 'Inventory Penguin',
-    'version': '13.0.1.0',
+    'version': '13.0.1.1',
     'summary': 'Manage your stock and logistics activities',
     'description': "",
     'depends': ['stock'],
