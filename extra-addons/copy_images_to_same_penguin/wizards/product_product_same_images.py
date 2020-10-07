@@ -28,5 +28,6 @@ class ProductProductrSameImages(models.TransientModel):
         my_friends.write({'image_1920': self.product_id.image_1920})
 
         for friend in my_friends:
-            dups = self.product_id.product_variant_image_ids.mapped(lambda x: x.copy())
-            dups.write({'product_variant_id': friend.id})
+            if self.product_id.product_variant_image_ids:
+                dups = self.product_id.product_variant_image_ids.mapped(lambda x: x.copy())
+                dups.write({'product_variant_id': friend.id})
