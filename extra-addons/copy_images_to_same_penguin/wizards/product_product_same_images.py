@@ -1,7 +1,7 @@
 from odoo import api, fields, models
 
 
-class ProductProductrSameImages(models.TransientModel):
+class ProductProductSameImages(models.TransientModel):
     _name = 'product.product.same.images'
     _description = 'Copy images to same'
 
@@ -28,6 +28,24 @@ class ProductProductrSameImages(models.TransientModel):
         my_friends.write({'image_1920': self.product_id.image_1920})
 
         for friend in my_friends:
-            if self.product_id.product_variant_image_ids:
-                dups = self.product_id.product_variant_image_ids.mapped(lambda x: x.copy())
-                dups.write({'product_variant_id': friend.id})
+            domain = [('res_model', '=', 'product.image'),
+                      ('res_field', '=', 'image_1920'),
+                      ('res_id', 'in', friend.product_variant_image_ids.ids)]
+            # search for all existing image attachments of my friend
+            attachments = self.env['ir.attachment'].sudo().search(domain)
+            existing_checksums = set(attachments.mapped('checksum'))
+
+            for image in self.product_id.product_variant_image_ids:
+                domain = [('res_model', '=', 'product.image'),
+                          ('res_field', '=', 'image_1920'),
+                          ('res_id', '=', image.id)]
+                attach= self.env['ir.attachment'].sudo().search(domain, limit=1)
+                if not attach:
+                    continue
+
+                # do not copy image if it is already there
+                if attach.checksum in existing_checksums:
+                    continue
+
+                image_copy = image.copy()
+                image_copy.write({'product_variant_id': friend.id})
