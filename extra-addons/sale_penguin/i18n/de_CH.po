@@ -7,18 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e-20200928\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-06 13:29+0000\n"
-"PO-Revision-Date: 2020-10-06 13:29+0000\n"
+"PO-Revision-Date: 2020-10-07 17:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #. module: sale_penguin
 #: model:mail.template,report_name:sale_penguin.mail_template_sale_confirmation
 msgid "${(object.name or '').replace('/','_')}"
-msgstr ""
+msgstr "${(object.name or ‚‘).ersetzen(‚/‚,‘_‘)}"
 
 #. module: sale_penguin
 #: model:mail.template,subject:sale_penguin.mail_template_sale_confirmation
@@ -27,9 +29,8 @@ msgid ""
 "'pending') and 'Pending Order' or 'Order'} (Ref ${object.name or 'n/a' })"
 msgstr ""
 "${object.company_id.name} ${(object.get_portal_last_transaction().state == "
-"'pending') and 'Pending Order' or 'Auftragsbestätigung'} (Ref ${object.name "
-"or 'n/a' })"
-
+"‚pendent) and ‚pendenter Auftrag‘ or 'Auftragsbestätigung'} (Ref ${object."
+"name or 'n/a' })"
 
 #. module: sale_penguin
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document_title
@@ -44,7 +45,7 @@ msgstr "<span>Auftragsbestätigung # </span>"
 #. module: sale_penguin
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document_title
 msgid "<span>Pro-Forma Invoice # </span>"
-msgstr ""
+msgstr "<span>Pro-Forma Rechnung # </span>"
 
 #. module: sale_penguin
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document_title
@@ -54,25 +55,25 @@ msgstr "<span>Angebot # </span>"
 #. module: sale_penguin
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document_custom_main_table
 msgid "<strong>Planned Delivery Date:</strong>"
-msgstr ""
+msgstr "<strong>Geplantes Lieferdatum:</strong>"
 
 #. module: sale_penguin
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document_pricelist
 msgid "<strong>Pricelist:</strong>"
-msgstr ""
+msgstr "<strong>Preisliste:</strong>"
 
 #. module: sale_penguin
 #: model:ir.model.fields,field_description:sale_penguin.field_sale_order__external_id
 #: model:ir.model.fields,field_description:sale_penguin.field_sale_order_line__external_id
 msgid "External ID"
-msgstr ""
+msgstr "Externe ID"
 
 #. module: sale_penguin
 #: model:ir.model.fields,field_description:sale_penguin.field_sale_order_line__penguin_net_price_pc
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document_custom_main_table
 #: model_terms:ir.ui.view,arch_db:sale_penguin.sale_order_portal_content
 msgid "Net Price/pc"
-msgstr ""
+msgstr "Netto/Stk."
 
 #. module: sale_penguin
 #: model_terms:ir.ui.view,arch_db:sale_penguin.view_order_penguin_form
@@ -88,12 +89,12 @@ msgstr "Auftragseingangsbestätigung"
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document_custom_main_table
 #: model_terms:ir.ui.view,arch_db:sale_penguin.sale_order_portal_content
 msgid "RRP/pc"
-msgstr ""
+msgstr "VK/Stk."
 
 #. module: sale_penguin
 #: model:ir.model,name:sale_penguin.model_sale_order
 msgid "Sales Order"
-msgstr "Verkaufsauftrag "
+msgstr "Verkaufsauftrag"
 
 #. module: sale_penguin
 #: model:ir.model,name:sale_penguin.model_sale_order_line
@@ -103,9 +104,9 @@ msgstr "Kundenauftragszeile"
 #. module: sale_penguin
 #: model:ir.model.fields,field_description:sale_penguin.field_sale_order__state
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: sale_penguin
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document_custom_main_table
 msgid "Total Net"
-msgstr ""
+msgstr "Total Netto"

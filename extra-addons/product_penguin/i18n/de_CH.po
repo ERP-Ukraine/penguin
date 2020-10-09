@@ -7,23 +7,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e-20200903\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-29 11:07+0000\n"
-"PO-Revision-Date: 2020-09-29 11:07+0000\n"
+"PO-Revision-Date: 2020-10-07 18:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__xx_large
 msgid "2X-Large"
-msgstr ""
+msgstr "2X-Large"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__xxx_large
 msgid "3X-Large"
-msgstr ""
+msgstr "3X-Large"
 
 #. module: product_penguin
 #: model:ir.model,name:product_penguin.model_product_attribute_value
@@ -36,7 +38,7 @@ msgstr "Attributwert"
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__create_uid
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Erstellt von"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_feature__create_date
@@ -44,13 +46,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__create_date
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Erstellt am"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_material__description
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__description
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_feature__display_name
@@ -58,7 +60,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__display_name
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigendem"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_attribute__external_id
@@ -69,25 +71,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_penguin.field_product_template__external_id
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__external_id
 msgid "External ID"
-msgstr ""
+msgstr "Externe ID"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_product__feature_ids
 #: model:ir.model.fields,field_description:product_penguin.field_product_template__feature_ids
 #: model_terms:ir.ui.view,arch_db:product_penguin.penguin_product_template_form_view
 msgid "Features"
-msgstr ""
+msgstr "Merkmale"
 
 #. module: product_penguin
 #: model:ir.model.fields.selection,name:product_penguin.selection__product_template__gender__female
 msgid "Female"
-msgstr ""
+msgstr "Frauen"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_product__gender
 #: model:ir.model.fields,field_description:product_penguin.field_product_template__gender
 msgid "Gender"
-msgstr ""
+msgstr "Geschlecht"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_feature__id
@@ -95,18 +97,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__id
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_category__external_id
 #: model:ir.model.fields,field_description:product_penguin.field_product_product__external_id
 msgid "Integer ID"
-msgstr ""
+msgstr "Integer ID"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__large
 msgid "Large"
-msgstr ""
+msgstr "Large"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_feature____last_update
@@ -114,7 +116,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_penguin.field_product_size____last_update
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_feature__write_uid
@@ -122,7 +124,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__write_uid
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt aktualisiert von"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_feature__write_date
@@ -130,23 +132,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__write_date
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: product_penguin
 #: model:ir.model.fields.selection,name:product_penguin.selection__product_template__gender__male
 msgid "Male"
-msgstr ""
+msgstr "Männer"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_product__material_id
 #: model:ir.model.fields,field_description:product_penguin.field_product_template__material_id
 msgid "Material"
-msgstr ""
+msgstr "Material"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__medium
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_feature__name
@@ -154,7 +156,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__name
 #: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__name
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #. module: product_penguin
 #: model:ir.model,name:product_penguin.model_product_product
@@ -174,17 +176,17 @@ msgstr "Produktkategorie"
 #. module: product_penguin
 #: model:ir.model,name:product_penguin.model_product_feature
 msgid "Product Feature"
-msgstr ""
+msgstr "Produktmerkmal"
 
 #. module: product_penguin
 #: model:ir.model,name:product_penguin.model_product_material
 msgid "Product Material"
-msgstr ""
+msgstr "Produktmaterial"
 
 #. module: product_penguin
 #: model:ir.model,name:product_penguin.model_product_size
 msgid "Product Size"
-msgstr ""
+msgstr "Produktgrösse"
 
 #. module: product_penguin
 #: model:ir.model,name:product_penguin.model_product_template
@@ -194,51 +196,51 @@ msgstr "Produktvorlage"
 #. module: product_penguin
 #: model:ir.model,name:product_penguin.model_product_template_attribute_value
 msgid "Product Template Attribute Value"
-msgstr ""
+msgstr "Produktvorlage-Attributwert"
 
 #. module: product_penguin
 #: model:ir.model,name:product_penguin.model_product_washing_instruction
 msgid "Product Washing Instruction"
-msgstr ""
+msgstr "Produkt Pflegetipps"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Reihenfolge"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_product__size_ids
 #: model:ir.model.fields,field_description:product_penguin.field_product_template__size_ids
 msgid "Size"
-msgstr ""
+msgstr "Grösse"
 
 #. module: product_penguin
 #: model_terms:ir.ui.view,arch_db:product_penguin.penguin_product_template_form_view
 msgid "Sizes"
-msgstr ""
+msgstr "Grössen"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__small
 msgid "Small"
-msgstr ""
+msgstr "Small"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_product__washing_instruction_id
 #: model:ir.model.fields,field_description:product_penguin.field_product_template__washing_instruction_id
 msgid "Washing Instruction"
-msgstr ""
+msgstr "Pflegetipps"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_template_attribute_value__website_published
 msgid "Website Published"
-msgstr ""
+msgstr "Website publiziert"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__x_large
 msgid "X-Large"
-msgstr ""
+msgstr "X-Large"
 
 #. module: product_penguin
 #: model:ir.model.fields,field_description:product_penguin.field_product_size__x_small
 msgid "X-Small"
-msgstr ""
+msgstr "X-Small"
