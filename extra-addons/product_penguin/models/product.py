@@ -32,8 +32,8 @@ class ProductWashingInstruction(models.Model):
     _description = 'Product Washing Instruction'
 
     external_id = fields.Integer('External ID', copy=False)
-    name = fields.Char('Name')
-    description = fields.Text('Description')
+    name = fields.Char('Name', translate=True)
+    description = fields.Text('Description', translate=True)
 
 
 class ProductMaterial(models.Model):
@@ -41,8 +41,8 @@ class ProductMaterial(models.Model):
     _description = 'Product Material'
 
     external_id = fields.Integer('External ID', copy=False)
-    name = fields.Char('Name')
-    description = fields.Text('Description')
+    name = fields.Char('Name', translate=True)
+    description = fields.Text('Description', translate=True)
 
 
 class ProductSize(models.Model):
@@ -50,7 +50,7 @@ class ProductSize(models.Model):
     _description = 'Product Size'
 
     external_id = fields.Integer('External ID', copy=False)
-    name = fields.Char('Name', copy=False)
+    name = fields.Char('Name', copy=False, translate=True)
     sequence = fields.Integer('Sequence')
     small = fields.Float('Small', digits=(16, 2), default=0.0)
     medium = fields.Float('Medium', digits=(16, 2), default=0.0)
@@ -66,5 +66,4 @@ class ProductFeature(models.Model):
     _description = 'Product Feature'
 
     external_id = fields.Integer('External ID', copy=False)
-    name = fields.Char('Name')
-
+    name = fields.Char('Name', translate=True)
