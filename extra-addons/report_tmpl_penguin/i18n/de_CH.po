@@ -79,8 +79,8 @@ msgstr "Logo"
 
 #. module: report_tmpl_penguin
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
-msgid "Page: <span class=\"page\"/> of <span class=\"topage\"/>"
-msgstr "Seite: <span class=„page“/> von <span class=„topage“/>"
+msgid "Page <span class=\"page\"/> of <span class=\"topage\"/>"
+msgstr "Seite <span class=\"page\"/> von <span class=\"topage\"/>"
 
 #. module: report_tmpl_penguin
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.view_warehouse
