@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION="v3.9"
+VERSION="v4.0"
 docker build -t erpukraine/custom:penguin-13.0-${VERSION} . && \
 docker push erpukraine/custom:penguin-13.0-${VERSION}
 # sed -i 's/penguin-13.0-...../penguin-13.0-'${VERSION}'/' ./docker-compose.yml
