@@ -28,7 +28,7 @@
                 <div t-if="report_type == 'pdf'" class="pager col-6">
                     Page <span class="page"/> of <span class="topage"/>
                 </div>
-                <div t-esc="context_timestamp(datetime.datetime.now()).strftime('Date: %d. %B %Y')" class="col-6 text-right"/>
+                <div t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y')" class="col-6 text-right" />
             </div>
 
             <hr class="mt-1 mb-1"/>
