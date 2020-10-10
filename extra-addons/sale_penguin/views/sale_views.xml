@@ -15,6 +15,9 @@
             <xpath expr="//button[@name='action_cancel'][last()]" position="attributes">
                 <attribute name="states" add="future_sale" separator=","/>
             </xpath>
+            <xpath expr="//tree/field[@name='price_unit']" position="before">
+                <field name="penguin_rrp_pc"/>
+            </xpath>
         </field>
     </record>
 </odoo>

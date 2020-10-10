@@ -38,12 +38,19 @@
             </div>
         </xpath>
 
+        <xpath expr="//th[@name='th_discount']" position="replace">
+        </xpath>
+        <xpath expr="//td[@t-if='display_discount']" position="replace">
+        </xpath>
+
         <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_priceunit']" position="replace">
             <th name="th_list_price" class="text-right">RRP/pc</th>
             <th name="th_priceunit" class="text-right">Net Price/pc</th>
         </xpath>
         <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_priceunit']" position="replace">
-            <td name="td_list_price" class="text-right"><span t-esc="line.product_id.lst_price" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/></td>
+        <td name="td_list_price" class="text-right">
+            <span t-esc="line.penguin_rrp_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
+        </td>
             <td name="td_priceunit" class="text-right"><span t-esc="line.penguin_net_price_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/></td>
         </xpath>
 
