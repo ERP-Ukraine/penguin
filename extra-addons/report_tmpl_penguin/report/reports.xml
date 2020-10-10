@@ -25,10 +25,10 @@
         <div t-attf-class="header penguin-header o_company_#{company.id}_layout">
 
             <div class="row">
-                <div t-if="report_type == 'pdf'" class="col-6">
-                    Page: <span class="page"/> of <span class="topage"/>
+                <div t-if="report_type == 'pdf'" class="pager col-6">
+                    Page <span class="page"/> of <span class="topage"/>
                 </div>
-                <div t-esc="datetime.datetime.now().strftime('Date: %d. %b %Y')" class="col-6 text-right"/>
+                <div t-esc="context_timestamp(datetime.datetime.now()).strftime('Date: %d. %B %Y')" class="col-6 text-right"/>
             </div>
 
             <hr class="mt-1 mb-1"/>
@@ -90,7 +90,7 @@
                                 <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_iban"/></td>
                             </tr>
                             <tr t-if="warehouse.penguin_report_tmpl_acc_nr">
-                                <td>EUR Acc. Nr.:</td>
+                                <td>Acc. Nr.:</td>
                                 <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_acc_nr"/></td>
                             </tr>
                             <tr t-if="warehouse.penguin_report_tmpl_swift">

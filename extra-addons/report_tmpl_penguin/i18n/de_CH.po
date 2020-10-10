@@ -44,8 +44,8 @@ msgstr "Lieferadresse:"
 
 #. module: report_tmpl_penguin
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
-msgid "EUR Acc. Nr.:"
-msgstr "EUR Konto Nr.:"
+msgid "Acc. Nr.:"
+msgstr "Konto Nr.:"
 
 #. module: report_tmpl_penguin
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
