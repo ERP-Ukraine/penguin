@@ -47,6 +47,12 @@
             <th name="th_list_price" class="text-right">RRP/pc</th>
             <th name="th_priceunit" class="text-right">Net Price/pc</th>
         </xpath>
+         <xpath expr="//td[@name='td_amount_by_group_label_3']" position="replace">
+             <td name="td_amount_by_group_label_3">
+                <span t-esc="amount_by_group[0]"/>
+            </td>
+         </xpath>
+
         <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_priceunit']" position="replace">
         <td name="td_list_price" class="text-right">
             <span t-esc="line.penguin_rrp_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
