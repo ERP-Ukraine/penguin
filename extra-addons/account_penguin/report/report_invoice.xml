@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="penguin_report_invoice_document" inherit_id="account.report_invoice_document">
-        <xpath expr="//div[@name='origin']" position="after">
-            <div class="col-auto mw-100 mb-2" t-if="o.invoice_partner_bank_id.acc_number" name="bank_account">
-                <strong>Bank Account:</strong>
-                <p class="m-0" t-field="o.invoice_partner_bank_id.acc_number"/>
-            </div>
-        </xpath>
-
         <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_priceunit']" position="replace">
             <th name="th_list_price" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>RRP/pc</span></th>
             <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Net Price/pc</span></th>
