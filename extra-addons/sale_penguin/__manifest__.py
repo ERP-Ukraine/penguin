@@ -17,5 +17,7 @@
         'views/sale_views.xml',
         'views/variant_templates.xml',
         'views/sale_order_templates.xml',
+        'views/res_users_view.xml',
+        'views/res_partner_views.xml',
     ]
 }
