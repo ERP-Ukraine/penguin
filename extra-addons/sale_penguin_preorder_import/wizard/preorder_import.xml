@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="view_sale_penguin_preorder_import" model="ir.ui.view">
+        <field name="name">sale.penguin.preorder.import.form</field>
+        <field name="model">sale.penguin.preorder.import</field>
+        <field name="arch" type="xml">
+            <form string="Import pre-Order">
+                <separator string="Import pre-Order" colspan="4"/>
+                <group>
+                    <group>
+                        <field name="partner_id" widget="res_partner_many2one"
+                               context="{'res_partner_search_mode': 'customer', 'show_vat': True}"
+                               options="{'always_reload': True, 'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="commitment_date" />
+                    </group>
+                </group>
+                 <field name="xls_file" />
+                <footer>
+                    <div>
+                        <button name="import_preorder" string="Import" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel" class="btn-secondary"/>
+                    </div>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_sale_penguin_preorder_import" model="ir.actions.act_window">
+        <field name="name">Import pre-Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.penguin.preorder.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="Import pre-Order"
+        action="action_view_sale_penguin_preorder_import"
+        id="menu_view_sale_penguin_preorder_import"
+        parent="sale.sale_menu_root"
+        sequence="4"
+        groups="sales_team.group_sale_salesman" />
+</odoo>
