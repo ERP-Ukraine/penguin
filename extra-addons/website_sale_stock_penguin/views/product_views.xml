@@ -9,6 +9,9 @@
                 <group name="inventory_website" string="Inventory">
                     <field name="warehouse_id" options="{'no_create': True}"/>
                 </group>
+                <group name="salesperson_id" string="Assigned Salesperson">
+                    <field name="salesperson_id" options="{'no_create': True}"/>
+                </group>
             </xpath>
         </field>
     </record>
