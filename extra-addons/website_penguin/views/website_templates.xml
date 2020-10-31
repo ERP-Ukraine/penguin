@@ -55,11 +55,11 @@
                                         </li>
                                         <li>
                                             <i class="fa fa-phone"/>
-                                            <span class="o_force_ltr" t-field="res_company.phone"/>
+                                            <a class="o_force_ltr" t-field="res_company.phone" t-attf-href="tel:{{res_company.phone}}" />
                                         </li>
                                         <li>
                                             <i class="fa fa-envelope"/>
-                                            <span t-field="res_company.email"/>
+                                            <a t-field="res_company.email" t-attf-href="mailto:{{res_company.email}}"/>
                                         </li>
                                     </ul>
                                 </div>
