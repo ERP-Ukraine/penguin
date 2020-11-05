@@ -1,16 +1,22 @@
 {
     'name': 'Penguin Report Template',
-    'version': '1.2',
+    'version': '2.0',
     'summary': 'Custom report header and footer for some pdf docs.',
     'installable': True,
     'auto_install': False,
 
+    'description': """
+Penguin Report Templates
+=========================
+This module adds warehouse address to account, sale and other reports
+    """,
     'depends': [
-        'base',
-        'web',
         'account',
+        'base',
+        'l10n_ch',
         'sale',
         'sale_stock',
+        'web',
     ],
 
     'data': [

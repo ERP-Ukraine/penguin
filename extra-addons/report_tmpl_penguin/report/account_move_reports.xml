@@ -11,7 +11,7 @@
 
     <template id="report_invoice_document" inherit_id="account.report_invoice_document">
         <xpath expr="//t[@t-set='o']" position="after">
-            <t t-set="warehouse" t-value="o.mapped('invoice_line_ids.sale_line_ids.order_id.warehouse_id')[:1]"/>
+            <t t-set="warehouse" t-value="o.mapped('invoice_line_ids.sale_line_ids.order_id.warehouse_id')[:1] or o.env['stock.warehouse'].search([], limit=1)"/>
         </xpath>
 
         <xpath expr="//table[hasclass('o_main_table')]//span[@t-field='line.quantity']" position="replace">
@@ -24,4 +24,9 @@
         </xpath>
     </template>
 
+    <template id="l10n_ch_swissqr_template" inherit_id="l10n_ch.l10n_ch_swissqr_template">
+        <xpath expr="//t[@t-set='o']" position="after">
+            <t t-set="warehouse" t-value="o.mapped('invoice_line_ids.sale_line_ids.order_id.warehouse_id')[:1] or o.env['stock.warehouse'].search([], limit=1)"/>
+        </xpath>
+    </template>
 </odoo>
