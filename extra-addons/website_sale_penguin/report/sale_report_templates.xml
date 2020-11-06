@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_with_comment" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[hasclass('page')]" position="inside">
+            <t t-if="doc.website_comment">
+                <div>
+                    <span>Comment: <span t-field="doc.website_comment"/></span>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -393,5 +393,41 @@
         </xpath>
     </template>
 
+    <!-- Comment -->
+    <template id='comment_form' name='Comment form'>
+        <form t-att-action="'/shop/comment%s' % (redirect and '?r=' + redirect or '')"
+            method="post" name="website_comment">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+            <div class="input-group w-100">
+                <input name="comment" class="form-control" type="text" placeholder="text..." t-att-value="website_sale_order.website_comment or None"/>
+                <div class="input-group-append">
+                    <a href="#" role="button" class="btn btn-secondary a-submit">Apply</a>
+                </div>
+            </div>
+        </form>
+    </template>
 
+    <template id="website_comment_template" inherit_id="website_sale.total" customize_show="True" name="Comment">
+        <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
+            <tr t-if="not hide_comment">
+                <td colspan="3" class="text-center text-xl-right border-0">
+                    <span class=''>
+                        <t t-set='website_comment' t-value="website_sale_order.website_comment"/>
+                        <t t-if="not website_comment">
+                            <a href="#" class="show_comment">Add comment</a>
+                        </t>
+                        <div t-attf-class="comment_form #{not website_comment and 'd-none'}">
+                            <t t-call="website_sale_penguin.comment_form"/>
+                        </div>
+                    </span>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="cart_popover_with_comment" inherit_id="website_sale.cart_popover">
+        <xpath expr="//t[@t-set='hide_coupon']" position="after">
+            <t t-set='hide_comment'>True</t>
+        </xpath>
+    </template>
 </odoo>

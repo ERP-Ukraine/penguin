@@ -4,18 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0+e-20200903\n"
+"Project-Id-Version: Odoo Server 13.0+e-20201102\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-29 11:01+0000\n"
-"PO-Revision-Date: 2020-10-07 18:24+0200\n"
+"POT-Creation-Date: 2020-11-11 10:18+0000\n"
+"PO-Revision-Date: 2020-11-11 10:18+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: de\n"
-"X-Generator: Poedit 2.4.1\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
@@ -278,14 +276,34 @@ msgstr ""
 "soll"
 
 #. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.website_comment_template
+msgid "Add comment"
+msgstr "einen Kommentar hinzufügen"
+
+#. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.main_categories
 msgid "All Products"
 msgstr "Alle Produkte"
 
 #. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.comment_form
+msgid "Apply"
+msgstr "Anwenden"
+
+#. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
 msgid "Chest, cm"
 msgstr "Brust, cm"
+
+#. module: website_sale_penguin
+#: model:ir.model.fields,field_description:website_sale_penguin.field_sale_order__website_comment
+msgid "Comment"
+msgstr "Kommentar"
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.report_saleorder_document_with_comment
+msgid "Comment:"
+msgstr "Kommentar:"
 
 #. module: website_sale_penguin
 #: model:ir.model.fields,field_description:website_sale_penguin.field_product_public_category__external_id
@@ -330,18 +348,18 @@ msgstr "Bein-Innenlänge, cm"
 #. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
 msgid "Material"
-msgstr "Material"
+msgstr ""
 
 #. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
 msgid ""
-"Measures are expressed in centimetres. If the taken measures are between "
-"two sizes, choose the smallest if you prefer a tighter fitting or the "
-"largest if you prefer a baggier fitting."
+"Measures are expressed in centimetres. If the taken measures are between two"
+" sizes, choose the smallest if you prefer a tighter fitting or the largest "
+"if you prefer a baggier fitting."
 msgstr ""
-"Die Masse werden in Zentimeter angegeben. Wenn die gemessenen Masse "
-"zwischen zwei Grössen sind, wähle die Kleinere, wenn Du lieber eine engere "
-"Passform magst oder die Grössere, wenn Du die Kleider lieber etwas lockerer "
+"Die Masse werden in Zentimeter angegeben. Wenn die gemessenen Masse zwischen"
+" zwei Grössen sind, wähle die Kleinere, wenn Du lieber eine engere Passform "
+"magst oder die Grössere, wenn Du die Kleider lieber etwas lockerer "
 "geschnitten magst."
 
 #. module: website_sale_penguin
@@ -353,6 +371,11 @@ msgstr "Produkt"
 #: model:ir.model,name:website_sale_penguin.model_product_template
 msgid "Product Template"
 msgstr "Produktvorlage"
+
+#. module: website_sale_penguin
+#: model:ir.model,name:website_sale_penguin.model_sale_order
+msgid "Sales Order"
+msgstr "Verkaufsauftrag "
 
 #. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
@@ -377,7 +400,7 @@ msgstr "Grössentabelle Frauen"
 #. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.website_product_template_form_view
 msgid "This note is added to website product page."
-msgstr "This note is added to website product page."
+msgstr "Dieser Hinweis wird der Produktseite der Website hinzugefügt."
 
 #. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
@@ -386,6 +409,11 @@ msgid ""
 "recommendation below"
 msgstr ""
 "Mit der folgenden Grössentabelle findest du die richtige Grösse für dich."
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.cart_popover_with_comment
+msgid "True"
+msgstr "Wahr"
 
 #. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
@@ -434,4 +462,9 @@ msgstr ""
 #. module: website_sale_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
 msgid "py-2"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.comment_form
+msgid "text..."
 msgstr ""

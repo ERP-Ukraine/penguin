@@ -1,6 +1,8 @@
+# -*- coding: utf-8 -*-
 import logging
 
 from . import models
+from . import report
 
 from odoo import api, SUPERUSER_ID
 

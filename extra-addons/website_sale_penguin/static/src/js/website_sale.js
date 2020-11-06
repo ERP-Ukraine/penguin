@@ -3,6 +3,7 @@ odoo.define('website_sale_penguin.website_sale', function (require) {
 
     var publicWidget = require('web.public.widget');
     var core = require('web.core');
+    var VariantMixin = require('sale.VariantMixin');
 
     publicWidget.registry.categoryGroup = publicWidget.Widget.extend({
         selector: '.oe_category_group',
@@ -94,4 +95,17 @@ odoo.define('website_sale_penguin.website_sale', function (require) {
 
         }
     })
+
+
+
+    publicWidget.registry.commentAdd = publicWidget.Widget.extend({
+        selector: '.oe_website_sale',
+        events: {
+            'click .show_comment': '_onClickShowComment',
+        },
+
+    _onClickShowComment: function (ev) {
+            $(ev.currentTarget).hide();
+            $('.comment_form').removeClass('d-none');
+    }})
 })
