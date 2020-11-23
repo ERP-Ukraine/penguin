@@ -32,6 +32,30 @@
             <li class="nav-item divider" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))"/>
             <t t-call="website_penguin.nav_language_selector"/>
         </xpath>
+
+        <xpath expr="//div[@id='wrapwrap']" position="after">
+            <t t-if="website and not editable">
+                <script async="true">
+                    <![CDATA[
+                    !function(f,b,e,v,n,t,s)
+                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                    n.queue=[];t=b.createElement(e);t.async=!0;
+                    t.src=v;s=b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t,s)}(window, document,'script',
+                    'https://connect.facebook.net/en_US/fbevents.js');
+                    fbq('init', '286863399344034');
+                    fbq('track', 'PageView');
+                    ]]>
+                </script>
+                <noscript>
+                    <![CDATA[
+                    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=286863399344034&ev=PageView&noscript=1"/>
+                    ]]>
+                </noscript>
+            </t>
+        </xpath>
     </template>
 
     <template id="penguin_pager" inherit_id="website.pager">
