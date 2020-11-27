@@ -9,6 +9,7 @@ class ProductTemplate(models.Model):
     website_sale_description = fields.Text(
         'Website Description', translate=True,
         help='A description of the Product that you want to show on your website')
+    hide_size_chart = fields.Boolean(default=False)
 
     def _get_first_product_variant(self, ptav):
         return self.env['product.product'].search([

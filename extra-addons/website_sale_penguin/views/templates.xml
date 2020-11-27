@@ -105,7 +105,7 @@
                                 <t t-set="first_active_tab" t-value="product.material_id"/>
                                 <t t-set="second_active_tab" t-value="product.feature_ids and not first_active_tab"/>
                                 <t t-set="third_active_tab" t-value="not (first_active_tab or first_active_tab)"/>
-                                <div class="col-lg-8 pt48 pb48">
+                                <div t-if="any((product.material_id, product.feature_ids, not product.hide_size_chart, product.washing_instruction_id))" class="col-lg-8 pt48 pb48">
                                     <ul class="nav nav-tabs mb-3" role="tablist">
                                         <li t-if="product.material_id" class="nav-item">
                                             <a class="nav-link active" id="nav_material" data-toggle="tab" href="#nav_material_content" role="tab" aria-controls="nav_material_content" aria-selected="true" data-original-title="Material" title="Material">Material</a>
@@ -114,7 +114,7 @@
                                             <a t-attf-class="nav-link #{'active' if second_active_tab else None}" id="nav_features" data-toggle="tab" href="#nav_features_content" role="tab" aria-controls="nav_features_content" t-att-aria-selected="'true' if second_active_tab else 'false'" data-original-title="Features" title="Features">Features</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a t-attf-class="nav-link #{'active' if third_active_tab else None}" id="nav_size_chart" data-toggle="tab" href="#nav_size_chart_content" role="tab" aria-controls="nav_size_chart_content" t-att-aria-selected="'true' if third_active_tab else 'false'" data-original-title="Size Chart" title="Size Chart">Size Chart</a>
+                                            <a t-if="not product.hide_size_chart" t-attf-class="nav-link #{'active' if third_active_tab else None}" id="nav_size_chart" data-toggle="tab" href="#nav_size_chart_content" role="tab" aria-controls="nav_size_chart_content" t-att-aria-selected="'true' if third_active_tab else 'false'" data-original-title="Size Chart" title="Size Chart">Size Chart</a>
                                         </li>
                                         <li t-if="product.washing_instruction_id" class="nav-item">
                                             <a class="nav-link" id="nav_instruction" data-toggle="tab" href="#nav_instruction_content" role="tab" aria-controls="nav_instruction_content" aria-selected="false" data-original-title="Washing Instructions" title="Washing Instructions">Washing Instructions</a>
@@ -151,7 +151,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="nav_size_chart_content" t-attf-class="card tab-pane fade #{'show active' if third_active_tab else None}" role="tabpanel" aria-labelledby="nav_size_chart">
+                                        <div t-if="not product.hide_size_chart" id="nav_size_chart_content" t-attf-class="card tab-pane fade #{'show active' if third_active_tab else None}" role="tabpanel" aria-labelledby="nav_size_chart">
                                             <div class="card-header" role="tab" id="nav_size_chart_heading">
                                                 <h5 class="mb-0">
                                                     <a class="nav-link" data-toggle="collapse" href="#nav_size_chart_collapse" t-att-aria-expanded="'true' if third_active_tab else 'false'" aria-controls="nav_size_chart_collapse">Size Chart</a>

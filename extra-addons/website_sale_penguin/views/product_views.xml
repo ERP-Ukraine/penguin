@@ -10,6 +10,10 @@
                     <field name="website_sale_description" nolabel="1" placeholder="This note is added to website product page."/>
                 </group>
             </xpath>
+
+            <xpath expr="//page[@name='shop']/group/group" position="inside">
+                <field name="hide_size_chart"/>
+            </xpath>
         </field>
     </record>
 </odoo>
