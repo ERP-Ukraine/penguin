@@ -28,9 +28,8 @@ class SaleOrderLine(models.Model):
             pricelist_id = line.order_id.pricelist_id
                     
             if not pricelist_id:
-                line.penguin_rrp_pc = line.currency_id._convert(
-                    product.lst_price, line.currency_id,
-                    line.company_id, line.order_id.date_order or fields.Date.today())
+                line.penguin_rrp_pc = line.currency_id._compute(
+                    line.company_id.currency_id, line.currency_id, product.lst_price)
                 continue
             products_qty_partner = [(
                 product, line.product_uom_qty, line.order_partner_id
@@ -40,14 +39,12 @@ class SaleOrderLine(models.Model):
             if suitable_rule:
                 item = self.env['product.pricelist.item'].browse(suitable_rule)
                 if item.pricelist_id == pricelist_id and item.base == 'pricelist':
-                    line.penguin_rrp_pc = line.currency_id._convert(
-                        product.with_context(pricelist=item.base_pricelist_id.id).price, line.currency_id,
-                        line.company_id, line.order_id.date_order or fields.Date.today())
+                    line.penguin_rrp_pc = line.currency_id._compute(
+                        item.base_pricelist_id.currency_id, line.currency_id,
+                        product.with_context(pricelist=item.base_pricelist_id.id).price)
                 else:
-                    line.penguin_rrp_pc = line.currency_id._convert(
-                        product.lst_price, line.currency_id,
-                        line.company_id, line.order_id.date_order or fields.Date.today())
+                    line.penguin_rrp_pc = line.currency_id._compute(
+                        line.company_id.currency_id, line.currency_id, product.lst_price)
             else:
-                line.penguin_rrp_pc = line.currency_id._convert(
-                    product.lst_price, line.currency_id,
-                    line.company_id, line.order_id.date_order or fields.Date.today())
+                line.penguin_rrp_pc = line.currency_id._compute(
+                    line.company_id.currency_id, line.currency_id, product.lst_price)

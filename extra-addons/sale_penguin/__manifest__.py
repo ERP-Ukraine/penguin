@@ -9,6 +9,7 @@
     'depends': [
         'product_penguin',
         'sale',
+        'stock',
     ],
 
     'data': [
