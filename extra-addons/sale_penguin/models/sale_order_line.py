@@ -39,7 +39,7 @@ class SaleOrderLine(models.Model):
             return Pricelist
         results = pricelist_id._compute_price_rule([(self.product_id, self.product_uom_qty,
                                                      self.order_partner_id)])
-        price, suitable_rule = results[product.id]
+        price, suitable_rule = results[self.product_id.id]
         if suitable_rule:
             item = self.env['product.pricelist.item'].browse(suitable_rule)
             if item.pricelist_id == pricelist_id and item.base == 'pricelist':
