@@ -44,7 +44,7 @@ class SaleOrderLine(models.Model):
             item = self.env['product.pricelist.item'].browse(suitable_rule)
             if item.pricelist_id == pricelist_id and item.base == 'pricelist':
                 return item.base_pricelist_id
-         return Pricelist
+        return Pricelist
 
     @api.depends('order_id.pricelist_id')
     def _compute_penguin_rrp_pc(self):
