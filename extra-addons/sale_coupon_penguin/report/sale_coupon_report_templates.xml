@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="paperformat_coupon_lowmargin" model="report.paperformat">
+        <field name="name">Coupon A4 low margin</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">15</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="sale_coupon.report_coupon_code" model="ir.actions.report">
+        <field name="paperformat_id" ref="sale_coupon_penguin.paperformat_coupon_lowmargin"/>
+    </record>
+
+    <template id="report_coupon_penguin" inherit_id="sale_coupon.report_coupon">
+        <xpath expr="//t[1]" position="replace">
+            <t t-call="web.basic_layout">
+                <div class="coupon">
+                    <div class="coupon-body o_report_coupon_background">
+                        <div class="page o_report_coupon_background-inside">
+                            <div class="row text-center flexbox-centering">
+                                <div class="o_offer col-lg-12">
+                                    <t t-if="o.program_id.reward_type == 'discount'">
+                                        <h1 t-if="o.program_id.discount_type == 'fixed_amount'" class="">
+                                            <strong>
+                                                <span t-field="o.program_id.discount_fixed_amount" t-options='{"widget": "monetary", "display_currency": o.program_id.currency_id}' />
+                                            </strong>
+                                        </h1>
+                                        <h1 t-if="o.program_id.discount_type == 'percentage'" class="">
+                                            <strong>
+                                                <span t-field="o.program_id.discount_percentage" />
+                                                %
+                                            </strong>
+                                        </h1>
+                                        <t t-if="o.program_id.discount_apply_on == 'specific_products'">
+                                            <t t-if="len(o.program_id.discount_specific_product_ids) > 1">
+                                                <t t-set="text">OFF ON SOME PRODUCTS*</t>
+                                                <t t-set="display_specific_products" t-value="True" />
+                                            </t>
+                                            <t t-else="">
+                                                <t t-set="text">OFF ON %s</t>
+                                                <t t-set="text" t-value="text % o.program_id.discount_specific_product_ids.name.upper()" />
+                                            </t>
+                                        </t>
+                                        <t t-if="o.program_id.discount_apply_on == 'cheapest_product'">
+                                            <t t-set="text">OFF ON THE CHEAPEST PRODUCT</t>
+                                        </t>
+                                    </t>
+                                    <t t-if="o.program_id.reward_type == 'product'">
+                                        <t t-set="text">GET %s FREE %s ON YOUR NEXT ORDER!</t>
+                                        <t t-set="text" t-value="text % (o.program_id.reward_product_quantity, o.program_id.reward_product_id.name.upper())" />
+                                    </t>
+                                    <t t-if="o.program_id.reward_type == 'free_shipping'">
+                                        <t t-set="text">GET FREE SHIPPING ON YOUR NEXT ORDER!</t>
+                                    </t>
+                                    <h3>Gutschein Code:</h3>
+                                    <h3>
+                                        <span class="" t-esc="o.code"></span>
+                                    </h3>
+                                    <h4 t-if="o.program_id.rule_min_quantity > 1">
+                                        Minimum purchase of
+                                        <strong t-esc="o.program_id.rule_min_quantity" />
+                                        products
+                                    </h4>
+                                    <h4 t-if="o.program_id.rule_minimum_amount">
+                                        Valid for purchase above
+                                        <strong t-esc="o.program_id.rule_minimum_amount" t-options="{'widget': 'monetary', 'display_currency': o.program_id.currency_id}" />
+                                    </h4>
+                                    <p t-if="display_specific_products">
+                                        <small>
+                                            *Valid for following products:
+                                            <t t-esc="', '.join(o.program_id.discount_specific_product_ids.mapped('name')).upper()" />
+                                        </small>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt32 container">
+                        <hr class=""/>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Gutschein im Wert von <span t-field="o.program_id.discount_fixed_amount" t-options='{"widget": "monetary", "display_currency": o.program_id.currency_id}' /> <br/>
+                                Gültig bis <span t-field="o.expiration_date" t-options='{"format": "dd.MM.YYYY"}'/> </p>
+                            </div>
+                            <div class="col-6">
+                                <p>Einlösen online: www.penguin.swiss<br/>
+                                oder direkt bei uns im Shop in Zürich</p>
+                            </div>
+                        </div>
+
+                        <p class="mt32">
+                            <img alt="Logo" t-att-src="'/logo?company=%d' % (o.program_id.company_id)" t-att-alt="'%s' % (o.program_id.company_id.name)" style="border:0px solid transparent; height: 150px;" height="150px" />
+                        </p>
+
+                        <p class="mt32">
+                            <span t-field="o.program_id.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "email"], "no_marker": True}' />
+                        </p>
+                         <p class="mt32">
+                                Öffnungszeiten Oktober bis Ostern:<br/>
+                                Donnerstag &amp; Freitag | 16.00 – 20.00<br/>
+                                Samstag | 11.00 – 18.00
+                        </p>
+
+                        <p class="mt16"><small>*** Bei Neuschneemengen ab 30cm bleibt der Shop geschlossen ***</small></p>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

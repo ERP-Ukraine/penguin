@@ -1,0 +1,53 @@
+.coupon {
+    font-family: Roboto;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    hr {
+        border-top: 2px solid rgba(0, 0, 0, 1);
+    }
+
+    small {
+        font-size: 1rem;
+    }
+}
+
+.coupon-body {
+    color: white;
+
+    h1 {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 0px;
+    }
+
+    h3 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 0px;
+    }
+}
+
+.o_report_coupon_background {
+    background-image: url('/sale_coupon_penguin/static/src/img/penguin_coupon_bg.jpg');
+    background-size: cover;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    min-height: 620px;
+}
+
+
+.o_report_coupon_background-inside {
+    position: absolute;
+    top: 250px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.flexbox-centering {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
