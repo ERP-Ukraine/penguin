@@ -20,6 +20,11 @@ class ProductTemplate(models.Model):
             if pricelist and pricelist.warehouse_id:
                 warehouse_id = pricelist.warehouse_id
             product.invalidate_cache(['virtual_available'])
-            combination_info['virtual_available'] = product.with_context(warehouse=warehouse_id.id).virtual_available
+            virtual_available = product.with_context(warehouse=warehouse_id.id).virtual_available
+            combination_info['virtual_available'] = virtual_available
+            combination_info['virtual_available_formatted'] = self.env[
+                'ir.qweb.field.float'].value_to_html(
+                    virtual_available,
+                    {'decimal_precision': 'Product Unit of Measure'})
 
         return combination_info
