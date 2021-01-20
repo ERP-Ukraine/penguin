@@ -4,18 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0+e-20200928\n"
+"Project-Id-Version: Odoo Server 13.0+e-20201220\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-06 13:20+0000\n"
-"PO-Revision-Date: 2020-10-07 17:47+0200\n"
+"POT-Creation-Date: 2021-01-20 12:03+0000\n"
+"PO-Revision-Date: 2021-01-20 12:03+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: de\n"
-"X-Generator: Poedit 2.4.1\n"
 
 #. module: report_tmpl_penguin
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.view_warehouse
@@ -26,6 +24,11 @@ msgstr "Konto Nr."
 #: model:ir.model.fields,field_description:report_tmpl_penguin.field_stock_warehouse__penguin_report_tmpl_acc_nr
 msgid "Acc. Nr., Penguin Template"
 msgstr "Konto Nr., Penguin Vorlage"
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Acc. Nr.:"
+msgstr "Konto Nr.:"
 
 #. module: report_tmpl_penguin
 #: model:ir.model.fields,field_description:report_tmpl_penguin.field_res_company__penguin_report_tmpl_calm
@@ -41,11 +44,6 @@ msgstr "Unternehmen"
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
 msgid "Delivery address:"
 msgstr "Lieferadresse:"
-
-#. module: report_tmpl_penguin
-#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
-msgid "Acc. Nr.:"
-msgstr "Konto Nr.:"
 
 #. module: report_tmpl_penguin
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
@@ -71,6 +69,11 @@ msgstr "IBAN:"
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
 msgid "Invoice address:"
 msgstr "Rechnungsadresse:"
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Invoice and Delivery address:"
+msgstr "Rechnungs- / Lieferadresse:"
 
 #. module: report_tmpl_penguin
 #: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin

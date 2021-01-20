@@ -34,13 +34,14 @@
             <hr class="mt-1 mb-1"/>
 
             <div class="row">
-                <div class="col-3 pr-50px">
+                <div class="col-4 pr-50px">
                     <t t-if="company.partner_id">
-                        <div>Invoice address:</div>
+                        <div t-if="warehouse.partner_id and warehouse.partner_id != company.partner_id" >Invoice address:</div>
+                        <div t-if="warehouse.partner_id and warehouse.partner_id == company.partner_id" >Invoice and Delivery address:</div>
                         <div t-esc="company.partner_id" t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": true}'/>
                     </t>
                 </div>
-                <div class="col-5">
+                <div class="col-4">
                     <br/>
                     <table style="position: relative; left: -48px;">
                         <tr>
@@ -58,7 +59,7 @@
                     </table>
                 </div>
                 <div class="col-4">
-                    <t t-if="warehouse.partner_id">
+                    <t t-if="warehouse.partner_id and warehouse.partner_id != company.partner_id">
                         <div>Delivery address:</div>
                         <div t-esc="warehouse.partner_id" t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": true}'/>
                     </t>
