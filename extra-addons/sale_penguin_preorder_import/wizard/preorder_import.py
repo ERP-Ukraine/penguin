@@ -14,6 +14,7 @@ class PreOrderImport(models.TransientModel):
     _description = 'Import pre-Order from xls file'
 
     partner_id = fields.Many2one('res.partner', string='Customer', required=True)
+    pricelist_id = fields.Many2one('product.pricelist', string='Pricelist', required=True)
     commitment_date = fields.Date(string='Planned Delivery Date')
     xls_file = fields.Binary(string='XLS File', required=True, attachment=False)
 
@@ -24,11 +25,11 @@ class PreOrderImport(models.TransientModel):
         base_import = self.env['base_import.import'].create({'file': file_data})
         data = base_import._read_xls(options=None)
         header = next(data)
-        if header[ARTICLE_IDX] != 'Nr.' or header[QTY_IDX] != 'Stückzahlen':
+        if header[ARTICLE_IDX] != 'Nr.' or header[QTY_IDX] != 'Stk.':
             raise ValidationError(
                 _('Wrong file header! '
                   '"Nr." expected to be in 2nd column and '
-                  '"Stückzahlen" expected to be in 7th column.'))
+                  '"Stk." expected to be in 7th column.'))
         return data
 
     def _get_product_articles(self):
@@ -43,6 +44,7 @@ class PreOrderImport(models.TransientModel):
         products_by_code = self._get_product_articles()
         so_form = Form(self.env['sale.order'])
         so_form.partner_id = self.partner_id
+        so_form.pricelist_id = self.pricelist_id
         if self.commitment_date:
             so_form.commitment_date = self.commitment_date
         for row in data:

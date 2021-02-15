@@ -11,7 +11,8 @@
                     <group>
                         <field name="partner_id" widget="res_partner_many2one"
                                context="{'res_partner_search_mode': 'customer', 'show_vat': True}"
-                               options="{'always_reload': True, 'no_create': True}"/>
+                               options="{'always_reload': True, 'no_create': True}" />
+                        <field name="pricelist_id" />
                     </group>
                     <group>
                         <field name="commitment_date" />
