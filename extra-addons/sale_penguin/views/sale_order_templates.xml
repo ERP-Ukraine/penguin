@@ -8,7 +8,7 @@
     </xpath>
     <xpath expr="(//table[@id='sales_order_table']/tbody//tr//td)[3]" position="replace">
         <td t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">
-            <div t-esc="line.product_id.lst_price" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
+            <div t-esc="line.penguin_rrp_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
         </td>
         <td t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">
             <div t-esc="line.penguin_net_price_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
