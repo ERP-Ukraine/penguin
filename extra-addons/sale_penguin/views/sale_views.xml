@@ -6,14 +6,26 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_confirm'][last()]" position="after">
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                        type="action" context="{'default_advance_payment_method': 'percentage'}"
+                        attrs="{'invisible': ['|',('invoice_status', '!=', 'no'), ('state', '!=', 'future_sale')]}"/>
+                <button name="action_send_preorder_confirmation_email" string="Pre-order Email" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['future_sale'])]}"/>
+                <button name="action_send_preorder_confirmation_email" string="Final Pre-order Email" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['future_sale_confirmation'])]}"/>
                 <button name="action_preorder" string="Pre-order" type="object"
                         attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                <button name="action_preorder_confirmation" string="Pre-order Confirmation" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['future_sale'])]}"/>
             </xpath>
             <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
-                <attribute name="attrs">{'invisible': [('state', 'not in', ['sent', 'future_sale'])]}</attribute>
+                <attribute name="attrs">{'invisible': [('state', 'not in', ['sent', 'future_sale_confirmation'])]}</attribute>
             </xpath>
             <xpath expr="//button[@name='action_cancel'][last()]" position="attributes">
                 <attribute name="states" add="future_sale" separator=","/>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel'][last()]" position="attributes">
+                <attribute name="states" add="future_sale_confirmation" separator=","/>
             </xpath>
             <xpath expr="//tree/field[@name='price_unit']" position="before">
                 <field name="penguin_rrp_pc"/>

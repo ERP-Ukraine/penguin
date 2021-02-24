@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import _, fields, models, SUPERUSER_ID
 
 
 class SaleOrder(models.Model):
@@ -7,27 +7,32 @@ class SaleOrder(models.Model):
     external_id = fields.Integer('External ID', copy=False)
     state = fields.Selection(selection_add=[
         ('future_sale', 'Pre-ordered'),
+        ('future_sale_confirmation', 'Pre-order confirmed'),
     ])
 
-    def _find_mail_template(self, force_confirmation_template=False):
-        template_id = False
-
-        if self.state == 'future_sale':
-            template_id = int(self.env['ir.config_parameter'].sudo().get_param('sale.default_confirmation_template'))
-            template_id = self.env['mail.template'].search([('id', '=', template_id)]).id
-            if not template_id:
-                IMD = self.env['ir.model.data']
-                template_id = IMD.xmlid_to_res_id('sale_penguin.mail_template_sale_confirmation', False)
-        if not template_id:
-            template_id = super()._find_mail_template(force_confirmation_template)
-
-        return template_id
-
-    def _send_confirmation_email(self):
-        email_act = self.action_quotation_send()
-        email_ctx = email_act.get('context', {})
-        self.with_context(**email_ctx).message_post_with_template(email_ctx.get('default_template_id'))
+    def action_send_preorder_confirmation_email(self):
+        if self.env.su:
+            # sending mail in sudo was meant for it being sent from superuser
+            self = self.with_user(SUPERUSER_ID)
+        template_id = self._find_mail_template(force_confirmation_template=True)
+        if template_id:
+            for order in self:
+                order.with_context(
+                    force_send=True).message_post_with_template(
+                        template_id, composition_mode='comment')
 
     def action_preorder(self):
         self.write({'state': 'future_sale'})
-        self._send_confirmation_email()
+
+    def action_preorder_confirmation(self):
+        self.write({'state': 'future_sale_confirmation'})
+
+    def get_confirmation_mail_subject(self):
+        if self.state == 'future_sale':
+            # Penguin- Auftragseingangsbestätigung
+            return _('Penguin – order-entry confirmation – %s') % self.name or ''
+        if self.state == 'future_sale_confirmation':
+            # Penguin - finale Auftragsbestätigung
+            return _('Penguin – final order confirmation – %s') % self.name or ''
+        # Dein Penguin Powderwear Einkauf
+        return _('Your Penguin Powderwear purchase – %s') % self.name or ''

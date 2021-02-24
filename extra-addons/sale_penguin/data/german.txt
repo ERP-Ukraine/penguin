@@ -1,0 +1,192 @@
+
+
+# pre order entry
+
+Hallo,<br/>
+Herzlichen Dank für deine Vor-Order.<br>
+Bitte finde anbei unsere Auftragseingangsbestätigung.<br>
+Wir werden uns anfangs März wieder mit der finalen Auftragsbestätigung melden.<br/><br/>
+
+
+# Final order confirmation
+
+Hallo,
+
+Bitte finde anbei unsere finale Auftragsbestätigung. Die Auslieferung ist für Mitte Oktober geplant.
+
+
+
+# footer
+Liebe Grüsse
+Team Penguin
+
+
+#######
+
+
+<div style="margin: 0px; padding: 0px;">
+% if object.state == 'future_sale':
+    <p style="padding:0px;font-size: 12px;">
+        Hallo,<br/>
+        Herzlichen Dank für deine Vor-Order.<br/>
+        Bitte finde anbei unsere Auftragseingangsbestätigung.<br/>
+        Wir werden uns anfangs März wieder mit der finalen Auftragsbestätigung melden.<br/><br/>
+    </p>
+% elif object.state == 'future_sale_confirmation':
+    <p style="padding:0px;font-size: 12px;">
+        Hallo,<br/>
+        Bitte finde anbei unsere finale Auftragsbestätigung.
+        <br/>
+        Die Auslieferung ist für Mitte Oktober geplant.
+        <br/><br/>
+    </p>
+% else:
+    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+        Hoi ${object.partner_id.name},
+        <br />
+        Vielen Dank für deinen virtuellen Besuch.
+        <br />
+        <br />
+        % set transaction = object.get_portal_last_transaction()
+        Deine Bestellung ist bestätigt.
+        <br />
+        <br />
+    </p>
+% endif
+    % if object.website_id:
+    <div style="margin: 0px; padding: 0px;">
+        <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+            <tr style="border-bottom: 2px solid #dee2e6;">
+                <td align="left" style="width: 60%">
+                    <strong>Produkte</strong>
+                </td>
+                <td align="right" style="width: 20%">
+                    <strong>Menge</strong>
+                </td>
+                <td align="right" style="width: 20%">
+                    <strong>VK/Stk</strong>
+                </td>
+            </tr>
+        </table>
+        % for line in object.order_line:
+            % if not line.is_delivery and line.display_type in ['line_section', 'line_note']:
+        <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+            <tr style="${loop.cycle('background-color: #f2f2f2', 'background-color: #ffffff')}">
+                <td colspan="3">
+                    % if line.display_type == 'line_section':
+                    <strong>${line.name}</strong>
+                    % elif line.display_type == 'line_note':
+                    <i>${line.name}</i>
+                    % endif
+                </td>
+            </tr>
+        </table>
+        % elif not line.is_delivery
+        <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+            <tr style="${loop.cycle('background-color: #f2f2f2', 'background-color: #ffffff')}">
+                <td align="left" style="width: 60%">${line.product_id.name}</td>
+                <td align="right" style="width: 20%">${line.product_uom_qty}</td>
+                % if object.user_id.has_group('account.group_show_line_subtotals_tax_excluded'):
+                <td align="right" style="width: 60%">${format_amount(line.price_reduce_taxexcl, object.currency_id)}</td>
+                % endif
+                        % if object.user_id.has_group('account.group_show_line_subtotals_tax_included'):
+                <td align="right" style="width: 20%">${format_amount(line.price_reduce_taxinc, object.currency_id)}</td>
+                % endif
+            </tr>
+        </table>
+        % endif
+        % endfor
+    </div>
+    <div style="margin: 0px; padding: 0px;">
+        <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;" align="right">
+            <tr>
+                <td style="width: 60%" />
+                <td style="width: 30%; border-top: 1px solid #dee2e6;" align="right">
+                    <strong>Zwischensumme:</strong>
+                </td>
+                <td style="width: 10%; border-top: 1px solid #dee2e6;" align="right">${format_amount(object.amount_untaxed, object.currency_id)}</td>
+            </tr>
+        </table>
+    </div>
+    <div style="margin: 0px; padding: 0px;">
+        <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;" align="right">
+            <tr>
+                <td style="width: 60%" />
+                <td style="width: 30%;" align="right">
+                    <strong>Steuern:</strong>
+                </td>
+                <td style="width: 10%;" align="right">${format_amount(object.amount_tax, object.currency_id)}</td>
+            </tr>
+            <tr>
+                <td style="width: 60%" />
+                <td style="width: 30%; border-top: 1px solid #dee2e6;" align="right">
+                    <strong>Gesamt:</strong>
+                </td>
+                <td style="width: 10%; border-top: 1px solid #dee2e6;" align="right">${format_amount(object.amount_total, object.currency_id)}</td>
+            </tr>
+        </table>
+    </div>
+    % if object.partner_invoice_id:
+    <div style="margin: 0px; padding: 0px;">
+        <table width="100%" style="color: #454748; font-size: 12px;">
+            <tr>
+                <td style="padding-top: 10px;">
+                    <strong>Rechnungsadresse:</strong>
+                    ${object.partner_invoice_id.street or ''}
+                    ${object.partner_invoice_id.city or ''}
+                    ${object.partner_invoice_id.state_id.name or ''}
+                    ${object.partner_invoice_id.zip or ''}
+                    ${object.partner_invoice_id.country_id.name or ''}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Zahlungsmethode:</strong>
+                    % if transaction.payment_token_id:
+                        ${transaction.payment_token_id.name}
+                    % else:
+                        ${transaction.acquirer_id.name or ''}
+                    % endif
+                     (${format_amount(transaction.amount, object.currency_id)})
+                </td>
+            </tr>
+        </table>
+    </div>
+    % endif
+    % if object.partner_shipping_id and not object.only_services:
+    <div style="margin: 0px; padding: 0px;">
+        <table width="100%" style="color: #454748; font-size: 12px;">
+            <tr>
+                <td>
+                    <br />
+                    <strong>Lieferadresse:</strong>
+                    ${object.partner_shipping_id.street or ''}
+                    ${object.partner_shipping_id.city or ''}
+                    ${object.partner_shipping_id.state_id.name or ''}
+                    ${object.partner_shipping_id.zip or ''}
+                    ${object.partner_shipping_id.country_id.name or ''}
+                </td>
+            </tr>
+        </table>
+        % if object.carrier_id:
+        <table width="100%" style="color: #454748; font-size: 12px;">
+            <tr>
+                <td>
+                    <strong>Versandart:</strong>
+                    ${object.carrier_id.name}
+                    % if object.carrier_id.fixed_price == 0.0:
+                        (Free)
+                    % else:
+                        (${format_amount(object.carrier_id.fixed_price, object.currency_id)})
+                    % endif
+                </td>
+            </tr>
+        </table>
+        % endif
+    </div>
+    % endif
+% endif
+Liebe Grüsse,
+    <br />
+    Team Penguin
+</div>

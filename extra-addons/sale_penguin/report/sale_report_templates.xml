@@ -22,6 +22,9 @@
                 <t t-elif="doc.state == 'future_sale'">
                     <span>Acknowledgement of order # </span>
                 </t>
+                <t t-elif="doc.state == 'future_sale_confirmation'">
+                    <span>Final order confirmation # </span>
+                </t>
                 <t t-else="">
                     <span>Order confirmation # </span>
                 </t>
