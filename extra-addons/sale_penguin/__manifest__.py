@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Penguin Sales',
-    'version': '1.5',
+    'version': '1.6',
     'category': 'Sales/Sales',
     'summary': 'Sales internal machinery',
     'installable': True,
