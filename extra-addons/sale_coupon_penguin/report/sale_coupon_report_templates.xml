@@ -62,6 +62,10 @@
                                     <t t-if="o.program_id.reward_type == 'free_shipping'">
                                         <t t-set="text">GET FREE SHIPPING ON YOUR NEXT ORDER!</t>
                                     </t>
+                                    <t t-if="o.program_id.reward_type == 'penguin_promocode_amount'">
+                                        <t t-set="text">GET %s %s DISCOUNT ON YOUR NEXT ORDER!</t>
+                                        <t t-set="text" t-value="text % (o.discount_amount, o.discount_line_product_id.currency_id.name)" />
+                                    </t>
                                     <h3>Gutschein Code:</h3>
                                     <h3>
                                         <span class="" t-esc="o.code"></span>
@@ -92,8 +96,14 @@
 
                         <div class="row">
                             <div class="col-6">
-                                <p>Gutschein im Wert von <span t-field="o.program_id.discount_fixed_amount" t-options='{"widget": "monetary", "display_currency": o.program_id.currency_id}' /> <br/>
-                                Gültig bis <span t-field="o.expiration_date" t-options='{"format": "dd.MM.YYYY"}'/> </p>
+                                <t t-if="o.program_id.reward_type == 'penguin_promocode_amount'">
+                                    <p>Gutschein im Wert von <span t-field="o.discount_amount" t-options='{"widget": "monetary", "display_currency": o.discount_line_product_id.currency_id}' /> <br/>
+                                    Gültig bis <span t-field="o.expiration_date" t-options='{"format": "dd.MM.YYYY"}'/> </p>
+                                </t>
+                                <t t-else="">
+                                    <p>Gutschein im Wert von <span t-field="o.program_id.discount_fixed_amount" t-options='{"widget": "monetary", "display_currency": o.program_id.currency_id}' /> <br/>
+                                    Gültig bis <span t-field="o.expiration_date" t-options='{"format": "dd.MM.YYYY"}'/> </p>
+                                </t>
                             </div>
                             <div class="col-6">
                                 <p>Einlösen online: www.penguin.swiss<br/>

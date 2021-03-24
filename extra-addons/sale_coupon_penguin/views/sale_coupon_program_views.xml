@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_coupon_program_view_promo_program_form_penguin" model="ir.ui.view">
+        <field name="name">sale.coupon.promotion.program.form.penguin</field>
+        <field name="model">sale.coupon.program</field>
+        <field name="inherit_id" ref="sale_coupon.sale_coupon_program_view_promo_program_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='reward_product_id']/parent::group" position="attributes">
+                <attribute name="attrs">{'invisible': [('reward_type', '=', 'penguin_promocode_amount')]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

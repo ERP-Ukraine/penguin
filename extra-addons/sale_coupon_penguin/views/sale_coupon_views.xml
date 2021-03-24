@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_coupon_view_form_penguin" model="ir.ui.view">
+        <field name="name">sale.coupon.form.penguin</field>
+        <field name="model">sale.coupon</field>
+        <field name="inherit_id" ref="sale_coupon.sale_coupon_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sales_order_id']" position="after">
+                <field name="discount_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="currency_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
