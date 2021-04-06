@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_new_product_import_penguin" model="ir.ui.view">
+        <field name="name">new.product.import.penguin.form</field>
+        <field name="model">new.product.import.penguin</field>
+        <field name="arch" type="xml">
+            <form string="New Products Import">
+                <separator string="New Products Import" colspan="4"/>
+                <group>
+                    <group>
+                        <field name="seller_id" widget="res_partner_many2one"
+                               context="{'res_partner_search_mode': 'customer', 'show_vat': True}"
+                               options="{'always_reload': True, 'no_create': True}"/>
+                        <field name="product_category_id" widget="res_partner_many2one"
+                               context="{'res_partner_search_mode': 'customer', 'show_vat': True}"
+                               options="{'always_reload': True, 'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="washing_instruction_id"/>
+                        <field name="material_id"/>
+                    </group>
+                </group>
+                <field name="xls_file"/>
+                <footer>
+                    <div>
+                        <button name="import_new_products" string="Import" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel" class="btn-secondary"/>
+                    </div>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_new_products_import" model="ir.actions.act_window">
+        <field name="name">New Products Import</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">new.product.import.penguin</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        name="New Products Import"
+        action="action_view_new_products_import"
+        id="menu_view_sale_penguin_preorder_import"
+        parent="stock.menu_stock_inventory_control"
+        sequence="4"
+        groups="stock.group_stock_manager,stock.group_stock_user"/>
+</odoo>
