@@ -33,6 +33,9 @@ class SaleOrder(models.Model):
             if self.fiscal_position_id:
                 taxes = self.fiscal_position_id.map_tax(taxes)
             coupon = self.applied_coupon_ids.filtered(lambda coupon: coupon.program_id == program)
+            if not coupon:
+                coupon_code = self.env.context.get('penguin_coupon_code', False)
+                coupon = self.env['sale.coupon'].search([('code', '=', coupon_code)], limit=1)
             return [{
                 'name': _("Discount: ") + program.name,
                 'product_id': program.discount_line_product_id.id,
@@ -48,8 +51,9 @@ class SaleOrder(models.Model):
     def _get_reward_line_values(self, program):
         # add new program reward type case
         self.ensure_one()
-        self = self.with_context(lang=self.partner_id.lang)
-        program = program.with_context(lang=self.partner_id.lang)
+        ctx = self.env.context.copy()
+        ctx.update(lang=self.partner_id.lang)
+        self = self.with_context(ctx)
         if program.reward_type == 'penguin_promocode_amount':
             return self._get_reward_values_discount(program)
         else:
