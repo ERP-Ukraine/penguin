@@ -2,7 +2,7 @@ from odoo import fields, models
 
 
 class SaleReport(models.Model):
-    _name = 'sale.report'
+    _inherit = 'sale.report'
 
     state = fields.Selection(selection_add=[
         ('future_sale', 'Pre-ordered'),
