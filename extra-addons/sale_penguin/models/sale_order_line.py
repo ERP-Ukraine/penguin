@@ -35,7 +35,7 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         Pricelist = self.env['product.pricelist']
         pricelist_id = self.order_id.pricelist_id
-        if not pricelist_id:
+        if not pricelist_id or not self.product_id or not self.order_partner_id:
             return Pricelist
         results = pricelist_id._compute_price_rule([(self.product_id, self.product_uom_qty,
                                                      self.order_partner_id)])
