@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Autoset Industry Field',
-    'version': '1.0',
+    'version': '2.0',
     'summary': 'Autoset industry field for new users',
     'category': 'Hidden',
     'author': 'ERP Ukraine',
