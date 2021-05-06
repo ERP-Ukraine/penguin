@@ -1,6 +1,6 @@
 {
     'name': 'Penguin Report Template',
-    'version': '2.1',
+    'version': '3.0',
     'summary': 'Custom report header and footer for some pdf docs.',
     'installable': True,
     'auto_install': False,
@@ -16,6 +16,8 @@ This module adds warehouse address to account, sale and other reports
         'l10n_ch',
         'sale',
         'sale_stock',
+        'purchase',
+        'purchase_stock',
         'web',
     ],
 
@@ -25,6 +27,7 @@ This module adds warehouse address to account, sale and other reports
         'report/sale_order_reports.xml',
         'report/account_move_reports.xml',
         'report/stock_picking_reports.xml',
+        'report/purchase_order_reports.xml',
         'views/res_company_views.xml',
         'views/stock_warehouse_views.xml',
         'views/sale_order_templates.xml',

@@ -113,7 +113,7 @@
 
     <template id="external_layout" inherit_id="web.external_layout">
         <t t-if="company.external_report_layout_id" position="replace">
-            <t t-if="xmlid in ('l10n_ch.qr_report_main', 'sale.report_saleorder', 'account.report_invoice_with_payments', 'account.report_invoice', 'stock.report_deliveryslip', 'stock.report_picking')"
+            <t t-if="xmlid in ('l10n_ch.qr_report_main', 'sale.report_saleorder', 'account.report_invoice_with_payments', 'account.report_invoice', 'stock.report_deliveryslip', 'stock.report_picking', 'purchase.report_purchasequotation', 'purchase.report_purchaseorder')"
                 t-call="report_tmpl_penguin.external_layout_penguin">
                 <t t-raw="0"/>
             </t>
