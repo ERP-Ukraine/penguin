@@ -14,6 +14,7 @@ class Partner(models.Model):
         updated_vals_list = []
         for vals in vals_list:
             if vals.get('industry_id'):
+                updated_vals_list.append(vals)
                 continue
             pricelist_id = vals.get('pricelist_id')
             vals['industry_id'] = europe_industry.id
