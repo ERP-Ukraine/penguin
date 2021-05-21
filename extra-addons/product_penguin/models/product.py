@@ -14,6 +14,15 @@ class ProductTemplate(models.Model):
     size_ids = fields.Many2many('product.size', string='Size')
     feature_ids = fields.Many2many('product.feature', string='Features')
 
+    def _get_first_possible_combination(self, parent_combination=None, necessary_values=None):
+        res = super()._get_first_possible_combination(parent_combination=parent_combination,
+                                                      necessary_values=necessary_values)
+        if any(not ptav.website_published for ptav in res):
+            # Look for next combination if current combination contains disabled ptav
+            return super()._get_first_possible_combination(parent_combination=parent_combination,
+                                                           necessary_values=necessary_values)
+        return res
+
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
