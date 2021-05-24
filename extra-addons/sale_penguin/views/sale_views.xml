@@ -30,6 +30,9 @@
             <xpath expr="//tree/field[@name='price_unit']" position="before">
                 <field name="penguin_rrp_pc"/>
             </xpath>
+             <xpath expr="//page[@name='other_information']//field[@name='user_id']" position="attributes">
+                <attribute name="domain">[('is_salesperson', '=', True)]</attribute>
+            </xpath>
         </field>
     </record>
 </odoo>
