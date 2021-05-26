@@ -123,8 +123,8 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <ul class="list-unstyled">
-                                                <li class="mb16">Subscribe to our newsletter</li>
-                                                <li><a role="button" href="/newsletter" class="btn btn-success">Subscribe me</a></li>
+                                                <li class="mb16">Subscribe to our newsletter.</li>
+                                                <li><a role="button" href="/newsletter" class="btn btn-success">Subscribe</a></li>
                                             </ul>
                                         </div>
                                     </div>
