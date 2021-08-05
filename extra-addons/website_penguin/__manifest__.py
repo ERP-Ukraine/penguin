@@ -2,7 +2,7 @@
     'name': 'Penguin Website',
     'category': 'Website/Website',
     'sequence': 7,
-    'version': '13.0.1.2',
+    'version': '13.0.1.3',
     'description': "",
     'depends': [
         'website'

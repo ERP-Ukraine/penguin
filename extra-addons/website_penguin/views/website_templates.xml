@@ -90,11 +90,11 @@
                                 <div class="col-md-4">
                                     <h5>Customer Service</h5>
                                     <ul class="list-unstyled">
-                                        <li>Penguin Care, warranty</li>
-                                        <li>Shipping &amp;amp; delivery</li>
-                                        <li>FAQ</li>
-                                        <li>Terms &amp;amp; conditions</li>
-                                        <li>Privacy Policy</li>
+                                        <li><a href="/penguincare">Penguin Care, warranty</a></li>
+                                        <li><a href="/customerservice">Shipping &amp;amp; delivery</a></li>
+                                        <li><a href="/customerservice">FAQ</a></li>
+                                        <li><a href="/customerservice">Terms &amp;amp; conditions</a></li>
+                                        <li><a href="/customerservice">Privacy Policy</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-md-4">
