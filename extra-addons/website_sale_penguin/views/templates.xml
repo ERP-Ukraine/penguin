@@ -172,99 +172,105 @@
                                                     <div class="overflow-table">
                                                         <table class="table table-condensed">
                                                             <thead>
-                                                                <tr>
-                                                                    <th class="measurement">Size</th>
-                                                                    <th class="medium text-center">Chest, cm</th>
-                                                                    <th class="size_list text-center">Waist, cm</th>
-                                                                    <th class="medium text-center">Hip, cm</th>
-                                                                    <th class="size_list text-center">Inseam leg, cm</th>
-                                                                    <th class="size_list text-center">Height, cm</th>
-                                                                </tr>
+                                                                <t t-if="product.gender == 'female'">
+                                                                    <tr>
+                                                                        <th class="measurement">Size</th>
+                                                                        <th class="medium text-center">Chest, cm</th>
+                                                                        <th class="size_list text-center">Waist, cm</th>
+                                                                        <th class="medium text-center">Hip, cm</th>
+                                                                        <th class="size_list text-center">Inseam leg, cm</th>
+                                                                        <th class="size_list text-center">Height, cm</th>
+                                                                    </tr>
+                                                                </t>
+                                                                <t t-if="product.gender == 'male'">
+                                                                    <tr>
+                                                                        <th class="measurement">Size</th>
+                                                                        <th class="medium text-center">Chest, cm</th>
+                                                                        <th class="medium text-center">Hip, cm</th>
+                                                                        <th class="size_list text-center">Inseam leg, cm</th>
+                                                                        <th class="size_list text-center">Height, cm</th>
+                                                                    </tr>
+                                                                </t>
                                                             </thead>
                                                             <tbody>
                                                                 <t t-if="product.gender == 'female'">
                                                                     <tr id="size-chart">
                                                                         <td><span>XS</span></td>
-                                                                        <td class="text-center"><span>78-82</span></td>
-                                                                        <td class="text-center"><span>61-65</span></td>
-                                                                        <td class="text-center"><span>86-90</span></td>
-                                                                        <td class="text-center"><span>75-76</span></td>
-                                                                        <td class="text-center"><span>160-163</span></td>
+                                                                        <td class="text-center"><span>80</span></td>
+                                                                        <td class="text-center"><span>66</span></td>
+                                                                        <td class="text-center"><span>88</span></td>
+                                                                        <td class="text-center"><span>75,5</span></td>
+                                                                        <td class="text-center"><span>156&#8211;164</span></td>
                                                                     </tr>
                                                                     <tr id="size-chart">
                                                                         <td><span>S</span></td>
-                                                                        <td class="text-center"><span>83-87</span></td>
-                                                                        <td class="text-center"><span>66-70</span></td>
-                                                                        <td class="text-center"><span>91-95</span></td>
-                                                                        <td class="text-center"><span>76-77</span></td>
-                                                                        <td class="text-center"><span>163-166</span></td>
+                                                                        <td class="text-center"><span>86</span></td>
+                                                                        <td class="text-center"><span>71</span></td>
+                                                                        <td class="text-center"><span>94</span></td>
+                                                                        <td class="text-center"><span>76,5</span></td>
+                                                                        <td class="text-center"><span>160&#8211;168</span></td>
                                                                     </tr>
                                                                     <tr id="size-chart">
                                                                         <td><span>M</span></td>
-                                                                        <td class="text-center"><span>88-92</span></td>
-                                                                        <td class="text-center"><span>71-75</span></td>
-                                                                        <td class="text-center"><span>96-100</span></td>
-                                                                        <td class="text-center"><span>77-79</span></td>
-                                                                        <td class="text-center"><span>166-170</span></td>
+                                                                        <td class="text-center"><span>92</span></td>
+                                                                        <td class="text-center"><span>76</span></td>
+                                                                        <td class="text-center"><span>100</span></td>
+                                                                        <td class="text-center"><span>77,5</span></td>
+                                                                        <td class="text-center"><span>164&#8211;174</span></td>
                                                                     </tr>
                                                                     <tr id="size-chart">
                                                                         <td><span>L</span></td>
-                                                                        <td class="text-center"><span>93-98</span></td>
-                                                                        <td class="text-center"><span>76-81</span></td>
-                                                                        <td class="text-center"><span>101-106</span></td>
-                                                                        <td class="text-center"><span>79-81</span></td>
-                                                                        <td class="text-center"><span>170-174</span></td>
+                                                                        <td class="text-center"><span>98</span></td>
+                                                                        <td class="text-center"><span>82</span></td>
+                                                                        <td class="text-center"><span>106</span></td>
+                                                                        <td class="text-center"><span>78,5</span></td>
+                                                                        <td class="text-center"><span>168&#8211;178</span></td>
                                                                     </tr>
                                                                     <tr id="size-chart">
                                                                         <td><span>XL</span></td>
-                                                                        <td class="text-center"><span>99-104</span></td>
-                                                                        <td class="text-center"><span>82-87</span></td>
-                                                                        <td class="text-center"><span>107-112</span></td>
-                                                                        <td class="text-center"><span>81-83</span></td>
-                                                                        <td class="text-center"><span>174-178</span></td>
+                                                                        <td class="text-center"><span>104</span></td>
+                                                                        <td class="text-center"><span>88</span></td>
+                                                                        <td class="text-center"><span>112</span></td>
+                                                                        <td class="text-center"><span>78,5</span></td>
+                                                                        <td class="text-center"><span>168&#8211;178</span></td>
                                                                     </tr>
                                                                 </t>
 
                                                                 <t t-if="product.gender == 'male'">
                                                                     <tr id="size-chart">
                                                                         <td><span>S</span></td>
-                                                                        <td class="text-center"><span>91-95</span></td>
-                                                                        <td class="text-center"><span>78-82</span></td>
-                                                                        <td class="text-center"><span>95-99</span></td>
-                                                                        <td class="text-center"><span>82-84</span></td>
-                                                                        <td class="text-center"><span>170-174</span></td>
+                                                                        <td class="text-center"><span>90</span></td>
+                                                                        <td class="text-center"><span>93</span></td>
+                                                                        <td class="text-center"><span>78</span></td>
+                                                                        <td class="text-center"><span>170&#8211;178</span></td>
                                                                     </tr>
                                                                     <tr id="size-chart">
                                                                         <td><span>M</span></td>
-                                                                        <td class="text-center"><span>96-100</span></td>
-                                                                        <td class="text-center"><span>83-87</span></td>
-                                                                        <td class="text-center"><span>100-104</span></td>
-                                                                        <td class="text-center"><span>84-86</span></td>
-                                                                        <td class="text-center"><span>174-178</span></td>
+                                                                        <td class="text-center"><span>96</span></td>
+                                                                        <td class="text-center"><span>100</span></td>
+                                                                        <td class="text-center"><span>80</span></td>
+                                                                        <td class="text-center"><span>175&#8211;183</span></td>
                                                                     </tr>
                                                                     <tr id="size-chart">
                                                                         <td><span>L</span></td>
-                                                                        <td class="text-center"><span>101-106</span></td>
-                                                                        <td class="text-center"><span>88-93</span></td>
-                                                                        <td class="text-center"><span>105-110</span></td>
-                                                                        <td class="text-center"><span>86-88</span></td>
-                                                                        <td class="text-center"><span>178-182</span></td>
+                                                                        <td class="text-center"><span>103</span></td>
+                                                                        <td class="text-center"><span>107</span></td>
+                                                                        <td class="text-center"><span>82</span></td>
+                                                                        <td class="text-center"><span>180&#8211;188</span></td>
                                                                     </tr>
                                                                     <tr id="size-chart">
                                                                         <td><span>XL</span></td>
-                                                                        <td class="text-center"><span>107-112</span></td>
-                                                                        <td class="text-center"><span>94-99</span></td>
-                                                                        <td class="text-center"><span>111-116</span></td>
-                                                                        <td class="text-center"><span>88-90</span></td>
-                                                                        <td class="text-center"><span>182-186</span></td>
+                                                                        <td class="text-center"><span>110</span></td>
+                                                                        <td class="text-center"><span>114</span></td>
+                                                                        <td class="text-center"><span>84</span></td>
+                                                                        <td class="text-center"><span>185&#8211;193</span></td>
                                                                     </tr>
                                                                     <tr id="size-chart">
                                                                         <td><span>XXL</span></td>
-                                                                        <td class="text-center"><span>113-118</span></td>
-                                                                        <td class="text-center"><span>100-105</span></td>
-                                                                        <td class="text-center"><span>117-122</span></td>
-                                                                        <td class="text-center"><span>90-92</span></td>
-                                                                        <td class="text-center"><span>186-190</span></td>
+                                                                        <td class="text-center"><span>117</span></td>
+                                                                        <td class="text-center"><span>121</span></td>
+                                                                        <td class="text-center"><span>86</span></td>
+                                                                        <td class="text-center"><span>190&#8211;198</span></td>
                                                                     </tr>
                                                                 </t>
                                                             </tbody>
