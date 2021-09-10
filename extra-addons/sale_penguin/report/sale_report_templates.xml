@@ -41,10 +41,11 @@
             </div>
         </xpath>
 
-        <xpath expr="//th[@name='th_discount']" position="replace">
+        <!-- PEN-64 Show discount % on PDF -->
+        <!-- <xpath expr="//th[@name='th_discount']" position="replace">
         </xpath>
         <xpath expr="//td[@t-if='display_discount']" position="replace">
-        </xpath>
+        </xpath> -->
 
         <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_priceunit']" position="replace">
             <th name="th_list_price" class="text-right">RRP/pc</th>
