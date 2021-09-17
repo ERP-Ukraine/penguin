@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "/usr/bin/odoo",
             "args": ["--config=./odoo.conf"],
-            "console": "internalConsole",
+            "console": "integratedTerminal",
             "justMyCode": false
         }
     ]
