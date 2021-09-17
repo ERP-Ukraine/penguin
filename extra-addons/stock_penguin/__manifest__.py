@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Inventory Penguin',
-    'version': '13.0.1.2',
     'summary': 'Manage your stock and logistics activities',
-    'description': "",
-    'depends': ['stock'],
+    'author': 'ERP Ukraine',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
     'category': 'Operations/Inventory',
+    'version': '1.3',
+    'depends': ['stock'],
     'data': [
-        'report/report_deliveryslip.xml'
+        'report/report_deliveryslip.xml',
     ],
-    'installable': True
+    'installable': True,
+    'auto_install': True,
+    'application': False,
 }
