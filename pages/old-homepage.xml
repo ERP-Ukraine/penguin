@@ -1,0 +1,136 @@
+<t name="Homepage" t-name="website.homepage1">
+    <t t-call="website.layout">
+      <t t-set="pageName" t-value="'homepage'"/>
+      <div id="wrap" class="oe_structure oe_empty">
+        <section class="s_banner parallax s_parallax_is_fixed s_parallax_no_overflow_hidden pb256 pt144" data-scroll-background-ratio="1" data-name="Banner" style="background-image: none;">
+          <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;https://penguin.swiss/web/image/10224/PENGUIN%20DAVOS%20KLOSTERS.jpg&quot;); background-position: 50.11% 72.62%;"/>
+          <div class="container">
+            <div class="row s_nb_column_fixed">
+              <div class="col-lg-7 jumbotron pt32 pb32 rounded" data-name="Box">
+                <div class="row">
+                  <div class="col-lg-12 s_title s_col_no_bgcolor" data-name="Title">
+                    <h1 class="s_title_thin">
+                      <span style="color: rgb(0, 0, 0); font-size: 48px;">
+                        Powderwear for Powderpeople
+                      </span>
+                    </h1>
+                  </div>
+                  <div class="col-lg-12 s_btn text-left pt16 pb16" data-name="Button">
+                    <a href="/de_CH/penguinmovie" class="btn btn-epsilon rounded-circle" data-original-title="" title="" aria-describedby="tooltip533750">Watch movie</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_text_block pb0 pt0" data-name="Text block">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 pb0 pt0">
+                <p class="lead">
+                  <br/>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_text_block pt32 pb32 bg-beta" data-name="Text block" style="">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 pt32 pb32">
+                <p class="lead"><font style="font-size: 36px;">Designed in Switzerland. Produced in Vietnam.</font>&amp;nbsp;<br/></p>
+                <p class="lead">We are an independent Swiss clothing brand, creating highly technical and durable outerwear for powder enthusiasts. We strive to inspire and trigger the urge to ride fresh powder.&amp;nbsp;<br/><br/>We are personally testing our gear on the mountain. For You! And obviously a little bit for ourselves.&amp;nbsp;<br/></p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_features pt32 pb0" data-name="Features">
+          <div class="container">
+            <div class="row">
+              <div class="pt32 pb32 text-center col-lg-2">
+                <a href="/shell">
+                  <img class="img-fluid o_we_custom_image" src="/web/image/11563/category_shell_jacket_1600x1068.jpg" data-original-title="" title="" aria-describedby="tooltip636058"/>
+                </a>
+                <i class="fa-3x bg-gamma m-3" data-original-title="" title="" aria-describedby="tooltip721959"/>
+                <h3>
+                  <font style="font-size: 24px;">Shell Layer</font>
+                  <br/>
+                </h3>
+                <p>Protection from wind, water and snow.</p>
+              </div>
+              <div class="pt32 pb32 text-center col-lg-2">
+                <a href="/insulation">
+                  <img class="img-fluid o_we_custom_image" src="/web/image/11562/category_Mid_Iso_1600x1068.jpg" data-original-title="" title="" aria-describedby="tooltip621143"/>
+                </a>
+                <i class="fa-3x bg-gamma m-3" data-original-title="" title="" aria-describedby="tooltip618102"/>
+                <h3>
+                  <font style="font-size: 24px;">Insulation</font>
+                </h3>
+                <p>Keeps you warm.</p>
+              </div>
+              <div class="pt32 pb32 text-center col-lg-2">
+                <a href="/fleece">
+                  <img class="img-fluid o_we_custom_image" src="/web/image/4406/category_Iso_Fleece_1600x1068.jpg" data-original-title="" title="" aria-describedby="tooltip621143"/>
+                </a>
+                <i class="fa-3x bg-gamma m-3" data-original-title="" title="" aria-describedby="tooltip618102"/>
+                <h3>
+                  <font style="font-size: 24px;">Fleece</font>
+                </h3>
+                <p>Versatile.</p>
+              </div>
+              <div class="pt32 pb32 text-center col-lg-2">
+                <a href="/merino">
+                  <img class="img-fluid o_we_custom_image" src="/web/image/4186/category_Merino_1600x1068.jpg" data-original-title="" title="" aria-describedby="tooltip271118"/>
+                </a>
+                <i class="fa-3x bg-gamma m-3" data-original-title="" title="" aria-describedby="tooltip695170"/>
+                <h3>
+                  <font style="font-size: 24px;">Merino&amp;nbsp;</font>
+                </h3>
+                <p>No stink.</p>
+              </div>
+              <div class="pt32 pb32 text-center col-lg-2">
+                <a href="/accessoires">
+                  <img class="img-fluid o_we_custom_image" src="/web/image/4189/category_Accessories_1600x1068.jpg" data-original-title="" title="" aria-describedby="tooltip665116"/>
+                </a>
+                <i class="fa-3x bg-gamma m-3" data-original-title="" title="" aria-describedby="tooltip540761"/>
+                <h3>
+                  <font style="font-size: 24px;">Accessories</font>
+                </h3>
+                <p>Dress up.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_text_block pb0 pt0" data-name="Text block">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 pb0 pt0">
+                <p class="lead">
+                  <br/>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="s_call_to_action pt48 pb24 bg-beta" data-name="Call to Action" style="">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 pb0">
+                <p class="lead">
+                  <font style="font-size: 36px;">Penguin products are durable. We believe in durability as a key driver for sustainability. </font>
+                  <br/>
+                </p>
+                <p>
+                  <span style="font-weight: normal;"> </span>
+                </p>
+                <p class="lead" style="text-align: left;">Find out more about our Penguin Care program!</p>
+              </div>
+              <div class="s_btn text-right offset-lg-4 col-lg-8 pt0 pb0" data-name="Button" style="text-align: right; ">
+                <a href="/penguincare" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip635247">Penguin Care&amp;nbsp;<i class="fa fa-1x fa-arrow-circle-right fa-fw ml-1" data-original-title="" title="" aria-describedby="tooltip717378"/></a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </t>
+  </t>
