@@ -9,7 +9,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item pt0 pb120 active" style="" data-name="Slide">
                         <video id="background-video" autoplay="autoplay" loop="loop" muted="muted" poster="/web/image/13230-123/penguin_poster.jpeg" style="width:100vw; height:100vh; object-fit:cover; position:absolute; top:-25%">
-                            <source src="/web/content/13228?unique=870239f8e6c2eaf2921034fc986ec19d1bd5d206" type="video/mp4" />
+                            <source src="/penguin/powder.mp4" type="video/mp4" />
                         </video>
                         <div class="container">
                             <div class="row content">
