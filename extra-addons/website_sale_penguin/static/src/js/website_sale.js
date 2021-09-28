@@ -4,6 +4,7 @@ odoo.define('website_sale_penguin.website_sale', function (require) {
     var publicWidget = require('web.public.widget');
     var core = require('web.core');
     var VariantMixin = require('sale.VariantMixin');
+    require('web.dom_ready');
 
     publicWidget.registry.categoryGroup = publicWidget.Widget.extend({
         selector: '.oe_category_group',
@@ -74,6 +75,19 @@ odoo.define('website_sale_penguin.website_sale', function (require) {
         events: {
             'click .css_attribute_color': '_onClickColorAttribute'
         },
+        start: function () {
+            let def = this._super.apply(this, arguments);
+            return def.then(function() {
+                let products = document.getElementsByClassName('oe_variant_color_selector');
+                for (let product of products) {
+                    let labels = product.getElementsByClassName('css_attribute_color');
+                    if (labels != null && labels.length > 0) {
+                        let random_number = Math.floor(Math.random()*(labels.length-1))
+                        labels[random_number].click();
+                    }
+                };
+            })
+        },
         _onClickColorAttribute: function (ev) {
             var $checkbox = $(ev.currentTarget).find('input');
             this._setActiveLabel($checkbox);
@@ -108,4 +122,5 @@ odoo.define('website_sale_penguin.website_sale', function (require) {
             $(ev.currentTarget).hide();
             $('.comment_form').removeClass('d-none');
     }})
+
 })

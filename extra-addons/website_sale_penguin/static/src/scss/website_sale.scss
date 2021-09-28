@@ -102,7 +102,7 @@
             margin-bottom: 0;
 
             &.active {
-                border: 1px solid $primary;
+                border: 2px solid $primary;
 
                 .custom-color-picker-label {
                     color: $primary
@@ -180,3 +180,4 @@
         }
     }
 }
+
