@@ -17,7 +17,7 @@ pipelines:
           - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
           - sed -i -e "s/without_demo =.*/without_demo = False/g" odoo.conf
           - sed -i -e "s/db_host =.*/db_host = host.docker.internal/g" odoo.conf
-          - docker build --build-arg SAAS_IMG=erpukraine/custom:odoo-13.0ee-saas-erpu-latest -t ${IMAGE_NAME} .
+          - docker build --build-arg SAAS_IMG=erpukraine/custom:odoo-13.0ee-erpu-latest -t ${IMAGE_NAME} .
           - mkdir ${BITBUCKET_CLONE_DIR}/data && chmod 777 ${BITBUCKET_CLONE_DIR}/data
           - >
             docker run --rm -t --name=${PROJECT}-${VERSION} --add-host host.docker.internal:${BITBUCKET_DOCKER_HOST_INTERNAL}
@@ -52,23 +52,6 @@ pipelines:
             - docker
           script:
             - ansible-playbook deploy-prod.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
-    # staging:
-    #   - step:
-    #       name: Build and Push
-    #       services:
-    #         - docker
-    #       script:
-    #         - ./build.sh
-    #   - step:
-    #       name: Deploy
-    #       deployment: staging
-    #       trigger: manual
-    #       services:
-    #         - docker
-    #       script:
-    #         - apt update
-    #         - apt install -y ansible
-    #         - ansible-playbook deploy-test.yml -i "penguin.swiss,"  -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
 
 definitions:
   services:
