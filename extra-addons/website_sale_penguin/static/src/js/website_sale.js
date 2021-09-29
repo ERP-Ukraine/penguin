@@ -79,10 +79,11 @@ odoo.define('website_sale_penguin.website_sale', function (require) {
             let def = this._super.apply(this, arguments);
             return def.then(function() {
                 let products = document.getElementsByClassName('oe_variant_color_selector');
-                for (let product of products) {
+                let products_reversed = [].slice.call(products, 0).reverse();
+                for (let product of products_reversed) {
                     let labels = product.getElementsByClassName('css_attribute_color');
                     if (labels != null && labels.length > 0) {
-                        let random_number = Math.floor(Math.random()*(labels.length-1))
+                        let random_number = Math.floor(Math.random()*(labels.length))
                         labels[random_number].click();
                     }
                 };
