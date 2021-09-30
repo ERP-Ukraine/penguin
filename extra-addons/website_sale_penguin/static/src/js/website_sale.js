@@ -77,17 +77,17 @@ odoo.define('website_sale_penguin.website_sale', function (require) {
         },
         start: function () {
             let def = this._super.apply(this, arguments);
-            return def.then(function() {
-                let products = document.getElementsByClassName('oe_variant_color_selector');
-                let products_reversed = [].slice.call(products, 0).reverse();
-                for (let product of products_reversed) {
-                    let labels = product.getElementsByClassName('css_attribute_color');
-                    if (labels != null && labels.length > 0) {
-                        let random_number = Math.floor(Math.random()*(labels.length))
-                        labels[random_number].click();
+            let $products = $('.oe_variant_color_selector');
+                for (let product of $products) {
+                    let $labels = $(product).find('.css_attribute_color');
+                    if ($labels != null && $labels.length > 0) {
+                        let random_number = Math.floor(Math.random()*$labels.length);
+                        let $checkbox = $($labels[random_number]).find('input');
+                        this._setActiveLabel($checkbox);
+                        this._setProductImg($checkbox);
                     }
-                };
-            })
+                }
+            return def;
         },
         _onClickColorAttribute: function (ev) {
             var $checkbox = $(ev.currentTarget).find('input');
