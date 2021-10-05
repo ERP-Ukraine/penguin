@@ -16,7 +16,7 @@
     'author': 'PIT Solutions AG',
     'website': 'http://www.pitsolutions.ch/en/',
     # 'live_test_url': 'http://odemo12.dev.displayme.net/web/login',
-    'depends': ['account_payment'],
+    'depends': ['account'],
     'data': [
         'security/ir.model.access.csv',
         'views/payment_acquirer_log.xml',
@@ -31,4 +31,3 @@
     'installable': True,
     'post_init_hook': 'create_missing_journal_for_acquirers',
 }
-
