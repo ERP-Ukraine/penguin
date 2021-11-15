@@ -17,7 +17,7 @@ class SaleCoupon(models.Model):
             coupon.expiration_date = (coupon.create_date + relativedelta(days=duration)).date()
 
     def _check_coupon_code(self, order):
-        # We do not check is a coupon belongs to particular partner
+        # We do not check if a coupon belongs to particular partner
         # because you can give it as a gift
         if self.partner_id and self.partner_id != order.partner_id:
             self.partner_id = order.partner_id
