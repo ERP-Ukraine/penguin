@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Penguin Coupons',
-    'version': '1.2',
+    'version': '1.3',
     'category': 'Sales/Sales',
     'summary': 'Sales Coupon Customs Design',
     'installable': True,

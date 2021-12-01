@@ -12,7 +12,6 @@ class SaleOrder(models.Model):
         coupon = self.env['sale.coupon'].search([
             ('program_id', '=', program.id),
             ('state', 'in', ('reserved', 'expired')),
-            ('partner_id', '=', self.partner_id.id),
             ('order_id', '=', self.id),
             ('discount_line_product_id', '=', program.discount_line_product_id.id),
         ], limit=1)
@@ -20,11 +19,14 @@ class SaleOrder(models.Model):
             discount_products = self.env['product.product'].search(safe_eval(program.rule_id.rule_products_domain))
             if program.reward_type == 'penguin_promocode_amount':
                 discount_amount = sum(self.order_line.filtered(
-                    lambda l: l.product_id in discount_products).mapped('price_subtotal'))
+                    lambda l: l.product_id in discount_products).mapped('price_total'))
                 if discount_amount:
-                    coupon.write({'discount_amount': discount_amount})
+                    coupon.write({
+                        'discount_amount': discount_amount,
+                        'partner_id': self.partner_id.id,
+                    })
             return coupon
-        return super(SaleOrder, self)._create_reward_coupon(program)
+        return super()._create_reward_coupon(program)
 
 
     def _get_reward_values_discount(self, program):
@@ -45,8 +47,7 @@ class SaleOrder(models.Model):
                 'is_reward_line': True,
                 'tax_id': [(4, tax.id, False) for tax in taxes],
             }]
-        else:
-            return super()._get_reward_values_discount(program)
+        return super()._get_reward_values_discount(program)
 
     def _get_reward_line_values(self, program):
         # add new program reward type case
@@ -56,8 +57,7 @@ class SaleOrder(models.Model):
         self = self.with_context(ctx)
         if program.reward_type == 'penguin_promocode_amount':
             return self._get_reward_values_discount(program)
-        else:
-            return super()._get_reward_line_values(program)
+        return super()._get_reward_line_values(program)
 
     def _send_reward_coupon_mail(self):
         # override method for posting message in sale order
