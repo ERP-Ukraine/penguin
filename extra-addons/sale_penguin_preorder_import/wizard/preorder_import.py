@@ -51,14 +51,14 @@ class PreOrderImport(models.TransientModel):
             if all(not col for col in row[:3]):
                 # End of table
                 break
-            if not row[QTY_IDX]:
+            if not row[QTY_IDX].strip():
                 continue
             product_id = int(products_by_code.get(row[ARTICLE_IDX], 0))
             if not product_id:
                 raise ValidationError(
                     _('Unable to find product for article "%s"') % (row[ARTICLE_IDX],))
             with so_form.order_line.new() as line_form:
-                qty = float(row[QTY_IDX])
+                qty = float(row[QTY_IDX].strip())
                 line_form.product_id = self.env['product.product'].browse(product_id)
                 line_form.product_uom_qty = float(qty)
         if so_form.order_line:
