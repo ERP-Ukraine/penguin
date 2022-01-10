@@ -47,6 +47,7 @@ class PreOrderImport(models.TransientModel):
         so_form.pricelist_id = self.pricelist_id
         if self.commitment_date:
             so_form.commitment_date = self.commitment_date
+            so_form.date_order = self.commitment_date
         for row in data:
             if all(not col for col in row[:3]):
                 # End of table

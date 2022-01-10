@@ -33,6 +33,10 @@
              <xpath expr="//page[@name='other_information']//field[@name='user_id']" position="attributes">
                 <attribute name="domain">[('is_salesperson', '=', True)]</attribute>
             </xpath>
+             <xpath expr="//field[@name='date_order']" position="attributes">
+                <attribute name="groups"></attribute>
+                <attribute name="nolabel"></attribute>
+            </xpath>
         </field>
     </record>
 </odoo>
