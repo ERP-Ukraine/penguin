@@ -38,7 +38,8 @@ class SaleOrderLine(models.Model):
         if not pricelist_id or not self.product_id or not self.order_partner_id:
             return Pricelist
         results = pricelist_id._compute_price_rule([(self.product_id, self.product_uom_qty,
-                                                     self.order_partner_id)])
+                                                     self.order_partner_id)],
+                                                   date=self.order_id.date_order)
         price, suitable_rule = results[self.product_id.id]
         if suitable_rule:
             item = self.env['product.pricelist.item'].browse(suitable_rule)
