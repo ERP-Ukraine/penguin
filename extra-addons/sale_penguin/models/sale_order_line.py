@@ -47,13 +47,14 @@ class SaleOrderLine(models.Model):
                 return item.base_pricelist_id
         return Pricelist
 
-    @api.depends('order_id.pricelist_id')
+    @api.depends('order_id.pricelist_id', 'order_id.date_order')
     def _compute_penguin_rrp_pc(self):
         for line in self:
             rrp_pricelist = line._get_parent_rrp_pricelist()
             if not rrp_pricelist:
                 rrp_pricelist = line._get_fallback_rrp_pricelist()
-            rrp_pc = line.product_id.with_context(pricelist=rrp_pricelist.id).price
+            rrp_pc = line.product_id.with_context(pricelist=rrp_pricelist.id,
+                                                  date=line.order_id.date_order).price
             if line.currency_id != rrp_pricelist.currency_id:
                 # convert to Order currency
                 fx_date = line.order_id.date_order or fields.Date.today()
