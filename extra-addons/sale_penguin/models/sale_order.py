@@ -43,12 +43,10 @@ class SaleOrder(models.Model):
         }
 
     def action_preorder(self):
-        self.write({'state': 'future_sale',
-                    'date_order': fields.Datetime.now()})
+        self.write({'state': 'future_sale'})
 
     def action_preorder_confirmation(self):
-        self.write({'state': 'future_sale_confirmation',
-                    'date_order': fields.Datetime.now()})
+        self.write({'state': 'future_sale_confirmation'})
 
     def get_confirmation_mail_subject(self):
         if self.state == 'future_sale':
