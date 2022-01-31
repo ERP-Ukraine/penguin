@@ -25,7 +25,9 @@ class SaleOrderLine(models.Model):
         # We assume that public pricelist for website has retail prices
         self.ensure_one()
         order_currency = self.order_id.pricelist_id.currency_id
-        domain = [('currency_id', '=', order_currency.id), ('selectable', '=', True)]
+        domain = [('currency_id', '=', order_currency.id)]
+        if hasattr(self.env['product.pricelist'], 'selectable'):
+            domain.append(('selectable', '=', True))
         return self.env['product.pricelist'].search(domain, limit=1)
 
     def _get_parent_rrp_pricelist(self):
