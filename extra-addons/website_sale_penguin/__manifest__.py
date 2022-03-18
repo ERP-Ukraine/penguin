@@ -2,7 +2,7 @@
 {
     'name': 'Penguin eCommerce',
     'category': 'Website/Website',
-    'version': '2.4',
+    'version': '2.5',
     'description': "",
     'depends': ['website_penguin', 'website_sale'],
     'data': [
