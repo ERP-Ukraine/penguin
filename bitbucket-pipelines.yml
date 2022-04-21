@@ -7,7 +7,7 @@ pipelines:
     - step:
         name: Unit Tests
         script:
-          - export REPO="erpukraine/custom" PROJECT="${BITBUCKET_REPO_SLUG}" VERSION="13.0"
+          - export REPO="erpukraine/custom" PROJECT="${BITBUCKET_REPO_SLUG}" VERSION="15.0"
           - if [[ -v BITBUCKET_BUILD_NUMBER ]]; then VERSION=${BITBUCKET_BUILD_NUMBER}; fi
           - export IMAGE_NAME=${REPO}:${PROJECT}-${VERSION}
           - >
@@ -17,7 +17,7 @@ pipelines:
           - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
           - sed -i -e "s/without_demo =.*/without_demo = False/g" odoo.conf
           - sed -i -e "s/db_host =.*/db_host = host.docker.internal/g" odoo.conf
-          - docker build --build-arg SAAS_IMG=erpukraine/custom:odoo-13.0ee-erpu-latest -t ${IMAGE_NAME} .
+          - docker build --build-arg SAAS_IMG=erpukraine/custom:odoo-15.0ee-erpu-latest -t ${IMAGE_NAME} .
           - mkdir ${BITBUCKET_CLONE_DIR}/data && chmod 777 ${BITBUCKET_CLONE_DIR}/data
           - >
             docker run --rm -t --name=${PROJECT}-${VERSION} --add-host host.docker.internal:${BITBUCKET_DOCKER_HOST_INTERNAL}
@@ -42,8 +42,8 @@ pipelines:
             - docker
           script:
             - (echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin)
-            - docker build -t erpukraine/custom:penguin-13.0-${BITBUCKET_BUILD_NUMBER} .
-            - docker push erpukraine/custom:penguin-13.0-${BITBUCKET_BUILD_NUMBER}
+            - docker build -t erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER} .
+            - docker push erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER}
       - step:
           name: Deploy
           deployment: production
@@ -51,7 +51,8 @@ pipelines:
           services:
             - docker
           script:
-            - ansible-playbook deploy-prod.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
+             - echo "Configure deployment for v15"
+#            - ansible-playbook deploy-prod.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
 
 definitions:
   services:
