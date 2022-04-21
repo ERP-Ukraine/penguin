@@ -2,13 +2,13 @@ version: '3.2'
 
 volumes:
 
-  pg10penguin13:
+  pg10penguin15:
     driver: local
 
-  odoo13penguin-container-data:
+  odoo15penguin-container-data:
     driver: local
 
-  odoo13penguin-data:
+  odoo15penguin-data:
     driver: local
 
   vscode-data:
@@ -16,7 +16,7 @@ volumes:
 
 services:
 
-  db-penguin13:
+  db-penguin15:
     image: postgres:10.5
     ports:
       - "5555:5432"
@@ -24,24 +24,23 @@ services:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
     volumes:
-      - pg10penguin13:/var/lib/postgresql/data
+      - pg10penguin15:/var/lib/postgresql/data
 
-  web-penguin13:
+  web-penguin15:
     links:
-      - db-penguin13
+      - db-penguin15
     tty: true
-    image: erpukraine/custom:odoo-13.0ee-erpu-latest
+    image: erpukraine/custom:odoo-15.0ee-erpu-latest
     depends_on:
-      - db-penguin13
+      - db-penguin15
     environment:
-      - HOST=db-penguin13
+      - HOST=db-penguin15
     ports:
       - "3000:3000"
       - "8069:8069"
     volumes:
       - ./:/mnt/extra-addons:cached
-      - odoo13penguin-container-data:/home/vscode/.local/share/Odoo
-      - odoo13penguin-data:/var/lib/odoo
+      - odoo15penguin-container-data:/home/vscode/.local/share/Odoo
+      - odoo15penguin-data:/var/lib/odoo
       - ./odoo.conf:/etc/odoo/odoo.conf
       - vscode-data:/home/vscode/.vscode-server
-    command: odoo -d odoo13-penguin --workers=0
