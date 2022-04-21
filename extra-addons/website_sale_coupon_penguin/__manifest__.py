@@ -4,7 +4,7 @@
     'version': '1.2',
     'category': 'Sales/Sales',
     'summary': 'Sales Coupon Customizations',
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'depends': [
         'sale_coupon',

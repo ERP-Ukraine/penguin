@@ -19,5 +19,6 @@
         'data/ir_actions_server_data.xml',
         'data/ir_config_parameter_data.xml',
         'data/res_users_data.xml'
-    ]
+    ],
+    'installable': False,
 }

@@ -4,7 +4,7 @@
     'version': '1.3',
     'category': 'Sales/Sales',
     'summary': 'Sales Coupon Customs Design',
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'depends': [
         'sale_coupon',

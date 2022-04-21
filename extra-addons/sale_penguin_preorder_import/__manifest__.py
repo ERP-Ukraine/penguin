@@ -3,7 +3,7 @@
     'version': '1.2',
     'category': 'Sales/Sales',
     'summary': 'Import preorder from xls template',
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 
     'depends': [

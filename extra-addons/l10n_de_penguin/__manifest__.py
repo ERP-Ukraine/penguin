@@ -7,5 +7,6 @@
     'data': [
         'report/din5008_report.xml',
     ],
-    'auto_install': True
+    'auto_install': True,
+    'installable': False,
 }

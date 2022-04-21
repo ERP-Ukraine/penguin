@@ -1,6 +1,6 @@
 {
     'name': 'Penguin Base',
-    'version': '13.0.1.1',
+    'version': '1.1',
     'category': 'Hidden',
     'depends': ['base'],
     'data': [
@@ -8,6 +8,6 @@
 
         'views/res_partner_views.xml'
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True
 }

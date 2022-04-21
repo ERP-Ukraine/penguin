@@ -2,7 +2,7 @@
     'name': 'Penguin Report Template',
     'version': '3.0',
     'summary': 'Custom report header and footer for some pdf docs.',
-    'installable': True,
+    'installable': False,
     'auto_install': False,
 
     'description': """

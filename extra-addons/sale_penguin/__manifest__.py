@@ -4,7 +4,7 @@
     'version': '2.2',
     'category': 'Sales/Sales',
     'summary': 'Sales internal machinery',
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'depends': [
         'product_penguin',

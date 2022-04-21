@@ -12,7 +12,7 @@
     'data': [
         'report/report_deliveryslip.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

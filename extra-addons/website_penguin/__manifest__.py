@@ -2,7 +2,7 @@
     'name': 'Penguin Website',
     'category': 'Website/Website',
     'sequence': 7,
-    'version': '13.0.1.3',
+    'version': '1.3',
     'description': "",
     'depends': [
         'website'
@@ -12,6 +12,6 @@
         'views/website_templates.xml'
     ],
     'demo': [],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }

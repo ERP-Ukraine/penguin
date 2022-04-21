@@ -10,4 +10,5 @@
     'depends': ['payment_transfer', 'sale'],
     'auto_install': False,
     'application': False,
+    'installable': False,
 }

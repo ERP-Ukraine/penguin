@@ -1,6 +1,6 @@
 {
     'name': 'Penguin Invoicing',
-    'version': '13.0.1.5',
+    'version': '1.5',
     'summary': 'Invoices & Payments',
     'category': 'Accounting/Accounting',
     'depends': ['account'],
@@ -10,6 +10,6 @@
     ],
     'demo': [],
     'qweb': [],
-    'installable': True,
+    'installable': False,
     'auto_install': True
 }

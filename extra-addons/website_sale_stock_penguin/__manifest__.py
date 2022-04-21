@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Penguin Product Availability',
-    'version': '13.0.1.1',
+    'version': '1.1',
     'category': 'Website/Website',
     'summary': 'Manage product inventory & availability',
     'description': """""",
@@ -15,5 +15,6 @@
     ],
     'demo': [],
     'auto_install': True,
+    'installable': False,
     'post_init_hook': 'set_inventory_availability_on_product_templates'
 }
