@@ -7,14 +7,14 @@
     'author': 'ERP Ukraine',
     'website': 'https://erp.co.ua',
     'support': 'support@erp.co.ua',
-    'license': 'AGPL-3',
+    'license': 'LGPL-3',
     'depends': [
         'base_penguin',
         'product',
         'contacts'
     ],
     'data': [],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
     'post_init_hook': 'set_default_industry_field',
