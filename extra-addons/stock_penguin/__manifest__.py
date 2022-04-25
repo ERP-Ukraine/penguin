@@ -11,8 +11,9 @@
     'depends': ['stock'],
     'data': [
         'report/report_deliveryslip.xml',
+        'report/report_stockpicking_operations.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }

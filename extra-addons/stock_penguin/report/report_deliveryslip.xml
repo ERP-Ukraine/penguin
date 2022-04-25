@@ -24,9 +24,24 @@
         <xpath expr="//t[@t-call='web.external_layout']" position="before">
             <t t-set="custom_company_address" t-value="o.picking_type_id.warehouse_id.partner_id"/>
         </xpath>
-        <xpath expr="//div[@t-esc='partner']" position="replace">
-            <div t-esc="partner"
-                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+
+        <!-- remove phone field from widget -->
+        <xpath expr="//div[@name='div_outgoing_address']/div[1]/div" position="attributes">
+            <attribute name="t-options">
+                {'widget': 'contact', 'fields': ['address', 'name'], 'no_marker': True, 'phone_icons': False}
+            </attribute>
+        </xpath>
+
+        <xpath expr="//div[@name='div_outgoing_address']/div[last()]/div" position="attributes">
+            <attribute name="t-options">
+                {'widget': 'contact', 'fields': ['address', 'name'], 'no_marker': True, 'phone_icons': False}
+            </attribute>
+        </xpath>
+
+        <xpath expr="//div[@t-if='partner']/div" position="attributes">
+            <attribute name="t-options">
+                {'widget': 'contact', 'fields': ['address', 'name'], 'no_marker': True, 'phone_icons': False}
+            </attribute>
         </xpath>
     </template>
 </odoo>
