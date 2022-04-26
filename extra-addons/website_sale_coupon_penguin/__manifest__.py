@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Penguin Coupons on Website',
-    'version': '1.2',
-    'category': 'Sales/Sales',
     'summary': 'Sales Coupon Customizations',
-    'installable': False,
-    'auto_install': True,
+    'author': 'ERP Ukraine',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
+    'category': 'Sales/Sales',
+    'version': '1.2',
     'depends': [
         'sale_coupon',
         'website_sale_coupon',
         'sale_coupon_penguin',
     ],
+    'installable': True,
+    'auto_install': True,
+    'application': False,
 }

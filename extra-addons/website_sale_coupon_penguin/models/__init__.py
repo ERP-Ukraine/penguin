@@ -1,1 +1,2 @@
-from . import sale_coupon
+# -*- coding: utf-8 -*-
+from . import coupon
