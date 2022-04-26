@@ -2,8 +2,8 @@
 from odoo import models
 
 
-class SaleCouponProgram(models.Model):
-    _inherit = 'sale.coupon.program'
+class CouponProgram(models.Model):
+    _inherit = 'coupon.program'
 
     def _check_promo_code(self, order, coupon_code):
         if not self.promo_code and self in order.no_code_promo_program_ids:

@@ -17,11 +17,11 @@
         <field name="dpi">90</field>
     </record>
 
-    <record id="sale_coupon.report_coupon_code" model="ir.actions.report">
+    <record id="coupon.report_coupon_code" model="ir.actions.report">
         <field name="paperformat_id" ref="sale_coupon_penguin.paperformat_coupon_lowmargin"/>
     </record>
 
-    <template id="report_coupon_penguin" inherit_id="sale_coupon.report_coupon">
+    <template id="report_coupon" inherit_id="coupon.report_coupon">
         <xpath expr="//t[1]" position="replace">
             <t t-call="web.basic_layout">
                 <div class="coupon">

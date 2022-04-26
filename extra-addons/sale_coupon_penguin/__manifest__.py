@@ -1,19 +1,25 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Penguin Coupons',
-    'version': '1.3',
-    'category': 'Sales/Sales',
     'summary': 'Sales Coupon Customs Design',
-    'installable': False,
-    'auto_install': True,
-    'depends': [
-        'sale_coupon',
-    ],
-
+    'author': 'ERP Ukraine',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
+    'category': 'Sales/Sales',
+    'version': '1.3',
+    'depends': ['sale_coupon'],
     'data': [
-        'views/assets.xml',
-        'report/sale_coupon_report_templates.xml',
-        'views/sale_coupon_program_views.xml',
-        'views/sale_coupon_views.xml'
-    ]
+        'report/coupon_report_templates.xml',
+        'views/coupon_program_views.xml',
+        'views/coupon_views.xml',
+    ],
+    'assets': {
+        'web.report_assets_common': [
+            '/sale_coupon_penguin/static/src/scss/pengin_coupon_report.scss',
+        ]
+    },
+    'installable': True,
+    'auto_install': True,
+    'application': False,
 }

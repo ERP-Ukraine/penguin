@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from odoo import models, _
-from odoo.tools import safe_eval
+import ast
+
+from odoo import _, models
 
 
 class SaleOrder(models.Model):
@@ -9,14 +10,16 @@ class SaleOrder(models.Model):
     def _create_reward_coupon(self, program):
         # before creating new coupon we check if coupon already exists
         # and has been reserved for current order and program
-        coupon = self.env['sale.coupon'].search([
+        Product = self.env['product.product']
+        coupon = self.env['coupon.coupon'].search([
             ('program_id', '=', program.id),
             ('state', 'in', ('reserved', 'expired')),
             ('order_id', '=', self.id),
             ('discount_line_product_id', '=', program.discount_line_product_id.id),
         ], limit=1)
         if coupon:
-            discount_products = self.env['product.product'].search(safe_eval(program.rule_id.rule_products_domain))
+            domain = ast.literal_eval(program.rule_id.rule_products_domain)
+            discount_products = Product.search(domain)
             if program.reward_type == 'penguin_promocode_amount':
                 discount_amount = sum(self.order_line.filtered(
                     lambda l: l.product_id in discount_products).mapped('price_total'))
@@ -37,7 +40,7 @@ class SaleOrder(models.Model):
             coupon = self.applied_coupon_ids.filtered(lambda coupon: coupon.program_id == program)
             if not coupon:
                 coupon_code = self.env.context.get('penguin_coupon_code', False)
-                coupon = self.env['sale.coupon'].search([('code', '=', coupon_code)], limit=1)
+                coupon = self.env['coupon.coupon'].search([('code', '=', coupon_code)], limit=1)
             return [{
                 'name': _("Discount: ") + program.name,
                 'product_id': program.discount_line_product_id.id,
@@ -67,7 +70,7 @@ class SaleOrder(models.Model):
                 for coupon in order.generated_coupon_ids:
                     order.message_post_with_template(
                         template.id, composition_mode='comment',
-                        model='sale.coupon', res_id=coupon.id,
+                        model='coupon.coupon', res_id=coupon.id,
                         email_layout_xmlid='mail.mail_notification_light',
                     )
                     # -- custom code --

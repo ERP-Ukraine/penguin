@@ -6,7 +6,7 @@ class SaleCouponApplyCode(models.TransientModel):
     _inherit = 'sale.coupon.apply.code'
 
     def apply_coupon(self, order, coupon_code):
-        coupon = self.env['sale.coupon'].search([('code', '=', coupon_code)])
+        coupon = self.env['coupon.coupon'].search([('code', '=', coupon_code)])
         if coupon.program_id.reward_type == 'penguin_promocode_amount':
             ctx = self.env.context.copy()
             ctx.update({'penguin_coupon_code': coupon_code})
