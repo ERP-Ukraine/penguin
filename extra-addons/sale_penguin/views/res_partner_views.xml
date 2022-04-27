@@ -6,7 +6,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="///group[@name='sale']/field[@name='user_id']" position="attributes">
+            <xpath expr="//group[@name='sale']/field[@name='user_id']" position="attributes">
                 <attribute name="domain">[('is_salesperson', '=', True)]</attribute>
             </xpath>
         </field>

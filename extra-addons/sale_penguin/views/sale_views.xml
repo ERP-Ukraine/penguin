@@ -21,19 +21,16 @@
             <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
                 <attribute name="attrs">{'invisible': [('state', 'not in', ['sent', 'future_sale_confirmation'])]}</attribute>
             </xpath>
-            <xpath expr="//button[@name='action_cancel'][last()]" position="attributes">
-                <attribute name="states" add="future_sale" separator=","/>
-            </xpath>
-            <xpath expr="//button[@name='action_cancel'][last()]" position="attributes">
-                <attribute name="states" add="future_sale_confirmation" separator=","/>
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute name="states" add="future_sale,future_sale_confirmation" separator=","/>
             </xpath>
             <xpath expr="//tree/field[@name='price_unit']" position="before">
                 <field name="penguin_rrp_pc"/>
             </xpath>
-             <xpath expr="//page[@name='other_information']//field[@name='user_id']" position="attributes">
+            <xpath expr="//page[@name='other_information']//field[@name='user_id']" position="attributes">
                 <attribute name="domain">[('is_salesperson', '=', True)]</attribute>
             </xpath>
-             <xpath expr="//field[@name='date_order']" position="attributes">
+            <xpath expr="//field[@name='date_order']" position="attributes">
                 <attribute name="groups"></attribute>
                 <attribute name="nolabel"></attribute>
             </xpath>

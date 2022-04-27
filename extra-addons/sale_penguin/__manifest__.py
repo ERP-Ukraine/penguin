@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Penguin Sales',
-    'version': '2.2',
-    'category': 'Sales/Sales',
     'summary': 'Sales internal machinery',
-    'installable': False,
-    'auto_install': True,
+    'author': 'ERP Ukraine',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
+    'category': 'Sales/Sales',
+    'version': '2.2',
     'depends': [
         'product_penguin',
         'sale',
@@ -21,5 +23,8 @@
         'views/sale_order_templates.xml',
         'views/sale_views.xml',
         'views/variant_templates.xml',
-    ]
+    ],
+    'installable': True,
+    'auto_install': True,
+    'application': False,
 }
