@@ -18,8 +18,8 @@
         <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
-                <filter string="Sale Order" name="by_origin" domain="[]"  context="{'group_by': 'sale_order_id'}"/>
-                <filter string="Sale Partner" name="by_partner_id" domain="[]"  context="{'group_by': 'sale_partner_name'}"/>
+                <filter string="Sale Order" name="by_origin" domain="[]" context="{'group_by': 'sale_order_id'}"/>
+                <filter string="Sale Partner" name="by_partner_id" domain="[]" context="{'group_by': 'sale_partner_name'}"/>
             </xpath>
         </field>
     </record>

@@ -15,7 +15,7 @@
     'data': [
         'views/stock_move_line_views.xml'
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }
