@@ -18,19 +18,18 @@ class PreOrderImport(models.TransientModel):
     commitment_date = fields.Date(string='Planned Delivery Date')
     xls_file = fields.Binary(string='XLS File', required=True, attachment=False)
 
-
     def _parse_file(self):
         """Returns generator of xls row as list of columns."""
         file_data = base64.b64decode(self.xls_file)
         base_import = self.env['base_import.import'].create({'file': file_data})
-        data = base_import._read_xls(options=None)
-        header = next(data)
-        if header[ARTICLE_IDX] != 'Nr.' or header[QTY_IDX] != 'Stk.':
+        _rows_number, rows = base_import._read_xls(options={})
+        headers = rows[0]
+        if headers[ARTICLE_IDX] != 'Nr.' or headers[QTY_IDX] != 'Stk.':
             raise ValidationError(
                 _('Wrong file header! '
                   '"Nr." expected to be in 2nd column and '
                   '"Stk." expected to be in 7th column.'))
-        return data
+        return rows[1:]
 
     def _get_product_articles(self):
         """Returns dict of product code as a key and id as a value."""
