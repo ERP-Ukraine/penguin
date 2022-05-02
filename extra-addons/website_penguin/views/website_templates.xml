@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="penguin_layout" inherit_id="website.layout">
+    <!--
+        There is default language selector for navbar
+    -->
+    <!-- <template id="penguin_layout" inherit_id="website.layout">
         <xpath expr="//t[@t-call='website.language_selector']" position="replace"/>
-    </template>
+    </template> -->
 
-    <template id="nav_language_selector">
+    <!-- <template id="nav_language_selector">
         <li class="js_language_selector nav-item dropdown" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
             <button class="btn btn-link nav-link dropdown-toggle w-100 text-right" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <t t-set="lang" t-value="list(filter(lambda lg : lg[0] == lang, languages))[0]"/>
@@ -24,14 +27,14 @@
                 </a>
             </div>
         </li>
-    </template>
+    </template> -->
 
     <template id="penguin_frontend_layout" inherit_id="portal.frontend_layout">
         <!-- top menu language selector -->
-        <xpath expr="//header//ul[@id='top_menu']" position="inside">
+        <!-- <xpath expr="//header//ul[@id='top_menu']" position="inside">
             <li class="nav-item divider" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))"/>
             <t t-call="website_penguin.nav_language_selector"/>
-        </xpath>
+        </xpath> -->
 
         <xpath expr="//div[@id='wrapwrap']" position="after">
             <t t-if="website and not editable">
@@ -58,6 +61,11 @@
         </xpath>
     </template>
 
+    <!--
+        I'm leaving this code here because I don't understand what it should do.
+        It hides Next button in pager, but why? And for medium size screens it's inline...
+        There is also strange variable page_index, which may be always None
+    -->
     <template id="penguin_pager" inherit_id="website.pager">
         <xpath expr="//li[last()]" position="attributes">
             <attribute name="t-attf-class" add="#{'d-none d-md-inline' if page_index > 4 else None}" separator=" "/>
