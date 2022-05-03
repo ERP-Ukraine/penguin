@@ -21,9 +21,9 @@
     </template>
 
     <!-- Customized website.layout -->
-    <template id="penguin_frontend_layout" inherit_id="portal.frontend_layout">
+    <template id="template_header_centered_logo" inherit_id="website.template_header_centered_logo">
         <!-- top menu pricelist selector -->
-        <xpath expr="//header//ul[@id='top_menu']" position="inside">
+        <xpath expr="//ul[hasclass('navbar-nav')]" position="inside">
             <li class="nav-item divider"/>
             <t t-call="website_sale_penguin.nav_pricelist_list"/>
         </xpath>
@@ -47,7 +47,6 @@
                 <i class="fa fa-chevron-right"/>
             </div>
         </div>
-
     </template>
 
     <!-- Sub Categories -->
@@ -71,27 +70,33 @@
     </template>
 
     <!-- Product -->
-    <template id="penguin_product" inherit_id="website_sale.product">
-        <xpath expr="//section/div[hasclass('row')][1]" position="replace"/>
+    <template id="penguin_product" inherit_id="website_sale.product" name="Penguin Product" customize_show="True">
+        <xpath expr="//t[@t-set='additional_title']" position="before">
+            <t t-set="penguin" t-value="True"/>
+        </xpath>
+
+        <xpath expr="//section/div[hasclass('row')][1]" position="attributes">
+            <attribute name="t-if">not penguin</attribute>
+        </xpath>
 
         <xpath expr="//section/div[hasclass('row')][1]" position="before">
             <div class="row">
-                <div class="col col-md-5 col-lg-4 offset-lg-2">
+                <div class="col col-md-5 col-lg-4 offset-lg-2 py-2">
                     <t t-call="website_sale.search">
                         <t t-set="search" t-value="False"/>
-                        <t t-set="_classes">py-2</t>
+                        <t t-set="_classes" t-valuef="w-100 w-md-auto mr-auto mb-2"/>
                     </t>
                 </div>
                 <t t-call="website_sale_penguin.main_categories">
                     <!-- select root or first one eCommerce category -->
                     <t t-set="category" t-value="product.public_categ_ids.filtered(lambda c: not c.parent_id)[:1] or product.public_categ_ids[:1]"/>
-                    <t t-set="_classes">col-md-7 col-lg-6 order-md-first</t>
+                    <t t-set="_classes" t-valuef="col-md-7 col-lg-6 order-md-first"/>
                 </t>
             </div>
             <div class="row mb-5">
                 <t t-call="website_sale_penguin.sub_categories">
                     <t t-set="category" t-value="product.public_categ_ids.filtered(lambda c: not c.parent_id)[:1] or product.public_categ_ids[:1]"/>
-                    <t t-set="_classes">col-12</t>
+                    <t t-set="_classes" t-valuef="col-12"/>
                 </t>
             </div>
         </xpath>
@@ -310,7 +315,7 @@
             </div>
         </xpath>
 
-        <xpath expr="//div[hasclass('col-xl-8')]" position="inside">
+        <xpath expr="//t[@t-call='website_sale.shop_product_carousel']" position="after">
             <p class="mt-4" t-esc="product.website_sale_description"/>
         </xpath>
     </template>
@@ -367,27 +372,38 @@
     </template>
 
     <!-- Products (Shop) -->
-    <template id="penguin_products" inherit_id="website_sale.products">
-        <xpath expr="//t[@t-call='website.pager'][1]" position="replace"/>
+    <template id="penguin_products" inherit_id="website_sale.products"
+              customize_show="True" active="True" name="Penguin Products">
 
-        <xpath expr="//t[@t-call='website_sale.pricelist_list']" position="replace"/>
-
-        <xpath expr="//t[@t-call='website_sale.search']/t" position="replace">
-            <t t-set="_classes">col col-md-5 col-lg-4 offset-lg-1 py-2</t>
+        <xpath expr="//t[@t-set='additional_title']" position="before">
+            <t t-set="penguin" t-value="True"/>
         </xpath>
 
-        <xpath expr="//div[hasclass('products_pager')][1]" position="attributes">
-            <attribute name="class" remove="form-inline flex-md-nowrap justify-content-between justify-content-md-center" separator=" "/>
-            <attribute name="class" add="row" separator=" "/>
+        <xpath expr="//div[hasclass('products_header')]" position="attributes">
+            <attribute name="t-if">not penguin</attribute>
         </xpath>
 
-        <xpath expr="//div[hasclass('products_pager')][1]" position="inside">
-            <t t-call="website_sale_penguin.main_categories">
-                <t t-set="_classes">col-md-7 col-lg-7 order-md-first</t>
-            </t>
-            <t t-call="website_sale_penguin.sub_categories">
-                <t t-set="_classes">col-12</t>
-            </t>
+        <xpath expr="//t[@t-call='website_sale.products_breadcrumb']" position="attributes">
+            <attribute name="t-if">not penguin</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('products_header')]" position="before">
+            <div class="row">
+                <t t-call="website_sale_penguin.main_categories">
+                    <t t-set="_classes" t-valuef="col-xl-7 col-7 col-md-7 col-lg-7 order-md-first"/>
+                </t>
+                <div class="col-5 col-xl-5 col-md-5 col-lg-5 py-2">
+                    <t t-call="website_sale.search">
+                        <t t-set="_classes" t-valuef="w-100 w-md-auto mr-auto mb-2"/>
+                        <t t-set="search" t-value="original_search or search"/>
+                    </t>
+                </div>
+            </div>
+            <div class="row">
+                <t t-call="website_sale_penguin.sub_categories">
+                    <t t-set="_classes" t-valuef="col-xl-12 col-12"/>
+                </t>
+            </div>
         </xpath>
     </template>
 
@@ -432,8 +448,8 @@
     </template>
 
     <template id="cart_popover_with_comment" inherit_id="website_sale.cart_popover">
-        <xpath expr="//t[@t-set='hide_coupon']" position="after">
-            <t t-set='hide_comment'>True</t>
+        <xpath expr="//t[@t-set='hide_promotions']" position="after">
+            <t t-set="hide_comment" t-value="True"/>
         </xpath>
     </template>
 </odoo>

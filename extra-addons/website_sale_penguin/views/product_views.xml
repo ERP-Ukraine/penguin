@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <record id="website_product_template_form_view" model="ir.ui.view">
+    <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">product.template.website.form</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
@@ -11,7 +11,7 @@
                 </group>
             </xpath>
 
-            <xpath expr="//page[@name='shop']/group/group" position="inside">
+            <xpath expr="//page[@name='sales']/group/group" position="inside">
                 <field name="hide_size_chart"/>
             </xpath>
         </field>

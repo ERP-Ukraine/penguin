@@ -1,19 +1,30 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Penguin eCommerce',
+    'summary': 'eCommerce customizations for Penguin',
+    'author': 'ERP Ukraine',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
     'category': 'Website/Website',
     'version': '2.5',
-    'description': "",
-    'depends': ['website_penguin', 'website_sale'],
+    'depends': [
+        'website_penguin',
+        'website_sale'
+    ],
     'data': [
         'report/sale_report_templates.xml',
-        'views/assets.xml',
         'views/product_views.xml',
         'views/sale_views.xml',
         'views/templates.xml',
     ],
-    'demo': [],
+    'assets': {
+        'web.assets_frontend': [
+            '/website_sale_penguin/static/src/scss/website_sale.scss',
+            '/website_sale_penguin/static/src/js/website_sale.js'
+        ],
+    },
     'auto_install': True,
     'application': True,
-    'installable': False,
+    'installable': True,
 }

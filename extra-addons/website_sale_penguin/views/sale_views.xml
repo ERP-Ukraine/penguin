@@ -5,7 +5,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//form[hasclass('o_sale_order')]/sheet/group/group[2]" position="inside">
+            <xpath expr="//group[@name='order_details']" position="inside">
                 <field name="website_comment"/>
             </xpath>
         </field>
