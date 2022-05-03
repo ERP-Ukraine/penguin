@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Penguin Product Availability',
-    'version': '1.1',
-    'category': 'Website/Website',
     'summary': 'Manage product inventory & availability',
-    'description': """""",
+    'author': 'ERP Ukraine',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
+    'category': 'Website/Website',
+    'version': '1.1',
     'depends': [
         'website_sale_penguin',
         'website_sale_stock',
@@ -13,8 +16,7 @@
         'report/report_deliveryslip.xml',
         'views/product_views.xml'
     ],
-    'demo': [],
     'auto_install': True,
-    'installable': False,
+    'installable': True,
     'post_init_hook': 'set_inventory_availability_on_product_templates'
 }
