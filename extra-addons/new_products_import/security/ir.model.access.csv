@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_new_products_import_penguin_user,access.new.products.import.penguin.user,model_new_product_import_penguin,stock.group_stock_user,1,1,1,1
+access_new_products_import_penguin_manager,access.new.products.import.penguin.manager,model_new_product_import_penguin,stock.group_stock_manager,1,1,1,1

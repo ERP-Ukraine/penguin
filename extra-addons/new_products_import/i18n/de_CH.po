@@ -154,11 +154,11 @@ msgstr ""
 #. module: new_products_import
 #: code:addons/new_products_import/wizard/new_product_import.py:0
 #, python-format
-msgid "You need yo set product category for new products!"
+msgid "You need to set product category for new products!"
 msgstr ""
 
 #. module: new_products_import
 #: code:addons/new_products_import/wizard/new_product_import.py:0
 #, python-format
-msgid "You need yo set seller for new products!"
+msgid "You need to set seller for new products!"
 msgstr ""

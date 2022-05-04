@@ -4,8 +4,14 @@ import base64
 from odoo import api, fields, models, _
 from odoo.exceptions import ValidationError
 
-START_IDX = 0
-END_IDX = 8
+DEFAULT_CODE_IDX = 0
+GENDER_IDX = 1
+DESCRIPTION_IDX = 2
+COLOR_IDX = 3
+SIZE_IDX = 4
+BARCODE_IDX = 5
+FOB_IDX = 7
+TOTAL_FOB_IDX = 8
 
 _logger = logging.getLogger(__name__)
 
@@ -25,27 +31,26 @@ class NewProductImport(models.TransientModel):
     def _check_provided_fields(self):
         for rec in self:
             if not rec.seller_id:
-                raise ValidationError(_('You need yo set seller '
-                                        'for new products!'))
+                raise ValidationError(_('You need to set seller for new products!'))
             if not rec.product_category_id:
-                raise ValidationError(_('You need yo set product category '
-                                        'for new products!'))
+                raise ValidationError(_('You need to set product category for new products!'))
 
     def _parse_file(self):
         """Returns generator of xls row as list of columns."""
         file_data = base64.b64decode(self.xls_file)
         base_import = self.env['base_import.import'].create({'file': file_data})
-        data = base_import._read_xls(options=None)
-        header = next(data)
-        while header[START_IDX] != 'Nr.' and header[END_IDX] != 'Total FOB':
-            try:
-                header = next(data)
-            except StopIteration:
-                raise ValidationError(
-                    _('Headers not found! '
-                      '"Nr." expected to be in 1st column and '
-                      '"Total FOB" expected to be in 9th column.'))
-        return data
+        _rows_number, rows = base_import._read_xls(options={})
+        headers = rows[0]
+        try:
+            while headers[DEFAULT_CODE_IDX] != 'Nr.' and headers[TOTAL_FOB_IDX] != 'Total FOB':
+                rows.pop(0)
+                headers = rows[0]
+        except (IndexError, RecursionError):
+            message = _('Headers not found! "Nr." expected to be in 1st column and '
+                        '"Total FOB" expected to be in 9th column.')
+            raise ValidationError(message)
+        rows.pop(0)
+        return rows
 
     def _convert_attr_to_dict(self, attribute):
         ProductAttribute = self.env['product.attribute']
@@ -77,41 +82,42 @@ class NewProductImport(models.TransientModel):
         colors, color_id = self._convert_attr_to_dict('Color')
         sizes, size_id = self._convert_attr_to_dict('Size')
 
-        import_currency = next(data)[END_IDX - 1]
+        currency_field = data[0]
+        import_currency = currency_field[FOB_IDX] or 'EUR'
         currency = self.env['res.currency'].search([('name', '=', import_currency)], limit=1)
         if not currency:
             raise ValidationError(
                 _('No such currency %s or currency is not set! '
                   'Please set currency under "FOB" column') % import_currency)
 
-        for row in data:
+        for row in data[1:]:
             _logger.debug(row)
 
             # check if current product barcode exists
-            product_with_barcode = ProductProduct.search([('barcode', '=', row[5])])
+            product_with_barcode = ProductProduct.search([('barcode', '=', row[BARCODE_IDX])])
             if product_with_barcode:
                 raise ValidationError(_('Product with barcode "%s" already exists '
                                         'in database with name "%s", please change barcode '
-                                        'and try again!') % (row[5], product_with_barcode.name))
-            pt_name = '%s %s' % (row[1], row[2])
-            gender = 'male' if row[1].lower() in ('men', 'male') else 'female'
+                                        'and try again!') % (row[BARCODE_IDX], product_with_barcode.name))
+            pt_name = '%s %s' % (row[GENDER_IDX], row[DESCRIPTION_IDX])
+            gender = 'male' if row[GENDER_IDX].lower() in ('men', 'male') else 'female'
             seller_info = {
                 'name': self.seller_id.id,
                 'currency_id': currency.id,
-                'price': row[7],
+                'price': row[FOB_IDX],
                 'min_qty': 1.0,
             }
-            if row[3] in colors:
-                color = PAV.browse(colors[row[3]])
+            if row[COLOR_IDX] in colors:
+                color = PAV.browse(colors[row[COLOR_IDX]])
             else:
                 raise ValidationError(_('You need to create color "%s" '
-                                         'before importing new products') % row[3])
+                                         'before importing new products') % row[COLOR_IDX])
 
-            if row[4] in sizes:
-                size = PAV.browse(sizes[row[4]])
+            if row[SIZE_IDX] in sizes:
+                size = PAV.browse(sizes[row[SIZE_IDX]])
             else:
                 raise ValidationError(_('You need to create size "%s" '
-                                        'before importing new products') % row[4])
+                                        'before importing new products') % row[SIZE_IDX])
 
             product_template = ProductTemplate.search([('name', '=', pt_name)], limit=1)
             if product_template:
@@ -164,9 +170,9 @@ class NewProductImport(models.TransientModel):
             size_attr = self._get_product_template_attribute_value(size, product_template)
             product_product = product_template._get_variant_for_combination(color_attr + size_attr)
             product_product.write({
-                'barcode': row[5],
-                'default_code': row[0],
-                'standard_price': row[7] if currency == self.env.company.currency_id else 0.0,
+                'barcode': row[BARCODE_IDX],
+                'default_code': row[DEFAULT_CODE_IDX],
+                'standard_price': row[FOB_IDX] if currency == self.env.company.currency_id else 0.0,
             })
             product_templates |= product_template
 
@@ -176,6 +182,6 @@ class NewProductImport(models.TransientModel):
             'view_mode': 'tree,form',
             'res_model': 'product.template',
             'domain': [('id', 'in', product_templates.ids)],
-            'views': [(self.env.ref('product.product_template_tree_view').id, 'tree'), 
+            'views': [(self.env.ref('product.product_template_tree_view').id, 'tree'),
                       (self.env.ref('product.product_template_only_form_view').id, 'form')],
         }

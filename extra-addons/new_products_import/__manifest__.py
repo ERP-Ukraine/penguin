@@ -20,9 +20,10 @@ This module add wizard for importing new products
         'stock',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'wizard/new_product_import.xml'
     ],
     'auto_install': False,
-    'installable': False,
+    'installable': True,
     'application': False,
 }
