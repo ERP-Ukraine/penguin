@@ -1,26 +1,23 @@
+# -*- coding: utf-8 -*-
 {
     'name': 'Copy images to same, Penguin',
-
-    'version': '1.1',
-    'category': 'Other',
     'author': 'ERP Ukraine',
     'website': 'https://erp.co.ua',
     'support': 'support@erp.co.ua',
-    'license': 'OPL-1',
-    'auto_install': False,
-    'installable': False,
-    'application': False,
-
-    'demo': [],
-
+    'license': 'LGPL-3',
+    'category': 'Other',
+    'version': '1.1',
     'depends': [
         'product',
         'stock',
         'website_sale',
     ],
-
     'data': [
-        'wizards/product_product_same_images.xml',
+        'security/ir.model.access.csv',
+        'wizard/product_product_same_images.xml',
         'views/product_product_views.xml',
     ],
+    'auto_install': False,
+    'installable': True,
+    'application': False,
 }
