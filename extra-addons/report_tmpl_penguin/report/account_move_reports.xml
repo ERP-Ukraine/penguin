@@ -19,6 +19,9 @@
             <span t-else="" t-field="line.quantity" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
         </xpath>
 
+    </template>
+
+    <template id="document_tax_totals" inherit_id="account.document_tax_totals">
         <xpath expr="//tr[hasclass('o_subtotal')]/td/strong" position="attributes">
             <attribute name="class" add="skip-text-bolder" separator=" "/>
         </xpath>

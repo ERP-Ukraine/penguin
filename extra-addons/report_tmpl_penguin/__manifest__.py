@@ -1,26 +1,25 @@
+# -*- coding: utf-8 -*-
 {
     'name': 'Penguin Report Template',
-    'version': '3.0',
     'summary': 'Custom report header and footer for some pdf docs.',
-    'installable': False,
-    'auto_install': False,
-
+    'author': 'ERP Ukraine',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
+    'category': 'Hidden',
+    'version': '3.0',
     'description': """
 Penguin Report Templates
 =========================
 This module adds warehouse address to account, sale and other reports
     """,
     'depends': [
-        'account',
-        'base',
         'l10n_ch',
-        'sale',
         'sale_stock',
-        'purchase',
         'purchase_stock',
+        'sale_purchase',
         'web',
     ],
-
     'data': [
         'data/data.xml',
         'report/reports.xml',
@@ -32,4 +31,12 @@ This module adds warehouse address to account, sale and other reports
         'views/stock_warehouse_views.xml',
         'views/sale_order_templates.xml',
     ],
+    'assets': {
+        'web.report_assets_common': [
+            '/report_tmpl_penguin/static/src/scss/report_tmpl_penguin.scss',
+        ],
+    },
+    'installable': True,
+    'auto_install': False,
+    'application': False,
 }

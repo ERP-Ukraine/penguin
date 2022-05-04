@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="report_assets_common" inherit_id="web.report_assets_common">
-        <xpath expr="." position="inside">
-            <link rel="stylesheet" type="text/scss" href="/report_tmpl_penguin/static/src/scss/report_tmpl_penguin.scss"/>
-        </xpath>
-    </template>
-
     <record id="paperformat_penguin" model="report.paperformat">
         <field name="name">Paperformat for Penguin Template</field>
         <field name="default" eval="False"/>

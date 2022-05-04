@@ -17,6 +17,7 @@
         <xpath expr="//p[@t-field='o.date_done']" position="attributes">
             <attribute name="t-options">{'widget': 'date'}</attribute>
         </xpath>
+
         <xpath expr="//p[@t-field='o.scheduled_date']" position="attributes">
             <attribute name="t-options">{'widget': 'date'}</attribute>
         </xpath>
@@ -25,9 +26,20 @@
             <span t-if="move.product_uom_qty.is_integer()" t-esc="int(move.product_uom_qty)"/>
             <span t-else="" t-field="move.product_uom_qty" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
         </xpath>
-        <xpath expr="//table[@name='stock_move_line_table']//span[@t-field='move_line.qty_done']" position="replace">
+    </template>
+
+    <template id="stock_report_delivery_has_serial_move_line" inherit_id="stock.stock_report_delivery_has_serial_move_line">
+        <xpath expr="//span[@t-field='move_line.qty_done']" position="replace">
             <span t-if="move_line.qty_done.is_integer()" t-esc="int(move_line.qty_done)"/>
             <span t-else="" t-field="move_line.qty_done" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
+        </xpath>
+    </template>
+
+    <template id="stock_report_delivery_aggregated_move_lines" inherit_id="stock.stock_report_delivery_aggregated_move_lines">
+        <xpath expr="//td[@name='move_line_aggregated_qty_done']/t/span[1]" position="replace">
+            <span t-if="aggregated_lines[line]['qty_done'].is_integer()" t-esc="int(aggregated_lines[line]['qty_done'])"
+                        t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
+            <span t-else="" t-esc="aggregated_lines[line]['qty_done']" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
         </xpath>
     </template>
 
@@ -43,6 +55,7 @@
         <xpath expr="//div[@name='div_outgoing_address']" position="attributes">
             <attribute name="class">col-4 offset-2</attribute>
         </xpath>
+
         <xpath expr="//div[@name='div_incoming_address']" position="attributes">
             <attribute name="class">col-4 offset-2</attribute>
         </xpath>

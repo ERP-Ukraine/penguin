@@ -58,11 +58,11 @@
 .penguin-body {
     // make some elements pretty
     h1, h2                          { @extend .text-bold; }
-    table thead th                  { @extend .text-bolder; @extend .text-black; }
-    strong:not(.skip-text-bolder)   { @extend .text-bolder; @extend .text-black; }
+    table thead th                  { @extend .text-bolder; @extend .text-dark; }
+    strong:not(.skip-text-bolder)   { @extend .text-bolder; @extend .text-dark; }
     tr.o_total > td {
         padding-top: 1rem;
-        @extend .text-bolder;
+        @extend .text-bolder !optional;
     }
 
     // whatever you want
