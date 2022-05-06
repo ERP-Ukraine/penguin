@@ -3,12 +3,10 @@ import logging
 
 from odoo import SUPERUSER_ID, api
 
-from . import models
-
 _logger = logging.getLogger(__name__)
 
 
-def wire_transfer_enable_authorization(cr, version):
+def migrate(cr, version):
     env = api.Environment(cr, SUPERUSER_ID, {})
     _logger.info('Wire Transfer acquirers: setting authorization support')
     wire_acquirers = env['payment.acquirer'].search([('provider', '=', 'transfer')])
