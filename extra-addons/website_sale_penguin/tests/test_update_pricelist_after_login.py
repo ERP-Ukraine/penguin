@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-patch
-from odoo.addons.test_mail.tests.common import mail_new_test_user
+from odoo.addons.mail.tests.common import mail_new_test_user
 from odoo.addons.website.tools import MockRequest
 from odoo.tests import HOST
 from odoo.tests.common import HttpCase
