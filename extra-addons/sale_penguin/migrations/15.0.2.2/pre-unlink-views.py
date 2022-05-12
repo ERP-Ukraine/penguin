@@ -7,7 +7,8 @@ _logger = logging.getLogger(__name__)
 
 def migrate(cr, version):
     env = api.Environment(cr, SUPERUSER_ID, {})
-    view_names = ['sale_penguin.report_saleorder_document_custom_main_table',]
+    view_names = ['sale_penguin.report_saleorder_document_custom_main_table',
+                  'sale_penguin.mail_template_sale_confirmation']
     for view_name in view_names:
         view = env.ref(view_name, raise_if_not_found=False)
         if view:
