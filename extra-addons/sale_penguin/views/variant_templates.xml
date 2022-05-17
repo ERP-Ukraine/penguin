@@ -6,7 +6,7 @@
         </xpath>
 
         <xpath expr="//ul[1]//t[@t-if][last()]/ul//label" position="inside">
-            <span class="custom-color-picker-label" t-esc="ptav.name"/>
+            <span class="custom-color-picker-label ml-1" style="white-space: nowrap;" t-esc="ptav.name"/>
         </xpath>
     </template>
 </odoo>
