@@ -52,7 +52,7 @@ pipelines:
             - docker
           script:
              - echo "Configure deployment for v15"
-#            - ansible-playbook deploy-prod.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
+             - ansible-playbook deploy-prod.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
 
 definitions:
   services:

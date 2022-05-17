@@ -5,7 +5,7 @@
 
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-# init-hook='import sys; sys.path.append("/home/bohdan/bin/odoo-13.0")'
+# init-hook='import sys; sys.path.append("/home/bohdan/bin/odoo-15.0")'
 
 # Add files or directories to the blacklist. They should be base names, not
 # paths.

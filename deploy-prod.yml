@@ -4,21 +4,21 @@
 
   tasks:
     - name: Change image tag
-      command: sed -i "s/13.0-.*$/13.0-{{ BITBUCKET_BUILD_NUMBER }}/" docker-compose.yml
+      command: sed -i "s/15.0-.*$/15.0-{{ BITBUCKET_BUILD_NUMBER }}/" docker-compose.yml
       args:
-        chdir: /opt/odoo13
+        chdir: /opt/odoo15
 
     - name: Pull image
       command: docker-compose pull
       args:
-        chdir: /opt/odoo13
+        chdir: /opt/odoo15
 
     - name: Stop container
       command: docker-compose down
       args:
-        chdir: /opt/odoo13
+        chdir: /opt/odoo15
 
     - name: Start container
       command: docker-compose up -d
       args:
-        chdir: /opt/odoo13
+        chdir: /opt/odoo15
