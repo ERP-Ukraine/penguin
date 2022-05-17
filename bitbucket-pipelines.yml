@@ -35,7 +35,7 @@ pipelines:
           - postgres
           - docker
   branches:
-    master:
+    15.0:
       - step:
           name: Build and Push
           services:
