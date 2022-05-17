@@ -101,6 +101,10 @@
             </div>
         </xpath>
 
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
+            <attribute name="class" remove="d-inline" separator=" "/>
+        </xpath>
+
         <xpath expr="//section[@id='product_detail']" position="inside">
             <div class="row">
                 <div class="col-12">
@@ -314,8 +318,16 @@
                 </div>
             </div>
         </xpath>
+    </template>
 
-        <xpath expr="//t[@t-call='website_sale.shop_product_carousel']" position="after">
+    <template id="product_price" inherit_id="website_sale.product_price" customize_show="True" name="Penguin Product Price">
+        <xpath expr="//div[1]" position="attributes">
+            <attribute name="class" remove="mb-3" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="shop_product_carousel" inherit_id="website_sale.shop_product_carousel" name="Penguin Shop Product Carousel" customize_show="True">
+        <xpath expr="//div[@id='o-carousel-product']" position="inside">
             <p class="mt-4" t-esc="product.website_sale_description"/>
         </xpath>
     </template>
@@ -366,8 +378,14 @@
 
         <xpath expr="//div[hasclass('oe_product_image')]" position="after">
             <div class="card-body oe_variant_color_selector p-1">
-                <t t-call="website_sale_penguin.color_picker"/>
+                <t t-call="website_sale_penguin.color_picker">
+                    <t t-set="no_label" t-value="True"/>
+                </t>
             </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o_wsale_product_information')]" position="attributes">
+            <attribute name="class" add="text-center" separator=" "/>
         </xpath>
     </template>
 
