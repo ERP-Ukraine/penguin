@@ -186,3 +186,11 @@
 .list-inline-item:not(:last-child) {
     margin-right: 0rem;
 }
+
+.divider {
+    border-right: 1px solid black;
+}
+
+.penguin-pricelist-link:hover {
+    text-decoration: none;
+}

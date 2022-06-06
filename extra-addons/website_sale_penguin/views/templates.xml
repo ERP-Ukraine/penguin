@@ -477,13 +477,29 @@
 
     <template id="pricelist_list" inherit_id="website_sale.pricelist_list" name="Penguin Pricelists Dropdown" customize_show="True" active="True">
         <xpath expr="//a[@role='button']" position="attributes">
-            <attribute name="class" remove="btn-light" separator=" "/>
+            <attribute name="class" remove="btn btn-light" add="penguin-pricelist-link" separator=" "/>
         </xpath>
     </template>
 
-    <template id="template_header_default" inherit_id="website.template_header_default" name="Penguin Template Header Default (with pricelist)" customize_show="True" active="True">
+    <template id="template_header_default_website" inherit_id="website.template_header_default" name="Penguin Template Header Default (with pricelist)" customize_show="True" active="True">
         <xpath expr="//div[@id='top_menu_collapse']" position="after">
-            <t t-call='website_sale.pricelist_list'/>
+            <t t-call='website_sale.pricelist_list'>
+                <t t-set="_classes" t-valuef="mx-2 text-bold font-weight-bold"/>
+            </t>
+        </xpath>
+
+        <xpath expr="//t[@t-call='portal.user_dropdown']" position="before">
+            <li class="nav-item divider"></li>
+        </xpath>
+
+        <xpath expr="//t[@t-call='portal.user_dropdown']" position="after">
+            <li class="nav-item divider"></li>
+        </xpath>
+    </template>
+
+    <template id="template_header_default_website_sale" inherit_id="website_sale.template_header_default">
+        <xpath expr="//t[@t-set='_item_class']" position="attributes">
+            <attribute name="t-value">'nav-item'</attribute>
         </xpath>
     </template>
 </odoo>
