@@ -147,4 +147,18 @@
             </div>
         </xpath>
     </template>
+
+    <template id="template_header_default" inherit_id="website.template_header_default" customize_show="True" active="True"
+            name="Penguin Template Header Default">
+        <xpath expr="//t[@t-set='_nav_class']" position="attributes">
+            <attribute name="t-valuef">text-right ml-auto</attribute>
+        </xpath>
+    </template>
+
+    <template id="placeholder_header_call_to_action" inherit_id="website.placeholder_header_call_to_action" customize_show="True" active="True"
+            name="Placeholder Header Call to Action">
+        <xpath expr="//div[1]" position="attributes">
+            <attribute name="t-attf-class" add="d-none" separator=" "/>
+        </xpath>
+    </template>
 </odoo>
