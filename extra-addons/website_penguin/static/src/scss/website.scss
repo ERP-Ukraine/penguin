@@ -8,3 +8,24 @@
         }
     }
 }
+
+nav.navbar.navbar-expand-lg.navbar-light {
+    li {
+        a {
+            font-family: $o-theme-font;
+        }
+    }
+}
+
+.penguin-lang-div {
+    a {
+        span {
+            color: black;
+        }
+    }
+}
+
+.penguin-lang-dropdown {
+    right: 0;
+    left: auto;
+}

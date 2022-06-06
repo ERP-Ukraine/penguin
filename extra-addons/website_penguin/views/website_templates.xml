@@ -1,40 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <!--
-        There is default language selector for navbar
-    -->
-    <!-- <template id="penguin_layout" inherit_id="website.layout">
-        <xpath expr="//t[@t-call='website.language_selector']" position="replace"/>
-    </template> -->
-
-    <!-- <template id="nav_language_selector">
-        <li class="js_language_selector nav-item dropdown" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
-            <button class="btn btn-link nav-link dropdown-toggle w-100 text-right" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <t t-set="lang" t-value="list(filter(lambda lg : lg[0] == lang, languages))[0]"/>
-                <t t-esc="lang[2].split('/').pop().split()[0]"/>
-                <span class="caret ml4"/>
-            </button>
-            <div class="dropdown-menu" role="menu">
-                <t t-foreach="languages" t-as="lg">
-                    <a t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang_code=lg[0])" class="dropdown-item js_change_lang" t-att-data-url_code="lg[1]">
-                        <t t-esc="lg[2].split('/').pop().split()[0]"/>
-                    </a>
-                </t>
-                <t t-set="url_return" t-value="quote_plus(url_for('', '[lang]') + '?' + keep_query())"/>
-                <a groups="website.group_website_publisher" class="dropdown-item text-primary" t-attf-href="/web#action=base.action_view_base_language_install&amp;website_id=#{website.id if website else ''}&amp;url_return=#{url_return}">
-                    <i class="fa fa-plus-circle"/>
-                    Add a language...
-                </a>
-            </div>
-        </li>
-    </template> -->
 
     <template id="penguin_frontend_layout" inherit_id="portal.frontend_layout">
-        <!-- top menu language selector -->
-        <!-- <xpath expr="//header//ul[@id='top_menu']" position="inside">
-            <li class="nav-item divider" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))"/>
-            <t t-call="website_penguin.nav_language_selector"/>
-        </xpath> -->
 
         <xpath expr="//div[@id='wrapwrap']" position="after">
             <t t-if="website and not editable">
@@ -159,6 +126,28 @@
             name="Placeholder Header Call to Action">
         <xpath expr="//div[1]" position="attributes">
             <attribute name="t-attf-class" add="d-none" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="header_language_selector" inherit_id="website.header_language_selector" name="Penguin Header Language Selector" customize_show="True">
+        <xpath expr="//t[@id='header_language_selector_call']" position="replace">
+            <t id="header_language_selector_call" t-call="website_penguin.language_selector">
+                <t t-set="_div_classes" t-value="(_div_classes or '') + ' dropdown text-right font-weight-bold penguin-lang-div'"/>
+                <t t-set="_dropdown_menu_class" t-value="(_dropdown_menu_class or '') + ' penguin-lang-dropdown'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="language_selector" inherit_id="portal.language_selector" name="Language Selector" primary="True">
+        <xpath expr="//button" position="replace">
+            <a t-attf-class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span t-if="not no_text"
+                        class="align-middle penguin-language"
+                        t-esc="active_lang[2].split('/').pop().split()[0]"/>
+            </a>
+        </xpath>
+        <xpath expr="//div[@role='menu']//span" position="attributes">
+            <attribute name="t-esc">lg[2].split('/').pop().split()[0]</attribute>
         </xpath>
     </template>
 </odoo>
