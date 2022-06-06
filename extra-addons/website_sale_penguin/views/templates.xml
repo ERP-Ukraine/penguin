@@ -376,6 +376,10 @@
             </t>
         </xpath>
 
+        <xpath expr="//a[hasclass('o_product_link')][hasclass('css_editable_mode_hidden')]" position="attributes">
+            <attribute name="class" add="d-none" separator=" "/>
+        </xpath>
+
         <xpath expr="//div[hasclass('oe_product_image')]" position="after">
             <div class="card-body oe_variant_color_selector p-1">
                 <t t-call="website_sale_penguin.color_picker">
@@ -468,6 +472,18 @@
     <template id="cart_popover_with_comment" inherit_id="website_sale.cart_popover">
         <xpath expr="//t[@t-set='hide_promotions']" position="after">
             <t t-set="hide_comment" t-value="True"/>
+        </xpath>
+    </template>
+
+    <template id="pricelist_list" inherit_id="website_sale.pricelist_list" name="Penguin Pricelists Dropdown" customize_show="True" active="True">
+        <xpath expr="//a[@role='button']" position="attributes">
+            <attribute name="class" remove="btn-light" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="template_header_default" inherit_id="website.template_header_default" name="Penguin Template Header Default (with pricelist)" customize_show="True" active="True">
+        <xpath expr="//div[@id='top_menu_collapse']" position="after">
+            <t t-call='website_sale.pricelist_list'/>
         </xpath>
     </template>
 </odoo>
