@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="stores">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div id="myCarousel1594817806503" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+                    <ol class="carousel-indicators d-none">
+                        <li data-target="#myCarousel1594817806503" data-slide-to="0" class="active">
+                            <br/>
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item pt152 pb152 oe_img_bg oe_custom_bg active" style="background-image: url(&quot;https://penguin.swiss/web/image/4227/stores-page_2176X1216.jpg&quot;); background-position: 55.58% 43.87%;" data-name="Slide">
+                            <div class="container">
+                                <div class="row content">
+                                    <div class="carousel-content col-lg-9">
+                                        <div class="s_title pb8" data-name="Title">
+                                            <h2 class="s_title_thin">
+                                                <font style="color: rgb(255, 255, 255); font-size: 62px;">Where to find your Penguin outfit?</font>
+                                            </h2>
+                                        </div>
+                                        <p class="lead">
+                                            <font style="color: rgb(255, 255, 255);">Choose between our own store in Zurich or one of our retail partner stores near you.</font>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-control-prev d-none" data-target="#myCarousel1594817806503" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                        <span class="carousel-control-prev-icon"/>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </div>
+                    <div class="carousel-control-next d-none" data-target="#myCarousel1594817806503" data-slide="next" role="img" aria-label="Next" title="Next">
+                        <span class="carousel-control-next-icon"/>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </div>
+                </div>
+                <section class="s_text_block pb0 pt0" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pb0 pt0">
+                                <p class="lead">
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pt32 bg-beta pb0" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pt0 pb32">
+                                <p class="lead">
+                                    <font style="font-size: 36px;">Penguin home base &amp;amp; retail store, Zurich</font>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pb0 pt0" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pb0 pt0">
+                                <p class="lead">
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div id="myCarousel1594216761028" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+                    <ol class="carousel-indicators d-none">
+                        <li data-target="#myCarousel1594216761028" data-slide-to="0" class="active">
+                            <br/>
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item oe_img_bg pb256 pt256 oe_custom_bg active" style="background-image: url(&quot;https://penguin.swiss/web/image/4228/penguin_store_2176X1216.jpg&quot;); background-position: 13.28% 19.88%;" data-name="Slide">
+                            <div class="container">
+                                <div class="row content">
+                                    <div class="carousel-content col-lg-7">
+                                        <div class="s_title pb8" data-name="Title">
+                                            <h1 class="s_title_default">
+                                                <font style="color: rgb(255, 255, 255);">Stop by for a drink,</font>
+                                            </h1>
+                                            <h1 class="s_title_default">
+                                                <font style="color: rgb(255, 255, 255);">talk or to shop. &amp;nbsp;</font>
+                                            </h1>
+                                        </div>
+                                        <p class="lead">
+                                            <font style="color: rgb(255, 255, 255);">Klingenstrasse 9, 8005 Zurich</font>
+                                        </p>
+                                        <p class="lead">
+                                            <font style="color: rgb(255, 255, 255);">Thu-Fr: 16.00-20.00h</font>
+                                        </p>
+                                        <p class="lead">
+                                            <font style="color: rgb(255, 255, 255);">Sat: 11.00-18.00h</font>
+                                        </p>
+                                        <p class="lead">
+                                            <font style="color: rgb(255, 255, 255);">***Shop remains closed when 30+cm fresh powder falls***</font>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-control-prev d-none" data-target="#myCarousel1594216761028" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                        <span class="carousel-control-prev-icon"/>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </div>
+                    <div class="carousel-control-next d-none" data-target="#myCarousel1594216761028" data-slide="next" role="img" aria-label="Next" title="Next">
+                        <span class="carousel-control-next-icon"/>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </div>
+                </div>
+                <section class="s_text_block pb0 pt0" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pb0 pt0">
+                                <p class="lead">
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pt32 pb32 bg-beta" data-name="Text block" style="">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pb0 pt0">
+                                <p class="lead">
+                                    <font style="font-size: 36px;">Penguin retail partner stores</font>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_three_columns pb32 pt0" data-name="Columns" style="">
+                    <div class="container">
+                        <div class="row d-flex align-items-stretch">
+                            <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4216/CH-tip-to-tail_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Switzerland</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="#" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip826990">Find a store near you.<br/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4218/De-heinzel-1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Germany</h3>
+                                        <div class="pb0 pt16 s_btn text-left" data-name="Button">
+                                            <a href="#" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip351719">Find a store near you.</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4217/AT-schoenherr-1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Austria</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="#" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip344456">Find a store near you.</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_features_grid pt48 pb24" data-name="Features Grid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 s_col_no_bgcolor pb24">
+                                <div class="row">
+                                    <div class="col-lg-12 pb24" data-name="Box">
+                                        <h2>Switzerland</h2>
+                                        <h5 class="text-primary">Scroll down to see all shops.</h5>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BE, Bern, Tip to Tail</h4>
+                                            <p>
+                                                <a href="http://www.tiptotail.ch" data-original-title="" title="" target="_blank">www.tiptotail.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BE, Gstaad, Pure Snowboard Shop</h4>
+                                            <p>
+                                                <a href="https://pure-snowboarding.ch" data-original-title="" title="" target="_blank">www.pure-snowboarding.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BE, Adelboden, Diamond Board Shop &amp;amp; Fashion</h4>
+                                            <p>
+                                                <a href="https://www.diamondboardshop.ch" data-original-title="" title="" target="_blank">www.diamondboardshop.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>GE, Carouge, Cactus Sports</h4>
+                                            <p>
+                                                <a href="https://www.cactus-sports.ch" data-original-title="" title="" target="_blank">www.cactus-sports.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>GR, Arosa, Bananas by Gisler Sport</h4>
+                                            <p>
+                                                <a href="https://www.gislersport.ch/shops/bananas-by-gisler-sport/" data-original-title="" title="" aria-describedby="tooltip464086" target="_blank">www.gislersport.ch.</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>GR, Davos, Fullmoons</h4>
+                                            <p>
+                                                <a href="http://fullmoons.ch" data-original-title="" title="" target="_blank">www.fullmoons.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>GR, Lenzerheide, Pesko Rothornbahn</h4>
+                                            <p>
+                                                <a href="https://www.pesko.ch/pesko-rothornbahn/" data-original-title="" title="" aria-describedby="tooltip885420" target="_blank">www.pesko.ch/pesko-rothornbahn/</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>GR, Pontresina &amp;amp; St. Moritz, Go Vertical</h4>
+                                            <p>
+                                                <a href="https://govertical.ch" data-original-title="" title="" target="_blank">www.govertical.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>GR, Trun, Am Berg Freeride</h4>
+                                            <p>
+                                                <a href="http://www.amberg-freeridesport.ch" data-original-title="" title="" aria-describedby="tooltip220736">www.amberg-freeridesport.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 s_col_no_bgcolor pb24">
+                                <div class="row">
+                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>GR, Disentis, AR Clothing</h4>
+                                            <p>
+                                                <a href="https://www.instagram.com/alpine_rider_sportshop" data-original-title="" title="" aria-describedby="tooltip484424" target="_blank">www.instagram.com/alpine_rider_sportshop/</a>
+                                                <br/>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>GR, Flims, Chopp</h4>
+                                            <p>
+                                                <a href="http://chopp.ch" data-original-title="" title="" aria-describedby="tooltip945536" target="_blank">www.chopp.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>NE, La Chaux-de-Fonds, Vertical Passion</h4>
+                                            <p>
+                                                <a href="https://www.vertical-passion.ch" data-original-title="" title="" target="_blank">www.vertical-passion.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>LU, Beromünster, Huwyler Sport</h4>
+                                            <p>
+                                                <a href="https://www.huwylersport.ch" target="_blank" data-original-title="" title="" aria-describedby="tooltip622586">www.huwylersport.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>UR, Andermatt, Snowlimit</h4>
+                                            <p>
+                                                <a href="http://www.snowlimit.ch/de/sommer" data-original-title="" title="" target="_blank">www.snowlimit.ch/de/sommer</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>VS, Bettmeralp, Derby Sport</h4>
+                                            <p>
+                                                <a href="https://www.derby-sport.com/allgemein/home" data-original-title="" title="" target="_blank">www.derby-sport.com</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>VS, Les Collons, Genolet Sports</h4>
+                                            <p>
+                                                <a href="http://genoletsports.ch" data-original-title="" title="" target="_blank">www.genoletsports.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>ZG, Zug, Berge Pur</h4>
+                                            <p>
+                                                <a href="https://www.bergepur.ch" target="_blank" data-original-title="" title="" aria-describedby="tooltip28726">www.bergepur.ch</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>Samnaun, Peer Sport</h4>
+                                            <p>
+                                                <a href="http://peersport.ch" data-original-title="" title="" aria-describedby="tooltip335471" target="_blank">www.peersport.ch</a>
+                                                <br/>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 s_col_no_bgcolor pb0">
+                                <div class="row">
+                                    <div class="col-lg-12 pb24" data-name="Box">
+                                        <h2>Germany</h2>
+                                        <h5 class="text-primary">Scroll down to see all shops.</h5>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BE, Berlin, Der Berg Ruf &amp;amp; Boarderline</h4>
+                                            <p>
+                                                <a href="http://www.bergruft.de" target="_blank" data-original-title="" title="" aria-describedby="tooltip991239">http://www.bergruft.de</a>
+                                                <br/>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BY, Buchenberg, Sport Frey</h4>
+                                            <p>
+                                                <a href="http://www.sportfrey.de" target="_blank">http://www.sportfrey.de</a>
+                                                <br/>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BY, Garmisch-Paternkirchen, WN alpin</h4>
+                                            <p>
+                                                <a href="https://www.wn-alpin.de" target="_blank">https://www.wn-alpin.de</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BY, Aichach, Heimat Sport</h4>
+                                            <p>
+                                                <a href="https://heimat-sport.com" target="_blank">https://heimat-sport.com</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BW, Biberach, Sport Heinzel</h4>
+                                            <p>
+                                                <a href="https://sport-heinzel.de/cms/1-startseite.html" target="_blank" data-original-title="" title="" aria-describedby="tooltip111204">https://sport-heinzel.de</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BW, Hülben, Sport Kächele</h4>
+                                            <p>
+                                                <a href="https://sport-kaechele.de" target="_blank">https://sport-kaechele.de</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>BW, Stuttgart, Bergwerker</h4>
+                                            <p>
+                                                <a href="https://www.bergwerker.de" target="_blank">https://www.bergwerker.de</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>NW, Düsseldorf, The Boarder Shop</h4>
+                                            <p>
+                                                <a href="https://www.the-boardershop.de" target="_blank">https://www.the-boardershop.de</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>SA, Chemnitz, Biker-Boarder</h4>
+                                            <p>
+                                                <a href="https://www.biker-boarder.de" target="_blank">https://www.biker-boarder.de</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>SA, Zwickau, Endless Winter Shop</h4>
+                                            <p>
+                                                <a href="https://endlesswintershop.de" target="_blank">https://endlesswintershop.de</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>SN, Annaberg-B., Sport Shop Weiwa</h4>
+                                            <p>
+                                                <a href="https://www.freiluft-einfachdraussen.de">https://www.freiluft-einfachdraussen.de</a>
+                                                <br/>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 s_col_no_bgcolor pb0">
+                                <div class="row">
+                                    <div class="col-lg-12 pb24" data-name="Box">
+                                        <h2>
+                                            <br/>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 s_col_no_bgcolor pb0">
+                                <div class="row">
+                                    <div class="col-lg-12 pb24" data-name="Box">
+                                        <h2>Austria</h2>
+                                        <h5 class="text-primary">Scroll down to see all shops.</h5>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>Rainbach im Innkreis, Schimalaya</h4>
+                                            <p>
+                                                <a href="https://www.schimalaya.at" target="_blank">https://www.schimalaya.at</a>
+                                                <br/>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>Schladming, Veith Sport</h4>
+                                            <p>
+                                                <a href="https://skiverleih-schladming-veith.at" target="_blank">https://skiverleih-schladming-veith.at</a>
+                                                <br/>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>St. Anton am Arlberg, Jennewein pure sports</h4>
+                                            <p>
+                                                <a href="https://www.sport-jennewein.com" target="_blank">https://www.sport-jennewein.com</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
+                                        <div class="s_features_grid_content">
+                                            <h4>Stubaital, Schönherr</h4>
+                                            <p>
+                                                <a href="https://www.schoenherr.cc/de/wintersport/" target="_blank" data-original-title="" title="" aria-describedby="tooltip132923">https://www.schoenherr.cc/de/wintersport/</a>
+                                            </p>
+                                            <p>
+                                                <br/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_call_to_action pt48 pb24 bg-beta" data-name="Call to Action">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 pb24">
+                                <h3>
+                                    <b>Want to become a retail partner?</b>
+                                </h3>
+                                <p class="lead">We will answer right away except on sweet powder days.</p>
+                            </div>
+                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                <a href="/contact" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip926244"> Contact us <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

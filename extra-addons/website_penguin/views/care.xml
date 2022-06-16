@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="care">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div id="myCarousel1594818437920" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+                    <ol class="carousel-indicators d-none">
+                        <li data-target="#myCarousel1594818437920" data-slide-to="0" class="active"/>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item oe_img_bg pt152 pb152 oe_custom_bg active" style="background-image: url(&quot;https://penguin.swiss/web/image/8222/penguin_care_2176X1216.jpg&quot;); background-position: 49.33% 34.27%;" data-name="Slide">
+                            <div class="container">
+                                <div class="row content">
+                                    <div class="carousel-content col-lg-7 pb48">
+                                        <div class="s_title pb8" data-name="Title">
+                                            <h2 class="s_title_thin">
+                                                <font style="color: rgb(255, 255, 255); font-size: 48px;">Make your product last.</font>
+                                            </h2>
+                                        </div>
+                                        <p class="lead">
+                                            <font style="color: rgb(255, 255, 255);">Take care of your products to maximize life cycle and reduce consumption.</font>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-control-prev d-none" data-target="#myCarousel1594818437920" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                        <span class="carousel-control-prev-icon"/>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </div>
+                    <div class="carousel-control-next d-none" data-target="#myCarousel1594818437920" data-slide="next" role="img" aria-label="Next" title="Next">
+                        <span class="carousel-control-next-icon"/>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </div>
+                </div>
+                <section class="s_features bg-beta pb0 pt0" data-name="Features">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 pt32 pb32 text-center" style="">
+                                <span class="fa fa-3x rounded-circle bg-gamma m-3 fa-retweet"/>
+                                <h3>
+                                    <font style="font-size: 18px;">2-years warranty</font>
+                                </h3>
+                            </div>
+                            <div class="col-lg-4 pt32 pb32 text-center">
+                                <span class="fa fa-3x rounded bg-epsilon m-3 fa-handshake-o" data-original-title="" title="" aria-describedby="tooltip184762"/>
+                                <h3>
+                                    <font style="font-size: 18px;">Product care support</font>
+                                </h3>
+                            </div>
+                            <div class="col-lg-4 pt32 pb32 text-center">
+                                <span class="fa fa-3x rounded-leaf bg-primary m-3 fa-wrench" data-original-title="" title="" aria-describedby="tooltip404951"/>
+                                <h3>
+                                    <font style="font-size: 18px;">Unlimited repair option </font>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pb0 pt0" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pt32 pb0">
+                                <p class="lead">
+                                    <font style="font-size: 62px;">Penguin Care</font>
+                                </p>
+                                <p class="lead">Riding Powder is our passion. To keep doing what we love we have to take care of our environment. We believe in a pragmatic approach and do not use our initiatives as marketing instrument. In the short-term perspective we focus on durability of our products and using natural or recycled components if reasonable. Keeping products longer in use means lower consumption of resources. In parallel we pursue circular economy as a longterm vision. Step by step are we improving our products and processes.
+                                </p>
+                                <p class="lead" style="margin-right: 0cm; margin-left: 0cm; margin-top: 0cm;">
+                                    <span lang="EN-US">We take our social responsibility seriously. We value longterm partnerships with our partner factories in Vietnam. We know all our producer personally and spend every summer in Vietnam to supervise production and develop new materials. Vietnam has one of the highest quality standards and remarkable knowhow in producing technical outerwear. We constantly strive to source best materials to create best products. </span>
+                                </p>
+                                <p class="lead">Check out below how you can contribute... </p>
+                                <p><b><br/></b></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pb0 pt24" data-name="Image - Text" style="" id="wash" data-anchor="true">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="pt0 col-lg-6 pb32">
+                                <img src="/web/image/4198/dwr_800x600.jpg" class="img img-fluid mx-auto" alt="Odoo • Image and Text" data-original-title="" title="" aria-describedby="tooltip659699"/>
+                            </div>
+                            <div class="col-lg-6 pb0 pt24" style="">
+                                <h2>Wash regularly</h2>
+                                <p>
+                Wash your products regularly to maintain functionality and extend life-cycle. Check out our wash instructions for detailed information. The instructions may varies depends on material.&amp;nbsp;Use every time a washing bag to minimize micro plastic in waste water. &amp;nbsp;</p>
+                                <div class="s_btn text-left pb16 pt0" data-name="Button">
+                                    <a href="/de_CH/shop/product/guppyfriend-waschbeutel-220?category=6#attr=" class="btn btn-outline-primary" data-original-title="" title="" aria-describedby="tooltip217500" target="_blank">Guppyfriend</a>
+                                </div>
+                                <h2>Re-impregnate if needed</h2>
+                                <p>
+                For all shell products you have to pay attention additionally to the water repellency. Tristan shows you in the video below some tips and tricks.
+                                </p>
+                                <div class="s_btn pb16 pt0 text-left" data-name="Button">
+                                    <a href="https://www.youtube.com/watch?v=JWGoNEqPWG8" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip523233" target="_blank">Watch Video</a>
+                                </div>
+                                <div class="s_btn text-left pt0 pb72" data-name="Button">
+                                    <a href="/shop/category/services-21" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip523233">Request professional service&amp;nbsp;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pb32 pt0" data-name="Image - Text" id="repair" data-anchor="true">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb16">
+                                <img src="/web/image/13684/L1050841.jpg" class="img img-fluid mx-auto" alt="Odoo • Image and Text" data-original-title="" title="" aria-describedby="tooltip349132"/>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16">
+                                <h2>Repair your product first</h2>
+                                <p>
+                                    <span style="font-size: 1rem;">Our partner repair center can rescue nearly every product and extend life time for some more powder turns. Send us a photo of your product and name place and year of&amp;nbsp;purchase&amp;nbsp; We will check your warranty claim and get back to you.</span>
+                                </p>
+                                <div class="s_btn pb16 pt0 text-left" data-name="Button">
+                                    <a href="mailto:mail@penguin.swiss" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip523233" target="_blank">Request repair support</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pb32 pt0" data-name="Image - Text" id="second" data-anchor="true">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt0 pb32">
+                                <img src="/web/image/4193/style_800x450.jpg" class="img img-fluid mx-auto" alt="Odoo • Image and Text" data-original-title="" title="" aria-describedby="tooltip30359"/>
+                            </div>
+                            <div class="col-lg-6 pb16 pt16">
+                                <h2>Second life</h2>
+                                <p> There will be a time you can't or don't want to use your product any longer for the original purpose. As part of our circular ambition, we want to motivate you to return the Penguin product for a second life. Depending on the condition, we will try to find a new owner or to recycle the product.</p>
+                                <p>Iceep has developed an easy way to return the product. Download the app and follow the instructions.</p>
+                                <p>
+                                    <a href="https://iceep.ch" data-original-title="" title="" aria-describedby="tooltip271149"></a>
+                                </p>
+                                <p>
+                                    <a href="https://play.google.com/store/apps/details?id=com.iceep&amp;hl=de" data-original-title="" title="" aria-describedby="tooltip455351">&amp;nbsp;</a>
+                                    <a href="https://iceep.ch">
+                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAAAsCAYAAAC+N/CqAAAAAXNSR0IArs4c6QAAAHhlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAACQAAAAAQAAAJAAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAAIigAwAEAAAAAQAAACwAAAAAycSB3wAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAHOtJREFUeAHtXAl8VNW5P+fcO0v2EDIkhC1AJEBAwKgUWZwiooKyOrhVn10evlb7+lq17eti82rb1/rr7utiq9WiQEnYF1FraxRaRAhIWCQQSIBACFmAbLPde07/505mMvfOTEhE3rPvx/kxmXvP8n3f+bbzne+cgZIrVYqLbdntTqeqM6dmIyrhnBLGhEPYA16tPZhFsvzV1Vv9HyV694sPO5vtgaRk2m73BR0qS9VVCZ8REiD+YNCnOn1jCfGWLSnTPwq8nlKPsjfQnpKUlJxtE+R6qpMbOCHjKeVjCadJQHxYELKfCLFbULHHrtJTHZradnBJWeCjwB8Fg+bnux0dKSSTavpIQUQxEXQ8I2KgoNRGhbhIiKhG3X7IYb/XKc4MIa3tBw8evCQdVCLpN2JWhk315ROmJDOmtWo6OdlU9bd2NGF+fSrUVeTO4QFtmMLoJCpIMQCMJoTmAkoSGKcJQpsxgWNMsD0Av4tQeryh6p2TaP9QQivevdTGTzTlUV0ZSak+WXA6hVBSAKG48O0AfgkXDCK1oGcv6t4VRNlvT7XX7ZyzvBX1fS7Fzy21sZzWXE0PTKaaWIA53AIguUJyi1tYRimh0FAUScMO8GIdI+ztVFfKifJPvuQzWj78Hza4aEqmz6+Op4q4FfObC/jjMUcF87dANUQNUkmLEHQnlHeDopN3aHrHiTMVFZ2WzpFXOnjwlCR/sv3bjOgLAXiAEOwkNO8FTSFrmj7YVh/peYkHl8udSvvps9BtPuC4QeBQUANQVkIloBCxeLgIFdxJqNhg48GNp6t3nkZdvAFykKlI661W9MFM0DlEF3fCP7kppclCl8PxsUIxBAW8QkihHAJtW4kiNqdntewu/2S5ZgLew0txqSeDUuHmRDwEZbgFU8kI4exhUFcTZca8Jf73wINXqCo2Vyxe22semzDAQ+e2pU7UKb8fijEPbSNiJ20aEfVi0OEH7RWCkpU2RWw8c3C7NNKYQnMKp30GGvVzAE/rbqV1cEtfbUj3riYVFcHu+vhPeeNmDNGD5DtCiNsAR3oLw7XH7x2nlpJOKugOCO0H2Wrz9ku5vmuXPZiiOtunwzQfJTqfAWanA3ccwAmqDP5QL9T3IHR4VYOgv6pbUuZN0DtSfcP6e4foWlAqxsOCi5FQQgNSpENvHzAKynwW7n8daPjtnrvXVPZ2qOyXV1ycrHckLYDcHoNyXAeP7OjLeHNf2gRqXiWM/vbc4bd3mNsIUVL6D3sBQh2MhpAjlD0oTcfnUGon299x/lSHdVD3u0fJGTOgCBa0EpZ5K+Bkoa0bTnfHSz3Z0GEE+DaznSQ12VNH1Pou1MZ1vxPXLchUFH436PsRlON66EXSpYAnaLdBwFBmMTZFpbb60kPbEvQzqietnJcHa3tccPJ5eKxBqPxwyhFGIkgqIIyFVxk6cMnYD+pLP2gIN/X4XVDgcGr9HwG/v45+4/CRvLuckozBhaBlRHJWfm1n8wmTJ2FwlxfRGGt+gnJFsSPmSlDcbjW34MxoBD0bheCINS5Hi0M4AGMIE+SnNoc+C7FMqhWzoRyaej+Y8wOh8+FQDsXap4/vDALPA6x7Zr/+YEqiseOXz+1HVfVJofGHoZTSCHoq4BmF16VBaJAel7fh0VykEE3chnl8d+LKBfnh6sTfbnUAG/RZKvjn0WckPj0Zo5SpjL/kJ7Ec0QgjcUKON0MXSlzXuCcaVV1/lOTsoZ2MUFg/ceITsgoEjnA5r5yt+uReQspjlYd4FFdS+wjsSp6DsCTAxNZECdZ3Kt239AiSabL0JFh4BJqsaGJXe8vJxlB3QgpevcPhCDjuwfs3BOeDE7p3iYASuTvqQJ+OrmcJRuKMpRMxpKSv3c9XNpQdapMdo4sMgpXW4BcB6yHUw+PEFoQ3UhFaiUJPUcb2MRv5OzxDJerlMiKVReKwY2S8ecMDiFymKgPy7878c11ZXaJ4COHAkLsQr30ZsMbHUmHUSFlh7vQsvmvw2Ycl9DA831lokuS/bE9EhwLYOaB0aP+UIa9fvHhS9idqY9X2stzC6eMxkVuwjmdhJo2wqj/YFdvbhJTE1bysgsaBjJNHYfEzQjglKHMBovPYVh0FsQfAPBDLWgXhWCvpICKwDSR0DMbKpS2mSCI1hUvXFylp3uTpsIMHMWaYMc1IS9cDCEdpwJq+TzBygGi0FkI6j+2lQ28Tt2NZmEmdJIvZQh27RoEnxA8GHlPPHz8Xrov+FsfP3wIj8IA3Q2PwSs9LKXYn2BUoZL3OA69XLtkkBRMpN5R6cnWm3wwcCyinbsDJkaMiHeSDIJmY2yy/OmgR3pab2rpeMsfcNBQ7tM+Ad4mUQwr0MBT0Nc75Fkd/vaJux45IXJVV4B7MmD4NcfKdmI8bfQfiY/ZAgoDn/BNeJ3sEbT/EJ0yoR5HLhc5oP8p5fTrJqEuUo8jLQ4CUkjRTMLociNIlEGuBgCugHMspJ6+nktRjFlis/6gpA23UNhXMug9KNh/juxmGwRi7TifsG81Hyg9L2Ng5YEfE/xOe43NQ3pgAGEoht89vAMqLdoe2bee8jefwLK2FjPzm/CHIDZTgbQlLJqn2XEXYMkLbCaMPpUfB1Mf3eFZvlv2jy4Q/LRyF7fpPITxpPNLDdhfQiX+n4EX/QHXt5Yp71x/rbox9mrzhvpxgIIjAUvwbgtyJ4J21U4ApbJePsHnIk7RYGumAwpufxFL+GKY1xNIGOmAIhLyKh1+fO/zOu2iPa9hyXN4od7ZGtDugG19At8mo6ua97IAlCTOr0qm6qKnqraouZpfpZ6vJwVA7IXFNqasxmGTPA0F3g+FxlAO4KHldMPYTanP8/WzlG/ECXN58ZMdpUly8Lrsj6X3G2TGsfY+DccBg0Ar3KJapTvupMD1c0W+FE4clU9BrYSyl7djirkA48t19S8pOh8fI76ISj10j/qU6J3O4T6RqDZzwDthyvkps2VhYCYXHYavI8KzXo8fJZ5nrEErLlxCfTIEwLcqBDlQ0EYWt9XP6y4P3rrcK1AqO7Jy/smFKqWeZj+pe7L6+DOQTLTkTOxei0KkK6UWejwaQO9o9jHP9NvBpoHX66AfPTDZjLt9pOPxOLd4tDIqGRMiZI+VNpKhoVY6efQHG9lVMZJpliAKjHawKbSlGPm52MWZYsW8ej8IUJR8Ab7cADfWl5AjyKN93saa3G+IrRzdMbJ+bDm+v9jv49zG5ezCrF/D9IyS8FqppmW+ExxeVerKwBb4RqjMixuqw7lMVW7QO/jWrcgARpUnanYSJu2DpOWF6gy2c+OuxzHNsrRnbrgZtv6q4/neIE8xFpDc9gK0+LE30M7dINaZBxpRywtn/xLF2a/fI+w5spVmLthr0rEBlJL6KdBAiDYYi4yxTgee4BXTkQ/RW7wnboNvR+cdINtbiu0fliABFBrUhpf01xCcvYjIIAyyFkmSEHHNIkcceVhCac+3slMx8d6ZMnKF7uN40Mm9fYz8oAIJSOsDUYLyAVMKfCTj0A5fKY0SN5Rf3bz9/tipnTQZPezTb1vxUQ3X5zjMVmyKZPQfRJiJ+GI0xpgAPTNapwo4SjZe8/+n1F6JgGo9jfrG4gDNE+9hKwtrh9KTGwEEjkca9iNk7kVUV+i923r+ywTr2urULxwiFPoG1fAhYbri1SB8Jg5FdhPGX9iwpq47URz9gh0dgTNFV4eeKRzZ1CsK2AMxrVDGDRh87sBUVr7grO9xffiPfASsnpjqjndJj8IebzlVtq5TdjLre/oGB6kxshVfeCM6Yx0IR4UUGZev14w2NzLlm2o3U751rt/MhfodyeEDh9K3pemqVJXaQqLMBawIm0bXCm6jZ52eONy/u/2uMsEy94r6U6dXVxnYstpUq10Kc+aElqLsZjGkGEX/Zc++6D7prQ0/XLpudwtv0r/EAziSQJzDEYPyBtCEUoYkajC+tOLTu79ax7rcedrY2tf4QOOGxLBYrYTBSh+B3ddr+5phlqcjjsV+wdYzF3nmMYG0+5cG5h6nSUVP7UrmxIwjjYuePH+VZw3bBiy1EXfd2XiqjTtKZqhah/m3ZP7twahriL0lLkkkFpMZjlyKC9C/y4cMUmSnPGT0N8SI5hRV+qAmGIDZsa6aznJE3jcOW9kWsf9/C7B+Gsf0QqP+7zeadhAEGFeGButAyUIMMolnhsKaimm8hXo6I3jSN8NAP9x2y3mEQZn8TVIMqWo81dEtcwFryQ6ifDaL6mTQZsSmimGZkKNancPUVUhIbzLU2t30RtbcCn/SklkI7YGurcfpVVl5iTs8P9niS2hwdCxgVpcC7AgH6GnigF7mWPD1v6V3YHXSXikcqsN1nNfBoNehrLUxnTCbAjKIQJRv0ZIIe0/ICOqTS1TQe76gN9fyQf2Es8CL7LaIGMIFYhBQzYVOegDspQA1IlYLHG5gruD4dh3imQJQT5kBjlpUUw3Xj8C1V8/utbZfzPnn5HWmE69nAaRIWxCzzDo1em4gE1mE8E/64cBTaEaEjoJMzkQKIfLDRZOyvWoC8sONz5p2Cu8StTiy72w3d/zrS6OagVIKQywGWBVjzKzsXr60L45Pf+Q+7ndzROQle5xkYzzUhA4JaCzEZ3PyCPWCxTowRQm/GrqzOoC0KGOINxnVsqbsK5ywDMGTuQs4iUgBd5mwQx1z6KCQyKM4DYDdizifjNMkwYwKD654HPpq0Ew04nicupvJu94dKRWFykA2fmKIjI+t0ZvKYhsuo6GCZSYgepLCsMVEQSnk+pdHVagWvqMwNhzYQ7FQNlnYpBxQDQia7GeErTjy/xbwslZSwtpFZLoWKZ7sypSZhSDgQyEHoyJ/2HJqI5KGp0KA3eagi9KfA7GEh5ehqB+dh6ZOEzx9jVDqnOCyj2OWZUUEW0t4iHocJrxMV1vkDjQhCkS/bIFWhBkCC1zSj0AvYIQrhEZHutVIpHQmIgoZbqEeEZ2RGY8FRzpJ9vgsxE4nt2fsaoWqwQrDLQgXeBYStpdUfkZSaimC6jgrIU07B+Csf8BFncXr7JywxW00D0FI8qiJLOCnyDDjbiIFowGmDz3oeW+k/k5ISkxHke+bkKIwvwji5LMUUMOyCYLYYQSq4GgMpS95bC5yIiAgMii3xxUA2WPIRcFtXOAwetBgATaQALzveJxSQih+UyjjDVGA5SAnQcR32FOkKP7LCgp1gLA9Y8gXSemwINNMbxxrHAyZ8KlfewmRPI64KGpOWusGoH6nsFURV1lQ/a76kVLhhXipn6izgeAxnLSZY8gVjNcBaxlW6pWJJmWnuOU/MTqFp+gxo41dAVCwvcUEFR1rrBQ/UWwFTqvQHbGSVzbJHHaxSieSANB23NuIVGDB8YizOeH17qIPnl94tz0oH6kC7ONAnBJTprSCqJgYfLslg83gHpQEZs8TqYsyA3lX0z+tog/VfAESrBarg6wBnwDXcCmnXA2uOI174Hsa9AcF+gPORSrw/L2zs5eM/2nQyuj9yLPaUTvtECEUuD7FLp5wJLhhxQle8v3iNaUvrER4lI8l2HXEoj2Hyrmi4xrPh+OjbuK9Semr01LPR7cXPFdsgkHzUDcdYc4FSgc+R2Ap6AIWxaJEcIaRxUFMIYAbUuzcEy/ngVSQojhoF3aEVfVIQ3hloRmReCcIs08IrJZPhDadlFUyOulcShe5DPMqLPGBQnYw3rGoH2eUIG58VD+zeT61dzTX9PxAzPAKxf1bRHU8dLVn/vqUvdXBtJFH1x8D+MYi5zEUqB6Mn4Bt/wb1J+4DfNOea10iBLVN9CDupm+KsAJJFJzkTT/NAao11WSL9Bo8GTowjZl7hyh3wtFFNA49DBTfFdCyYJtyhFpEBTzoye8z0geG+ff3OLZjuwun5dRgXY2iYgAa026zBaY84zmVpLa42dQ80rhnsMidusG/G3YEniWI7QtzufaTcvA1MCBjZOpd2ZgG0dQaCjVZcW13j8KkHa2tDuQPOxSGwRyoJrvR18QlfID4Hlj8XSaWXK+7f1GSFf/DRjdLiTVYf3WfShnkDSYAugYDvsi5hsh9jVOeM/hKK83blQy8jmOwuk0o9LuHVFigp1INILSYhBrpkMu07fp9vd2PZa5F4QkIwcjREnYse2Cma5Q6dDICv+6PnE2QKVxFWSX01FxlYiRupzmaj/o/mtt69gYezECPNh4Oy6IGxS2ywd2h7+uRB5O0yrLfHMa3yWBLkZMVEhdOSvDp54hg/kxg9btDoG/vname/RQVDmp38K9z8V7iga7x2Mi0/321sNRWKu6sKToWtHOK4b6rzcdxm+1I0zN48y6sDImDHYSEu/3Bh2kIb47G6g3HrmaJv2OspMytfCXZUjM8SGl2K/VWG3QUWRstZyo3QVQ5O1zaWlZsUC56EKSmp90I5/gXKbs7tYBR42w5hrYyeA5YbbM1NGLqaDaSjcT5zX/9RN98QPaY3zzmFM2YC36eBdWyc/lBq8WZd3Q5v3xQEkOypWaeoUJbD2k3ZwS4kMHZxZ1Dhv3cVnlmMJNyAIngItHWLFyloLEPpuaOm36hxx6+QoPsmiEnFdGU/B4Q2jBBtabsjiG/s8peUnQRD5fIgT2itZQBYt/S6skWPyMM1a2O8d7n+p3Q4bsalm8fgHXJi+kDA+FeLHdzTaZkXTgCnIYlwv0ljPbioTHBpiYxgDtyKHqISRx5yjiHa5EJVbet0/nv18q0yTxEaC8UoKr0ta1JR5aOwzSfgtUaboaInJQF44CrNl1IWxiW/aQAstS5/3R1kmmKmQvn3ske4ry8ouAPXKXou8ijFVTjtdsgJfCfxlmiJ7Rww/1pCsrgWWdVzkeckA8fctFfnympM8lPxemNKSHHT38PytzVpZ950jZpaBVTtyEHY+b6GwYTZp4Fzt4HImKNryVNB2TVISEUCMDD1Tbj7ycC1KMxzAy/MHB5A3l5/hmc2uXA8X9qR7jtRPWervM5vEqxUIJ7e6tKVwGzGxVK0y1NaA0z0H1hrAIv+19UU7aj1MnNR6ZxcxJBLYHmzw8uSkspI8jg7YakaCZ7TO7E0fd+5QO2ceue8VF+ScChONUvXKq8RIvlTUIzZwJgVgxdKiGWpDkr5G+tyJj2IXK8SFeilDHhnUlVfdpG0LcseMRW8sp1lSvBiqt8WVNUkcdHhtel+kmmj2qAgFfMgn3vAnpHxYdIW8HNN1/lO3xVEAq1nF+tdmusnWKYLMWG4t1hGo1s6audi6nMxPR/MQG6RETfKi0BYueOPQZNhivUqM26fG3OoYMq+iYJvRNM4xCKjTGs3lARyTofjfxoWOCejM3njpNJFh0BTIyyvE8y14Q5rPy4aR2H8zUA7A0hywgI2EHT9kbED2p8Xme2bK257I3JgGO7jIM4pwDUN79LbRYqSREnKGJvQ81WKH47MRBZ6gi9F4Yg4M0RAjMJcZX6lnxHbx2EV5tQC+l9Nd2WsiQDteqCaTSeKcVXf2hT9rkLHxqDiaZxuL8X1mPcx79pOO44+5G0IjaSrCskH7QhI6VD0S+QYvPCf7wU18mwYeKKO4fb43zgubiwqOuQK9vsKhP8S5pxAG0PD0Y54Ijp9HYdLYUyCyG3t8kBAOxWuIvihk7Liri2IN4ZA6E+gPiPSFn6QAR+lU/DLG3gv0oiJ4jYZspUEMR6n6WBgNhiUCkEZWhAeFvmGa8CupRzpjJLK2bHK0dUvA9ZqOn6IjAd2KIpMfD0IXJFVwZhpeLrh7/AgaQu4kQY6XxVB/SfxfifDFA2rMOwJZt+LIuU5PPSR/eGzEIniOyaQjgNLXnmQP/D6QcuxbRHeQ769wxwDUCpJnvouoyqCLnoQ7fETOjEDe6pgFyDEL/vt/NWW6p1yDY8UI7Jn5GVUPAdLjxf/gA+SFzi3EGIQ1uZxOBvBL8zIBLwPR1NaSDkiIKMecHzH6AGFkaV7l5Q1QoXiSgNiOoq51sDio8ZaHg0aUGfIR9JjaY9+xWUnLGlb1SApef++9bXRTeFnivOORPSE+/TwDfn2RjnkroXuhCJ+61xV7rvR8OCVqazQoiuNZyY67AQrV08FW9n6qvI9NmK7DfvCDegqb1YlDqniw5IshMDpIfB2vsOrrcIdEXllIIa1exevPcnt9t/gxtqPIdD2y2BcNyUUF6oV+h6U44Fdi9cc726IfRIXst/DPFfBnOUPry7HILAzofVg/u+E3f74rvvX1MRiC9X4aAB8kFoXy4+uuhg+JYIVpx5jwUdCN2g6f7Lx6MzthJh/lqqk9RvSiUnfisFyWxkyDUqPgwEvNxy5BQdT5ZciQLQ217R1NA1fm9KfnEEAlwWlk7DkOt2Ta5MMbgXKGuB6Pqg5Ptd87K2jra110tUlLGdXHbgw0FN0AGcx9diNIvjDcoN0YMIBCRrgBIwTYaqyTczJHt29cHXCnEkYRP3mCj7NU7T/PNEPIdEtlxp50uzsFX5jOTGC0VaM3YXMwzMt2enPHr79lfPkv8IYYr+TM4anY573oUXuuKJdVwDeDCl82oh6ebjX13ABVx/Be0J/x6n+veajf/sgnqwNhLgg9F2QDiWRv/mg57B3+oOiODaePvyXZiDuUzEuxQo+AxniGRAeAjScCuNSDL4RbcO74Fd0eG7B5E7ieScizNcbjmzv0XLjESBzGWk+53VExw1sLqYC9ghMRm774nUP1aED8BqKgV578Lam0xksq5q/0bScJQbQ3XLj2oX9Nc5uQcCMRBMpgpHj1jvNwJJhUlaQA48q2qGQ9RBIFSh8AzHHZnjDE93QEj/hgvcghaibAGMiehnyMnpTCprZb1CzHqEGDgvFJzC3YWgbgKAYh2/oamKFEXxJd9SEtlr02065WNtwVK2AYsSuIAaSMEJckcs5y8dwHZG2SupTvOxUOJPZ1a/vXxLmqUAWsak5OBTOlFtcEIT8PmnzE3YuXWeNl40Dcy7cOC/VqanX48xzKmKECQjLxsGLDQQeqZTwYFJjqNyRNMISj0I4+8DI95Dx2125pKym7xMzj5j86gPp/lZvIVNpIa4/DgPzcesOFo17gkDsBW5cbqankSk+qil6VWXlhKaY1LsZpOlNptKZLi9GxShIB6b/s8aqd76NS8h2F3ENZTp2MoLj1/34MRh+5YjEvUwCIg9JfTDE89jZQEn5MY6fnGZqaSfi3Bg04ZYv3RoZ0/TPVSEP3uwO3L7y+pEXoRmw20yICJaES3lcbcOB3QX44BYaaG/eWT25vS9C6hUnIK2iMo9Nc/gdqt9hJO1SA+1acxbxV7+3FWGo9CR9L678G3Kpw7kFCjcJo7vlRWknFP1nuKz8FOrDsNHuYTnXXnSqAd0Z8OkGHTY70XzcG2jJ0LzIhktvAR3qXelG2Lv+/yy9KBSAesYepEZa0lN2OTuB/9M5Dxg+OYfabVvgB6WCRC1fxo/Pf95weNu3UX85AXOP8+trYNMjsI9Ro4CCCFPO+mNEXF9I6cTvo1OEVACz0Yd22vjrdlMcjPYFZJ/6Rmlkn8Zd7fy/xAHK5N1hqR0x+SqEFQiJr3C54giuMP3//8EbCiIDbbMHgcLI8AC3R9quaJhwVUE+5ipG2zvhKGK8B6jGXg37E+LzXVWQj7kMryh5THVghyJvmpmVRK45+I/yGPEPvaogV1QCH3PgOItBSgNLjHWFAd3QGZqv4QD2CparS8wVZO5HAZoy/AebMkA1OxAJWioGrq/6ryrIR8Hof1YYtuTTuOVuJMLi+BBDSa7o1K56kCvK3ssH3lC5yIsVBgdy1Pqf3nYiTD2Pe6M9n7hfJglXFeQyGXjlh5fg/44Ry6Agx4Er5EWww8W6sh3vb+ATTrNfEVJ6Oo6/IgivAu07BzqHu2qS/Qr+Uzxco5C7Gfkf0AjxU1zuwXWMQ/GWnr4jSTDiHyRFeie4X/AkAAAAAElFTkSuQmCC" data-filename="image.png" style="width: 136px;" data-original-title="" title="" aria-describedby="tooltip793126"/>
+                                    </a>
+                                    <a href="https://apps.apple.com/de/app/iceep/id1563647488" data-original-title="" title="" aria-describedby="tooltip704675"/>
+&amp;nbsp;<img src="data:image/png;base64,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" data-filename="image.png" style="width: 74px;"/>
+                                    <br/>
+                                </p>
+                                <a href="https://apps.apple.com/de/app/iceep/id1563647488"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_call_to_action pt48 pb24 bg-beta" data-name="Call to Action" style="">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 pb24">
+                                <h3>
+                                    <b>The Penguin care&amp;nbsp;Programm&amp;nbsp;is an important element of our philosophy.</b>
+                                </h3>
+                                <p class="lead">Explore our values we care about.</p>
+                            </div>
+                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                <a href="/philisophy" class="btn btn-primary btn-lg"> Philosophy <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

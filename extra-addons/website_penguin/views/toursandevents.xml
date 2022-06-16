@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="toursandevents">
+  <t t-call="website.layout">
+    <div id="wrap" class="oe_structure oe_empty carlos_danger_11">
+      <div id="myCarousel1605523799077" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+        <ol class="carousel-indicators d-none">
+          <li data-target="#myCarousel1605523799077" data-slide-to="0" class="active"/>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item oe_img_bg oe_custom_bg pt256 pb0 active" style="background-image: url(&quot;https://penguin.swiss/web/image/8902/PENGUIN%20DAVOS%20KLOSTERS%20022.jpg&quot;); background-position: 48.66% 55.75%;" data-name="Slide">
+            <div class="container">
+              <div class="row content">
+                <div class="carousel-content col-lg-7">
+                  <div class="s_title pb8" data-name="Title">
+                    <h2 class="s_title_default">
+                      <font style="color: rgb(255, 255, 255); font-size: 62px;">Tours and Events</font>
+                    </h2>
+                  </div>
+                  <p class="lead">
+                    <font color="#ffffff">An exciting mix of&amp;nbsp;off-piste training, tours and&amp;nbsp;freeride days.</font>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-control-prev d-none" data-target="#myCarousel1605523799077" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+          <span class="carousel-control-prev-icon"/>
+          <span class="sr-only o_default_snippet_text">Previous</span>
+        </div>
+        <div class="carousel-control-next d-none" data-target="#myCarousel1605523799077" data-slide="next" role="img" aria-label="Next" title="Next">
+          <span class="carousel-control-next-icon"/>
+          <span class="sr-only o_default_snippet_text">Next</span>
+        </div>
+      </div>
+      <section class="s_three_columns bg-200 pb32 pt16" data-name="Columns">
+        <div class="container">
+          <div class="row d-flex align-items-stretch">
+
+          </div>
+        </div>
+      </section>
+      <section class="pb0 pt24" data-name="Title">
+        <div class="container">
+          <div class="row s_nb_column_fixed">
+            <div class="col-lg-12 s_title pb0 pt0" style="text-align: center;">
+              <h1 class="s_title_default" style="text-align: left; ">
+                <font style="font-size: 36px;">
+                  <b>March 2022</b>
+                </font>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_three_columns bg-200 pb32 pt16" data-name="Columns">
+        <div class="container">
+          <div class="row d-flex align-items-stretch">
+            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+              <div class="card bg-white">
+                <div class="card-body">
+                  <h3 class="card-title">05.03.-06.03.2022</h3>
+                  <h3 class="card-title">
+                    <font style="font-size: 24px;">Ladies Safety Weekend, Arosa</font>
+                  </h3>
+                  <div class="page" title="Page 1">
+                    <div class="section">
+                      <div class="layoutArea">
+                        <div class="column">
+                          <div class="page" title="Page 1">
+                            <div class="section">
+                              <div class="layoutArea">
+                                <div class="column">
+                                  <div class="page" title="Page 1">
+                                    <div class="section">
+                                      <div class="layoutArea">
+                                        <div class="column">
+                                          <p>Gemeinsam mit gleichgesinnten Ladies ein tolles Wochenende in Arosa geniessen. Hier erlernst du die wichtigsten Punkte für sichere Tiefschnee Abfahrten und Touren. </p>
+                                          <p>Zielpublikum: Einsteiger und Fortgeschrittene. Die Gruppeneinteilung erfolgt je nach Level.</p>
+                                          <p><span style="font-size: 1rem;">In Zusammenarbeit mit Lawinenkurse Arosa. Anmeldung erforderlich.</span>&amp;nbsp;</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="s_btn text-left pt0 pb4" data-name="Button">
+                            <a href="https://www.lawinenkursearosa.com/service-page/penguin-ladies-safety-weekend-in-arosa?referral=service_list_widget" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip900503">Anmelden<br/></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <small style="margin-left: 1.5em;">
+                    <div style="text-align: left;"><img class="img-fluid o_we_custom_image" src="/web/image/4378/category_headwear_1600x1068.jpg" data-original-title="" title="" aria-describedby="tooltip987226"/><br/>&amp;nbsp;<font style="font-size: 18px;">&amp;nbsp;</font></div>
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+              <div class="card bg-white">
+                <div class="card-body">
+                  <h3 class="card-title">11.03.-13.03.2022</h3>
+                  <h3 class="card-title">
+                    <font style="font-size: 24px;">3 Tage Skisafari, Glarnerland. </font>
+                  </h3>
+                  <div class="page" title="Page 1">
+                    <div class="section">
+                      <div class="layoutArea">
+                        <div class="column">
+                          <div class="page" title="Page 1">
+                            <div class="section">
+                              <div class="layoutArea">
+                                <div class="column">
+                                  <div class="page" title="Page 1">
+                                    <div class="section">
+                                      <div class="layoutArea">
+                                        <div class="column">
+                                          <p>Inhalt:&amp;nbsp;Drei Tage Freeriden im Glarnerland. Wir benutzen Bahnen, wo es welche hat Den Rest bewältigen wir aus eigener Kraft. Viele Tiefenmeter sind garantiert! </p>
+                                          <p>Zielpublikum: Für Fortgeschrittene.</p>
+                                          <p>In Zusammenarbeit mit Get Outdoor GmbH. Anmeldung erforderlich.</p>
+                                          <p>
+                                            <br/>
+                                          </p>
+                                          <p>
+
+
+                                        </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="s_btn pt0 pb4 text-left" data-name="Button">
+                            <a href="https://www.getoutdoorgmbh.ch/fur-private/eventdetail/skisafari-glarnerland#content" class="btn btn-alpha" data-original-title="" title="" aria-describedby="tooltip900503">Mehr Infos &amp;amp; Anmeldung</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <small style="margin-left: 1.5em;">
+                    <div style="text-align: left;"><img class="img-fluid o_we_custom_image" src="/web/image/4330/iso_lp_title2176x1216.jpg" data-original-title="" title="" aria-describedby="tooltip889540"/><br/>&amp;nbsp;<font style="font-size: 18px;">&amp;nbsp;</font></div>
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+              <div class="card bg-white">
+                <div class="card-body">
+                  <h3 class="card-title">Sa, 19.03.22, ganztags</h3>
+                  <h3 class="card-title">
+                    <font style="font-size: 24px;">Einsteiger Ski-/Splitboard Tour, Glarnerland. </font>
+                  </h3>
+                  <div class="page" title="Page 1">
+                    <div class="section">
+                      <div class="layoutArea">
+                        <div class="column">
+                          <div class="page" title="Page 1">
+                            <div class="section">
+                              <div class="layoutArea">
+                                <div class="column">
+                                  <div class="page" title="Page 1">
+                                    <div class="section">
+                                      <div class="layoutArea">
+                                        <div class="column">
+                                          <p>Inhalt: Du möchtest mit dem Touren beginnen, fühlst dich aber allein noch nicht genug sicher. Lerne mit uns die notwendigen Grundlagen für einen optimalen Start.</p>
+                                          <p>Zielpublikum: Einsteiger </p>
+                                          <p>In Zusammenarbeit mit Get Outdoor GmbH. Anmeldung erforderlich.</p>
+                                          <p>
+                                            <br/>
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="s_btn pt0 pb4 text-left" data-name="Button">
+                            <a href="https://www.getoutdoorgmbh.ch/fur-private/eventdetail/einsteiger-skitour-splitboardtour-im-glarnerland-3#content" class="btn btn-alpha" data-original-title="" title="" aria-describedby="tooltip900503">Mehr Infos &amp;amp; Anmeldung</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <small style="margin-left: 1.5em;">
+                    <div style="text-align: left;"><img class="img-fluid o_we_custom_image" src="/web/image/4338/shell_pant_women.jpg" data-original-title="" title="" aria-describedby="tooltip889540"/><br/>&amp;nbsp;<font style="font-size: 18px;">&amp;nbsp;</font></div>
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_call_to_action bg-200 pt48 pb24" data-name="Call to Action">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-9 pb24">
+              <h3>If you have questions, please contact us any time.</h3>
+              <p class="lead">&amp;nbsp;</p>
+            </div>
+            <div class="col-lg-3 s_btn pt8 pb24 text-right" data-name="Button">
+              <a href="/de_CH/contact" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip852979"> Get in touch&amp;nbsp;<i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" data-original-title="" title="" aria-describedby="tooltip22644"/></a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </t>
+</template>
+</odoo>

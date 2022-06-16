@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="movie">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden pb0 pt24 bg-black-75" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg o_bg_img_opt_custom" style="background-image: url(&quot;https://penguin.swiss/web/image/website.s_cover_default_image&quot;); background-size: 1% 1%; background-position: 100% 1%;"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="s_title col-lg-12 pb0" data-name="Title">
+                                <h1 class="s_title_thin" style="font-size: 62px;">
+                                    <div class="media_iframe_video" data-oe-expression="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;modestbranding=1" style="">
+                                        <div class="css_editable_mode_display" data-original-title="" title="" aria-describedby="tooltip472860">&amp;nbsp;</div>
+                                        <div class="media_iframe_video_size">&amp;nbsp;</div>
+                                        <iframe src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;modestbranding=1" allowfullscreen="allowfullscreen" frameborder="0"/>
+                                    </div>
+                                    <font style="font-size: 24px;">&amp;nbsp;</font>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_three_columns bg-200 pt32 pb32" data-name="Columns">
+                    <div class="container">
+                        <div class="row d-flex align-items-stretch">
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <div class="card-body">
+                                        <div class="s_btn pb0 pt16 text-left" data-name="Button">
+                                            <b>
+                                                <a href="/de_CH/shop/product/frauen-3-lagen-dermizax-shell-jacke-69?category=2#attr=348,551" data-original-title="" title="" aria-describedby="tooltip944128">
+                                                    <img class="card-img-top" src="/web/image/8791/shell_jacket_women_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip493165"/>
+                                                    <font style="font-size: 24px;">&amp;nbsp;</font>
+                                                </a>
+                                            </b>
+                                            <b>
+                                                <a href="/de_CH/shop/product/frauen-3-lagen-dermizax-shell-jacke-69?category=2#attr=348,551" data-original-title="" title="" aria-describedby="tooltip944128">
+                                                    <font style="font-size: 24px;">
+                                                        <br/>
+                                                    </font>
+                                                </a>
+                                            </b>
+                                            <b>
+                                                <a href="/de_CH/shop/product/frauen-3-lagen-dermizax-shell-jacke-69?category=2#attr=348,551" data-original-title="" title="" aria-describedby="tooltip944128">
+                                                    <font style="color: rgb(0, 0, 0); font-size: 24px;" data-original-title="" title="" aria-describedby="tooltip283211">Women Shell Jacket</font>
+                                                </a>
+                                                <font style="color: rgb(0, 0, 0); font-size: 24px;">&amp;nbsp;</font>
+                                            </b>
+                                            <br/>
+                                            <a href="/shop/product/women-3-layer-dermizax-shell-jacket-69#attr=348,551" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip479571">Our colors</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <div class="card-body">
+                                        <div class="s_btn pb0 pt16 text-left" data-name="Button">
+                                            <a href="https://penguin.swiss/shop/product/men-3-layer-dermizax-shell-jacket-60?category=5#attr=112,180">
+                                                <img class="card-img-top" src="/web/image/8794/shell_jacket_men_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip493165"/>
+ &amp;nbsp; </a>
+                                            <b>
+                                                <br/>
+                                            </b>
+                                            <b>
+                                                <a href="https://penguin.swiss/shop/product/men-3-layer-dermizax-shell-jacket-60?category=5#attr=112,180" data-original-title="" title="" aria-describedby="tooltip944128">
+                                                    <font style="color: rgb(0, 0, 0); font-size: 24px;">Men Shell Jacket&amp;nbsp;</font>
+                                                </a>
+                                                <font style="color: rgb(0, 0, 0); font-size: 24px;">&amp;nbsp;</font>
+                                                <font style="color: rgb(0, 0, 0); font-size: 24px;">
+                                                </font>
+                                            </b>
+                                            <br/>
+                                            <a href="https://penguin.swiss/shop/product/men-3-layer-dermizax-shell-jacket-60?category=5#attr=112,180" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip479571">Our colors</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_call_to_action bg-200 pt48 pb24" data-name="Call to Action">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 pb24">
+                                <h3>
+                                    <b>Penguin Powderwear for Powderpeople</b>.
+                                </h3>
+                                <p class="lead">Discover our philosophy and values.</p>
+                            </div>
+                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                <a href="/philisophy" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip566852"> Philosophy <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

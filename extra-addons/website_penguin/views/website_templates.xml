@@ -123,7 +123,7 @@
     </template>
 
     <template id="placeholder_header_call_to_action" inherit_id="website.placeholder_header_call_to_action" customize_show="True" active="True"
-            name="Placeholder Header Call to Action">
+            name="Penguin Placeholder Header Call to Action">
         <xpath expr="//div[1]" position="attributes">
             <attribute name="t-attf-class" add="d-none" separator=" "/>
         </xpath>

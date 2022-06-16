@@ -6,10 +6,21 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '1.4',
+    'version': '1.5',
     'sequence': 7,
     'depends': ['website'],
-    'data': ['views/website_templates.xml'],
+    'data': [
+        'views/website_templates.xml',
+        'views/aboutus.xml',
+        'views/ambassador.xml',
+        'views/care.xml',
+        'views/customerservice.xml',
+        'views/movie.xml',
+        'views/philosophy.xml',
+        'views/stores.xml',
+        'views/toursandevents.xml',
+        'data/website_data.xml',
+    ],
     'assets': {
         'web._assets_frontend_helpers': [
             '/website_penguin/static/src/scss/bootstrap_variables.scss',
