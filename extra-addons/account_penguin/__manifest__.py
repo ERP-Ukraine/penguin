@@ -1,6 +1,6 @@
 {
     'name': 'Penguin Invoicing',
-    'version': '1.5',
+    'version': '1.6',
     'summary': 'Invoices & Payments',
     'category': 'Accounting/Accounting',
     'depends': ['account'],
