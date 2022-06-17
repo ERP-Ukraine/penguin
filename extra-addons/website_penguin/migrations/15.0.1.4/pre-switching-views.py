@@ -8,7 +8,6 @@ _logger = logging.getLogger(__name__)
 def migrate(cr, version):
     env = api.Environment(cr, SUPERUSER_ID, {})
     view_names = [
-        'portal.footer_language_selector',
         'website.header_language_selector',
         'website.header_language_selector_flag',
     ]

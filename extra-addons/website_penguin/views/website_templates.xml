@@ -150,4 +150,10 @@
             <attribute name="t-esc">lg[2].split('/').pop().split()[0]</attribute>
         </xpath>
     </template>
+
+    <template id="footer_copyright_company_name" inherit_id="website.footer_copyright_company_name">
+        <xpath expr="//footer//span[hasclass('o_footer_copyright_name')]" position="replace">
+            <span class="o_footer_copyright_name mr-2">&amp;copy; Penguin c/o Kalisti International GmbH</span>
+        </xpath>
+    </template>
 </odoo>
