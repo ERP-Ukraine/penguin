@@ -488,7 +488,7 @@
             </t>
         </xpath>
 
-        <xpath expr="//t[@t-call='portal.user_dropdown']" position="before">
+        <xpath expr="//t[@t-call='portal.placeholder_user_sign_in']" position="before">
             <li class="nav-item divider"></li>
         </xpath>
 
