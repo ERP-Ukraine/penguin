@@ -15,4 +15,5 @@
     ],
     'auto_install': True,
     'installable': True,
+    'post_init_hook': '_post_set_footer',
 }
