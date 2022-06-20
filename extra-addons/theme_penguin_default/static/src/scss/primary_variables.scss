@@ -1,0 +1,49 @@
+//------------------------------------------------------------------------------
+// Colors
+//------------------------------------------------------------------------------
+$o-color-palettes: map-merge($o-color-palettes,
+    (
+        'penguin-1': (
+            'o-color-1': #929191,
+            'o-color-2': #dedede,
+            'o-color-3': #929192,
+            'o-color-4': #ffffff,
+            'o-color-5': #282727,
+
+            'o-cc1-btn-primary': 'o-color-1',
+            'menu': 3,
+            'footer': 5,
+            'copyright-custom': 5,
+        ),
+    ),
+);
+
+//------------------------------------------------------------------------------
+// Fonts
+//------------------------------------------------------------------------------
+$o-theme-font-configs: (
+    'Roboto': (
+        'family': ('Roboto', sans-serif),
+        'url': 'Roboto:300,300i,400,400i,700,700i',
+    ),
+);
+
+$o-website-values-palettes: (
+    (
+        'color-palettes-name': 'penguin-1',
+        'font': 'Roboto',
+        'headings-font': 'Roboto',
+        'navbar-font': 'Roboto',
+        'buttons-font': 'Roboto',
+    ),
+);
+
+$o-selected-color-palettes-names: append($o-selected-color-palettes-names, 'penguin-1');
+
+$o-color-palettes-compatibility-indexes: (
+    1: 'penguin-1',
+);
+
+$o-theme-color-palettes-compatibility-indexes: (
+    1: 'penguin-1',
+);
