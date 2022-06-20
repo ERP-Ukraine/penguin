@@ -501,5 +501,9 @@
         <xpath expr="//t[@t-set='_item_class']" position="attributes">
             <attribute name="t-value">'nav-item'</attribute>
         </xpath>
+
+        <xpath expr="//t[@t-set='_icon']" position="after">
+            <t t-set="_text" t-value="True"/>
+        </xpath>
     </template>
 </odoo>
