@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="fleece">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden bg-black-25 pb192 pt256" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;/web/image/4331/fleece_lp_title2176x1216.jpg&quot;); background-position: 57.81% 47.66%;"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" data-name="Title">
+                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+                                    <font style="color: rgb(255, 255, 255);">Fleece Mid Layer</font>
+                                </h1>
+                            </div>
+                            <div class="col-lg-12 s_text pt16 pb16" data-name="Text">
+                                <p class="lead" style="text-align: center;">
+                                    <font style="color: rgb(255, 255, 255);">Comfort stretch hoodie for everyday use.</font>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pt32 pb32" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pt32 pb32">
+                                <p class="lead">Our S.Café micro fleece hoodie is made from a stretchy and fast-drying textile. The polyester yarn is also enriched with coffee grounds, which has an odor neutralizing effect in addition to the ecological aspect. The soft brushed inside makes it very comfortable wear. The fleece is ideally worn as an insulation layer in combination with a shell jacket or solo depending on temperature and need. </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_three_columns bg-200 pt32 pb32" data-name="Columns">
+                    <div class="container">
+                        <div class="row d-flex align-items-stretch">
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4332/category_merino_women2_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip918897"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Women Fleece Hoodie</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/frauen-stretch-fleece-zip-hoodie-224?category=2#attr=1073,1090" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip444355">Show now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4334/category_Iso_Fleece_men_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip918897"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Men Fleece Hoodie</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/men-stretch-fleece-zip-hoodie-222?category=5#attr=1054,1089" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip444355">Show now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="d-none o_we_fake_image"/>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

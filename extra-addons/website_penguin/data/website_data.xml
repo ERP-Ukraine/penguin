@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!-- website pages -->
+<!-- Homepage -->
+<record id="website_page_penguin_homepage" model="website.page">
+    <field name="name">Penguin Homepage</field>
+    <field name="url">/</field>
+    <field name="view_id" ref="website_penguin.homepage"/>
+    <field name="is_published">True</field>
+</record>
+
+<!-- website products pages -->
+<record id="website_page_penguin_shell" model="website.page">
+    <field name="name">Shell</field>
+    <field name="url">/shell</field>
+    <field name="view_id" ref="website_penguin.shell"/>
+    <field name="is_published">True</field>
+</record>
+
+<record id="website_page_penguin_insulation" model="website.page">
+    <field name="name">Insulation</field>
+    <field name="url">/insulation</field>
+    <field name="view_id" ref="website_penguin.insulation"/>
+    <field name="is_published">True</field>
+</record>
+
+<record id="website_page_penguin_fleece" model="website.page">
+    <field name="name">Fleece</field>
+    <field name="url">/fleece</field>
+    <field name="view_id" ref="website_penguin.fleece"/>
+    <field name="is_published">True</field>
+</record>
+
+<record id="website_page_penguin_merino" model="website.page">
+    <field name="name">Merino</field>
+    <field name="url">/merino</field>
+    <field name="view_id" ref="website_penguin.merino"/>
+    <field name="is_published">True</field>
+</record>
+
+<record id="website_page_penguin_accessoires" model="website.page">
+    <field name="name">Accessoires</field>
+    <field name="url">/accessoires</field>
+    <field name="view_id" ref="website_penguin.accessoires"/>
+    <field name="is_published">True</field>
+</record>
+
+<!-- website about pages -->
 <record id="website_page_penguin_philosophy" model="website.page">
     <field name="name">Philosophy</field>
     <field name="url">/philosophy</field>
@@ -57,7 +101,49 @@
     <field name="is_published">True</field>
 </record>
 
-<!-- website menus -->
+<!-- website products menu -->
+<record id="website_menu_penguin_products" model="website.menu">
+    <field name="name">Products</field>
+    <field name="url">/products</field>
+    <field name="sequence">1</field>
+</record>
+
+<record id="website_menu_penguin_shell" model="website.menu">
+    <field name="name">Shell</field>
+    <field name="url">/shell</field>
+    <field name="parent_id" ref="website_penguin.website_menu_penguin_products"/>
+    <field name="page_id" ref="website_penguin.website_page_penguin_shell"/>
+</record>
+
+<record id="website_menu_penguin_insulation" model="website.menu">
+    <field name="name">Insulation</field>
+    <field name="url">/insulation</field>
+    <field name="parent_id" ref="website_penguin.website_menu_penguin_products"/>
+    <field name="page_id" ref="website_penguin.website_page_penguin_insulation"/>
+</record>
+
+<record id="website_menu_penguin_fleece" model="website.menu">
+    <field name="name">Fleece</field>
+    <field name="url">/fleece</field>
+    <field name="parent_id" ref="website_penguin.website_menu_penguin_products"/>
+    <field name="page_id" ref="website_penguin.website_page_penguin_fleece"/>
+</record>
+
+<record id="website_menu_penguin_merino" model="website.menu">
+    <field name="name">Merino</field>
+    <field name="url">/merino</field>
+    <field name="parent_id" ref="website_penguin.website_menu_penguin_products"/>
+    <field name="page_id" ref="website_penguin.website_page_penguin_merino"/>
+</record>
+
+<record id="website_menu_penguin_accessoires" model="website.menu">
+    <field name="name">Accessoires</field>
+    <field name="url">/accessoires</field>
+    <field name="parent_id" ref="website_penguin.website_menu_penguin_products"/>
+    <field name="page_id" ref="website_penguin.website_page_penguin_accessoires"/>
+</record>
+
+<!-- website about menu -->
 <record id="website_menu_penguin_about" model="website.menu">
     <field name="name">About</field>
     <field name="url">/about</field>

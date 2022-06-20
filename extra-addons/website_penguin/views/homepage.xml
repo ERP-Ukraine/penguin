@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="homepage" name="Penguin Homepage">
+        <t t-call="website.layout">
+            <t t-set="pageName" t-value="'homepage'"/>
+            <div id="wrap" class="oe_structure oe_empty">
+                <div id="myCarousel1632476597471" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" data-snippet="s_carousel">
+                    <ol class="carousel-indicators d-none">
+                        <li data-target="#myCarousel1632476597471" data-slide-to="0" class="active"/>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item pt256 pb96 oe_img_bg oe_custom_bg active" style="background-image: url(&quot;https://penguin.swiss/web/image/4330/iso_lp_title2176x1216.jpg&quot;); background-position: 70.03% 52.96%;" data-name="Slide">
+                            <div class="container">
+                                <div class="row content">
+                                    <div class="carousel-content col-lg-7">
+                                        <div class="s_title pb8" data-name="Title" data-snippet="s_title">
+                                            <h2 class="s_title_default">
+                                                <font style="color: rgb(255, 255, 255); font-size: 62px;">
+                                                    <b>Powderwear for Powderpeople</b>
+                                                </font>
+                                            </h2>
+                                        </div>
+                                        <p class="lead">
+                                            <br/>
+                                        </p>
+                                        <div class="s_btn pt16 pb16 text-left" data-name="Buttons" data-snippet="s_btn">
+                                            <a href="/shop" class="btn btn-secondary rounded-circle">Shop</a>
+                                            <a href="/toursandevents" class="ml-2 btn btn-primary rounded-circle" data-original-title="" title="" aria-describedby="tooltip690034">Tours</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-control-prev d-none" data-target="#myCarousel1632476597471" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                        <span class="carousel-control-prev-icon"/>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </div>
+                    <div class="carousel-control-next d-none" data-target="#myCarousel1632476597471" data-slide="next" role="img" aria-label="Next" title="Next">
+                        <span class="carousel-control-next-icon"/>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </div>
+                </div>
+                <section class="s_features pb8 pt0" data-name="Features" data-snippet="s_features">
+                    <div class="container">
+                        <div class="row">
+                            <div class="pt32 pb32 text-center col-lg-3">
+                                <a href="/shell">
+                                    <img class="img-fluid o_we_custom_image m-3" src="/web/image/13105/shell_layer_240x160.jpg" data-original-title="" title="" aria-describedby="tooltip454409" loading="lazy" style=""/>
+                                </a>
+                                <h3>Shell</h3>
+                                <p>Protection from wind, water &amp;amp; snow</p>
+                            </div>
+                            <div class="pt32 pb32 text-center col-lg-3">
+                                <a href="/insulation">
+                                    <img class="img-fluid o_we_custom_image m-3" src="/web/image/13106/insulation_layer_240x160.jpg" data-original-title="" title="" aria-describedby="tooltip454409" loading="lazy" style=""/>
+                                </a>
+                                <h3>Insulation</h3>
+                                <p>Keeps you warm.</p>
+                            </div>
+                            <div class="pt32 pb32 text-center col-lg-3">
+                                <a href="/fleece">
+                                    <img class="img-fluid o_we_custom_image m-3" src="/web/image/13107/fleece_layer_240x160.jpg" data-original-title="" title="" aria-describedby="tooltip454409" loading="lazy" style=""/>
+                                </a>
+                                <h3>Fleece</h3>
+                                <p>Versatile</p>
+                            </div>
+                            <div class="pt32 pb32 text-center col-lg-3">
+                                <a href="/merino">
+                                    <img class="img-fluid o_we_custom_image m-3" src="/web/image/13108/base_layer_240x160.jpg" data-original-title="" title="" aria-describedby="tooltip454409" loading="lazy" style=""/>
+                                </a>
+                                <h3>Merino</h3>
+                                <p>No stink.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div id="myCarousel1632221336490" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" data-snippet="s_carousel">
+                    <ol class="carousel-indicators d-none">
+                        <li data-target="#myCarousel1632221336490" data-slide-to="0" class="active">
+                            <br/>
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item pb256 pt64 active o_background_video" style="background-image: url('https://penguin.swiss/web/image/4330/iso_lp_title2176x1216.jpg'); background-position: 70.03% 52.96%; min-height: 632.156px;" data-bg-video-src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1" data-name="Slide">
+                            <div class="o_bg_video_container">
+                                <iframe id="o_bg_video_iframe_30" class="o_bg_video_iframe fade show" frameborder="0" src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1" style="width: 100%; height: 144.95%; left: 0px; top: -22.4752%;"></iframe>
+                            </div>
+                            <div class="container">
+                                <div class="row content">
+                                    <div class="carousel-content col-lg-7 pt136">
+                                        <div class="s_title pb8" data-name="Title" data-snippet="s_title">
+                                            <h2 class="s_title_default">
+                                                <span style="font-size: 62px;">Ride with Penguin.</span>
+                                            </h2>
+                                        </div>
+                                        <div class="s_btn pt16 pb16 text-left" data-name="Buttons" data-snippet="s_btn">
+                                            <a href="/penguinmovie" class="btn btn-secondary rounded-circle" data-original-title="" title="" aria-describedby="tooltip849548">Watch full movie.</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-control-prev d-none" data-target="#myCarousel1632221336490" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                        <span class="carousel-control-prev-icon"/>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </div>
+                    <div class="carousel-control-next d-none" data-target="#myCarousel1632221336490" data-slide="next" role="img" aria-label="Next" title="Next">
+                        <span class="carousel-control-next-icon"/>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </div>
+                </div>
+                <section class="s_features_grid pt48 pb24" data-name="Features Grid" data-snippet="s_features_grid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 s_col_no_bgcolor pb24">
+                                <div class="row">
+                                    <div class="col-lg-12 pb24" data-name="Box">
+                                        <h2>We are Powderpeople.</h2>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt8" data-name="Box">
+                                        <i class="fa fa-2x rounded-circle bg-primary s_features_grid_icon fa-check" data-original-title="" title="" aria-describedby="tooltip437117"/>
+                                        <div class="ml-3 d-inline s_features_grid_content">
+                                            <h4 class="d-inline">From Switzerland.</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb0" data-name="Box">
+                                        <i class="fa fa-2x rounded-circle bg-primary s_features_grid_icon fa-check"/>
+                                        <div class="ml-3 d-inline s_features_grid_content">
+                                            <h4 class="d-inline">We create durable outdoor garments.</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb0" data-name="Box">
+                                        <i class="fa fa-2x rounded-circle bg-primary s_features_grid_icon fa-check"/>
+                                        <div class="ml-3 d-inline s_features_grid_content">
+                                            <h4 class="d-inline">For your passion, and ours.</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 s_col_no_bgcolor pb24">
+                                <div class="row">
+                                    <div class="col-lg-12 pb24" data-name="Box">
+                                        <h2>Searching for...</h2>
+                                    </div>
+                                    <div class="col-lg-12 pt8 pb0" data-name="Box">
+                                        <i class="fa fa-2x rounded bg-secondary s_features_grid_icon fa-snowflake-o" data-original-title="" title="" aria-describedby="tooltip702111"/>
+                                        <div class="ml-3 d-inline s_features_grid_content">
+                                            <h4 class="d-inline">Powder</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pt16 pb0" data-name="Box">
+                                        <i class="fa fa-2x rounded bg-secondary s_features_grid_icon fa-snowflake-o"/>
+                                        <div class="ml-3 d-inline  s_features_grid_content">
+                                            <h4 class="d-inline">Deep Powder</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 pb0 pt16" data-name="Box">
+                                        <i class="fa fa-2x rounded bg-secondary s_features_grid_icon fa-snowflake-o" data-original-title="" title="" aria-describedby="tooltip425833"/>
+                                        <div class="ml-3 d-inline s_features_grid_content">
+                                            <h4 class="d-inline">Nipple deep Powder</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden bg-black-25 pb256 pt256" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;" data-snippet="s_cover">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;https://penguin.swiss/web/image/13094/penguin_w22_lookbook_4981-Bearbeitet-resize.jpg&quot;); background-position: 63.11% 31.5%;"/>
+                    <div class="o_we_bg_filter bg-black-25"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" data-name="Title" data-snippet="s_title">
+                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+                                    <font style="color: rgb(255, 255, 255); font-size: 48px;">Shell Layer</font>
+                                </h1>
+                            </div>
+                            <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons" data-snippet="s_btn">
+                                <a href="/shell" class="btn btn-delta rounded-circle" data-original-title="" title="" aria-describedby="tooltip629668">Women</a>
+                                <a href="/shell" class="ml-2 btn btn-primary rounded-circle" data-original-title="" title="" aria-describedby="tooltip424594">Men</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden pb256 bg-black-25 pt256" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;" data-snippet="s_cover">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;/web/image/13099/penguin_w21_davos_0534_small.jpg&quot;); background-position: 41.07% 41.35%;"/>
+                    <div class="o_we_bg_filter bg-black-25"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" data-name="Title" data-snippet="s_title">
+                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+                                    <font style="color: rgb(255, 255, 255); font-size: 48px;">Insulation Layer</font>
+                                </h1>
+                            </div>
+                            <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons" data-snippet="s_btn">
+                                <a href="/insulation" class="btn btn-delta rounded-circle" data-original-title="" title="" aria-describedby="tooltip629668">Women</a>
+                                <a href="/insulation" class="ml-2 btn btn-primary rounded-circle" data-original-title="" title="" aria-describedby="tooltip424594">Men</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden pb256 bg-black-25 pt256" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;" data-snippet="s_cover">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;/web/image/13101/penguin_w2121_carshina_0681-Bearbeitet_small.jpg&quot;); background-position: 48.55% 44.2%;"/>
+                    <div class="o_we_bg_filter bg-black-25"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" data-name="Title" data-snippet="s_title">
+                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+                                    <font style="color: rgb(255, 255, 255); font-size: 48px;">Fleece Layer</font>
+                                </h1>
+                            </div>
+                            <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons" data-snippet="s_btn">
+                                <a href="/fleece" class="btn btn-delta rounded-circle" data-original-title="" title="" aria-describedby="tooltip629668">Women</a>
+                                <a href="/fleece" class="ml-2 btn btn-primary rounded-circle" data-original-title="" title="" aria-describedby="tooltip424594">Men</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden pb256 bg-black-25 pt256" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;" data-snippet="s_cover">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;/web/image/13100/penguin_w21_davos_3752_small.jpg&quot;); background-position: 39.96% 51.9%;"/>
+                    <div class="o_we_bg_filter bg-black-25"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" data-name="Title" data-snippet="s_title">
+                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+                                    <font style="color: rgb(255, 255, 255); font-size: 48px;">Merino Layer</font>
+                                </h1>
+                            </div>
+                            <div class="col-lg-12 s_btn text-center pt16 pb16" data-name="Buttons" data-snippet="s_btn">
+                                <a href="/merino" class="btn btn-delta rounded-circle" data-original-title="" title="" aria-describedby="tooltip629668">Women</a>
+                                <a href="/merino" class="ml-2 btn btn-primary rounded-circle" data-original-title="" title="" aria-describedby="tooltip424594">Men</a>
+                            </div>
+                            <div class="s_hr text-left pt32 pb32" data-name="Separator" data-snippet="s_hr">
+                                <hr class="s_hr_1px s_hr_solid border-600 w-100 mx-auto"/>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden pt256 pb256 bg-black-25" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;" data-snippet="s_cover">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;/web/image/13102/penguin_w21_davos_5092_small.jpg&quot;); background-position: 37.72% 53.74%;"/>
+                    <div class="o_we_bg_filter bg-black-25"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" data-name="Title" data-snippet="s_title">
+                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+                                    <font style="color: rgb(255, 255, 255); font-size: 48px;">Accessories</font>
+                                </h1>
+                            </div>
+                            <div class="col-lg-12 s_btn pt16 pb16 text-center" data-name="Buttons" data-snippet="s_btn">
+                                <a href="/accessoires" class="btn btn-delta rounded-circle" data-original-title="" title="" aria-describedby="tooltip629668">Unisex</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block bg-beta pb0 pt8" data-name="Text block" style="" data-snippet="s_text_block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pt32 pb48">
+                                <p class="lead">
+                                    <span style="font-size: 36px; background-color: rgb(222, 222, 222);">Penguin products are durable. We believe in durability as a key driver for sustainability.&amp;nbsp;</span>
+                                    <br/>
+                                </p>
+                                <p>
+                                    <span style="font-size: 18px; background-color: rgb(222, 222, 222);">Find out more about our Penguin Care program!</span>
+                                    <br/>
+                                </p>
+                                <div class="s_btn pt0 pb0 text-right" data-name="Button" data-snippet="s_btn">
+                                    <a href="/penguincare" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip597531">Penguin Care </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

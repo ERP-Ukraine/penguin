@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="merino">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden pt256 pb256 bg-black-25" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;/web/image/4340/merino_lp_title2176x1216.jpg&quot;); background-position: 50% 0px;"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" data-name="Title">
+                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+                                    <font style="color: rgb(255, 255, 255);">Merino Base Layer</font>
+                                </h1>
+                            </div>
+                            <div class="col-lg-12 s_text pt16 pb16" data-name="Text">
+                                <p class="lead" style="text-align: center;">
+                                    <font style="color: rgb(255, 255, 255);">Comfort, resistance and no stink; Merino provides it all.</font>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pt32 pb32" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pt32 pb32">
+                                <p class="lead">Comfort is king! Merino is a popular material for outdoor activities. We have chosen a special textile for our products made from a very fine merino fiber (17.5 micron). The Merino wool comes from suppliers from the Mackenzie region on the South Island of New Zealand. These farmers keep their sheep ecologically correct and "mulesing"-free. The form-fit of our Merino base layer provides warmth and comfort directly on the skin. Thanks to a core made of nylon inside the yarn our Merino products are particularly stable and durable.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_three_columns bg-200 pt32 pb32" data-name="Columns">
+                    <div class="container">
+                        <div class="row d-flex align-items-stretch">
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4367/category_merino_women_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip807427"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Women Merino Long Sleeve</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/women-nuyarn-merino-crewneck-longsleeve-21#attr=73,72" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip443267">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4368/category_merino_men_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip807427"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Men Merino Long Sleeve</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/men-nuyarn-merino-crewneck-longsleeve-16#attr=338,337" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip443267">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4369/iso_short_unisex.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip807427"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Women Merino Leggings</h3>
+                                        <div class="s_btn pb0 pt16 text-left" data-name="Button">
+                                            <a href="/shop/product/women-nuyarn-merino-leggings-22#attr=480,692" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip443267">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4370/category_merino_men_leggings_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip807427"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Men Merino Leggings</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/men-nuyarn-merino-leggings-17#attr=552,323" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip443267">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4374/category_merino_women_34leggings_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip807427"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Women Merino 3/4 Leggings</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/women-nuyarn-merino-3-4-leggings-26#attr=611,416" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip443267">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/4373/category_merino_men_34leggings_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip807427"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Men Merino 3/4 Leggings</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/men-nuyarn-merino-3-4-leggings-18#attr=226,503" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip443267">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/8137/category_merino_women_t-shirt_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip807427"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Women Merino T-Shirt</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/frauen-merino-stretch-t-shirt-145g-20?page=2#attr=178,731" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip443267">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                <div class="card bg-white">
+                                    <img class="card-img-top" src="/web/image/8138/category_merino_men_t-shirt_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip807427"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Men Merino T-Shirt</h3>
+                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
+                                            <a href="/shop/product/men-merino-stretch-t-shirt-145g-14?page=2#attr=115,715" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip443267">Shop now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>
