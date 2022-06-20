@@ -61,6 +61,7 @@
 <record id="website_menu_penguin_about" model="website.menu">
     <field name="name">About</field>
     <field name="url">/about</field>
+    <field name="sequence">3</field>
     <field name="page_id" ref="website_penguin.website_page_penguin_about"/>
 </record>
 

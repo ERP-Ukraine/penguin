@@ -10,6 +10,7 @@
 }
 
 nav.navbar.navbar-expand-lg.navbar-light {
+    background-color: #e1d4c8;
     li {
         a {
             font-family: $o-theme-font;
@@ -28,4 +29,13 @@ nav.navbar.navbar-expand-lg.navbar-light {
 .penguin-lang-dropdown {
     right: 0;
     left: auto;
+}
+
+.btn-delta {
+    background-color: #929291;
+    color: #ffffff;
+}
+
+.bg-beta {
+    background-color: #dedede;
 }
