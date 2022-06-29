@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="payment_wallee.payment_acquirer_walleee" model="payment.acquirer">
+        <field name="name">Wallee Payment Providers</field>
+        <field name="image_128" type="base64" file="payment_wallee/static/src/img/wallee_icon.png"/>
+        <field name="provider">wallee</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+        <field name="state">test</field>
+        <field name="module_id" ref="base.module_payment_wallee"/>
+        <field name="pre_msg"><![CDATA[
+<p></p>]]></field>
+        <field name="wallee_api_userid">1234</field>
+        <field name="wallee_api_spaceid">1234</field>
+        <field name="wallee_api_application_key">dummy</field>
+    </record>
+
+    <record id="wallee_email_template_payment_transaction" model="mail.template">
+        <field name="name">Wallee Email To Customer</field>
+        <field name="model_id" ref="payment.model_payment_transaction"/>
+        <field name="email_from">{{ object.acquirer_id.company_id.email }}</field>
+        <field name="partner_to">{{ object.partner_id != False and object.partner_id.id }}</field>
+        <field name="email_to">{{ (not object.partner_id and object.partner_id.email_formatted) }}</field>
+        <field name="subject">Status of Payment Transaction (Ref {{object.reference}})</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear <t t-out="object.partner_name"/> | <t t-out="object.partner_id.name"/>,
+                    <br /><br />
+                    Your payment transaction referred <t t-out="object.reference"/> is <t t-out="object.state"/>.
+                    <br /><br />
+                    Do not hesitate to contact us if you have any question.
+                </p>
+            </div>
+        </field>
+        <field name="lang">{{ object.partner_id.lang }}</field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <record id="wallee_email_template_payment_transaction_confirmed" model="mail.template">
+        <field name="name">Confirmation Wallee Email To Customer</field>
+        <field name="model_id" ref="payment.model_payment_transaction"/>
+        <field name="email_from">{{ object.acquirer_id.company_id.email }}</field>
+        <field name="partner_to">{{ object.partner_id != False and object.partner_id.id }}</field>
+        <field name="email_to">{{ (not object.partner_id and object.partner_id.email_formatted) }}</field>
+        <field name="subject">Status of Payment Transaction (Ref {{object.reference}})</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear <t t-out="object.partner_id.name"/>,
+                    <br /><br />
+                    Your payment transaction referred <t t-out="object.reference"/> is confirmed.
+                </p>
+            </div>
+        </field>
+        <field name="lang">${object.partner_id.lang}</field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <record id="wallee_email_template_payment_transaction_pending" model="mail.template">
+        <field name="name">Confirmation Wallee Email To Customer</field>
+        <field name="model_id" ref="payment.model_payment_transaction"/>
+        <field name="email_from">{{ object.acquirer_id.company_id.email }}</field>
+        <field name="partner_to">{{ object.partner_id != False and object.partner_id.id }}</field>
+        <field name="email_to">{{ (not object.partner_id and object.partner_id.email_formatted) }}</field>
+        <field name="subject">Status of Payment Transaction (Ref {{object.reference}})</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear <t t-out="object.partner_id.name"/>,
+                    <br /><br />
+                    Your payment transaction referred <t t-out="object.reference"/> is pending. It will be confirmed when the payment is received.
+                </p>
+            </div>
+        </field>
+        <field name="lang">${object.partner_id.lang}</field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <record id="wallee_email_template_payment_transaction_cancelled" model="mail.template">
+        <field name="name">Cancelled Wallee Email To Customer</field>
+        <field name="model_id" ref="payment.model_payment_transaction"/>
+        <field name="email_from">{{ object.acquirer_id.company_id.email }}</field>
+        <field name="partner_to">{{ object.partner_id != False and object.partner_id.id }}</field>
+        <field name="email_to">{{ (not object.partner_id and object.partner_id.email_formatted) }}</field>
+        <field name="subject">Status of Payment Transaction (Ref {{object.reference}})</field>
+        <field name="body_html" type="html">
+            <div style="margin: 0px; padding: 0px;">
+                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                    Dear <t t-out="object.partner_id.name"/>,
+                    <br /><br />
+                    Your payment transaction referred <t t-out="object.reference"/> is cancelled/failed.
+                </p>
+            </div>
+        </field>
+        <field name="lang">{{ object.partner_id.lang }}</field>
+        <field name="auto_delete" eval="False"/>
+    </record>
+
+    <record id="payment_method_wallee" model="account.payment.method">
+        <field name="name">Wallee</field>
+        <field name="code">wallee</field>
+        <field name="payment_type">inbound</field>
+    </record>
+</odoo>
