@@ -8,7 +8,7 @@
         Payment Acquirer: Wallee.com
         More infos on integrated payment gateways,https://app-wallee.com
     ''',
-    'version': '15.0.1.0',
+    'version': '15.0.1.1',
     'description': """Wallee Payment Acquirer""",
     'currency': 'EUR',
     'price': 150,
