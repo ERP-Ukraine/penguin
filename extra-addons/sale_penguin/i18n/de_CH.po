@@ -27,8 +27,7 @@ msgid ""
 "'pending') and 'Pending Order' or 'Order'} (Ref ${object.name or 'n/a' })"
 msgstr ""
 "${object.company_id.name} ${(object.get_portal_last_transaction().state == "
-"‚pendent) and ‚pendenter Auftrag‘ or 'Auftragsbestätigung'} (Ref "
-"${object.name or 'n/a' })"
+"'pending') and 'pendenter Auftrag' or 'Auftragsbestätigung'} (Ref ${object.name or 'n/a' })"
 
 #. module: sale_penguin
 #: model:mail.template,body_html:sale_penguin.mail_template_sale_confirmation
