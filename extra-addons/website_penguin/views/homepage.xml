@@ -2,6 +2,7 @@
 <odoo>
     <template id="homepage" name="Penguin Homepage">
         <t t-call="website.layout">
+            <meta http-equiv="Content-Security-Policy" content="frame-src https://www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1;"/>
             <t t-set="pageName" t-value="'homepage'"/>
             <div id="wrap" class="oe_structure oe_empty">
                 <div id="myCarousel1632476597471" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel" data-snippet="s_carousel">
@@ -83,7 +84,6 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item pb256 pt64 active o_background_video" style="background-image: url('https://penguin.swiss/web/image/4330/iso_lp_title2176x1216.jpg'); background-position: 70.03% 52.96%; min-height: 632.156px;" data-bg-video-src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1" data-name="Slide">
-                            <meta http-equiv="Content-Security-Policy" content="frame-src https://www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1;"/>
                             <div class="o_bg_video_container">
                                 <iframe id="o_bg_video_iframe_30" class="o_bg_video_iframe fade show" frameborder="0" src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1" style="width: 100%; height: 144.95%; left: 0px; top: -22.4752%;"></iframe>
                             </div>
