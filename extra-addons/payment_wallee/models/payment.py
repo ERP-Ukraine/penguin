@@ -30,32 +30,33 @@ class PaymentAcquirerWallee(models.Model):
 
     WALLEE_API_PROD_BASE_URL = "app-wallee.com"
     WALLEE_API_TEST_BASE_URL = "app-wallee.com"
-    
+
     def _get_wallee_urls(self, environment):
         if environment == 'prod':
             return {'wallee_form_url': 'https://app-wallee.com'}
         else:
             return {'wallee_form_url': 'https://app-wallee.com'}
-    
+
     # calculatiing key
     @api.model
     def wallee_sign(self, wallee_acquirer, method, path, timestamp):
         userId = wallee_acquirer.sudo().wallee_api_userid
         secret = wallee_acquirer.sudo().wallee_api_application_key
-        data = "1|" + str(userId) + "|"+str(timestamp)+"|" + method + "|" + path
-        signature = ((base64.b64encode(hmac.new(base64.b64decode(bytearray(secret, "ASCII")) , bytearray(data,"ASCII"), hashlib.sha512).digest())).decode("ASCII")).replace("\n", "")
+        data = "1|" + str(userId) + "|" + str(timestamp) + "|" + method + "|" + path
+        signature = ((base64.b64encode(hmac.new(base64.b64decode(bytearray(secret, "ASCII")), bytearray(data, "ASCII"),
+                                                hashlib.sha512).digest())).decode("ASCII")).replace("\n", "")
         return signature
-    
+
     # send request with key
     @api.model
     def wallee_send_request(self, wallee_acquirer_id, type, uri, params={}, json_data={}, data={}, headers={}):
         _logger.info("Requesting Wallee Services \nAcquirer Id:\n%s\nType:\n%s\nURL:\n%s", \
-                                pformat(wallee_acquirer_id), \
-                                pformat(type), \
-                                pformat(uri))
+                     pformat(wallee_acquirer_id), \
+                     pformat(type), \
+                     pformat(uri))
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
-        ask_time = fields.Datetime.now()        
+        ask_time = fields.Datetime.now()
         result = {'ask_time': ask_time}
         response = {}
         try:
@@ -64,21 +65,22 @@ class PaymentAcquirerWallee(models.Model):
             secret = str(wallee_acquirer.sudo().wallee_api_application_key)
             signature = str(wallee_acquirer.wallee_sign(wallee_acquirer, type, uri, timestamp))
             headers.update({"Content-type": "application/json", \
-                               "x-mac-version": "1", \
-                               "x-mac-userid": userId, \
-                               "x-mac-timestamp": timestamp, \
-                               "x-mac-value": signature})  
+                            "x-mac-version": "1", \
+                            "x-mac-userid": userId, \
+                            "x-mac-timestamp": timestamp, \
+                            "x-mac-value": signature})
             acquirer_env = wallee_acquirer.state
             acquirer_base_url = wallee_acquirer.WALLEE_API_PROD_BASE_URL if acquirer_env == 'enabled' else wallee_acquirer.WALLEE_API_TEST_BASE_URL
             request_uri = "".join(['https://', acquirer_base_url, uri])
             if type.upper() in ('GET', 'DELETE'):
                 res = requests.request(type.lower(), request_uri, params=params, headers=headers, timeout=TIMEOUT)
             elif type.upper() in ('POST', 'PATCH', 'PUT'):
-                res = requests.request(type.lower(), request_uri, params=params, data=data, json=json_data, headers=headers, timeout=TIMEOUT)
+                res = requests.request(type.lower(), request_uri, params=params, data=data, json=json_data,
+                                       headers=headers, timeout=TIMEOUT)
             else:
                 raise Exception(_('Method not supported [%s] not in [GET, POST, PUT, PATCH or DELETE]!') % (type))
             res.raise_for_status()
-            status = res.status_code  
+            status = res.status_code
             try:
                 response = res.json()
             except Exception as e:
@@ -91,28 +93,28 @@ class PaymentAcquirerWallee(models.Model):
                 ask_time = datetime.strptime(res.headers.get('date'), "%a, %d %b %Y %H:%M:%S %Z")
                 result.update({'ask_time': ask_time})
             except:
-                pass                
+                pass
             if status in [200]:
                 _logger.info("Successfully executed Wallee Services \nAcquirer Id:\n%s\nType:\n%s\nURL:\n%s", \
-                                pformat(wallee_acquirer_id), \
-                                pformat(type), \
-                                pformat(uri))
-                #_logger.info("Successfully executed Wallee Services \nURL:\n%s\nRequest:\n%s", \
+                             pformat(wallee_acquirer_id), \
+                             pformat(type), \
+                             pformat(uri))
+                # _logger.info("Successfully executed Wallee Services \nURL:\n%s\nRequest:\n%s", \
                 #             pformat(uri), \
                 #             pformat(json_data))
-                #_logger.info("Successfully executed Wallee Services \nURL:\n%s\nResponse:\n%s", \
+                # _logger.info("Successfully executed Wallee Services \nURL:\n%s\nResponse:\n%s", \
                 #                pformat(uri), \
                 #                pformat(response))
 
         except requests.HTTPError as error:
-            status = error.response.status_code                       
+            status = error.response.status_code
             try:
                 req = json.loads(error.request.body)
             except Exception as e:
                 _logger.info("HTTPError! wallee_send_request json reterival :: req %s" % (e,))
-                req = error.request.body                     
+                req = error.request.body
             try:
-                res = error.response.json()                
+                res = error.response.json()
                 message = res.get('defaultMessage', False)
                 if not message:
                     message = res.get('message', '')
@@ -120,7 +122,7 @@ class PaymentAcquirerWallee(models.Model):
             except Exception as e:
                 _logger.info("HTTPError! wallee_send_request :: res %s" % (e,))
                 result.update({'error': _('Unknown Wallee Error %s' % (e,))})
-                res = {}            
+                res = {}
             response = res
             if status in [442]:
                 _logger.info("Client Error while requesting Wallee Services\nRequest:\n%s\nResponse:\n%s", \
@@ -140,10 +142,10 @@ class PaymentAcquirerWallee(models.Model):
             result.update({'error': _('Unknown Error %s' % (e,))})
         result.update({'status': status, 'data': response})
         self.env['payment.acquirer.log']._post_log({
-                'name': result['status'],
-                'detail': "%s" % (result['data'],),
-                'type': 'green',
-            })
+            'name': result['status'],
+            'detail': "%s" % (result['data'],),
+            'type': 'green',
+        })
         return result
 
     def _compute_wallee_feature_support(self):
@@ -159,16 +161,19 @@ class PaymentAcquirerWallee(models.Model):
             acquirer.hide_env_button = acquirer.provider in hide_env_button
 
     provider = fields.Selection(selection_add=[('wallee', 'Wallee')], ondelete={'wallee': 'set default'})
-    wallee_api_userid = fields.Integer(required_if_provider='wallee', string='Rest API UserID', groups='base.group_user')
-    wallee_api_spaceid = fields.Integer(required_if_provider='wallee', string='Rest API SpaceId', groups='base.group_user')
-    wallee_api_application_key = fields.Char(required_if_provider='wallee', string='Application Key', groups='base.group_user')
+    wallee_api_userid = fields.Integer(required_if_provider='wallee', string='Rest API UserID',
+                                       groups='base.group_user')
+    wallee_api_spaceid = fields.Integer(required_if_provider='wallee', string='Rest API SpaceId',
+                                        groups='base.group_user')
+    wallee_api_application_key = fields.Char(required_if_provider='wallee', string='Application Key',
+                                             groups='base.group_user')
     wallee_method_ids = fields.One2many('wallee.payment.method', 'acquirer_id', 'Supported Wallee Payment Methods')
-    hide_registration_templ = fields.Boolean('Hide S2S Form Template', compute='_compute_wallee_feature_support')    
-    hide_specific_countries = fields.Boolean('Hide Specific Countries', compute='_compute_wallee_feature_support')    
-    hide_payment_icon_ids = fields.Boolean('Hide Payment Icons', compute='_compute_wallee_feature_support')   
+    hide_registration_templ = fields.Boolean('Hide S2S Form Template', compute='_compute_wallee_feature_support')
+    hide_specific_countries = fields.Boolean('Hide Specific Countries', compute='_compute_wallee_feature_support')
+    hide_payment_icon_ids = fields.Boolean('Hide Payment Icons', compute='_compute_wallee_feature_support')
     hide_env_button = fields.Boolean('Hide Env Button', compute='_compute_wallee_feature_support')
     send_status_email = fields.Boolean('Send Status Email', default=True)
-    
+
     def _get_default_payment_method_id(self):
         self.ensure_one()
         if self.provider != 'wallee':
@@ -179,27 +184,27 @@ class PaymentAcquirerWallee(models.Model):
     def create(self, vals):
         res = super(PaymentAcquirerWallee, self).create(vals)
         if 'wallee_api_userid' in vals \
-            or 'wallee_api_spaceid' in vals \
-            or 'wallee_api_application_key' in vals:
+                or 'wallee_api_spaceid' in vals \
+                or 'wallee_api_application_key' in vals:
             res.update_wallee_payment_methods()
         return res
 
     def write(self, values):
         res = super(PaymentAcquirerWallee, self).write(values)
         if 'wallee_api_userid' in values \
-            or 'wallee_api_spaceid' in values \
-            or 'wallee_api_application_key' in values:
+                or 'wallee_api_spaceid' in values \
+                or 'wallee_api_application_key' in values:
             self.update_wallee_payment_methods()
         return res
 
     def _get_feature_support(self):
         res = {}
         res.update({
-                    'hide_registration_templ': ['wallee'],
-                    'hide_specific_countries': ['wallee'],
-                    'hide_payment_icon_ids': ['wallee'],
-                    'hide_env_button': ['wallee'],
-                })
+            'hide_registration_templ': ['wallee'],
+            'hide_specific_countries': ['wallee'],
+            'hide_payment_icon_ids': ['wallee'],
+            'hide_env_button': ['wallee'],
+        })
         return res
 
     def action_view_wallee_payment_methods(self):
@@ -207,12 +212,12 @@ class PaymentAcquirerWallee(models.Model):
         self.get_available_wallee_payment_methods(self.id)
         action = self.env.ref('payment_wallee.action_wallee_payment_method').read()[0]
         return action
-    
+
     @api.model
     def get_available_wallee_payment_methods(self, wallee_acquirer_id):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
-        spaceId = wallee_acquirer.sudo().wallee_api_spaceid 
+        spaceId = wallee_acquirer.sudo().wallee_api_spaceid
         lang = 'en'
         if request:
             try:
@@ -221,13 +226,13 @@ class PaymentAcquirerWallee(models.Model):
                 lang = self.env.user.lang and self.env.user.lang.split('_')[0] or 'en'
 
         json_data = {"language": lang}
-        uri = "/api/payment-method-configuration/search?spaceId=%s" %spaceId
+        uri = "/api/payment-method-configuration/search?spaceId=%s" % spaceId
         type = "POST"
         response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, \
                                                        type=type, uri=uri, \
                                                        json_data=json_data)
-        
-        status = response.get('status', 0)                
+
+        status = response.get('status', 0)
         data = response.get('data', [])
         wallee_payment_methods = []
         if status == 200 and data:
@@ -235,15 +240,15 @@ class PaymentAcquirerWallee(models.Model):
                 name = pay_method.get('name', False)
                 sequence = pay_method.get('sortOrder', 10)
                 acquirer_id = wallee_acquirer.id
-                space_id  = pay_method.get('spaceId', False)
-                method_id  = pay_method.get('id', False)
-                image_url  = pay_method.get('resolvedImageUrl', False)
-                oneClickPaymentMode  = pay_method.get('oneClickPaymentMode', False)
-                one_click =  1 if oneClickPaymentMode == 'ALLOW' else 0
+                space_id = pay_method.get('spaceId', False)
+                method_id = pay_method.get('id', False)
+                image_url = pay_method.get('resolvedImageUrl', False)
+                oneClickPaymentMode = pay_method.get('oneClickPaymentMode', False)
+                one_click = 1 if oneClickPaymentMode == 'ALLOW' else 0
                 payment_method_ref = pay_method.get('paymentMethod', False)
                 transaction_interface = pay_method.get('dataCollectionType', False)
                 state = pay_method.get('state', False)
-                active =  True if state == 'ACTIVE' else False
+                active = True if state == 'ACTIVE' else False
                 version = pay_method.get('version', False)
                 values = {
                     'name': name,
@@ -263,85 +268,96 @@ class PaymentAcquirerWallee(models.Model):
         return wallee_payment_methods
 
     @api.model
-    def get_available_wallee_trans_payment_methods(self, wallee_acquirer_id, currency_name, amount, origin, billing_partner_id):
+    def get_available_wallee_trans_payment_methods(self, wallee_acquirer_id, currency_name, amount, origin,
+                                                   billing_partner_id):
         wallee_acquirer_id = int(wallee_acquirer_id)
         if currency_name == '' or amount == 0.0 or origin == '':
             return self.get_available_wallee_payment_methods(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
-        spaceId = wallee_acquirer.sudo().wallee_api_spaceid        
+        spaceId = wallee_acquirer.sudo().wallee_api_spaceid
         wallee_payment_method = request.session.get('wallee_payment_method', {})
-        trans_id = wallee_payment_method.get('trans_id', 0)        
+        trans_id = wallee_payment_method.get('trans_id', 0)
         tx_details = {
-                        'currency_name': currency_name,
-                        'name': '-'.join(['TEMPTR', origin])
-                    }  
+            'currency_name': currency_name,
+            'name': '-'.join(['TEMPTR', origin])
+        }
         txline_details = [{
-                            'name': _("Total"),
-                            'quantity': 1,
-                            "type": "PRODUCT",
-                            "uniqueId": _("total"),
-                            "amountIncludingTax": amount,
-                        }]
+            'name': _("Total"),
+            'quantity': 1,
+            "type": "PRODUCT",
+            "uniqueId": _("total"),
+            "amountIncludingTax": amount,
+        }]
         billing_address = {}
         if billing_partner_id:
             billing_partner = self.env['res.partner'].search([('id', '=', billing_partner_id)], limit=1)
             partner_first_name, partner_last_name = payment_utils.split_partner_name(billing_partner.name)
             partner_street = payment_utils.format_partner_address(billing_partner.street, billing_partner.street2)
             billing_address = {
-                    "city": billing_partner.city if billing_partner.city else "",
-                    "emailAddress": billing_partner.email if billing_partner.email else "",
-                    "givenName": partner_last_name if billing_partner else "",
-                    "familyName": partner_first_name if billing_partner else "",
-                    "phoneNumber": billing_partner.phone if billing_partner.phone else "",
-                    "organizationName": billing_partner.company_id.name if billing_partner.company_id else "",
-                    "postcode":  billing_partner.zip if billing_partner.zip else "",
-                    "street": partner_street if partner_street else billing_partner.street,
-                    "state": billing_partner.state_id.name if billing_partner.state_id else "",
-                    "country": billing_partner.country_id.code if billing_partner.country_id else "",
-                    "postalState": billing_partner.state_id.code if billing_partner.state_id else "",
-                }
+                "city": billing_partner.city if billing_partner.city else "",
+                "emailAddress": billing_partner.email if billing_partner.email else "",
+                "givenName": partner_last_name if billing_partner else "",
+                "familyName": partner_first_name if billing_partner else "",
+                "phoneNumber": billing_partner.phone if billing_partner.phone else "",
+                "organizationName": billing_partner.company_id.name if billing_partner.company_id else "",
+                "postcode": billing_partner.zip if billing_partner.zip else "",
+                "street": partner_street if partner_street else billing_partner.street,
+                "state": billing_partner.state_id.name if billing_partner.state_id else "",
+                "country": billing_partner.country_id.code if billing_partner.country_id else "",
+                "postalState": billing_partner.state_id.code if billing_partner.state_id else "",
+            }
 
-        wallee_tx_values = {'tx_details': tx_details, 'txline_details': txline_details, 'billing_address': billing_address}
+        wallee_tx_values = {'tx_details': tx_details, 'txline_details': txline_details,
+                            'billing_address': billing_address}
         wallee_create = True
         if trans_id:
-            search_params = {'acquirer_reference': trans_id}            
+            search_params = {'acquirer_reference': trans_id}
             response = self.wallee_search_transation_id(self.id, search_params)
-            status = response.get('status', 0)                
+            status = response.get('status', 0)
             data = response.get('data', [])
             wallee_version = ''
-            wallee_state = False            
+            wallee_state = False
             if status == 200 and data:
                 wallee_trans = data[0]
-                wallee_version = wallee_trans.get('version', '') 
+                wallee_version = wallee_trans.get('version', '')
                 wallee_state = wallee_trans.get('state', False)
-            if wallee_version and wallee_state and wallee_state in ['CREATE', 'PENDING']:                   
+            if wallee_version and wallee_state and wallee_state in ['CREATE', 'PENDING']:
                 search_params = {'acquirer_reference': trans_id, 'version': wallee_version}
                 response = self.wallee_update_transation_id(self.id, search_params, wallee_tx_values)
                 wallee_create = False
         if wallee_create:
-            response = self.wallee_create_transation(wallee_acquirer_id, wallee_tx_values) 
-            trans_id = response.get('trans_id', False)        
+            response = self.wallee_create_transation(wallee_acquirer_id, wallee_tx_values)
+            trans_id = response.get('trans_id', False)
         uri = "/api/transaction/fetchPossiblePaymentMethods?spaceId=%s&id=%s" % (spaceId, trans_id)
         type = "GET"
         response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, \
                                                        type=type, uri=uri)
-        status = response.get('status', 0)                
+        status = response.get('status', 0)
         data = response.get('data', [])
         wallee_payment_methods = []
+        lang = 'en_US'
+        if request:
+            try:
+                lang = request.lang.code or 'en_US'
+            except Exception:
+                lang = self.env.user.lang.code or 'en_US'
+            lang = lang.replace('_', '-')
         if status == 200 and data:
             for pay_method in data:
                 name = pay_method.get('name', False)
+                resolved_title = pay_method.get('resolvedTitle', {})
+                name = resolved_title.get(lang, name)
                 sequence = pay_method.get('sortOrder', 10)
                 acquirer_id = wallee_acquirer.id
-                space_id  = pay_method.get('spaceId', False)
-                method_id  = pay_method.get('id', False)
-                image_url  = pay_method.get('resolvedImageUrl', False)
-                oneClickPaymentMode  = pay_method.get('oneClickPaymentMode', False)
-                one_click =  1 if oneClickPaymentMode == 'ALLOW' else 0
+                space_id = pay_method.get('spaceId', False)
+                method_id = pay_method.get('id', False)
+                image_url = pay_method.get('resolvedImageUrl', False)
+                oneClickPaymentMode = pay_method.get('oneClickPaymentMode', False)
+                one_click = 1 if oneClickPaymentMode == 'ALLOW' else 0
                 payment_method_ref = pay_method.get('paymentMethod', False)
                 transaction_interface = pay_method.get('dataCollectionType', False)
                 state = pay_method.get('state', False)
-                active =  True if state == 'ACTIVE' else False
+                active = True if state == 'ACTIVE' else False
                 version = pay_method.get('version', False)
                 values = {
                     'name': name,
@@ -368,7 +384,7 @@ class PaymentAcquirerWallee(models.Model):
             acquirer.wallee_method_ids.unlink()
             try:
                 PaymentIcon = self.env['payment.icon']
-                WalleeMethod = self.env['wallee.payment.method']                
+                WalleeMethod = self.env['wallee.payment.method']
                 wallee_payment_methods = acquirer.get_available_wallee_payment_methods(acquirer.id)
                 for pay_method in wallee_payment_methods:
                     payment_icon_name = pay_method.get('name', False)
@@ -391,148 +407,147 @@ class PaymentAcquirerWallee(models.Model):
     def get_wallee_acquirers(self, acquirers):
         wallee_acquirers = [acq for acq in acquirers if acq.provider == 'wallee']
         return wallee_acquirers
-    
+
     @api.model
     def wallee_build_payment_page_url(self, wallee_acquirer_id, trans_id):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
         spaceId = wallee_acquirer.sudo().wallee_api_spaceid
-        uri = "/api/transaction/buildPaymentPageUrl?spaceId=%s&id=%s" % (spaceId,trans_id)
-        type = "GET"     
-        response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, type=type, uri=uri)                
-        status = response.get('status', 0)                
+        uri = "/api/transaction/buildPaymentPageUrl?spaceId=%s&id=%s" % (spaceId, trans_id)
+        type = "GET"
+        response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, type=type, uri=uri)
+        status = response.get('status', 0)
         data = response.get('data', [])
         error = response.get('error', _('Error cant be retrived'))
         res = {}
         if status == 200 and data:
             res = {'wallee_redirect_url': data}
         else:
-            res = {'wallee_redirect_url': False, 'error': error}              
+            res = {'wallee_redirect_url': False, 'error': error}
         return res
-    
+
     @api.model
     def wallee_build_javascript_url(self, wallee_acquirer_id, trans_id):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
         spaceId = wallee_acquirer.sudo().wallee_api_spaceid
-        uri = "/api/transaction/buildJavaScriptUrl?spaceId=%s&id=%s" % (spaceId,trans_id)
-        type = "GET"     
-        response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, type=type, uri=uri)                
-        status = response.get('status', 0)                
+        uri = "/api/transaction/buildJavaScriptUrl?spaceId=%s&id=%s" % (spaceId, trans_id)
+        type = "GET"
+        response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, type=type, uri=uri)
+        status = response.get('status', 0)
         data = response.get('data', [])
         error = response.get('error', _('Error cant be retrived'))
         res = {}
         if status == 200 and data:
             res = {'wallee_javascript_url': data}
         else:
-            res = {'wallee_javascript_url': False, 'error': error}              
+            res = {'wallee_javascript_url': False, 'error': error}
         return res
-    
+
     @api.model
     def wallee_search_payment_method_id(self, wallee_acquirer_id, payment_method_id):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
         spaceId = wallee_acquirer.sudo().wallee_api_spaceid
         uri = "/api/payment-method-configuration/read?spaceId=%s&id=%s" % (spaceId, payment_method_id)
-        type = "GET"     
-        response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, type=type, uri=uri)                
-        status = response.get('status', 0)                
+        type = "GET"
+        response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, type=type, uri=uri)
+        status = response.get('status', 0)
         data = response.get('data', [])
         error = response.get('error', _('Error cant be retrived'))
         res = {}
         if status == 200 and data:
             res = {'payment_method': data}
         else:
-            res = {'payment_method': False, 'error': error}              
+            res = {'payment_method': False, 'error': error}
         return res
 
-    
     @api.model
     def wallee_search_transation_ref(self, wallee_acquirer_id, search_params):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
         spaceId = wallee_acquirer.sudo().wallee_api_spaceid
-        uri = "/api/transaction/search?spaceId=%s" %spaceId
+        uri = "/api/transaction/search?spaceId=%s" % spaceId
         type = "POST"
         reference = search_params.get('reference', '')
         json_data = {
-                    "filter": {
-                        "fieldName": "merchantReference",
-                        "operator": "EQUALS",
-                        "type": "LEAF",
-                        "value": reference
-                    }
-                }                
+            "filter": {
+                "fieldName": "merchantReference",
+                "operator": "EQUALS",
+                "type": "LEAF",
+                "value": reference
+            }
+        }
         response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, \
                                                        type=type, uri=uri, \
-                                                       json_data=json_data)                
-        status = response.get('status', 0)                
+                                                       json_data=json_data)
+        status = response.get('status', 0)
         data = response.get('data', [])
-        error = response.get('error', _('Error cant be retrived'))           
+        error = response.get('error', _('Error cant be retrived'))
         return response
-    
+
     @api.model
     def wallee_search_transation_id(self, wallee_acquirer_id, search_params):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
         spaceId = wallee_acquirer.sudo().wallee_api_spaceid
-        uri = "/api/transaction/search?spaceId=%s" %spaceId
+        uri = "/api/transaction/search?spaceId=%s" % spaceId
         type = "POST"
         acquirer_reference = search_params.get('acquirer_reference', '')
         json_data = {
-                    "filter": {
-                        "fieldName": "id",
-                        "operator": "EQUALS",
-                        "type": "LEAF",
-                        "value": acquirer_reference
-                    }
-                }                
+            "filter": {
+                "fieldName": "id",
+                "operator": "EQUALS",
+                "type": "LEAF",
+                "value": acquirer_reference
+            }
+        }
         response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, \
                                                        type=type, uri=uri, \
-                                                       json_data=json_data)                
-        status = response.get('status', 0)                
+                                                       json_data=json_data)
+        status = response.get('status', 0)
         data = response.get('data', [])
-        error = response.get('error', _('Error cant be retrived'))           
+        error = response.get('error', _('Error cant be retrived'))
         return response
-    
+
     @api.model
     def wallee_search_transation_id_ref(self, wallee_acquirer_id, search_params):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
         spaceId = wallee_acquirer.sudo().wallee_api_spaceid
-        uri = "/api/transaction/search?spaceId=%s" %spaceId
+        uri = "/api/transaction/search?spaceId=%s" % spaceId
         type = "POST"
         reference = search_params.get('reference', '')
         acquirer_reference = search_params.get('acquirer_reference', '')
         json_data = {
-                    "filter": {
-                        "children": [
-                            {
-                                "fieldName": "id",
-                                "operator": "EQUALS",
-                                "type": "LEAF",
-                                "value": acquirer_reference
-                            },
-                            {
-                                "type": "AND"
-                            },
-                            {
-                                "fieldName": "merchantReference",
-                                "operator": "EQUALS",
-                                "type": "LEAF",
-                                "value": reference
-                            }
-                        ]
+            "filter": {
+                "children": [
+                    {
+                        "fieldName": "id",
+                        "operator": "EQUALS",
+                        "type": "LEAF",
+                        "value": acquirer_reference
+                    },
+                    {
+                        "type": "AND"
+                    },
+                    {
+                        "fieldName": "merchantReference",
+                        "operator": "EQUALS",
+                        "type": "LEAF",
+                        "value": reference
                     }
-                }              
+                ]
+            }
+        }
         response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, \
                                                        type=type, uri=uri, \
-                                                       json_data=json_data)                
-        status = response.get('status', 0)                
+                                                       json_data=json_data)
+        status = response.get('status', 0)
         data = response.get('data', [])
-        error = response.get('error', _('Error cant be retrived'))           
+        error = response.get('error', _('Error cant be retrived'))
         return response
-    
+
     @api.model
     def wallee_update_transation_id(self, wallee_acquirer_id, search_params, values):
         lang = 'en'
@@ -544,25 +559,25 @@ class PaymentAcquirerWallee(models.Model):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
         spaceId = wallee_acquirer.sudo().wallee_api_spaceid
-        uri = "/api/transaction/update?spaceId=%s" %spaceId
+        uri = "/api/transaction/update?spaceId=%s" % spaceId
         type = "POST"
-                        
+
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         success_url = urls.url_join(base_url, WalleeController._success_url)
         failed_url = urls.url_join(base_url, WalleeController._failed_url)
-        acquirer_reference = search_params.get('acquirer_reference', '') 
+        acquirer_reference = search_params.get('acquirer_reference', '')
         version = search_params.get('version')
-        
-        lineItems = values.get('txline_details') 
-        tx_details = values.get('tx_details')         
+
+        lineItems = values.get('txline_details')
+        tx_details = values.get('tx_details')
         currency_name = tx_details.get('currency_name')
         merchantReference = tx_details.get('name')
-        
-        Transaction = self.env['payment.transaction']               
+
+        Transaction = self.env['payment.transaction']
         transaction = Transaction.search([('reference', '=', merchantReference)])
         success_url = transaction and "".join([success_url, '?txnId=', str(transaction.id)]) or success_url
-        failed_url = transaction and "".join([failed_url, '?txnId=', str(transaction.id)]) or failed_url        
-                      
+        failed_url = transaction and "".join([failed_url, '?txnId=', str(transaction.id)]) or failed_url
+
         json_data = {
             'id': acquirer_reference,
             "language": lang,
@@ -573,29 +588,29 @@ class PaymentAcquirerWallee(models.Model):
             "failedUrl": failed_url,
             "version": version,
         }
-        
+
         billingAddress = values.get('billing_address', False)
         if billingAddress:
-            json_data.update({'billingAddress' : billingAddress})
+            json_data.update({'billingAddress': billingAddress})
         shippingAddress = values.get('shipping_address', False)
         if shippingAddress:
-            json_data.update({'shippingAddress' : shippingAddress})
+            json_data.update({'shippingAddress': shippingAddress})
         customerId = tx_details.get('partner_id', False)
         if customerId:
-            json_data.update({'customerId' : customerId})
-        wallee_payment_method = values.get('wallee_payment_method', False)  
+            json_data.update({'customerId': customerId})
+        wallee_payment_method = values.get('wallee_payment_method', False)
         if wallee_payment_method:
-            json_data.update({'allowedPaymentMethodConfigurations' : [{'id': wallee_payment_method}]})
+            json_data.update({'allowedPaymentMethodConfigurations': [{'id': wallee_payment_method}]})
         else:
             json_data.update({'allowedPaymentMethodConfigurations': []})
         response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, \
                                                        type=type, uri=uri, \
-                                                       json_data=json_data)                
-        status = response.get('status', 0)                
+                                                       json_data=json_data)
+        status = response.get('status', 0)
         data = response.get('data', [])
-        error = response.get('error', _('Error cant be retrived'))          
+        error = response.get('error', _('Error cant be retrived'))
         return response
-    
+
     @api.model
     def wallee_create_transation(self, wallee_acquirer_id, values):
         lang = 'en'
@@ -607,23 +622,23 @@ class PaymentAcquirerWallee(models.Model):
         wallee_acquirer_id = int(wallee_acquirer_id)
         wallee_acquirer = self.browse(wallee_acquirer_id)
         spaceId = wallee_acquirer.sudo().wallee_api_spaceid
-        uri = "/api/transaction/create?spaceId=%s" %spaceId
+        uri = "/api/transaction/create?spaceId=%s" % spaceId
         type = "POST"
-                        
+
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
         success_url = urls.url_join(base_url, WalleeController._success_url)
-        failed_url = urls.url_join(base_url, WalleeController._failed_url)       
-        
-        tx_details = values.get('tx_details')  
-        lineItems = values.get('txline_details')        
+        failed_url = urls.url_join(base_url, WalleeController._failed_url)
+
+        tx_details = values.get('tx_details')
+        lineItems = values.get('txline_details')
         currency_name = tx_details.get('currency_name')
         merchantReference = tx_details.get('name')
-        
-        Transaction = self.env['payment.transaction']               
+
+        Transaction = self.env['payment.transaction']
         transaction = Transaction.search([('reference', '=', merchantReference)])
         success_url = transaction and "".join([success_url, '?txnId=', str(transaction.id)]) or success_url
         failed_url = transaction and "".join([failed_url, '?txnId=', str(transaction.id)]) or failed_url
-                      
+
         json_data = {
             "language": lang,
             'lineItems': lineItems,
@@ -632,39 +647,40 @@ class PaymentAcquirerWallee(models.Model):
             "successUrl": success_url,
             "failedUrl": failed_url,
         }
-        
+
         billingAddress = values.get('billing_address', False)
         if billingAddress:
-            json_data.update({'billingAddress' : billingAddress})
+            json_data.update({'billingAddress': billingAddress})
         shippingAddress = values.get('shipping_address', False)
         if shippingAddress:
-            json_data.update({'shippingAddress' : shippingAddress})
+            json_data.update({'shippingAddress': shippingAddress})
         customerId = tx_details.get('partner_id', False)
         if customerId:
-            json_data.update({'customerId' : customerId})
-        wallee_payment_method = values.get('wallee_payment_method', False)  
+            json_data.update({'customerId': customerId})
+        wallee_payment_method = values.get('wallee_payment_method', False)
         if wallee_payment_method:
-            json_data.update({'allowedPaymentMethodConfigurations' : [{'id': wallee_payment_method}]})
-                
+            json_data.update({'allowedPaymentMethodConfigurations': [{'id': wallee_payment_method}]})
+
         response = wallee_acquirer.wallee_send_request(wallee_acquirer_id, \
                                                        type=type, uri=uri, \
-                                                       json_data=json_data)                
-        status = response.get('status', 0)                
+                                                       json_data=json_data)
+        status = response.get('status', 0)
         data = response.get('data', [])
         error = response.get('error', _('Error cant be retrived'))
         res = {}
         if status == 200 and data:
             res = {'trans_id': data['id']}
         else:
-            res = {'trans_id': False, 'error': error}           
+            res = {'trans_id': False, 'error': error}
         return res
 
     def cron_update_wallee_state(self):
         wallee_transactions = self.env['payment.transaction'].search([('acquirer_id.provider', '=', 'wallee'),
                                                                       ('acquirer_reference', '!=', False),
                                                                       '|',
-                                                                        ('wallee_state', 'not in', ['FULFILL', 'DECLINE', 'FAILED']),
-                                                                        ('state', 'not in', ['done', 'cancel', 'error'])])
+                                                                      ('wallee_state', 'not in',
+                                                                       ['FULFILL', 'DECLINE', 'FAILED']),
+                                                                      ('state', 'not in', ['done', 'cancel', 'error'])])
         for tx in wallee_transactions:
             tx._process_feedback_data(data={'from_cron': True})
             tx_to_process = tx.filtered(lambda x: x.state == 'done' and x.is_post_processed is False)
@@ -674,12 +690,12 @@ class PaymentAcquirerWallee(models.Model):
                 self.env.cr.rollback()
                 _logger.exception("Error while processing transaction(s) %s, exception \"%s\"", tx_to_process.ids,
                                   str(e))
-                 
-    
+
+
 class PaymentTransaction(models.Model):
     _name = 'payment.transaction'
-    _inherit = ['payment.transaction', 'mail.thread'] 
-       
+    _inherit = ['payment.transaction', 'mail.thread']
+
     _wallee_pending_states = ['CREATE', 'PENDING', 'CONFIRMED', 'PROCESSING', 'AUTHORIZED', 'COMPLETED']
 
     wallee_state = fields.Char(string='Wallee State', readonly=True, track_visibility='onchange')
@@ -723,7 +739,7 @@ class PaymentTransaction(models.Model):
             "familyName": partner_first_name if self.partner_id else "",
             "phoneNumber": self.partner_phone if self.partner_phone else "",
             "organizationName": self.company_id.name if self.company_id else "",
-            "postcode":  self.partner_zip if self.partner_zip else "",
+            "postcode": self.partner_zip if self.partner_zip else "",
             "street": self.partner_address if self.partner_address else "",
             "state": self.partner_state_id.name if self.partner_state_id else "",
             "country": self.partner_country_id.code if self.partner_country_id else "",
@@ -732,10 +748,10 @@ class PaymentTransaction(models.Model):
         tx_values.update(billing_address)
         shipping_address = billing_address.copy()
         tx_details = {
-                        'currency_name': self.currency_id.name,
-                        'name': reference,
-                        'partner_id': tx_values.get('partner_id', ''),
-                    }
+            'currency_name': self.currency_id.name,
+            'name': reference,
+            'partner_id': tx_values.get('partner_id', ''),
+        }
         tx_values.update(tx_details)
         txline_details = transaction.get_wallee_line_details()
         wallee_tx_values['wallee_payment_method'] = method_id
@@ -761,9 +777,11 @@ class PaymentTransaction(models.Model):
                 wallee_version = wallee_trans.get('version', '')
         if wallee_version and wallee_state in ['CREATE', 'PENDING']:
             search_params = {'acquirer_reference': trans_id, 'version': wallee_version}
-            response = Acquirer.wallee_update_transation_id(walle_acquirer.id, search_params, wallee_tx_values) #To Do: handle the failure case in update transactions
+            response = Acquirer.wallee_update_transation_id(walle_acquirer.id, search_params,
+                                                            wallee_tx_values)  # To Do: handle the failure case in update transactions
         else:
-            response = Acquirer.wallee_create_transation(walle_acquirer.id, wallee_tx_values) #To Do: handle the failure case in transactions
+            response = Acquirer.wallee_create_transation(walle_acquirer.id,
+                                                         wallee_tx_values)  # To Do: handle the failure case in transactions
             acquirer_reference = response.get('trans_id', False)
         tx_url = context.get('tx_url', False)
         if acquirer_reference and wallee_payment_method and not tx_url:
@@ -780,12 +798,12 @@ class PaymentTransaction(models.Model):
                 tx_values['wallee_javascript_url'] = wallee_javascript_url
             request.session["wallee_payment_method"]['trans_id'] = acquirer_reference
             prev_trans = Transaction.search([
-                                ('id', 'not in', transaction.ids),
-                                ('acquirer_reference', '=', acquirer_reference),
-                                ('acquirer_id.provider','=', 'wallee'),
-                                ('wallee_state', 'not in', ['FULFILL', 'DECLINE', 'FAILED']),
-                                ('state', 'in', ['draft'])
-                            ])
+                ('id', 'not in', transaction.ids),
+                ('acquirer_reference', '=', acquirer_reference),
+                ('acquirer_id.provider', '=', 'wallee'),
+                ('wallee_state', 'not in', ['FULFILL', 'DECLINE', 'FAILED']),
+                ('state', 'in', ['draft'])
+            ])
             prev_trans.write({'state': 'cancel'})
             transaction.write({'acquirer_reference': acquirer_reference})
         return tx_values
@@ -810,12 +828,12 @@ class PaymentTransaction(models.Model):
             wallee_payment_method = request and request.session.get('wallee_payment_method', {}) or {}
             wallee_reference = wallee_payment_method.get('trans_id', 0)
             tx = self.search([
-                                ('id', '=', wallee_reference),
-                                ('acquirer_id.provider','=', 'wallee'),
-                                ('wallee_state', 'not in', ['FULFILL', 'DECLINE','FAILED']),
-                                ('state', 'in', ['draft'])
-                                #('state', 'not in', ['cancel'])
-                        ])
+                ('id', '=', wallee_reference),
+                ('acquirer_id.provider', '=', 'wallee'),
+                ('wallee_state', 'not in', ['FULFILL', 'DECLINE', 'FAILED']),
+                ('state', 'in', ['draft'])
+                # ('state', 'not in', ['cancel'])
+            ])
         else:
             tx_ids_list = self.search([('id', '=', txn_id)]).ids
             tx = self.browse(tx_ids_list)
@@ -846,7 +864,8 @@ class PaymentTransaction(models.Model):
         wallee_acquirer = self.acquirer_id
         res = False
         try:
-            self._cr.execute("SELECT 1 FROM payment_transaction WHERE id = %s FOR UPDATE NOWAIT", [self.id], log_exceptions=False)
+            self._cr.execute("SELECT 1 FROM payment_transaction WHERE id = %s FOR UPDATE NOWAIT", [self.id],
+                             log_exceptions=False)
             response = wallee_acquirer.wallee_search_transation_id(wallee_acquirer.id, search_params)
             status = response.get('status', 0)
             res_data = response.get('data', [])
@@ -867,7 +886,8 @@ class PaymentTransaction(models.Model):
                     self._set_pending()
                     if self.acquirer_id.send_status_email and not self.pending_email_send:
                         try:
-                            template_id = self.env.ref('payment_wallee.wallee_email_template_payment_transaction_pending')
+                            template_id = self.env.ref(
+                                'payment_wallee.wallee_email_template_payment_transaction_pending')
                             if template_id:
                                 template_id.send_mail(self.id, force_send=True)
                                 self.write({'pending_email_send': True})
@@ -934,7 +954,7 @@ class PaymentTransaction(models.Model):
                     'sku': line.product_id.default_code,
                     "type": "PRODUCT",
                     "uniqueId": line.product_id.id,
-                    "amountIncludingTax": round(line.price_total,2)
+                    "amountIncludingTax": round(line.price_total, 2)
                 })
         sale_order_ids = self.sale_order_ids.mapped('id')
         if not line_details and sale_order_ids:
@@ -951,14 +971,13 @@ class PaymentTransaction(models.Model):
                 })
         if not line_details:
             line_details.append({
-                            'name': _("Total"),
-                            'quantity': 1,
-                            "type": "PRODUCT",
-                            "uniqueId": _("total"),
-                            "amountIncludingTax": self.amount,
-                        })
+                'name': _("Total"),
+                'quantity': 1,
+                "type": "PRODUCT",
+                "uniqueId": _("total"),
+                "amountIncludingTax": self.amount,
+            })
         return line_details
-
 
 # class IrUiView(models.Model):
 #     _inherit = 'ir.ui.view'
