@@ -5,9 +5,33 @@
             <attribute name="class" add="mt-4" remove="mt32" separator=" "/>
         </xpath>
 
+        <xpath expr="//div[@name='invoice_date']" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@name='due_date']" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@name='origin']" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@name='customer_code']" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@name='reference']" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
         <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_priceunit']" position="replace">
-            <th name="th_list_price" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>RRP/pc</span></th>
-            <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}"><span>Net Price/pc</span></th>
+            <th name="th_list_price" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                <span>RRP/pc</span>
+            </th>
+            <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                <span>Net Price/pc</span>
+            </th>
         </xpath>
         <xpath expr="//table[hasclass('o_main_table')]//span[@t-field='line.price_unit']/parent::td" position="replace">
             <td t-attf-class="text-right td_list_price {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
