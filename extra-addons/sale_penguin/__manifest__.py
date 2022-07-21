@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Penguin Sales',
+    'name': 'Sale Penguin',
     'summary': 'Sales internal machinery',
     'author': 'ERP Ukraine',
     'website': 'https://erp.co.ua',
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Sales/Sales',
-    'version': '2.4',
+    'version': '2.5',
     'depends': [
         'product_penguin',
         'sale',

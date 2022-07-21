@@ -25,7 +25,7 @@
         </xpath>
 
         <xpath expr="//div[@id='informations']" position="attributes">
-            <attribute name="class" add="mt-4" remove="mt32" separator=" "/>
+            <attribute name="class" add="mt-2" remove="mt32" separator=" "/>
         </xpath>
 
         <xpath expr="//div[@t-if='doc.client_order_ref']" position="attributes">
@@ -40,23 +40,30 @@
             <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
         </xpath>
 
-        <xpath expr="//div[@name='expiration_date']" position="attributes">
-            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
-        </xpath>
+        <xpath expr="//div[@name='expiration_date']" position="replace"/>
 
         <xpath expr="//div[@t-if='doc.user_id.name']" position="attributes">
             <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
         </xpath>
 
         <xpath expr="//div[@id='informations']" position="inside">
-            <div t-if="doc.pricelist_id" class="col-2 w-100 mb-2">
-                <strong>Pricelist:</strong>
-                <p class="m-0" t-field="doc.pricelist_id"/>
-            </div>
-
             <div t-if="doc.commitment_date" class="col-2 w-100 mb-2">
                 <strong>Planned Delivery Date:</strong>
                 <p class="m-0" t-field="doc.commitment_date" t-options="{'widget': 'date'}"/>
+            </div>
+
+            <div t-if="doc.pricelist_id" class="col-4 w-100 mb-2">
+                <strong>Pricelist:</strong>
+                <p class="m-0" t-field="doc.pricelist_id"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']" position="after">
+            <div id="penguin_informations" class="row mb32">
+                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-2 w-100 mb-2" name="expiration_date">
+                    <strong>Expiration:</strong>
+                    <p class="m-0" t-field="doc.validity_date"/>
+                </div>
             </div>
         </xpath>
 
