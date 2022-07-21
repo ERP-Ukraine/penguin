@@ -3,7 +3,7 @@
     <template id="report_purchasequotation_document" inherit_id="purchase.report_purchasequotation_document">
 
         <xpath expr="//h2" position="attributes">
-            <attribute name="class" add="mb-4" separator=" "/>
+            <attribute name="class" add="mb-2" separator=" "/>
         </xpath>
 
     </template>

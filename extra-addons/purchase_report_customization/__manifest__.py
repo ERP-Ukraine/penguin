@@ -6,7 +6,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Inventory/Purchase',
-    'version': '1.0',
+    'version': '1.1',
     'depends': ['purchase'],
     'data': [
         'report/purchase_quotation_templates.xml',
