@@ -2,7 +2,7 @@
 <odoo>
     <template id="penguin_report_invoice_document" inherit_id="account.report_invoice_document">
         <xpath expr="//div[@id='informations']" position="attributes">
-            <attribute name="class" add="mt-4" remove="mt32" separator=" "/>
+            <attribute name="class" add="mt-2" remove="mt32" separator=" "/>
         </xpath>
 
         <xpath expr="//div[@name='invoice_date']" position="attributes">

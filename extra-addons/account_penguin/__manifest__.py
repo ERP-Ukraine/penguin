@@ -6,7 +6,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Accounting/Accounting',
-    'version': '1.7',
+    'version': '1.8',
     'depends': ['account'],
     'data': [
         'report/report_invoice.xml',
