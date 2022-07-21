@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_purchasequotation_document" inherit_id="purchase.report_purchasequotation_document">
+
+        <xpath expr="//h2" position="attributes">
+            <attribute name="class" add="mb-4" separator=" "/>
+        </xpath>
+
+    </template>
+</odoo>
