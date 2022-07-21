@@ -7,14 +7,13 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Sales/Sales',
-    'version': '2.3',
+    'version': '2.4',
     'depends': [
         'product_penguin',
         'sale',
         'sale_enterprise',
         'stock',
     ],
-
     'data': [
         'data/mail_data.xml',
         'report/sale_report_templates.xml',

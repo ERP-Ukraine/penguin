@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <template id="report_saleorder_document_pricelist" inherit_id="sale.report_saleorder_document">
-        <xpath expr="//div[@id='informations']" position="inside">
-            <div t-if="doc.pricelist_id" class="col-auto col-3 mw-100 mb-2">
-                <strong>Pricelist:</strong>
-                <p class="m-0" t-field="doc.pricelist_id"/>
-            </div>
-        </xpath>
-    </template>
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
 
-    <template id="report_saleorder_document_title" inherit_id="sale.report_saleorder_document">
         <xpath expr="//div[hasclass('page')]/h2" position="replace">
             <h2 class="mt16">
                 <t t-if="env.context.get('proforma', False) or is_pro_forma">
@@ -31,11 +23,38 @@
                 <span t-field="doc.name"/>
             </h2>
         </xpath>
-    </template>
 
-    <template id="report_saleorder_document_custom_main_table" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='informations']" position="attributes">
+            <attribute name="class" add="mt-4" remove="mt32" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@t-if='doc.client_order_ref']" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//p[@t-field='doc.date_order'][1]/parent::div" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//p[@t-field='doc.date_order'][@t-options='{&quot;widget&quot;: &quot;date&quot;}']/parent::div" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@name='expiration_date']" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@t-if='doc.user_id.name']" position="attributes">
+            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
         <xpath expr="//div[@id='informations']" position="inside">
-            <div t-if="doc.commitment_date" class="col-auto col-3 mw-100 mb-2">
+            <div t-if="doc.pricelist_id" class="col-2 w-100 mb-2">
+                <strong>Pricelist:</strong>
+                <p class="m-0" t-field="doc.pricelist_id"/>
+            </div>
+
+            <div t-if="doc.commitment_date" class="col-2 w-100 mb-2">
                 <strong>Planned Delivery Date:</strong>
                 <p class="m-0" t-field="doc.commitment_date" t-options="{'widget': 'date'}"/>
             </div>
