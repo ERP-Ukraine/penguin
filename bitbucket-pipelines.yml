@@ -45,14 +45,32 @@ pipelines:
             - docker build -t erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER} .
             - docker push erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER}
       - step:
-          name: Deploy
+          name: Deploy to production
           deployment: production
           trigger: manual
           services:
             - docker
           script:
-             - echo "Configure deployment for v15"
              - ansible-playbook deploy-prod.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
+             - echo "Visit https://penguin.swiss"
+    15.0-staging:
+      - step:
+          name: Build and Push
+          services:
+            - docker
+          script:
+            - (echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin)
+            - docker build -t erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER} .
+            - docker push erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER}
+      - step:
+          name: Deploy to staging
+          deployment: staging
+          trigger: manual
+          services:
+            - docker
+          script:
+             - ansible-playbook deploy-stage.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
+             - echo "Visit https://penguin-staging.erp.co.ua/"
 
 definitions:
   services:
