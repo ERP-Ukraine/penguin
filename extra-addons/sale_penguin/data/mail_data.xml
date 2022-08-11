@@ -34,20 +34,10 @@
                             <br/><br/>
                             <t t-set="transaction" t-value="object.get_portal_last_transaction()"/>
                             Your order
-                            <strong><t t-out="object.name"/></strong> amounting in <strong><t t-esc="format_amount(object.amount_total, object.currency_id)"/></strong>
-                            <t t-if="object.state == 'sale' or (transaction and transaction.state in ('done', 'authorized'))">
-                                has been confirmed.<br/>
-                                Thank you for your trust!
-                            </t>
-                            <t t-elif="transaction and transaction.state == 'pending'">
-                                is pending. It will be confirmed when the payment is received.
-                                <t t-if="object.reference">
-                                    Your payment reference is <strong><t t-out="object.reference"/></strong>.
-                                </t>
-                            </t>
-                            <br/><br/>
-                            Do not hesitate to contact us if you have any questions.
-                            <br/><br/>
+                            has been confirmed.<br/>
+                            Thank you for your trust!
+                            <br/>
+                            <br/>
                         </p>
                     </t>
                     <t t-if="hasattr(object, 'website_id') and object.website_id">
@@ -107,7 +97,7 @@
                                 </t>
                             </t>
                         </div>
-                        <div style="margin: 0px; padding: 0px;" t-if="hasattr(object, 'carrier_id') and object.carrier_id">
+                        <div style="margin: 0px; padding: 0px;" t-if="hasattr(object, 'carrier_id') and object.carrier_id and hasattr(object, 'amount_delivery')">
                             <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;" align="right">
                                 <tr>
                                     <td style="width: 60%"/>
