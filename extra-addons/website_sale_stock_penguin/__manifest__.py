@@ -7,8 +7,9 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '1.1',
+    'version': '1.2',
     'depends': [
+        'sale_stock_penguin',
         'website_sale_penguin',
         'website_sale_stock',
     ],
