@@ -1,0 +1,30 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_penguin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e-20220402\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-08-12 10:17+0000\n"
+"PO-Revision-Date: 2022-08-12 10:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: stock_penguin
+#: model_terms:ir.ui.view,arch_db:stock_penguin.penguin_report_delivery_document
+msgid ""
+"All items could not be shipped, the rest will be shipped as soon as they "
+"become available"
+msgstr ""
+"Alle Artikel konnten nicht versendet werden, die restlichen werden versendet, "
+"sobald sie verfügbar sind"
+
+#. module: stock_penguin
+#: model:ir.model,name:stock_penguin.model_stock_move
+msgid "Stock Move"
+msgstr "Lagerbuchung"
