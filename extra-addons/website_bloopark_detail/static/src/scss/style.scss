@@ -74,7 +74,7 @@ p[data-oe-field="description_sale"] {
             display: none;
         }
     }
-    > hr {
+    > hr, > div.align-items-center {
         display: none;
     }
 
@@ -101,10 +101,8 @@ p[data-oe-field="description_sale"] {
             display: none!important;
         }
     }
-    .o_add_compare_dyn {
-        &:nth-child(2) {
-            display: none!important;
-        }
+    button.o_add_compare_dyn {
+        display: none!important;
     }
 }
 
@@ -186,6 +184,11 @@ p[data-oe-field="description_sale"] {
         color: #6D6E73;
         background-color: #EAECEF;
         border-color: #AEB5BC;
+    }
+}
+.btn-primary-soft {
+    &:hover, &:focus {
+        box-shadow: none;
     }
 }
 .js_add_cart_variants {

@@ -12,6 +12,8 @@
     'data': [
         'views/layout.xml',
     ],
+    'images': ['static/description/icon.png',
+    ],
     'assets': {
         'web.assets_frontend': [
             'website_bloopark_detail/static/src/scss/style.scss',
