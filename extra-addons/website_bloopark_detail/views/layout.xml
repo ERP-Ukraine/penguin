@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+    ============================================================================
+    Product Detail Page
+    ============================================================================
+    -->
+    <template id="product" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
+            <attribute name="class" add="add_to_cart_wrap d-block" remove="d-inline" separator=" "/>
+            <attribute name="class" remove="my-3" separator=" "/>
+        </xpath>
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <a class="size-guide mt-3 mb-4" data-toggle="modal" data-target="#size-guide-modal">
+               <i class="fa fa-expand mr-3"></i> Size Guide
+            </a>
+
+            <a role="button" id="add_to_cart" class="btn btn-primary btn-lg js_check_product a-submit text-uppercase d-block d-sm-inline-block w-100 flex-grow-1 mt-3" href="#">
+                ADD TO CARD
+            </a>
+            <a t-if="is_view_active('website_sale.product_buy_now')" role="button" class="btn btn-primary-soft btn-lg o_we_buy_now mt-3 mt-md-0 d-block d-md-inline-block w-md-auto ml-0 ml-md-2" href="#">
+                <i class="dri dri-bolt"/> Buy Now
+            </a>
+            <t t-set="product_variant" t-value="product_variant or product._create_first_product_variant()"/>
+            <button t-if="product_variant and is_view_active('website_sale_comparison.add_to_compare')" type="button" role="button" class="d-none d-md-inline-block btn btn-primary-soft btn-lg mt8 o_add_compare_dyn w-100 text-uppercase" aria-label="Compare" t-att-data-product-product-id="product_variant.id" data-action="o_comparelist">
+                Compare
+            </button>
+
+            <a t-if="product_variant" role="button" class="btn btn-secondary btn-lg o_add_wishlist_dyn text-uppercase d-block d-sm-inline-block w-100 flex-grow-1 mt-2" t-att-disabled='in_wish or None' t-att-data-product-template-id="product.id" t-att-data-product-product-id="product_variant.id" data-action="o_wishlist">
+                Like Item
+            </a>
+
+        </xpath>
+
+        <xpath expr="//div[@id='o_product_terms_and_share']" position="before">
+            <!-- Brand -->
+            <t t-if="product.dr_brand_value_id">
+                <hr class="mt-2"/>
+                <div class="row align-items-center">
+                    <div class="col-6 col-md-3" t-if="product.dr_brand_value_id.dr_image" t-field="product.dr_brand_value_id.dr_image" t-options="{'widget': 'image'}"/>
+                    <div class="col-12 col-md-9 mt-2 mt-md-0">
+                        <h6>
+                            <a class="tp-link-dark" t-attf-href="/shop?attrib=#{product.dr_brand_value_id.attribute_id.id}-#{product.dr_brand_value_id.id}">
+                                <span t-field="product.dr_brand_value_id.name"/>
+                            </a>
+                        </h6>
+                        <p class="mb-0" t-field="product.dr_brand_value_id.dr_brand_description"/>
+                    </div>
+                </div>
+                <hr/>
+            </t>
+            <!-- Offers -->
+            <t t-if="website._get_dr_theme_config('bool_product_offers') and product.dr_product_offer_ids">
+                <div class="row">
+                    <t t-foreach="product.dr_product_offer_ids" t-as="offer">
+                        <div class="col-12 o_not_editable">
+                            <i t-attf-class="fa fa-#{offer.icon} text-primary"/>
+                            <h6 class="d-inline-block mx-1" t-field="offer.name"/>
+                            <span class="d-inline-block" t-field="offer.description"/>
+                            <a href="#" class="d-inline-block mx-1 tp-lazy-dialog" data-res-model="dr.website.content" t-att-data-res-id="offer.id" data-field="content"><h6 class="text-primary"> Details <i class="fa fa-angle-right"></i></h6></a>
+                        </div>
+                    </t>
+                </div>
+                <hr class="mt-2"/>
+            </t>
+            <!-- Terms and conditions -->
+            <t t-if="is_view_active('website_sale.product_custom_text')">
+                <div class="row">
+                    <div class="col-12 mt-4">
+                        <h6 class="mb-4"><a href="/terms">Terms and Conditions</a></h6>
+                    </div>
+                    <div class="col-12">
+                        <section class="tp-services-list">
+                            <div class="row">
+                                <div class="col-12 d-flex align-items-center">
+                                    <i class="fa fa-truck"></i> 
+                                    <div class="ml-2">
+                                        Free shipping within CH and EU
+                                    </div>
+                                </div>
+                                <hr class="my-3 w-100"/>
+                                <div class="col-12 d-flex align-items-center mb-3">
+                                    <i class="fa fa-check"></i> 
+                                    <div class="ml-2">
+                                        Free shipping within CH and EU
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex align-items-center mb-3">
+                                    <i class="fa fa-check"></i> 
+                                    <div class="ml-2">
+                                        Buy now, get product in 3-5 days
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex align-items-center">
+                                    <i class="fa fa-check"></i> 
+                                    <div class="ml-2">
+                                        Free shipping within CH and EU
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <hr/>
+            </t>
+            <!-- Extra fields -->
+            <t t-call="theme_prime.product_extra_fields" />
+
+            <!-- Tags -->
+            <div t-if="product.dr_tag_ids" class="row">
+                <div class="col-12">
+                    <h6 class="mr-2 mb-0 d-inline-block">Tags :</h6>
+                    <ul class="list-inline d-inline">
+                        <li t-foreach="product.dr_tag_ids" t-as="tag" class="list-inline-item mb-1 mr-1">
+                            <a t-attf-href="/shop?tag=#{tag.id}" class="tp-link-body"><span t-field="tag.name"/></a>
+                            <t t-if="not tag_last">
+                                ,
+                            </t>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//section[hasclass('oe_product_details')]" position="replace">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 ">
+                    <section class="s_faq_collapse pt32 pb32 o_colored_level" data-snippet="s_faq_collapse" data-name="Accordion" style="background-image: none;">
+                        <div class="container">
+                            <t t-set="first_active_tab" t-value="product.material_id"/>
+                            <t t-set="second_active_tab" t-value="product.feature_ids and not first_active_tab"/>
+                            <t t-set="third_active_tab" t-value="not (first_active_tab or first_active_tab)"/>
+                            <div id="accordion" class="accordion" role="tablist" t-if="any((product.material_id, product.feature_ids, not product.hide_size_chart, product.washing_instruction_id))">
+                                <t t-call="website_bloopark_detail.product_tabs"/>
+                                <div t-if="product.material_id" class="card bg-white" data-name="Item">
+                                    <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa15" contenteditable="true">Material</a>
+                                    <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa15" style="">
+                                        <div class="card-body">
+                                            <p style="white-space: pre-line;" t-esc="product.material_id.description"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div t-if="product.feature_ids" class="card bg-white" data-name="Item">
+                                    <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa2" contenteditable="true">Features</a>
+                                    <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa2" style="">
+                                        <div class="card-body">
+                                            <ul>
+                                                <li t-foreach="product.feature_ids" t-as="feature">
+                                                    <t t-esc="feature.name"/>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div t-if="not product.hide_size_chart" class="card bg-white" data-name="Item">
+                                    <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa3" contenteditable="true">Size Guide</a>
+                                    <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa3">
+                                        <div class="card-body">
+                                            <p>To help you select the correct size of garment,we've put together our recommendation below</p>
+                                            <h4 t-if="product.gender == 'female'">Size Guide Women</h4>
+                                            <h4 t-if="product.gender == 'male'">Size Guide Men</h4>
+
+                                            <div class="text-center">
+                                                <t t-set="img_name" t-value="'Size-%s_%s.png' % ('Women' if product.gender == 'female' else 'Men', lang)"/>
+                                                <img class="img img-fluid" t-attf-src="/website_sale_penguin/static/src/img/size_chart/#{img_name}"/>
+                                            </div>
+
+                                            <div class="overflow-table">
+                                                <table class="table table-condensed">
+                                                    <thead>
+                                                        <t t-if="product.gender == 'female'">
+                                                            <tr>
+                                                                <th class="measurement">Size</th>
+                                                                <th class="medium text-center">Chest, cm</th>
+                                                                <th class="size_list text-center">Waist, cm</th>
+                                                                <th class="medium text-center">Hip, cm</th>
+                                                                <th class="size_list text-center">Inseam leg, cm</th>
+                                                                <th class="size_list text-center">Height, cm</th>
+                                                            </tr>
+                                                        </t>
+                                                        <t t-if="product.gender == 'male'">
+                                                            <tr>
+                                                                <th class="measurement">Size</th>
+                                                                <th class="medium text-center">Chest, cm</th>
+                                                                <th class="medium text-center">Hip, cm</th>
+                                                                <th class="size_list text-center">Inseam leg, cm</th>
+                                                                <th class="size_list text-center">Height, cm</th>
+                                                            </tr>
+                                                        </t>
+                                                    </thead>
+                                                    <tbody>
+                                                        <t t-if="product.gender == 'female'">
+                                                            <tr id="size-chart">
+                                                                <td><span>XS</span></td>
+                                                                <td class="text-center"><span>80</span></td>
+                                                                <td class="text-center"><span>66</span></td>
+                                                                <td class="text-center"><span>88</span></td>
+                                                                <td class="text-center"><span>75,5</span></td>
+                                                                <td class="text-center"><span>156&#8211;164</span></td>
+                                                            </tr>
+                                                            <tr id="size-chart">
+                                                                <td><span>S</span></td>
+                                                                <td class="text-center"><span>86</span></td>
+                                                                <td class="text-center"><span>71</span></td>
+                                                                <td class="text-center"><span>94</span></td>
+                                                                <td class="text-center"><span>76,5</span></td>
+                                                                <td class="text-center"><span>160&#8211;168</span></td>
+                                                            </tr>
+                                                            <tr id="size-chart">
+                                                                <td><span>M</span></td>
+                                                                <td class="text-center"><span>92</span></td>
+                                                                <td class="text-center"><span>76</span></td>
+                                                                <td class="text-center"><span>100</span></td>
+                                                                <td class="text-center"><span>77,5</span></td>
+                                                                <td class="text-center"><span>164&#8211;174</span></td>
+                                                            </tr>
+                                                            <tr id="size-chart">
+                                                                <td><span>L</span></td>
+                                                                <td class="text-center"><span>98</span></td>
+                                                                <td class="text-center"><span>82</span></td>
+                                                                <td class="text-center"><span>106</span></td>
+                                                                <td class="text-center"><span>78,5</span></td>
+                                                                <td class="text-center"><span>168&#8211;178</span></td>
+                                                            </tr>
+                                                            <tr id="size-chart">
+                                                                <td><span>XL</span></td>
+                                                                <td class="text-center"><span>104</span></td>
+                                                                <td class="text-center"><span>88</span></td>
+                                                                <td class="text-center"><span>112</span></td>
+                                                                <td class="text-center"><span>78,5</span></td>
+                                                                <td class="text-center"><span>168&#8211;178</span></td>
+                                                            </tr>
+                                                        </t>
+
+                                                        <t t-if="product.gender == 'male'">
+                                                            <tr id="size-chart">
+                                                                <td><span>S</span></td>
+                                                                <td class="text-center"><span>90</span></td>
+                                                                <td class="text-center"><span>93</span></td>
+                                                                <td class="text-center"><span>78</span></td>
+                                                                <td class="text-center"><span>170&#8211;178</span></td>
+                                                            </tr>
+                                                            <tr id="size-chart">
+                                                                <td><span>M</span></td>
+                                                                <td class="text-center"><span>96</span></td>
+                                                                <td class="text-center"><span>100</span></td>
+                                                                <td class="text-center"><span>80</span></td>
+                                                                <td class="text-center"><span>175&#8211;183</span></td>
+                                                            </tr>
+                                                            <tr id="size-chart">
+                                                                <td><span>L</span></td>
+                                                                <td class="text-center"><span>103</span></td>
+                                                                <td class="text-center"><span>107</span></td>
+                                                                <td class="text-center"><span>82</span></td>
+                                                                <td class="text-center"><span>180&#8211;188</span></td>
+                                                            </tr>
+                                                            <tr id="size-chart">
+                                                                <td><span>XL</span></td>
+                                                                <td class="text-center"><span>110</span></td>
+                                                                <td class="text-center"><span>114</span></td>
+                                                                <td class="text-center"><span>84</span></td>
+                                                                <td class="text-center"><span>185&#8211;193</span></td>
+                                                            </tr>
+                                                            <tr id="size-chart">
+                                                                <td><span>XXL</span></td>
+                                                                <td class="text-center"><span>117</span></td>
+                                                                <td class="text-center"><span>121</span></td>
+                                                                <td class="text-center"><span>86</span></td>
+                                                                <td class="text-center"><span>190&#8211;198</span></td>
+                                                            </tr>
+                                                        </t>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <h4>How to Measure</h4>
+                                            <p class="mb-0"><b>Chest contour.</b> Measure around the widest point of the chest,keeping the tape horizontal.</p>
+                                            <p class="mb-0"><b>Waist contour.</b> Measure around the narrowest point of the waist, keeping the tape horizontal.</p>
+                                            <p><b>Hip contour.</b> Keeping the feet together, measure around the widest point of the hip, keeping the tape horizontal.</p>
+
+                                            <h4>How to choose the Right Size</h4>
+                                            <p>Measures are expressed in centimetres. If the taken measures are between two sizes, choose the smallest if you prefer a tighter fitting or the largest if you prefer a baggier fitting.</p>
+
+                                            <a href="/page/faq">FAQ Link</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div t-if="product.washing_instruction_id" class="card bg-white" data-name="Item">
+                                    <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa4" contenteditable="true">Washing Instructions</a>
+                                    <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa4" style="">
+                                        <div class="card-body">
+                                            <p style="white-space: pre-line;" t-esc="product.washing_instruction_id.description"/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <li t-if="product.washing_instruction_id" class="nav-item">
+                                    <a class="nav-link" id="nav_instruction" data-toggle="tab" href="#nav_instruction_content" role="tab" aria-controls="nav_instruction_content" aria-selected="false" data-original-title="Washing Instructions" title="Washing Instructions">Washing Instructions</a>
+                                </li>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="size-guide-modal" tabindex="-1" role="dialog" aria-labelledby="size-guide-modalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Size Guide</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>To help you select the correct size of garment,we've put together our recommendation below</p>
+                        <h4 t-if="product.gender == 'female'">Size Guide Women</h4>
+                        <h4 t-if="product.gender == 'male'">Size Guide Men</h4>
+
+                        <div class="text-center">
+                            <t t-set="img_name" t-value="'Size-%s_%s.png' % ('Women' if product.gender == 'female' else 'Men', lang)"/>
+                            <img class="img img-fluid" t-attf-src="/website_sale_penguin/static/src/img/size_chart/#{img_name}"/>
+                        </div>
+
+                        <div class="overflow-table">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <t t-if="product.gender == 'female'">
+                                        <tr>
+                                            <th class="measurement">Size</th>
+                                            <th class="medium text-center">Chest, cm</th>
+                                            <th class="size_list text-center">Waist, cm</th>
+                                            <th class="medium text-center">Hip, cm</th>
+                                            <th class="size_list text-center">Inseam leg, cm</th>
+                                            <th class="size_list text-center">Height, cm</th>
+                                        </tr>
+                                    </t>
+                                    <t t-if="product.gender == 'male'">
+                                        <tr>
+                                            <th class="measurement">Size</th>
+                                            <th class="medium text-center">Chest, cm</th>
+                                            <th class="medium text-center">Hip, cm</th>
+                                            <th class="size_list text-center">Inseam leg, cm</th>
+                                            <th class="size_list text-center">Height, cm</th>
+                                        </tr>
+                                    </t>
+                                </thead>
+                                <tbody>
+                                    <t t-if="product.gender == 'female'">
+                                        <tr id="size-chart">
+                                            <td><span>XS</span></td>
+                                            <td class="text-center"><span>80</span></td>
+                                            <td class="text-center"><span>66</span></td>
+                                            <td class="text-center"><span>88</span></td>
+                                            <td class="text-center"><span>75,5</span></td>
+                                            <td class="text-center"><span>156&#8211;164</span></td>
+                                        </tr>
+                                        <tr id="size-chart">
+                                            <td><span>S</span></td>
+                                            <td class="text-center"><span>86</span></td>
+                                            <td class="text-center"><span>71</span></td>
+                                            <td class="text-center"><span>94</span></td>
+                                            <td class="text-center"><span>76,5</span></td>
+                                            <td class="text-center"><span>160&#8211;168</span></td>
+                                        </tr>
+                                        <tr id="size-chart">
+                                            <td><span>M</span></td>
+                                            <td class="text-center"><span>92</span></td>
+                                            <td class="text-center"><span>76</span></td>
+                                            <td class="text-center"><span>100</span></td>
+                                            <td class="text-center"><span>77,5</span></td>
+                                            <td class="text-center"><span>164&#8211;174</span></td>
+                                        </tr>
+                                        <tr id="size-chart">
+                                            <td><span>L</span></td>
+                                            <td class="text-center"><span>98</span></td>
+                                            <td class="text-center"><span>82</span></td>
+                                            <td class="text-center"><span>106</span></td>
+                                            <td class="text-center"><span>78,5</span></td>
+                                            <td class="text-center"><span>168&#8211;178</span></td>
+                                        </tr>
+                                        <tr id="size-chart">
+                                            <td><span>XL</span></td>
+                                            <td class="text-center"><span>104</span></td>
+                                            <td class="text-center"><span>88</span></td>
+                                            <td class="text-center"><span>112</span></td>
+                                            <td class="text-center"><span>78,5</span></td>
+                                            <td class="text-center"><span>168&#8211;178</span></td>
+                                        </tr>
+                                    </t>
+
+                                    <t t-if="product.gender == 'male'">
+                                        <tr id="size-chart">
+                                            <td><span>S</span></td>
+                                            <td class="text-center"><span>90</span></td>
+                                            <td class="text-center"><span>93</span></td>
+                                            <td class="text-center"><span>78</span></td>
+                                            <td class="text-center"><span>170&#8211;178</span></td>
+                                        </tr>
+                                        <tr id="size-chart">
+                                            <td><span>M</span></td>
+                                            <td class="text-center"><span>96</span></td>
+                                            <td class="text-center"><span>100</span></td>
+                                            <td class="text-center"><span>80</span></td>
+                                            <td class="text-center"><span>175&#8211;183</span></td>
+                                        </tr>
+                                        <tr id="size-chart">
+                                            <td><span>L</span></td>
+                                            <td class="text-center"><span>103</span></td>
+                                            <td class="text-center"><span>107</span></td>
+                                            <td class="text-center"><span>82</span></td>
+                                            <td class="text-center"><span>180&#8211;188</span></td>
+                                        </tr>
+                                        <tr id="size-chart">
+                                            <td><span>XL</span></td>
+                                            <td class="text-center"><span>110</span></td>
+                                            <td class="text-center"><span>114</span></td>
+                                            <td class="text-center"><span>84</span></td>
+                                            <td class="text-center"><span>185&#8211;193</span></td>
+                                        </tr>
+                                        <tr id="size-chart">
+                                            <td><span>XXL</span></td>
+                                            <td class="text-center"><span>117</span></td>
+                                            <td class="text-center"><span>121</span></td>
+                                            <td class="text-center"><span>86</span></td>
+                                            <td class="text-center"><span>190&#8211;198</span></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4>How to Measure</h4>
+                        <p class="mb-0"><b>Chest contour.</b> Measure around the widest point of the chest,keeping the tape horizontal.</p>
+                        <p class="mb-0"><b>Waist contour.</b> Measure around the narrowest point of the waist, keeping the tape horizontal.</p>
+                        <p><b>Hip contour.</b> Keeping the feet together, measure around the widest point of the hip, keeping the tape horizontal.</p>
+
+                        <h4>How to choose the Right Size</h4>
+                        <p>Measures are expressed in centimetres. If the taken measures are between two sizes, choose the smallest if you prefer a tighter fitting or the largest if you prefer a baggier fitting.</p>
+
+                        <a href="/page/faq">FAQ Link</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='product_details']" position="attributes">
+            <attribute name="class">col-12 col-lg-4 py-2</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('row')]/div[hasclass('col-lg-6')]" position="attributes">
+            <attribute name="class">col-12 col-lg-8 pb-2</attribute>
+        </xpath>
+    </template>
+
+    <template id="product_add_to_wishlist" inherit_id="website_sale_wishlist.product_add_to_wishlist" name="Theme Prime: Add to wishlist in product page"> 
+        <xpath expr="//div[@id='product_option_block']" position="attributes">
+            <attribute name="class" remove="d-inline-block" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="shop_product_carousel" inherit_id="website_sale.shop_product_carousel">
+        <xpath expr="//div[@id='o-carousel-product']" position="inside">
+            <div id="o-images-product" class="o-images-product d-none d-lg-block">
+                <t t-foreach="product_images" t-as="product_image">
+                     <div t-if="product_image._name == 'product.image' and product_image.embed_code" class="o-image-product d-flex align-items-center justify-content-center h-100 embed-responsive embed-responsive-16by9">
+                        <t t-out="product_image.embed_code"/>
+                    </div>
+                    <div t-field="product_image.image_1920" class="o-image-product d-flex align-items-center justify-content-center h-100 position-relative" t-options='{"widget": "image", "preview_image": "image_1024", "class": "product_detail_img mh-100 tp-drift-zoom-img", "alt-field": "name", "zoom": product_image.can_image_1024_be_zoomed and "image_1920", "itemprop": "image"}'/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+    <template id="product_tabs" name="Bloopark detail: Product Tabs">
+
+        <div t-if="product.website_description" class="card bg-white" data-name="Item">
+            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa11" contenteditable="true">Description</a>
+            <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa11" style="">
+                <div class="card-body">
+                    <div itemprop="description" t-field="product.website_description" class="oe_structure" id="product_full_description" />
+                </div>
+            </div>
+        </div>
+
+        <div t-if="product.website_description" class="card bg-white" data-name="Item">
+            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa12" contenteditable="true">Specifications</a>
+            <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa12" style="">
+                <div class="card-body">
+                    <section class="container border-0" id="product_full_spec">
+                        <t t-set="categories" t-value="product.valid_product_template_attribute_line_ids._prepare_categories_for_display()"/>
+                        <t t-if="categories">
+                            <div class="row py-4">
+                                <div class="col-12 col-lg-8 offset-lg-2" id="product_specifications">
+                                    <table class="table mb-0 border">
+                                        <t t-foreach="categories" t-as="categ">
+                                            <t t-if="len(categories) > 1">
+                                                <tr class="shadow-sm bg-light">
+                                                    <th class="text-left" t-att-colspan="2">
+                                                        <span t-if="categ" t-field="categ.name"/>
+                                                        <span t-else="">Uncategorized</span>
+                                                    </th>
+                                                </tr>
+                                            </t>
+                                            <tr t-foreach="categories[categ].filtered(lambda l: len(l.value_ids) > 1)" t-as="ptal">
+                                                <td><span t-field="ptal.attribute_id.name"/></td>
+                                                <td>
+                                                    <t t-foreach="ptal.value_ids" t-as="pav">
+                                                        <span t-field="pav.name"/><t t-if="not pav_last"> or</t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                            <t t-set="single_value_attributes" t-value="categories[categ]._prepare_single_value_for_display()"/>
+                                            <tr t-foreach="single_value_attributes" t-as="attribute">
+                                                <td><span t-field="attribute.name"/></td>
+                                                <td>
+                                                    <t t-foreach="single_value_attributes[attribute]" t-as="ptal">
+                                                        <span t-field="ptal.product_template_value_ids._only_active().name"/><t t-if="not ptal_last">, </t>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+                        <div class="p-4 text-center" t-else="">
+                            No Specifications
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <t t-set="product_documents_ids" t-value="product.sudo().dr_document_ids"/>
+        <div t-if="product_documents_ids" class="card bg-white" data-name="Item">
+            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa13" contenteditable="true">Documents</a>
+            <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa13" style="">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row py-4">
+                            <t t-foreach="product_documents_ids" t-as="document">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+                                    <div class="d-flex align-items-center p-2 border">
+                                        <div class="o_image" t-att-data-mimetype="document.mimetype"/>
+                                        <div class="ml-2 text-truncate">
+                                            <div t-field="document.name" t-att-title="document.name"/>
+                                            <a t-attf-href="/web/content/#{document.id}?download=true" class="btn btn-primary-soft btn-sm mt-1">
+                                                <i class="fa fa-download"/> Download
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div t-if="is_view_active('website_sale.product_comment')" class="card bg-white" data-name="Item">
+            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa14" contenteditable="true">Reviews &amp; Rating</a>
+            <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa14" style="">
+                <div class="card-body">
+                    <div class="o_shop_discussion_rating container">
+                        <section class="container">
+                            <div class="row mt-4">
+                                <div class="col-lg-8 offset-lg-2">
+                                    <t t-call="portal.message_thread">
+                                        <t t-set="object" t-value="product"/>
+                                        <t t-set="display_rating" t-value="True"/>
+                                    </t>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div t-if="product.dr_product_tab_ids" class="tp-product-details-tab">
+            <ul class="nav nav-tabs justify-content-center" role="tablist">
+                <!-- Dynamic Tabs -->
+                <li t-foreach="product.dr_product_tab_ids" t-as="tab" class="nav-item o_not_editable">
+                    <a class="nav-link" data-toggle="tab" t-attf-href="#tp-product-tab-#{tab.id}" role="tab" aria-selected="false">
+                        <div class="my-1 tp-tab-title">
+                            <span t-attf-class="fa fa-#{tab.icon} mr-1"/>
+                            <span t-field="tab.name"/>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <!-- Specifications -->
+                <div t-if="is_view_active('website_sale_comparison.product_attributes_body')" class="tab-pane fade" id="tp-product-specification-tab" role="tabpanel">
+                    
+                </div>
+                <!-- Dynamic Tabs -->
+                <div t-foreach="product.dr_product_tab_ids" t-as="tab" class="tab-pane fade" t-attf-id="tp-product-tab-#{tab.id}" role="tabpanel">
+                    <div class="container-fluid">
+                        <div class="row m-0 py-2">
+                            <div class="col-12">
+                                <div t-field="tab.content"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
