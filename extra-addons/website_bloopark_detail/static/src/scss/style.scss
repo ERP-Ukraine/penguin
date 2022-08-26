@@ -2,7 +2,7 @@
 .btn {
     font-size: 13px;
     line-height: 20px;
-    padding: 16px 0;
+    padding: 16px 32px;
     font-weight: 500;
 }
 .oe_website_sale {
@@ -29,12 +29,29 @@
         font-weight: $headings-font-weight;
     }
 }
+#out_of_stock_message {
+    color: red;
+    margin: 24px 0 0;
+}
 p[data-oe-field="description_sale"] {
     color: #000000!important;
     margin: 8px 0 0!important;
     font-weight: 400;
     font-size: 16px;
     line-height: 23px;
+}
+.css_quantity {
+    border: none;
+}
+.js_product {
+    > hr {
+        display: none;
+    }
+}
+.tp-product-detail-carousel {
+    > p {
+        display: none;
+    }
 }
 .o_carousel_product_outer {
     @media (min-width: 600px) {
@@ -60,19 +77,28 @@ p[data-oe-field="description_sale"] {
     }
 }
 .product_price {
-    margin: 40px 0!important;
+    margin: 40px 0 0!important;
     .h3, .h4{
         margin-bottom: 0;
     }
     .oe_default_price {
         color: #6D6E73;
     }
+    .small {
+        font-size: 21px;
+        line-height: 29px;
+        color: #6D6E73!important;
+    }
+}
+#product_attributes_simple {
+    margin-top: 16px;
+    > .row:first-child, > hr {
+        display: none;
+    }
 }
 #product_details {
-    > div {
-        &:nth-last-child(-2n+5) {
-            display: none;
-        }
+    > .text-muted:last-child {
+        display: none;
     }
     > hr, > div.align-items-center {
         display: none;
@@ -122,19 +148,53 @@ p[data-oe-field="description_sale"] {
     }
 }
 
+.custom-color-picker-label {
+    line-height: 1.8rem;
+    color: #6D6E73;
+    font-size: 1.32rem;
+}
+
+.custom-color-picker {
+    display: flex;
+    li {
+        .css_attribute_color {
+            border: 1px solid #DFE2E6;
+            .custom-color-picker-label {
+                color: $primary;
+                display: none;
+            }
+            &.active {
+                border: 1px solid o-color('o-color-5');
+            }
+            &:before {
+                display: none;
+            }
+            input {
+                height: 32px;
+                margin: 0;
+                width: 32px;
+            }
+        }
+    }
+}
 
 //------------------------------------------------------------------------------
 // Attributes Design
 //------------------------------------------------------------------------------
 // General
-
+.variant_attribute {
+    .o_variant_pills {
+        &.btn.active {
+            background-color: #EAECEF !important;
+            color: #AEB5BC !important;
+            border-color: #EAECEF !important;
+        }
+    }
+}
 .js_add_cart_variants {
     margin: 0;
     .variant_attribute {
-        padding-bottom: 2.75rem;
-        &:last-child {
-            padding-bottom: 0px;
-        }
+        padding-top: 2.75rem;
         .attribute_name {
             text-transform: capitalize;
             font-size: 1.32rem;
@@ -299,13 +359,10 @@ p[data-oe-field="description_sale"] {
 //------------------------------------------------------------------------------
 // Qty Spinner
 //------------------------------------------------------------------------------
-.add_to_cart_wrap {
-    .size-guide {
-        cursor: pointer;
-        font-size: 17px;
-        line-height: 25px;
-        display: block;
-        font-weight: 400;
-    }
-    
+.size-guide {
+    cursor: pointer;
+    font-size: 17px;
+    line-height: 25px;
+    display: block;
+    font-weight: 400;
 }
