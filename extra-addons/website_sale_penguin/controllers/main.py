@@ -19,3 +19,8 @@ class PenguinWebsiteSale(WebsiteSale):
             if sale_order:
                 sale_order.website_comment = comment
             return http.request.redirect(redirect)
+
+    @http.route('/shop/payment', type='http', auth='public', website=True, sitemap=False)
+    def shop_payment(self, **post):
+        http.request.session['check_partner_country'] = True
+        return super().shop_payment(**post)
