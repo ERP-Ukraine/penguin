@@ -6,7 +6,7 @@ class ProductTemplate(models.Model):
 
     def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False,
                               parent_combination=False, only_template=False):
-        combination_info = super()._get_combination_info(
+        combination_info = super(ProductTemplate, self.with_context(warehouse=None))._get_combination_info(
             combination=combination, product_id=product_id, add_qty=add_qty, pricelist=pricelist,
             parent_combination=parent_combination, only_template=only_template)
 
@@ -19,8 +19,9 @@ class ProductTemplate(models.Model):
             warehouse_id = website.warehouse_id
             if pricelist and pricelist.warehouse_id:
                 warehouse_id = pricelist.warehouse_id
-            product.invalidate_cache(['virtual_available'])
-            virtual_available = product.with_context(warehouse=warehouse_id.id).virtual_available
+            product.invalidate_cache(['free_qty', 'virtual_available'])
+            combination_info['free_qty'] = product.free_qty
+            virtual_available = product.virtual_available
             combination_info['virtual_available'] = virtual_available
             combination_info['virtual_available_formatted'] = self.env[
                 'ir.qweb.field.float'].value_to_html(
