@@ -4,10 +4,14 @@
     line-height: 20px;
     padding: 16px 32px;
     font-weight: 500;
+    &.disabled, &:disabled, &.o_wysiwyg_loader {
+        opacity: 0.22;
+    }
 }
+
 .oe_website_sale {
     > .row:nth-child(2) {
-        > .col-12 {
+        > .col-lg-6 {
             &:first-child {
                 @media (min-width: 992px) {
                     flex: 0 0 66.66666667%;
@@ -25,8 +29,13 @@
 }
 .oe_website_sale {
     h1[itemprop="name"] {
-        font-size: 2.375rem;
+        font-size: 28px;
         font-weight: $headings-font-weight;
+    }
+    .oe_subdescription {
+        font-size: 16px;
+        line-height: 23px;
+        font-weight: 400;
     }
 }
 #out_of_stock_message {
@@ -42,6 +51,9 @@ p[data-oe-field="description_sale"] {
 }
 .css_quantity {
     border: none;
+}
+.tp-hook-accessory-products {
+    margin-bottom: 80px;
 }
 .js_product {
     > hr {
@@ -111,12 +123,18 @@ p[data-oe-field="description_sale"] {
         &:hover:not(.disabled) {
             background-color: #D2C2B1;
         }
+        &.disabled {
+            opacity: 0.44;
+        }
     }
 }
 #product_option_block {
     .o_add_wishlist_dyn {
         display: none;
     }
+}
+.s_tabs.oe_product_details {
+    display: none;
 }
 .tp-hook-product-tabs  {
     display: none;
@@ -164,10 +182,25 @@ p[data-oe-field="description_sale"] {
                 display: none;
             }
             &.active {
-                border: 1px solid o-color('o-color-5');
+                border: 1px solid #ffffff;
             }
             &:before {
                 display: none;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                width: 46px;
+                height: 46px;
+                background: white;
+                border: 1px solid #282727;
+                z-index: -1;
+                margin: -7px;
+                border-radius: 50%;
+                opacity: 0;
+            }
+            &.active:after,&:hover:after {
+                opacity: 1;
             }
             input {
                 height: 32px;
@@ -185,16 +218,24 @@ p[data-oe-field="description_sale"] {
 .variant_attribute {
     .o_variant_pills {
         &.btn.active {
-            background-color: #EAECEF !important;
-            color: #AEB5BC !important;
-            border-color: #EAECEF !important;
+            background-color: #ffffff !important;
+            color: #282727 !important;
+            border-color: #282727 !important;
+        }
+        &.btn:hover {
+            background-color: #ffffff;
+            color: #6D6E73;
+            border-color: #6D6E73;
         }
     }
 }
 .js_add_cart_variants {
     margin: 0;
     .variant_attribute {
-        padding-top: 2.75rem;
+        padding-top: 2.5rem;
+        &:last-child {
+            padding-top: 1.8rem;
+        }
         .attribute_name {
             text-transform: capitalize;
             font-size: 1.32rem;
@@ -232,6 +273,7 @@ p[data-oe-field="description_sale"] {
     font-weight: 400;
     color: #282727;
     margin-bottom: 16px;
+    margin-top: 23px;
     .fa-truck {
         transform: rotateY(180deg);
     }
@@ -249,6 +291,15 @@ p[data-oe-field="description_sale"] {
 .btn-primary-soft {
     &:hover, &:focus {
         box-shadow: none;
+    }
+}
+.modal-dialog {
+    .js_add_cart_variants {
+        .variant_attribute {
+            .o_variant_pills {
+                width: calc(35.16% - 17px);
+            }
+        }
     }
 }
 .js_add_cart_variants {
@@ -355,7 +406,16 @@ p[data-oe-field="description_sale"] {
         }
     }
 }
-
+.s_faq_collapse {
+    .accordion {
+        .card {
+            .card-body {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+}
 //------------------------------------------------------------------------------
 // Qty Spinner
 //------------------------------------------------------------------------------
@@ -365,4 +425,8 @@ p[data-oe-field="description_sale"] {
     line-height: 25px;
     display: block;
     font-weight: 400;
+    margin-bottom: 30px!important;
+    i {
+        margin-right: 11px!important;
+    }
 }
