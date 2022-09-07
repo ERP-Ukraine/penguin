@@ -10,7 +10,7 @@
 }
 
 .oe_website_sale {
-    > .row:nth-child(2) {
+    > .row:last-child {
         > .col-lg-6 {
             &:first-child {
                 @media (min-width: 992px) {
