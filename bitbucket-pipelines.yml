@@ -71,6 +71,24 @@ pipelines:
           script:
              - ansible-playbook deploy-stage.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
              - echo "Visit https://penguin-staging.erp.co.ua/"
+    15.0-preprod:
+      - step:
+          name: Build and Push
+          services:
+            - docker
+          script:
+            - (echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin)
+            - docker build -t erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER} .
+            - docker push erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER}
+      - step:
+          name: Deploy to preprod
+          deployment: staging
+          trigger: manual
+          services:
+            - docker
+          script:
+             - ansible-playbook deploy-preprod.yml -i "penguin.swiss," -e BITBUCKET_BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER
+             - echo "Visit https://penguin-preprod.erp.co.ua/"
 
 definitions:
   services:
