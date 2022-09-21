@@ -82,7 +82,7 @@ pipelines:
             - docker push erpukraine/custom:penguin-15.0-${BITBUCKET_BUILD_NUMBER}
       - step:
           name: Deploy to preprod
-          deployment: staging
+          deployment: preprod
           trigger: manual
           services:
             - docker
