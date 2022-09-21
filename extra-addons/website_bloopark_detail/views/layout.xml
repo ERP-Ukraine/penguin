@@ -606,4 +606,216 @@
             </div>
         </div>
     </template>
+    <template id="template_bloopark_footer" inherit_id="website.layout" name="Module Bloopark Footer" active="True">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo">
+                <section class="s_text_block pb32 pt72" data-snippet="s_text_block" data-name="Text" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip448441">
+                    <div class="container">
+                    <div class="row" data-original-title="" title="" aria-describedby="tooltip204356">
+                        <div class="col-lg-6 col-xl-4 mb-4 o_colored_level">
+                        <h5>Penguin Powderwear<br/></h5>
+                        <div>Kalisti International GmbH<br/>Klingenstrasse 9<br/> CH-8005 Zurich<br/>Switzerland<br/></div>
+                        <ul class="list-unstyled">
+                            <li class="py-1" data-original-title="" title="" aria-describedby="tooltip808522">
+                            <i class="fa fa-1x fa-fw fa-envelope mr-1"></i>
+                            <a href="mailto:info@yourcompany.com">mail@penguin.swiss</a>
+                            </li>
+                            <li class="py-1" data-original-title="" title="" aria-describedby="tooltip968862">
+                            <i class="fa fa-1x fa-fw fa-phone mr-1"></i>
+                            <span class="o_force_ltr">
+                                <a href="tel:+41 (0)44 586 63 60" data-original-title="" title="">+41 (0) 44 586 63 60</a>
+                            </span>
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="col-lg-6 col-xl-5 mb-4 o_colored_level" data-original-title="" title="" aria-describedby="tooltip495182">
+                        <h5>Products</h5>
+                        <div class="row">
+                            <div class="col-4 o_colored_level" data-original-title="" title="" aria-describedby="tooltip687414">
+                            <ul class="list-unstyled">
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip520039">
+                                <a href="/shop/category/women-shell-jackets-8" data-original-title="" title="">Women Shell Jackets</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip551171">
+                                <a href="/shop/category/women-shell-pants-12" data-original-title="" title="">Women Shell Pants </a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip41715">
+                                <a href="/shop/category/women-insulation-layer-11" data-original-title="" title="">Women Insulation Layer</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip204849"><a href="/shop/category/women-fleece-mid-layer-13" data-original-title="" title="">Women Fleece Mid Laye</a>r<br/></li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip47989">
+                                <a href="/shop/category/women-merino-base-layer-10" data-original-title="" title="">Women Merino Base Layer</a>
+                                <br/>
+                                </li>
+                            </ul>
+                            </div>
+                            <div class="col-4 o_colored_level" data-original-title="" title="" aria-describedby="tooltip483987" style="">
+                            <ul class="list-unstyled" data-original-title="" title="" aria-describedby="tooltip685237">
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip828508">
+                                <a data-original-title="" title="" href="/shop/category/men-shell-jackets-14">Men Shell Jackets</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip345776">
+                                <a href="/shop/category/men-shell-pants-19" data-original-title="" title="">Men Shell Pants</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip589627">
+                                <a href="/shop/category/men-insulation-layer-18" data-original-title="" title="">Men Insulation Layer</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip323320">
+                                <a href="/shop/category/men-fleece-mid-layer-17" data-original-title="" title="">Men Fleece Mid Layer</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip447984">
+                                <a href="/shop/category/men-merino-base-layer-16" data-original-title="" title="">Men Merino Baselayer</a>
+                                <br/>
+                                </li>
+                            </ul>
+                            </div>
+                            <div class="col-4 o_colored_level" data-original-title="" title="" aria-describedby="tooltip20444">
+                            <ul class="list-unstyled">
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip661405">
+                                <a data-original-title="" title="" href="/shop/category/accessories-6">Accessoires</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip376434">
+                                <a href="/shop/category/vouchers-20" data-original-title="" title="">Voucher</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip443250">
+                                <a></a>
+                                <a data-original-title="" title="" href="/shop/category/services-21" aria-describedby="popover439415">Services</a>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-lg-6 col-xl-3 mb-4 o_colored_level" style="" data-original-title="" title="" aria-describedby="tooltip195338">
+                        <h5>Customer Service</h5>
+                        <div class="row">
+                            <div class="col-6 o_colored_level" data-original-title="" title="" aria-describedby="tooltip68797">
+                            <ul class="list-unstyled" data-original-title="" title="" aria-describedby="tooltip195847">
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip598179">
+                                <a href="/penguincare" data-original-title="" title="">Penguin Care, warranty</a>
+                                <a></a>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip598179"><a data-original-title="" title="" href="/customerservice">Shipping &amp; Delivery</a> <br/></li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip813737"><a href="#" data-original-title="" title="">FAQ</a> <br/></li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip854495"><a href="/customerservice" data-original-title="" title="">Terms &amp; Conditions</a> <a></a><br/></li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip431168">
+                                <a href="/customerservice" data-original-title="" title="">Privacy Policy</a>
+                                <a></a>
+                                <a></a>
+                                </li>
+                            </ul>
+                            </div>
+                            <div class="col-6 o_colored_level" data-original-title="" title="" aria-describedby="tooltip899217" style="">
+                            <ul class="list-unstyled" data-original-title="" title="" aria-describedby="tooltip332473">
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip487792">
+                                <a data-original-title="" title="" href="/philosophy">Philosophy</a>
+                                <a></a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip874595">
+                                <a href="/penguinmovie" data-original-title="" title="">Penguin movie</a>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip39158"><a href="/stores" data-original-title="" title="">Stores</a><a></a> <a></a><br/></li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip197659">
+                                <a href="/ambassador" data-original-title="" title=""></a>
+                                <a></a>
+                                <a></a>
+                                <a data-original-title="" title="" href="/ambassador">Ambassador</a>
+                                <a></a>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip197659">
+                                <a data-original-title="" title="" href="/toursandevents">Tours &amp; Events</a>
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip593714">
+                                <br/>
+                                </li>
+                                <li class="my-2" data-original-title="" title="" aria-describedby="tooltip822906">
+                                <br/>
+                                </li>
+                            </ul>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-xl-5 mb-4 o_colored_level col-lg-1" data-original-title="" title="" aria-describedby="tooltip865844" style="">
+                        <h5>We Accept</h5>
+                        <ul class="list-inline tp-payment-icons">
+                            <li class="list-inline-item my-1">
+                            <img src="/website_bloopark_detail/static/src/img/twint_logo.png" height="25px" alt="" loading="lazy" style="" data-original-id="22807" data-original-src="/web/image/22807-ae37375e/twint_logo.png" data-mimetype="image/png" data-resize-width="undefined"/>
+                            </li>
+                            <li class="list-inline-item my-1">
+                            <img src="/website_bloopark_detail/static/src/img/mc_logo.jpg" height="25px" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip648583" data-original-id="22808" data-original-src="/web/image/22808-09ad8d62/mc_logo.jpg" data-mimetype="image/jpeg" data-resize-width="431"/>
+                            </li>
+                            <li class="list-inline-item my-1">
+                            <img src="/website_bloopark_detail/static/src/img/visa_logo.jpg" height="25px" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip693726" data-original-id="22809" data-original-src="/web/image/22809-c9f6455a/visa_logo.jpg" data-mimetype="image/jpeg" data-resize-width="undefined"/>
+                            </li>
+                            <li class="list-inline-item my-1">
+                            <img src="/website_bloopark_detail/static/src/img/paypal_logo.jpg" height="25px" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip533172"/>
+                            </li>
+                            <li class="list-inline-item my-1">
+                            </li>
+                        </ul>
+                        </div>
+                        <div class="col-xl-3 mb-4 o_colored_level col-lg-7" style="">
+                        <h5>Follow Us On</h5>
+                        <div class="s_share tp-followus-icons no_icon_color" data-name="Social Media">
+                            <h5 class="s_share_title d-none">Follow Us On</h5>
+                            <a href="https://www.facebook.com/penguin.swiss/" class="s_share_facebook" data-original-title="" title="" target="_blank">
+                            <i class="fa fa-facebook" data-original-title="" title="" aria-describedby="tooltip193584"></i>
+                            </a>
+                            <a href="https://www.instagram.com/penguinpowderwear/" class="s_share_instagram" data-original-title="" title="" target="_blank">
+                            <i class="fa fa-instagram" data-original-title="" title="" aria-describedby="tooltip823369"></i>
+                            </a>
+                            <a href="https://www.youtube.com/channel/UC6J7CLatDm8euLYiY7GAIqA" class="s_share_youtube" target="_blank" data-original-title="" title="">
+                            <i class="fa fa-youtube" data-original-title="" title="" aria-describedby="tooltip453383"></i>
+                            </a>
+                        </div>
+                        </div>
+                        <div class="col-xl-3 mb-4 o_colored_level col-lg-3 offset-lg-1">
+                        <h5>Subscribe</h5>
+                        <div class="s_newsletter_subscribe_form js_subscribe" data-vxml="001" data-list-id="0" data-name="Newsletter Form">
+                            <div class="input-group">
+                            <input type="email" name="email" class="js_subscribe_email form-control" placeholder="your email..."/>
+                            <span class="input-group-append">
+                                <a role="button" href="#" class="btn btn-primary js_subscribe_btn">
+                                <i class="fa fa-send-o"></i>
+                                </a>
+                                <a role="button" href="#" class="btn btn-success js_subscribed_btn d-none" disabled="disabled">Thanks</a>
+                            </span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('o_footer_copyright')]" position="attributes">
+            <attribute name="class" add="tp-custom-copyright" separator=" "/>
+        </xpath>
+        <xpath expr="//div[hasclass('o_footer_copyright')]/div[hasclass('container')]" position="replace">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-12 col-lg-auto">
+                        <div class="my-2">
+                            Copyright © Penguin c/o Kalisti International GmbH.
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-auto text-lg-right" t-if="(len(languages) &gt; 1 or (website and (editable or translatable))) or (website_sale_pricelists and len(website_sale_pricelists)&gt;1)">
+                        <ul class="list-inline my-2">
+                            <t t-call="theme_prime.component_language_pricelist_selector"/>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
 </odoo>

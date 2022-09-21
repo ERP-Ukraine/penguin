@@ -88,6 +88,10 @@ p[data-oe-field="description_sale"] {
         }
     }
 }
+// Force imqge width
+.ecom-zoomable:not(.ecom-autozoom) img[data-zoom] {
+    width: 100%;
+}
 .product_price {
     margin: 40px 0 0!important;
     .h3, .h4{
@@ -428,5 +432,18 @@ p[data-oe-field="description_sale"] {
     margin-bottom: 30px!important;
     i {
         margin-right: 11px!important;
+    }
+}
+
+// Fix menu active link
+#wrapwrap > header > .navbar #top_menu > .nav-item > .nav-link.active {
+    color: #ffffff;
+}
+
+// Footer
+.o_footer {
+    .o_footer_copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 2rem 0;
     }
 }

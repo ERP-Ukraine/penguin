@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Bloopark Detail page',
-    'version': '15.0.0.4.0',
+    'version': '15.0.0.5.0',
     'author': 'Bloopark systems GmbH & Co. KG',
     'website': 'https://bloopark.de',
     'support': 'support@/bloopark.de',
