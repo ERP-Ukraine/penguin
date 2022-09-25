@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_arnold_report_user,access.sale.sale.order.arnold.report.user,model_sale_order_arnold_report,sales_team.group_sale_salesman,1,1,1,1
+access_sale_order_arnold_report_manager,access.sale.sale.order.arnold.report.manager,model_sale_order_arnold_report,sales_team.group_sale_manager,1,1,1,1

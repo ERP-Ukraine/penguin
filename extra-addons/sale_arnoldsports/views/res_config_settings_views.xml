@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale.management</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='proforma_configuration']" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="arnold_orders">
+                    <div class="o_setting_left_pane">
+                        <field name="generate_arnold_orders"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="generate_arnold_orders"/>
+                        <div class="text-muted">
+                            Allows you to create Arnold Sports orders from emails
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <div class="row mt16" attrs="{'invisible': [('generate_arnold_orders', '=', False)]}">
+                            <label for="arnold_partner_id" class="col-lg-4 o_light_label"/>
+                            <field name="arnold_partner_id" class="oe_inline"
+                                   attrs="{'required': [('generate_arnold_orders', '=', True)]}"/>
+                        </div>
+
+                        <div class="content-group" attrs="{'invisible': [('generate_arnold_orders', '=', False)]}">
+                            <div class="mt16">
+                                <field name="arnold_alias_prefix" class="oe_inline"
+                                    attrs="{'required': [('generate_arnold_orders', '=', True)]}"/>
+                                <label class="mr-0" for="alias_domain" string="@"/>
+                                <field name="alias_domain" readonly="1" force_save="1" class="oe_inline"/>
+                            </div>
+                            <div attrs="{'invisible': [('alias_domain', 'not in', ['localhost', '', False])]}">
+                                <button type="action"
+                                    name="base_setup.action_general_configuration"
+                                    string="Use an External Email Server" icon="fa-arrow-right" class="oe_link"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo noupdate="1">
+
+    <record id="mail_alias_arnold" model="mail.alias">
+        <field name="alias_name">order</field>
+        <field name="alias_model_id" ref="model_sale_order_arnold_report"/>
+        <field name="alias_user_id" ref="base.user_admin"/>
+        <field name="alias_parent_model_id" ref="sale.model_sale_order"/>
+    </record>
+
+</odoo>
