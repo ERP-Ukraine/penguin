@@ -817,5 +817,9 @@
                 </div>
             </div>
         </xpath>
+
+        <xpath expr="//footer" position="inside">
+            <span class="o_footer_copyright_name mr-2 d-none">&amp;copy; Penguin c/o Kalisti International GmbH</span>
+        </xpath>
     </template>
 </odoo>
