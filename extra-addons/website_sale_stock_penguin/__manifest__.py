@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '1.2',
+    'version': '1.3',
     'depends': [
         'sale_stock_penguin',
         'website_sale_penguin',
@@ -17,6 +17,12 @@
         'report/report_deliveryslip.xml',
         'views/product_views.xml'
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'website_sale_stock_penguin/static/src/js/variant_mixin.js',
+            'website_sale_stock_penguin/static/src/scss/website_sale_stock_penguin.scss',
+        ],
+    },
     'auto_install': True,
     'installable': True,
     'post_init_hook': 'set_inventory_availability_on_product_templates'
