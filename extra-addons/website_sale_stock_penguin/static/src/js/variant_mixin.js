@@ -29,7 +29,7 @@ VariantMixin._checkProductsAvailability = function (ptavId) {
 };
 
 VariantMixin._onClickColorAttributeLoadSize = function (ev, $parent, combination) {
-    const colorPTAVId = parseInt(ev.currentTarget.querySelector('label.active').querySelector('input')?.dataset?.value_id);
+    const colorPTAVId = parseInt(ev?.currentTarget?.querySelector('label.active')?.querySelector('input')?.dataset?.value_id);
     if (!colorPTAVId) { return };
     VariantMixin._checkProductsAvailability(colorPTAVId);
 };
