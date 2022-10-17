@@ -6,7 +6,7 @@ let VariantMixin = require('website_sale_stock.VariantMixin');
 const ajax = require('web.ajax');
 
 VariantMixin._checkProductsAvailability = function (ptavId) {
-   const productTemplateId = parseInt(document.querySelector('[data-oe-model="product.template"]')?.dataset?.oeId);
+   const productTemplateId = parseInt(document.querySelector('.product_template_id')?.value);
    if (!productTemplateId) { return };
 
    ajax.jsonRpc('/sale/get_all_published_combinations_website', 'call', {
