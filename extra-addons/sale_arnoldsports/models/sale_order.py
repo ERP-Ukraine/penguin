@@ -4,4 +4,7 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    arnold_report_id = fields.Many2one('sale.order.arnold.report')
+    arnold_report_id = fields.Many2one(
+        'sale.order.arnold.report',
+        readonly=True,
+        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},)

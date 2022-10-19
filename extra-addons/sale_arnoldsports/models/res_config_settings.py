@@ -12,6 +12,10 @@ class ResConfigSettings(models.TransientModel):
         'res.partner',
         string='Customer for Sales Orders',
         config_parameter='sale_arnoldsports.arnold_partner_id')
+    arnold_warehouse_id = fields.Many2one(
+        'stock.warehouse',
+        string='Warehouse for Sales Orders',
+        config_parameter='sale_arnoldsports.arnold_warehouse_id')
 
     def _find_default_lead_alias_id(self):
         alias = self.env.ref('sale_arnoldsports.mail_alias_arnold', False)

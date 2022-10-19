@@ -22,6 +22,9 @@
                             <label for="arnold_partner_id" class="col-lg-4 o_light_label"/>
                             <field name="arnold_partner_id" class="oe_inline"
                                    attrs="{'required': [('generate_arnold_orders', '=', True)]}"/>
+                            <label for="arnold_warehouse_id" class="col-lg-4 o_light_label"/>
+                            <field name="arnold_warehouse_id" class="oe_inline"
+                                   attrs="{'required': [('generate_arnold_orders', '=', True)]}"/>
                         </div>
 
                         <div class="content-group" attrs="{'invisible': [('generate_arnold_orders', '=', False)]}">

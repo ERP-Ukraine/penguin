@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Sales/Sales',
-    'version': '1.1',
+    'version': '1.3',
     'depends': [
         'sale',
     ],
@@ -17,6 +17,7 @@
         'data/ir_cron.xml',
         'views/res_config_settings_views.xml',
         'views/sale_order_arnold_views.xml',
+        'views/sale_order_views.xml',
     ],
     'auto_install': False,
     'installable': True,
