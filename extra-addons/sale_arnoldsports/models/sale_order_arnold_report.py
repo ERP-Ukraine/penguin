@@ -93,7 +93,7 @@ class SaleOrderArnoldReport(models.Model):
                     line_form.product_id = product
                     line_form.product_uom_qty = qty
                     line_form.price_unit = price_unit
-            so_form.message_post(body=_('Customers: %s') % ', '.join(customers))
+            so_form.origin = _('Customers: %s') % ', '.join(customers)
             so_form.action_confirm()
             so_form.date_order = order_dt
             so_form.save()
