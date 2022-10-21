@@ -97,3 +97,4 @@ class SaleOrderArnoldReport(models.Model):
             so = so_form.save()
             so.action_confirm()
             so.date_order = order_dt
+            return True
