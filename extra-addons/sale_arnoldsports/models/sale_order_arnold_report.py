@@ -88,11 +88,11 @@ class SaleOrderArnoldReport(models.Model):
                     return False
                 with so_form.order_line.new() as line_form:
                     qty = float(line['quantity'].strip().replace(',', '.'))
-                    unit_price = (float(line['hek'].strip().replace(',', '.'))
+                    price_unit = (float(line['hek'].strip().replace(',', '.'))
                                   - float(line['discount_eur'].strip().replace(',', '.')))
                     line_form.product_id = product
                     line_form.product_uom_qty = qty
-                    line_form.unit_price = unit_price
+                    line_form.price_unit = price_unit
             so_form.message_post(body=_('Customers: %s') % ', '.join(customers))
             so_form.action_confirm()
             so_form.date_order = order_dt
