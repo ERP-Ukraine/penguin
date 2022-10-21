@@ -77,10 +77,14 @@ class SaleOrderArnoldReport(models.Model):
             for line in lines_by_date[order_date]:
                 if line['customer'] not in customers:
                     customers.append(line['customer'])
-                product = self.env['product.product'].search([('barcode', '=', line['ean'])], limit=1)
+                article = line['article']
+                if article.startswith('PN-'):
+                    article = article[3:]
+                product = self.env['product.product'].search([('default_code', '=', article)],
+                                                             limit=1)
                 if not product:
-                    _logger.warning('[%s] Product with ean %s not found', order_date, line['ean'])
-                    report.message_post(body=_('Product with ean %s not found') % line['ean'])
+                    _logger.warning('[%s] Product with article %s not found', order_date, article)
+                    report.message_post(body=_('Product with article %s not found') % article)
                     return False
                 with so_form.order_line.new() as line_form:
                     qty = float(line['quantity'].strip().replace(',', '.'))
