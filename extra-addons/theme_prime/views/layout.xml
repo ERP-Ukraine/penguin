@@ -995,7 +995,8 @@
             <attribute name="class">h3</attribute>
         </xpath>
 
-        <xpath expr="//t[@t-placeholder='select']" position="before">
+        <!-- Temporary not needed -->
+        <!-- <xpath expr="//t[@t-placeholder='select']" position="before">
             <t t-set="product_pricelist_offer" t-value="product._get_product_pricelist_offer()"/>
             <div t-if="product_pricelist_offer" class="row pt-2 no-gutters">
                 <div class="col-12">
@@ -1008,7 +1009,7 @@
                 </div>
             </div>
             <hr/>
-        </xpath>
+        </xpath> -->
 
         <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
             <attribute name="class" add="d-block my-3" remove="d-inline" separator=" "/>

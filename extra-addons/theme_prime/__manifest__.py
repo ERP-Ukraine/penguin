@@ -6,7 +6,7 @@
     'description': 'Powerful multipurpose eCommerce theme suitable for all kind of businesses like Electronics, Fashion, Sports, Beauty, Furniture and many more.',
     'summary': 'Powerful multipurpose eCommerce theme suitable for all kind of businesses like Electronics, Fashion, Sports, Beauty, Furniture and many more.',
     'category': 'Theme/eCommerce',
-    'version': '15.0.0.4.0',
+    'version': '15.0.0.4.1',
     'depends': ['droggol_theme_common'],
 
     'license': 'OPL-1',
