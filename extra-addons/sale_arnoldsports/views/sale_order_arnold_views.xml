@@ -17,6 +17,7 @@
         <field name="arch" type="xml">
             <form string="Arnold Sports Reports to Process">
                 <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
                     <group>
                         <group>
                             <field name="name"/>
@@ -31,6 +32,20 @@
                     <field name="message_ids"/>
                 </div>
             </form>
+        </field>
+    </record>
+
+    <record id="sale_order_arnold_report_view_search" model="ir.ui.view">
+        <field name="name">sale_order_arnold_report_orders.search</field>
+        <field name="model">sale.order.arnold.report</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <separator/>
+                <field name="order_ids"/>
+                <separator/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
         </field>
     </record>
 
