@@ -63,7 +63,7 @@ class SaleOrderArnoldReport(models.Model):
             _logger.warning('ARNOLD SPORTS fiscal position not configured')
             return False
         discount = float(self.env['ir.config_parameter'].sudo().get_param(
-            'sale_arnoldsports.discount'), '26.0')
+            'sale_arnoldsports.discount', '26.0'))
         partner = self.env['res.partner'].browse(partner_id)
         fiscal_position = self.env['account.fiscal.position'].browse(fpos_id)
         warehouse = self.env['stock.warehouse'].browse(warehouse_id)
