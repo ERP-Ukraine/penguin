@@ -57,7 +57,15 @@ class SaleOrderArnoldReport(models.Model):
         if not warehouse_id:
             _logger.warning('ARNOLD SPORTS warehouse not configured')
             return False
+        fpos_id = int(self.env['ir.config_parameter'].sudo().get_param(
+            'sale_arnoldsports.arnold_fpos_id'))
+        if not fpos_id:
+            _logger.warning('ARNOLD SPORTS fiscal position not configured')
+            return False
+        discount = float(self.env['ir.config_parameter'].sudo().get_param(
+            'sale_arnoldsports.discount'), '26.0')
         partner = self.env['res.partner'].browse(partner_id)
+        fiscal_position = self.env['account.fiscal.position'].browse(fpos_id)
         warehouse = self.env['stock.warehouse'].browse(warehouse_id)
         lines_by_date = {}
         for line in lines:
@@ -70,6 +78,7 @@ class SaleOrderArnoldReport(models.Model):
             order_dt = parser.parse(order_date, dayfirst=True)
             so_form = Form(self.env['sale.order'])
             so_form.partner_id = partner
+            so_form.fiscal_position_id = fiscal_position
             so_form.warehouse_id = warehouse
             so_form.arnold_report_id = report
             so_form.commitment_date = order_dt
@@ -93,8 +102,9 @@ class SaleOrderArnoldReport(models.Model):
                     line_form.product_id = product
                     line_form.product_uom_qty = qty
                     line_form.price_unit = price_unit
+                    line_form.discount = discount
             so_form.origin = _('Customers: %s') % ', '.join(customers)
             so = so_form.save()
             so.action_confirm()
             so.date_order = order_dt
-            return True
+        return True

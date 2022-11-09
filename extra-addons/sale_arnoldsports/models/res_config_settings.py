@@ -16,6 +16,14 @@ class ResConfigSettings(models.TransientModel):
         'stock.warehouse',
         string='Warehouse for Sales Orders',
         config_parameter='sale_arnoldsports.arnold_warehouse_id')
+    arnold_fpos_id = fields.Many2one(
+        'account.fiscal.position',
+        string='Tax Excl Fiscal Position',
+        config_parameter='sale_arnoldsports.arnold_fpos_id')
+    arnold_discount = fields.Float(
+        string='Discount',
+        config_parameter='sale_arnoldsports.discount',
+        default=26.0)
 
     def _find_default_lead_alias_id(self):
         alias = self.env.ref('sale_arnoldsports.mail_alias_arnold', False)
