@@ -38,7 +38,7 @@
         <xpath expr="//t[@t-call='website_sale.product_price']" position="replace"/>
         <xpath expr="//p[@t-field='product.description_sale']" position="replace"/>
         <xpath expr="//span[@itemprop='url']" position="before">
-            <p t-field="product.description_sale" class="my-3 description-sale-bp" placeholder="A short description that will also appear on documents." />
+            <p t-field="product.website_sale_description" class="my-3 description-sale-bp" placeholder="A short description that will also appear on documents." />
             <t t-call="website_sale.product_price"/>
             <small class="ml-1 text-muted o_base_unit_price_wrapper d-none" groups="website_sale.group_show_uom_price">
                 <t t-call='website_sale.base_unit_price'/>
@@ -132,6 +132,22 @@
                                 <t t-set="third_active_tab" t-value="not (first_active_tab or first_active_tab)"/>
                                 <div id="accordion" class="accordion" role="tablist" t-if="any((product.material_id, product.feature_ids, not product.hide_size_chart, product.washing_instruction_id))">
                                     <t t-call="website_bloopark_detail.product_tabs"/>
+                                    <div t-if="product.functionality" class="card bg-white" data-name="Item">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa11" contenteditable="false">Functionality</a>
+                                        <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa11" style="">
+                                            <div class="card-body">
+                                                <div itemprop="functionality" t-field="product.functionality" class="oe_structure"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div t-if="product.durability" class="card bg-white" data-name="Item">
+                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa12" contenteditable="false">Durability</a>
+                                        <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa12" style="">
+                                            <div class="card-body">
+                                                <div itemprop="durability" t-field="product.durability" class="oe_structure"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div t-if="product.material_id" class="card bg-white" data-name="Item">
                                         <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa15" contenteditable="false">Material</a>
                                         <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa15" style="">
@@ -471,16 +487,6 @@
     </template>
 
     <template id="product_tabs" name="Bloopark detail: Product Tabs">
-
-        <div class="card bg-white" data-name="Item">
-            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa11" contenteditable="false">Description</a>
-            <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa11" style="">
-                <div class="card-body">
-                    <div itemprop="description" t-field="product.website_description" class="oe_structure" id="product_full_description" />
-                </div>
-            </div>
-        </div>
-
         <t t-set="product_documents_ids" t-value="product.sudo().dr_document_ids"/>
         <div t-if="product_documents_ids" class="card bg-white" data-name="Item">
             <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa13" contenteditable="false">Documents</a>
