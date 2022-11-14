@@ -70,7 +70,7 @@
     </template>
 
     <!-- Product -->
-    <template id="penguin_product" inherit_id="website_sale.product" name="Penguin Product" customize_show="True">
+    <template id="penguin_product" inherit_id="website_sale.product" name="Penguin Product" customize_show="True" active="False">
         <xpath expr="//t[@t-set='additional_title']" position="before">
             <t t-set="penguin" t-value="True"/>
         </xpath>
@@ -320,13 +320,13 @@
         </xpath>
     </template>
 
-    <template id="product_price" inherit_id="website_sale.product_price" customize_show="True" name="Penguin Product Price">
+    <template id="product_price" inherit_id="website_sale.product_price" customize_show="True" name="Penguin Product Price" active="False">
         <xpath expr="//div[1]" position="attributes">
             <attribute name="class" remove="mb-3" separator=" "/>
         </xpath>
     </template>
 
-    <template id="shop_product_carousel" inherit_id="website_sale.shop_product_carousel" name="Penguin Shop Product Carousel" customize_show="True">
+    <template id="shop_product_carousel" inherit_id="website_sale.shop_product_carousel" name="Penguin Shop Product Carousel" customize_show="True" active="False">
         <xpath expr="//div[@id='o-carousel-product']" position="inside">
             <p class="mt-4" t-esc="product.website_sale_description"/>
         </xpath>
@@ -395,7 +395,7 @@
 
     <!-- Products (Shop) -->
     <template id="penguin_products" inherit_id="website_sale.products"
-              customize_show="True" active="True" name="Penguin Products">
+              customize_show="True" name="Penguin Products" active="False">
 
         <xpath expr="//t[@t-set='additional_title']" position="before">
             <t t-set="penguin" t-value="True"/>
@@ -481,7 +481,7 @@
         </xpath>
     </template>
 
-    <template id="template_header_default_website" inherit_id="website.template_header_default" name="Penguin Template Header Default (with pricelist)" customize_show="True" active="True">
+    <template id="template_header_default_website" inherit_id="website.template_header_default" name="Penguin Template Header Default (with pricelist)" customize_show="True" active="False">
         <xpath expr="//div[@id='top_menu_collapse']" position="after">
             <t t-call='website_sale.pricelist_list'>
                 <t t-set="_classes" t-valuef="mx-2 text-bold font-weight-bold"/>

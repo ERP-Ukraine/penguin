@@ -11,6 +11,15 @@ class ProductTemplate(models.Model):
         'Website Description', translate=True,
         help='A description of the Product that you want to show on your website')
     hide_size_chart = fields.Boolean(default=False)
+    functionality = fields.Text(
+        translate=True,
+        help='This field present in product page with tab name "Functionality"'
+    )
+    durability = fields.Text(
+        translate=True,
+        help='This field present in product page with tab name "Durability"'
+    )
+
 
     def _get_first_product_variant(self, ptav):
         return self.env['product.product'].search([
