@@ -76,7 +76,7 @@ class SaleOrderArnoldReport(models.Model):
         for order_date in lines_by_date:
             customers = []
             order_dt = parser.parse(order_date, dayfirst=True)
-            so_form = Form(self.env['sale.order'])
+            so_form = Form(self.env['sale.order'].with_context(not_self_saleperson=True))
             so_form.partner_id = partner
             so_form.fiscal_position_id = fiscal_position
             so_form.warehouse_id = warehouse
