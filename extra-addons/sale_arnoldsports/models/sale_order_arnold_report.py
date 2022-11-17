@@ -65,6 +65,7 @@ class SaleOrderArnoldReport(models.Model):
         discount = float(self.env['ir.config_parameter'].sudo().get_param(
             'sale_arnoldsports.discount', '26.0'))
         partner = self.env['res.partner'].browse(partner_id)
+        partner_user = partner.user_id or partner.commercial_partner_id.user_id
         fiscal_position = self.env['account.fiscal.position'].browse(fpos_id)
         warehouse = self.env['stock.warehouse'].browse(warehouse_id)
         lines_by_date = {}
@@ -83,6 +84,7 @@ class SaleOrderArnoldReport(models.Model):
             so_form.arnold_report_id = report
             so_form.commitment_date = order_dt
             so_form.date_order = order_dt
+            so_form.user_id = partner_user
             for line in lines_by_date[order_date]:
                 if line['customer'] not in customers:
                     customers.append(line['customer'])
