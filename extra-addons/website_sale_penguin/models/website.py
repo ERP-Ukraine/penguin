@@ -20,7 +20,7 @@ class Website(models.Model):
         ]
 
     def _get_country_pricelist(self, order):
-        europe_cg = self.env['res.country.group'].search([('name', '=', 'Europe')], limit=1)
+        europe_cg = self.env['res.country.group'].with_context(lang='en_US').search([('name', '=', 'Europe')], limit=1)
         if not europe_cg:
             _logger.warning('Could not find "Europe" country group, partner\'s country check not working properly')
         partner_country = order.partner_id.country_id
