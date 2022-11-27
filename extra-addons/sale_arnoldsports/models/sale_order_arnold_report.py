@@ -80,11 +80,11 @@ class SaleOrderArnoldReport(models.Model):
             so_form = Form(self.env['sale.order'].with_context(not_self_saleperson=True))
             so_form.partner_id = partner
             so_form.fiscal_position_id = fiscal_position
-            so_form.warehouse_id = warehouse
+            so_form.user_id = partner_user
             so_form.arnold_report_id = report
             so_form.commitment_date = order_dt
             so_form.date_order = order_dt
-            so_form.user_id = partner_user
+            so_form.warehouse_id = warehouse
             for line in lines_by_date[order_date]:
                 if line['customer'] not in customers:
                     customers.append(line['customer'])
