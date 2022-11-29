@@ -70,6 +70,9 @@ class SaleOrderArnoldReport(models.Model):
         warehouse = self.env['stock.warehouse'].browse(warehouse_id)
         lines_by_date = {}
         for line in lines:
+            if not line['date']:
+                # skip empty rows
+                continue
             if line['date'] not in lines_by_date:
                 lines_by_date[line['date']] = [line]
             else:
