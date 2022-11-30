@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Sales/Sales',
-    'version': '1.3',
+    'version': '1.3.1',
     'depends': ['sale_coupon'],
     'data': [
         'report/coupon_report_templates.xml',

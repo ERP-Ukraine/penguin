@@ -74,7 +74,7 @@ class SaleOrder(models.Model):
                         email_layout_xmlid='mail.mail_notification_light',
                     )
                     # -- custom code --
-                    msg = 'Coupon <a href=# data-oe-model=sale.coupon data-oe-id=%d>%s</a> ' \
+                    msg = 'Coupon <a href=# data-oe-model=coupon.coupon data-oe-id=%d>%s</a> ' \
                         'sent to <a href=# data-oe-model=res.partner data-oe-id=%d>%s</a>'
                     order.message_post(body=_(
                         msg % (coupon.id, coupon.code, order.partner_id.id, order.partner_id.name)))
