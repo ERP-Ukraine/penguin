@@ -2,6 +2,7 @@ import base64
 import csv
 import io
 import logging
+import re
 
 from dateutil import parser
 from odoo import _, api, fields, models
@@ -14,6 +15,8 @@ class SaleOrderArnoldReport(models.Model):
     _name = 'sale.order.arnold.report'
     _inherit = ['mail.thread']
     _description = 'Order Report from ArnoldSports sent via email'
+
+    _regex = re.compile(r'(RG\d{7})')
 
     active = fields.Boolean(default=True)
     name = fields.Char(default='Arnold Order Report', readonly=True)
@@ -81,6 +84,8 @@ class SaleOrderArnoldReport(models.Model):
             customers = []
             order_dt = parser.parse(order_date, dayfirst=True)
             so_form = Form(self.env['sale.order'].with_context(not_self_saleperson=True))
+            client_order_ref = self._regex.search(self.name)
+            so_form.client_order_ref = client_order_ref and client_order_ref.group() or ''
             so_form.partner_id = partner
             so_form.fiscal_position_id = fiscal_position
             so_form.user_id = partner_user
