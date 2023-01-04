@@ -44,12 +44,12 @@ class SaleOrderArnoldReport(models.Model):
                 for line in csv.DictReader(io.StringIO(bin_data.decode('utf-8')), delimiter=';'):
                     report_lines.append(line)
             if report_lines:
-                success = self._create_order_from_lines(lines=report_lines, report=report)
+                success = self._create_order_from_lines(lines=report_lines, report=report, report_name=report.name)
                 report.active = not success
             self.env.cr.commit()
 
     @api.model
-    def _create_order_from_lines(self, lines=None, report=None):
+    def _create_order_from_lines(self, lines=None, report=None, report_name=None):
         partner_id = int(self.env['ir.config_parameter'].sudo().get_param(
             'sale_arnoldsports.arnold_partner_id'))
         if not partner_id:
@@ -84,7 +84,7 @@ class SaleOrderArnoldReport(models.Model):
             customers = []
             order_dt = parser.parse(order_date, dayfirst=True)
             so_form = Form(self.env['sale.order'].with_context(not_self_saleperson=True))
-            client_order_ref = self._regex.search(self.name)
+            client_order_ref = self._regex.search(report_name)
             so_form.client_order_ref = client_order_ref and client_order_ref.group() or ''
             so_form.partner_id = partner
             so_form.fiscal_position_id = fiscal_position
