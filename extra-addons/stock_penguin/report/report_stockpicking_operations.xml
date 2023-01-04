@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="report_picking" inherit_id="stock.report_picking">
-        <xpath expr="//div[@t-field='o.move_lines[0].partner_id']" position="attributes">
+        <xpath expr="//div[@name='div_outgoing_address']/div[1]/div" position="attributes">
             <attribute name="t-options">
                 {"widget": "contact", "fields": ["address", "name"], "no_marker": True, "phone_icons": False}
             </attribute>
