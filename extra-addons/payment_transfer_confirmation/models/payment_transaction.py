@@ -20,6 +20,11 @@ class TransferPaymentTransaction(models.Model):
         else:
             self._set_done()
 
+    def _reconcile_after_done(self):
+        if self.provider != 'transfer':
+            return super()._reconcile_after_done()
+        self.invoice_ids.filtered(lambda inv: inv.state == 'draft').action_post()
+
     def _send_capture_request(self):
         super()._send_capture_request()
         if self.provider != 'transfer':

@@ -2,7 +2,7 @@
 {
     'name': 'Order Confirmation for Wire Transfer',
     'category': 'Accounting/Payment',
-    'version': '1.0',
+    'version': '1.1',
     'description': "Auto confirm order on payment confiramtion.",
     'author': 'ERP Ukraine',
     'website': 'https://erp.co.ua',
