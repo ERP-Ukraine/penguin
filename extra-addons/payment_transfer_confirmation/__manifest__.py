@@ -1,20 +1,17 @@
-# -*- coding: utf-8 -*-
 {
-    'name': 'Order Confirmation for Wire Transfer',
-    'category': 'Accounting/Payment',
-    'version': '1.1',
-    'description': "Auto confirm order on payment confiramtion.",
+    'name': 'Payment Wire Transfer Confirmation',
+    'summary': 'Auto confirm orders, create invoices and post them for wire transfer payments',
     'author': 'ERP Ukraine',
     'website': 'https://erp.co.ua',
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
-    'depends': [
-        'payment_transfer',
-        'sale'
-    ],
+    'category': 'Accounting/Payment',
+    'version': '1.1',
+    'depends': ['payment_transfer', 'sale'],
     'data': [
         'data/payment_data.xml',
         'views/payment_acquirer_views.xml',
+        'views/payment_transaction_views.xml',
     ],
     'auto_install': False,
     'installable': True,

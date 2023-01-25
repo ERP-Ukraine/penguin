@@ -14,12 +14,33 @@ class TransferPaymentTransaction(models.Model):
             return
 
         if self.env['ir.config_parameter'].sudo().get_param('sale.automatic_invoice'):
-            # Do not confirm TX if invoice autocreation is enabled
-            # as it will create invoice, payment and send paid invoice via email
-            # however real payment is not received yet
+            # Make transaction 'authorized' for manager to choose manually
+            # when it's captured. After that generate invoice and post it
             self._set_authorized()
+            self._invoice_sale_orders()
+            self.invoice_ids.filtered(lambda inv: inv.state == 'draft').action_post()
         else:
             self._set_done()
+
+    # overriden from module 'sale' because if cron will come to this point and
+    # sale order will have an invoice it wont go further because of exception
+    def _invoice_sale_orders(self):
+        if self.env['ir.config_parameter'].sudo().get_param('sale.automatic_invoice'):
+            for trans in self.filtered(lambda t: t.sale_order_ids):
+                trans = trans.with_company(trans.acquirer_id.company_id)\
+                    .with_context(company_id=trans.acquirer_id.company_id.id)
+                # ERPU custom code
+                confirmed_orders = trans.sale_order_ids.filtered(
+                    lambda so: so.state in ('sale', 'done') and not so.invoice_ids)
+                # ERPU end of custom code
+                if confirmed_orders:
+                    confirmed_orders._force_lines_to_invoice_policy_order()
+                    invoices = confirmed_orders._create_invoices()
+                    # Setup access token in advance to avoid serialization failure between
+                    # edi postprocessing of invoice and displaying the sale order on the portal
+                    for invoice in invoices:
+                        invoice._portal_ensure_token()
+                    trans.invoice_ids = [(6, 0, invoices.ids)]
 
     # overriden from module 'sale' because there is no need to create
     # payment for wire transfer transactions it has to be created manually
@@ -32,13 +53,13 @@ class TransferPaymentTransaction(models.Model):
         # send order confirmation mail
         confirmed_sales_orders._send_order_confirmation_mail()
         # invoice the sale orders if needed
-        self._invoice_sale_orders()
 
         # ERPU custom code
-        if self.provider == 'transfer':
-            res = self.invoice_ids.filtered(lambda inv: inv.state == 'draft').action_post()
-        else:
+        self._invoice_sale_orders()
+        if self.provider != 'transfer' or self.state == 'done':
             res = super(PaymentTransaction, self)._reconcile_after_done()
+        else:
+            res = self.invoice_ids.filtered(lambda inv: inv.state == 'draft').action_post()
         # ERPU end of custom code
 
         if self.env['ir.config_parameter'].sudo().get_param('sale.automatic_invoice') and any(so.state in ('sale', 'done') for so in self.sale_order_ids):
@@ -49,10 +70,7 @@ class TransferPaymentTransaction(models.Model):
         super()._send_capture_request()
         if self.provider != 'transfer':
             return
-
         self._set_done()
-        self._finalize_post_processing()
-        self._execute_callback()
 
     def _send_void_request(self):
         super()._send_void_request()
