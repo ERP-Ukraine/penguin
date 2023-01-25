@@ -14,6 +14,18 @@
 					position="attributes">
 					<attribute name="t-value">len(acquirers) + len(wallee_acquirers) if acquirers or wallee_acquirers else 0</attribute>
 				</xpath>
+				<!--
+					fix default t-set="default_payment_option_id" so that if 'acquirers'
+					list is empty, do not check it with 'acquirers_count'
+					because upper code makes so that length of 'acquirers_count'
+					may be 1 or more, but 'acquirers' list may be empty
+
+					“Evil cannot create anything new, they can only corrupt and ruin good forces have invented or made”
+					― JRR Tolkien
+				-->
+				<xpath expr="//t[@t-set='default_payment_option_id']" position="attributes">
+					<attribute name="t-value">default_token_id if default_token_id and token_count > 0 else acquirers[0].id if len(acquirers) == 1 and token_count == 0 else None</attribute>
+				</xpath>
 				<xpath
 					expr="//t[@t-foreach='tokens']"
 					position="before">
