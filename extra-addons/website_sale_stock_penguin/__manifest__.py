@@ -7,11 +7,11 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '1.3',
+    'version': '1.4',
     'depends': [
         'sale_stock_penguin',
         'website_sale_penguin',
-        'website_sale_stock',
+        'website_sale_stock_multi_warehouse',
     ],
     'data': [
         'report/report_deliveryslip.xml',
