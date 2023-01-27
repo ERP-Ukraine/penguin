@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="res_config_settings_view_form" model="ir.ui.view">
+    <field name="name">res.config.settings.view.penguin</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="website_sale_stock.res_config_settings_view_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//label[@for='website_warehouse_id']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='website_warehouse_id']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='website_warehouse_id']" position="after">
+            <label for="website_warehouse_ids" string="Warehouses" class="col-lg-3 o_light_label"/>
+            <field name="website_warehouse_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}"/>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
