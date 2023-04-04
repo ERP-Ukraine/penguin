@@ -61,3 +61,12 @@ class Website(models.Model):
                 force_pricelist=new_pricelist.id
             )
         return order
+
+    def _prepare_sale_order_values(self, partner, pricelist):
+        # Set Sales Person from Contact's form
+        # Fallback to Website's Sales person
+        values = super()._prepare_sale_order_values(partner, pricelist)
+        default_user_id = partner.parent_id.user_id.id or partner.user_id.id
+        if default_user_id:
+            values['user_id'] = default_user_id
+        return values
