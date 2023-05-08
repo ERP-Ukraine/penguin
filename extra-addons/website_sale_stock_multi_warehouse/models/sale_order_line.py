@@ -17,19 +17,20 @@ class SaleOrderLine(models.Model):
         for warehouse_id in warehouse_ids:
             if float_compare(product_qty, 0, precision_digits=precision) != 1:
                 return procurements
-            warehouse_qty = line.product_id.with_context(
-                warehouse=warehouse_id.id).free_qty
+            warehouse_qty = line.product_id.with_context(warehouse=warehouse_id.id).free_qty
             # skip this warehouse if there is no product free qty
-            if float_is_zero(warehouse_qty, precision_digits=precision):
+            if float_compare(warehouse_qty, 0, precision_digits=precision) != 1:
                 continue
-            product_qty -= warehouse_qty
+            qty_delta = float_compare(warehouse_qty, product_qty, precision_digits=precision)
+            reserved_qty = product_qty if qty_delta != -1 else warehouse_qty
             # create new values dictionary for new warehouse because
             # it holds reference to same values object
             values = {**values, 'warehouse_id': warehouse_id}
             procurements.append(self.env['procurement.group'].Procurement(
-                line.product_id, warehouse_qty, procurement_uom,
+                line.product_id, reserved_qty, procurement_uom,
                 line.order_id.partner_shipping_id.property_stock_customer,
                 line.product_id.display_name, line.order_id.name, line.order_id.company_id, values))
+            product_qty -= reserved_qty
         return procurements
 
     # override to create different pickings depending on warehouse
