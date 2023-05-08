@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '1.4',
+    'version': '1.5',
     'depends': [
         'sale_stock_penguin',
         'website_sale_penguin',
@@ -15,7 +15,8 @@
     ],
     'data': [
         'report/report_deliveryslip.xml',
-        'views/product_views.xml'
+        'views/product_views.xml',
+        'views/stock_warehouse_views.xml',
     ],
     'assets': {
         'web.assets_frontend': [
