@@ -6,7 +6,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Accounting/Payment',
-    'version': '1.1',
+    'version': '1.2',
     'depends': ['payment_transfer', 'sale'],
     'data': [
         'data/payment_data.xml',
