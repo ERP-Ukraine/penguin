@@ -533,7 +533,7 @@ msgstr "Buchungszeile"
 #: model:ir.model.fields,field_description:sale_penguin.field_sale_order_line__penguin_net_price_pc
 #: model_terms:ir.ui.view,arch_db:sale_penguin.report_saleorder_document
 #: model_terms:ir.ui.view,arch_db:sale_penguin.sale_order_portal_content
-msgid "Net Price/pc"
+msgid "Net/pc"
 msgstr "Netto/Stk."
 
 #. module: sale_penguin

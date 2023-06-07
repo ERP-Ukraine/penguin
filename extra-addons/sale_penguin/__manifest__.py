@@ -6,7 +6,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Sales/Sales',
-    'version': '2.8',
+    'version': '2.9',
     'depends': [
         'product_penguin',
         'sale',
