@@ -17,6 +17,11 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 2.4.1\n"
 
+#. module: account
+#: model_terms:account.payment.term,note:account.account_payment_term_immediate
+msgid "Payment terms: Immediate Payment"
+msgstr "Zahlungsbedingungen: Sofortige Zahlung"
+
 #. module: account_penguin
 #: model_terms:ir.ui.view,arch_db:account_penguin.penguin_report_invoice_document
 msgid ""
