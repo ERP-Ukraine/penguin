@@ -30,7 +30,7 @@
                 <span>RRP/pc</span>
             </th>
             <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                <span></span>
+                <span>Net/pc</span>
             </th>
         </xpath>
         <xpath expr="//table[hasclass('o_main_table')]//span[@t-field='line.price_unit']/parent::td" position="replace">
