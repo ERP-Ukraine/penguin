@@ -39,7 +39,7 @@ class Website(models.Model):
         domain = self._get_selectable_pricelist_domain()
         default_pl = self.env['product.pricelist'].search(domain, limit=1)
         personal_pl = self.env.user.partner_id.commercial_partner_id.property_product_pricelist
-        if default_pl != personal_pl and order.pricelist_id != personal_pl:
+        if self.env.user.active and default_pl != personal_pl and order.pricelist_id != personal_pl:
             return super(Website, self.with_context(personal_pricelist_set=True)).sale_get_order(
                 force_create=force_create,
                 code=code,

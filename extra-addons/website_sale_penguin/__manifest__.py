@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '2.9',
+    'version': '2.9.1',
     'depends': ['website_penguin', 'website_sale'],
     'data': [
         'report/sale_report_templates.xml',
