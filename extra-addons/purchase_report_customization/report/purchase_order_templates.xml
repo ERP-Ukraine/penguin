@@ -14,7 +14,7 @@
             <attribute name="class" add="col-3 w-100 mb-2" remove="col-auto col-3 mw-100 bm-2" separator=" "/>
         </xpath>
 
-        <xpath expr="//div[@t-if='o.date_order']" position="attributes">
+        <xpath expr="//div[@t-elif='o.date_order']" position="attributes">
             <attribute name="class" add="col-3 w-100 mb-2" remove="col-auto col-3 mw-100 bm-2" separator=" "/>
         </xpath>
 
