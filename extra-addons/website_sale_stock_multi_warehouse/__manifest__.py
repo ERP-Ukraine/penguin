@@ -6,9 +6,11 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '1.1',
+    'version': '1.2',
     'depends': ['website_sale_stock'],
-    'data': ['views/res_config_settings_views.xml'],
+    'data': [
+        'views/res_company_views.xml',
+        ],
     'installable': True,
     'auto_install': False,
     'application': False,

@@ -20,7 +20,7 @@ class MWPaymentPortal(PaymentPortal):
                 cart_qty = sum(order.order_line.filtered(
                     lambda p: p.product_id.id == line.product_id.id).mapped('product_uom_qty'))
                 # ERPUkraine use all warehouses from current website
-                avl_qty = line.product_id.with_context(warehouse=request.website.sudo().warehouse_ids.ids).free_qty
+                avl_qty = line.product_id.with_context(warehouse=request.website.sudo().company_id.warehouse_ids.ids).free_qty
                 # ERPUkraine end of custom code
                 if cart_qty > avl_qty:
                     values.append(_(

@@ -5,7 +5,8 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False, parent_combination=False, only_template=False):
-        warehouse_ids = self.env['website'].get_current_website().sudo().warehouse_ids.ids
+        active_company = self._get_current_company(pricelist=pricelist)
+        warehouse_ids = active_company.warehouse_ids.ids
         combination_info = super(ProductTemplate, self.with_context(warehouse=warehouse_ids))._get_combination_info(
             combination=combination, product_id=product_id, add_qty=add_qty, pricelist=pricelist,
             parent_combination=parent_combination, only_template=only_template)

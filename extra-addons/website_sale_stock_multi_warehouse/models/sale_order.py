@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
             if line.product_id.type == 'product' and not line.product_id.allow_out_of_stock_order:
                 cart_qty = sum(self.order_line.filtered(lambda p: p.product_id.id == line.product_id.id).mapped('product_uom_qty'))
                 # ERPUkraine use multiple warehouses
-                warehouse_ids = self.env['website'].get_current_website().sudo().warehouse_ids
+                warehouse_ids = self.company_id.warehouse_ids
                 context = dict(warehouse=warehouse_ids.ids)
                 available_qty = line.product_id.with_context(context).free_qty
                 if (line_id == line.id) and cart_qty > available_qty:
