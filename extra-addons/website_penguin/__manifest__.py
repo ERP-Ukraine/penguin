@@ -6,7 +6,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '2.1.1',
+    'version': '2.1.2',
     'sequence': 7,
     'depends': ['website'],
     'data': [
