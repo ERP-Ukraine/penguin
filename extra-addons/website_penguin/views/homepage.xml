@@ -11,7 +11,7 @@
                             <li data-slide-to="0" class="active" data-target="#myCarousel1659427403379"/>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item o_colored_level pb184 pt176 oe_img_bg o_bg_img_center active" data-name="Slide" style="background-image: url(&quot;/website_penguin/static/src/img/homepage/penguin-slope-bg.jpeg&quot;); background-position: 50% 0px; text-align: right;" data-original-title="" title="" aria-describedby="tooltip238776">
+                            <div class="carousel-item o_colored_level pb184 pt176 oe_img_bg o_bg_img_center active" data-name="Slide" style="background-image: url(&quot;/website_penguin/static/src/img/homepage/penguin_start_1.jpeg&quot;); background-position: 50% 0px; text-align: right;" data-original-title="" title="" aria-describedby="tooltip238776">
                                 <div class="o_we_bg_filter bg-black-25"/>
                                 <div class="px-0 container-fluid">
                                     <div class="row content no-gutters align-items-center s_col_no_bgcolor s_nb_column_fixed" data-original-title="" title="" aria-describedby="tooltip60213">
@@ -234,12 +234,12 @@
                         <div class="row s_nb_column_fixed align-items-center" data-original-title="" title="" aria-describedby="tooltip852247">
                             <div class="col-6 mb-4 mb-lg-0 o_colored_level pb0 col-lg-3">
                                 <div class="tp-animation-scale">
-                                    <img src="/website_penguin/static/src/img/homepage/penguin-care-1.jpeg" class="img img-fluid o_we_image_cropped" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip729027" data-original-id="22834" data-mimetype="image/jpeg" data-x="85.5" data-width="341" data-height="341" data-scale-x="1" data-scale-y="1" data-aspect-ratio="1/1"/>
+                                    <img src="/website_penguin/static/src/img/homepage/care1_dwr_renew.jpeg" class="img img-fluid o_we_image_cropped" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip729027" data-original-id="22834" data-mimetype="image/jpeg" data-x="85.5" data-width="341" data-height="341" data-scale-x="1" data-scale-y="1" data-aspect-ratio="1/1"/>
                                 </div>
                             </div>
                             <div class="col-6 mb-4 mb-lg-0 o_colored_level col-lg-3">
                                 <div class="tp-animation-scale">
-                                    <img src="/website_penguin/static/src/img/homepage/penguin-care-2.jpeg" class="img img-fluid o_we_image_cropped" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip239344" data-original-id="22835" data-mimetype="image/jpeg" data-y="85.5" data-width="341" data-height="341" data-scale-x="1" data-scale-y="1" data-aspect-ratio="1/1"/>
+                                    <img src="/website_penguin/static/src/img/homepage/care2_repair_your_gear.jpeg" class="img img-fluid o_we_image_cropped" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip239344" data-original-id="22835" data-mimetype="image/jpeg" data-y="85.5" data-width="341" data-height="341" data-scale-x="1" data-scale-y="1" data-aspect-ratio="1/1"/>
                                 </div>
                             </div>
                             <div class="col-12 o_colored_level col-lg-4 offset-lg-1">
@@ -267,7 +267,7 @@
                         </h2>
                     </div>
                 </section>
-                <section class="s_cover o_colored_level bg-600 pt256 pb256 s_parallax_no_overflow_hidden oe_img_bg o_bg_img_center" data-scroll-background-ratio="0" data-snippet="s_cover" data-name="Cover" style="background-image: url(&quot;/website_penguin/static/src/img/homepage/penguin_w21_davos_3752_small.jpeg&quot;);" data-original-title="" title="" aria-describedby="tooltip820220" data-bg-video-src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1" data-original-id="13100" data-mimetype="image/jpeg" data-resize-width="1500">
+                <section class="s_cover o_colored_level bg-600 pt256 pb256 s_parallax_no_overflow_hidden oe_img_bg o_bg_img_center" data-scroll-background-ratio="0" data-snippet="s_cover" data-name="Cover" style="background-image: url(&quot;/website_penguin/static/src/img/homepage/tours-and-events24.jpeg&quot;);" data-original-title="" title="" aria-describedby="tooltip820220" data-bg-video-src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1" data-original-id="13100" data-mimetype="image/jpeg" data-resize-width="1500">
                     <div class="s_allow_columns container">
                         <div class="row">
                             <div class="o_colored_level col-lg-12">
