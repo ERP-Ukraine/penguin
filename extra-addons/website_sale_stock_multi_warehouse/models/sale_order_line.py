@@ -43,7 +43,7 @@ class SaleOrderLine(models.Model):
         if self._context.get("skip_procurement"):
             return True
         # ERPUkraine get all warehouses from order website
-        warehouse_ids = self.company_id.warehouse_ids
+        warehouse_ids = self.sudo().company_id.warehouse_ids
         # ERPUkraine end of custom code
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
