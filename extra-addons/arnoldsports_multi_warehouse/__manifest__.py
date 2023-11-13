@@ -1,0 +1,15 @@
+{
+    'name': 'Arnoldsports Multi Warehouse',
+    'summary': 'Allow to use Arnoldsports sales with multi warehouse',
+    'author': 'ERP Ukraine LLC',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
+    'category': 'Other',
+    'version': '1.0',
+    'depends': ['sale_arnoldsports', 'website_sale_stock_penguin'],
+    'data': [],
+    'installable': True,
+    'auto_install': True,
+    'application': False,
+}
