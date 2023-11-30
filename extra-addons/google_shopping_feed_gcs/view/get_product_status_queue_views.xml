@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Search View Section -->
+        <record id="get_product_status_queue_gcs_search_view"
+            model="ir.ui.view">
+            <field name="name">get.product.status.queue.gcs.search</field>
+            <field name="model">get.product.status.queue.gcs</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <separator/>
+                    <filter string="Draft" domain="[('state', '=', 'draft')]" 
+                        name="get_product_status_draft_queue"/>
+                    <filter string="Partially Completed" domain="[('state', '=', 'partially_completed')]" 
+                        name="get_product_status_partially_completed"/>
+                    <filter string="Completed" domain="[('state', '=', 'completed')]" 
+                        name="get_product_status_complete_queue"/>
+                    <filter string="Failed" domain="[('state', '=', 'failed')]" 
+                        name="get_product_status_failed_queue" />
+                        
+                    <group expand="0" string="Group By...">
+                        <filter name="name" string="Shopping Account" icon="terp-personal"
+                            context="{'group_by':'gs_account_id'}" />
+                        <filter name="name" string="Shopping Instance" icon="terp-personal"
+                            context="{'group_by':'gs_instance_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+    
+        <!-- Tree View Section-->
+        <record id="get_product_status_queue_gcs_tree_view"
+            model="ir.ui.view">
+            <field name="name">get.product.status.queue.gcs.tree</field>
+            <field name="model">get.product.status.queue.gcs</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="name" />
+                    <field name="gs_account_id" />
+                    <field name="gs_instance_id" />
+                    <field name="state" decoration-success="state == 'completed'" decoration-info="state == 'draft'" 
+                        decoration-warning="state == 'partially_completed'" 
+                        decoration-danger="state == 'failed'" widget="badge"/>         
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Form View Section-->
+        <record id="get_product_status_queue_gcs_form_view"
+            model="ir.ui.view">
+            <field name="name">get.product.status.queue.gcs.form</field>
+            <field name="model">get.product.status.queue.gcs</field>
+            <field name="arch" type="xml">
+                <form create="false" edit="false">
+                    <header>
+                        <button
+                            name="%(google_shopping_feed_gcs.moved_to_completed_get_product_status_process_wizard_gcs_action)d"
+                            string="Move To Completed" type="action" class="btn-primary"
+                            attrs="{'invisible':[('state', 'in', ('completed'))]}"/>
+                        <field name="state" widget="statusbar" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" icon="fa-database" disabled="1">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="queue_line_total_records"/>
+                                    </span>
+                                    <span class="o_stat_text">Records</span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-info" disabled="1">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="queue_line_draft_records"/>
+                                    </span>
+                                    <span class="o_stat_text">Draft</span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-times" disabled="1"
+                                    attrs="{'invisible':[('state', 'in', ['partially_completed'])]}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="queue_line_failed_records"/>
+                                    </span>
+                                    <span class="o_stat_text">Failed</span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" disabled="1"
+                                    attrs="{'invisible':[('state', 'not in', ['partially_completed'])]}">
+                                <span class="fa-stack fa-lg"
+                                      style="padding-top: 6px; margin-left:2px; margin-top:2PX; font-size: 22px; 
+                                        color:#ff0000;">
+                                    <i class="fa fa-times-circle" title="Time Circle"
+                                       style="margin-left:18px;"/>
+                                </span>
+                                <field name="queue_line_failed_records" widget="statinfo"
+                                       string="Failed"/>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-check" disabled="1"
+                                    attrs="{'invisible':[('state', 'in', ['completed'])]}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="queue_line_done_records"/>
+                                    </span>
+                                    <span class="o_stat_text">Done</span>
+                                </div>
+                            </button>
+                            <button class="oe_stat_button" disabled="1"
+                                    attrs="{'invisible':[('state', 'not in', ['completed'])]}">
+                                <span class="fa-stack fa-lg"
+                                      style="padding-top: 6px; margin-left:15px; color:#00ff00;">
+                                    <i class="fa fa-check fa-stack-1x" style="margin-left:4px;"
+                                       title="Stack 1x"/>
+                                    <i class="fa fa-check fa-inverse fa-stack-1x"
+                                       style="margin-left:-3px;" title="Stack Inverse 1x"/>
+                                    <i class="fa fa-check  fa-stack-1x" style="margin-left:-4px"
+                                       title="Stack 1x"/>
+                                </span>
+                                <field name="queue_line_done_records" widget="statinfo"
+                                       string="Done"/>
+                            </button>
+                            <button class="oe_stat_button" icon="fa-ban" disabled="1">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field name="queue_line_cancelled_records"/>
+                                    </span>
+                                    <span class="o_stat_text">cancelled</span>
+                                </div>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" text="Processed"
+                            attrs="{'invisible': [('state','!=','completed')]}"/>
+                        <div class="oe_title pr-0">
+                            <label class="oe_edit_only" for="name"/>
+                            <h1 class="d-flex flex-row justify-content-between">
+                                <field name="name" readonly="1" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="gs_account_id" readonly="1" />
+                                <field name="gs_instance_id" readonly="1" />
+                            </group>
+                            <group>
+                                <field name="log_tracker" readonly="1" />
+                                <field name="create_date" string="Created On" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Product Queue Lines">
+                                <field name="get_product_status_queue_lines">
+                                    <tree create="false" editable="bottom"
+                                          decoration-danger="state=='failed'"
+                                          decoration-success="state=='done'"
+                                          decoration-info="state=='draft'">
+                                        <field name="product_offer_id"/>
+                                        <field name="name"/>
+                                        <field name="write_date" string="Last Updated On"/>
+                                        <field name="synced_product_response" invisible="1"/>
+                                        <field name="response_status_code" readonly="1" />
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Log Tracker Lines">
+                                <field name="log_tracker_lines">
+                                    <tree create="false" editable="bottom">
+                                        <field name="get_product_status_queue_line_id"/>
+                                        <field name="message"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="get_product_status_queue_line_gcs_form_view"
+            model="ir.ui.view">
+            <field name="name">get.product.status.queue.lines.gcs.form</field>
+            <field name="model">get.product.status.queue.lines.gcs</field>
+            <field name="arch" type="xml">
+                <form create="0" edit="0" delete="0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="gs_account_id" readonly="1"/>
+                                <field name="gs_instance_id" readonly="1"/>
+                                <field name="product_offer_id" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="get_product_status_queue_id" readonly="1"/>
+                                <field name="write_date" string="Last Updated On"
+                                       readonly="1"/>
+                                <field name="state" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Log Tracker Lines">
+                                <field name="log_tracker_lines">
+                                    <tree create="false" editable="bottom">
+                                        <field name="message"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Product Data">
+                                <field name="response_status_code" readonly="1" />
+                                <field string="Product Data" name="synced_product_response" readonly="1" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Action Section -->
+        <record id="get_product_status_queue_gcs_action"
+            model="ir.actions.act_window">
+            <field name="name">Get Product Status Queues</field>
+            <field name="res_model">get.product.status.queue.gcs</field>
+            <field name="view_id" ref="get_product_status_queue_gcs_tree_view" />
+            <field name="context">{
+                'search_default_get_product_status_draft_queue': 1,
+                'search_default_get_product_status_partially_completed': 2,
+                'search_default_get_product_status_failed_queue':3}
+            </field>
+        </record>
+        
+        <!-- Menu Section -->
+        <menuitem id="get_product_status_queue_gcs_menu"
+            name="Get Product Status"
+            parent="google_shopping_feed_gcs.google_shopping_queues_parent_menu"
+            action="get_product_status_queue_gcs_action" />
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Form View Section -->
+    <record id="gsf_inherited_product_image_form_view" model="ir.ui.view">
+        <field name="name">gsf.inherited.product.image.form</field>
+        <field name="model">product.image</field>
+        <field name="inherit_id" ref="website_sale.view_product_image_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='video_url']" position="after">
+                <group>
+                    <field name="gs_image_url" readonly="True" widget="url" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

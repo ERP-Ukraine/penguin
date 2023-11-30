@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+	<!-- Google Shopping Account Wizard -->
+	<data>
+		<record
+			id="res_config_google_shopping_account_wizard_form_view"
+			model="ir.ui.view">
+			<field name="name">Google Shopping Account</field>
+			<field name="model">res.config.google.shopping.feed.account.wizard</field>
+			<field name="arch" type="xml">
+				<form class="oe_form_configuration">
+					<group>
+						<field name="name" required="1"
+							placeholder="Enter google shopping account name..." />
+					</group>
+					<group>
+						<group>
+							<field name="google_shop_company_id" required="1"
+								options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+							<field name="google_shop_warehouse_ids" required="1"
+							    widget="many2many_tags"
+								options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+						</group>
+						<group>
+							<field name='google_shop_stock_field'
+								options="{'no_create': True,'no_create_edit': True , 'no_open': True}"
+								required="1"
+								domain="[('model_id.model','=','product.product'),('ttype','=','float')]" />
+						</group>
+					</group>
+					<group>
+						<field name='gs_merchant_id' required="1" />
+						<field name='gs_client_id' required="1" />
+						<field name='gs_client_secret_key' required="1" />
+					</group>
+					<footer>
+						<button string="Create Shopping Account" type="object"
+							name="create_google_shopping_account" class="oe_highlight" />
+						<button string="Cancel" special="cancel" name="cancel"
+							class="oe_link" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<!-- Action Section -->
+		<record id="res_config_google_shopping_account_wizard_action"
+			model="ir.actions.act_window">
+			<field name="name">Google Shopping Account</field>
+			<field name="res_model">res.config.google.shopping.feed.account.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="view_id"
+				ref="res_config_google_shopping_account_wizard_form_view" />
+		</record>
+	</data>
+
+	<!-- Google Shopping Instance Wizard -->
+	<data>
+		<record id="res_config_google_shopping_instance_from_view"
+			model="ir.ui.view">
+			<field name="name">Google Shopping Instance</field>
+			<field name="model">res.config.google.shopping.feed.instance.wizard</field>
+			<field name="arch" type="xml">
+				<form class="oe_form_configuration">
+					<group>
+						<field name="name" required="1" />
+					</group>
+					<group>
+						<group>
+							<field name="google_shop_account_id" required="1"
+								readonly="1"
+								options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+							<field name="google_shop_country_id" required="1"
+								options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+							<field name="google_shop_language" required="1"
+								options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+						</group>
+						<group>
+							<field name="google_shop_pricelist" required="1"
+								options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+						</group>
+					</group>
+
+					<footer>
+						<button string="Create Shopping Instance" type="object"
+							name="create_google_shopping_instance" class="oe_highlight" />
+						<button string="Cancel" special="cancel" name="cancel"
+							class="oe_link" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="res_config_google_shopping_instance_wizard_action"
+			model="ir.actions.act_window">
+			<field name="name">Google Shopping Instance</field>
+			<field name="res_model">res.config.google.shopping.feed.instance.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="view_id"
+				ref="res_config_google_shopping_instance_from_view" />
+		</record>
+
+	</data>
+
+	<!-- Google Shopping Setting Configurations -->
+	<data>
+
+		<!-- Google Shopping Account Setting Configurations -->
+		<!-- Form View Section -->
+		<record id="google_shopping_setting_config_view"
+			model="ir.ui.view">
+			<field name="name">Google Shopping Settings</field>
+			<field name="model">res.config.settings</field>
+			<field name="inherit_id"
+				ref="base.res_config_settings_view_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//div[hasclass('settings')]" position="inside">
+					<!-- Start Section -->
+					<div class="app_settings_block"
+						string="Google Shopping Account"
+						data-string="Google Shopping Account"
+						data-key="google_shopping_feed_gcs">
+						<!-- Google Shopping Sellers -->
+						<div name="google_shopping_account_config">
+							<h2 style="font-size:25px;background-color:#e9ecef;">Google Shopping Account</h2>
+							<div class="row mt16 o_settings_container">
+								<div class="col-12 o_setting_box">
+									<label for="google_shop_account_id"
+										string="Select Google Shopping Account" />
+									<field name="google_shop_account_id" widget="selection"
+										class="oe_inline" domain="[('state','=','confirmed')]" />
+
+									<!-- <button string="Create New Google Shopping Account"
+										icon="fa-arrow-right text-success"
+										context="{'default_google_shop_account_id':google_shop_account_id}"
+										name="%(google_shopping_feed_gcs.res_config_google_shopping_account_wizard_action)d"
+										type="action" class="oe_link" /> -->
+								</div>
+							</div>
+						</div>
+						<div name="google_shopping_instances_config"
+							attrs="{'invisible':[('google_shop_account_id','=',False)]}">
+							<div class="row mt16 o_settings_container">
+								<div class="col-12 o_setting_box">
+									<button string="Add More Google Shopping Instance"
+										context="{'default_google_shop_account_id':google_shop_account_id}"
+										name="create_more_google_shopping_instances" type="object"
+										class="oe_link" />
+								</div>
+							</div>
+						</div>
+
+						<!-- General Information -->
+						<div name="google_shopping_general_info"
+							attrs="{'invisible': [('google_shop_account_id', '=', False)]}">
+							<h2 style="font-size:21px;background-color:rgb(245,255,250);">Account Configuration</h2>
+						</div>
+						<div name="google_shopping_general_info2"
+							attrs="{'invisible':[('google_shop_account_id','=',False)]}">
+							<h2>General Information</h2>
+							<div class="row mt16 o_settings_container">
+
+								<div class="col-12 col-lg-6 o_setting_box">
+									<div class="o_setting_right_pane">
+										<label for="google_shop_company_id" />
+										<div class="text-muted">Select company for your Google Shopping Account
+										</div>
+										<div class="content-group">
+											<div class="mt16">
+												<field name="google_shop_company_id"
+													widget="selection"
+													attrs="{'required':[('google_shop_account_id','!=',False)]}"
+													class="oe_inline" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-12 col-lg-6 o_setting_box">
+									<div class="o_setting_right_pane">
+										<label for="google_shop_warehouse_ids" />
+										<div class="text-muted">Select warehouses for your Google Shopping
+											Account
+										</div>
+										<div class="content-group">
+											<div class="mt16">
+												<field name="google_shop_warehouse_ids"
+													widget="many2many_tags"
+													options="{'no_create': True, 'no_create_edit': True , 
+													   'no_open': True}"
+													attrs="{'required':[('google_shop_account_id','!=',False)]}"
+													class="oe_inline" />
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<!-- Inventory Information -->
+						<div name="google_shopping_inventory_information"
+							attrs="{'invisible':[('google_shop_account_id','=',False)]}">
+							<h2>Inventory Information</h2>
+							<div class="row mt16 o_settings_container">
+								<!-- -->
+								<div class="col-12 col-lg-6 o_setting_box">
+									<div class="o_setting_right_pane">
+										<label for="google_shop_stock_field" />
+										<div class="text-muted">Select inventory field for google shopping
+											products
+										</div>
+										<div class="content-group">
+											<div class="mt16">
+												<field name="google_shop_stock_field"
+													widget="selection"
+													domain="[('model_id.model','=','product.product'),('ttype','=','float')]"
+													attrs="{'required':[('google_shop_account_id','!=',False)]}"
+													class="oe_inline" />
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+
+					</div>
+					<!-- ./End Section -->
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Google Shopping Instance Setting Configurations -->
+		<record id="google_shopping_setting_instance_config_view"
+			model="ir.ui.view">
+			<field name="name">Google Shopping Settings</field>
+			<field name="model">res.config.settings</field>
+			<field name="inherit_id"
+				ref="base.res_config_settings_view_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//div[hasclass('settings')]" position="inside">
+					<div class="app_settings_block "
+						data-string="Google Shopping Instances"
+						data-key="google_shopping_feed_gcs_instance">
+						<div name="google_shopping_account_config">
+							<h2 style="font-size:25px;background-color:#e9ecef;">Google Shopping Account</h2>
+							<div class="row mt16 o_settings_container">
+								<div class="col-12 o_setting_box">
+									<label for="google_shop_account_id"
+										string="Select Google Shopping Account" />
+									<field name="google_shop_account_id" widget="selection"
+										class="oe_inline" domain="[('state','=','confirmed')]" />
+								</div>
+							</div>
+						</div>
+
+						<!-- Google Shopping Instance -->
+						<div name="google_shopping_instance_config"
+							attrs="{'invisible':[('google_shop_account_id','=',False)]}">
+							<h2 style="font-size:25px;background-color:#e9ecef;">Google Shopping Instances</h2>
+							<div class="row mt16 o_settings_container">
+								<div class="col-12 o_setting_box">
+									<label for="google_shop_instance_id"
+										string="Select Google Shopping Instance" />
+									<field name="google_shop_instance_id" widget="selection"
+										domain="[('gs_account_id','=',google_shop_account_id), ('state','=','confirmed')]"
+										class="oe_inline" />
+									<!-- attrs="{'required':[('google_shop_account_id','!=',False)]}" -->
+								</div>
+							</div>
+						</div>
+
+						<!-- General Information -->
+						<div name="google_shopping_instances_general_info"
+							attrs="{'invisible': [('google_shop_instance_id', '=', False)]}">
+							<h2 style="font-size:21px;background-color:rgb(245,255,250);">Instances Configuration</h2>
+						</div>
+						<div name="google_shopping_instances_general_info2"
+							attrs="{'invisible':[('google_shop_instance_id','=',False)]}">
+							<h2>General Information</h2>
+							<div class="row mt16 o_settings_container">
+								<div class="col-12 col-lg-6 o_setting_box">
+									<div class="o_setting_right_pane">
+										<label for="google_shop_country_id" />
+										<div class="text-muted">Select country for your Google Shopping Account
+										</div>
+										<div class="content-group">
+											<div class="mt16">
+												<field name="google_shop_country_id"
+													options="{'no_create': True, 'no_open': True}"
+													attrs="{'required':[('google_shop_instance_id','!=',False)]}"
+													class="oe_inline" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-lg-6 o_setting_box">
+									<div class="o_setting_right_pane">
+										<label for="google_shop_pricelist" />
+										<div class="text-muted">Select Pricelist based on your Google Shopping
+											Account
+										</div>
+										<div class="content-group">
+											<div class="mt16">
+												<field name="google_shop_pricelist" widget="selection"
+													attrs="{'required':[('google_shop_instance_id','!=',False)]}"
+													class="oe_inline" />
+											</div>
+										</div>
+									</div>
+					            </div>
+					            <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <label for="google_shop_language" />
+                                        <div class="text-muted">Select Language based on your Google Shopping
+                                            Account
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16">
+                                                <field name="google_shop_language" widget="selection"
+                                                    attrs="{'required':[('google_shop_instance_id','!=',False)]}"
+                                                    class="oe_inline" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								<div class="col-12 col-lg-6 o_setting_box">
+									<div class="o_setting_left_pane">
+                                        <field name="product_price_with_tax"/>
+                                    </div>
+									<div class="o_setting_right_pane">
+                                       <label for="product_price_with_tax" string="Product price with Tax Price" />
+                                       <div class="text-muted">
+                                            If you want to send product price with tax price in Google Shopping as an 
+                                            excluded then enable this option and select tax according.
+                                            <br/>
+                                            Product Price = Product Price + Tax price
+                                       </div>
+                                       <div class="content-group">
+                                            <div class="mt16">
+                                                <field name="product_price_account_tax"
+                                                    options="{'no_create': True, 'no_open': True}"
+                                                    attrs="{'required':[('product_price_with_tax','!=',False)],
+                                                    'invisible': [('product_price_with_tax', '=', False)]}"
+                                                    class="oe_inline" />
+                                            </div>
+                                        </div>
+                                    </div>
+								</div>
+								<div class="col-12 col-lg-6 o_setting_box">
+									<div class="o_setting_right_pane">
+										<label for="google_shop_offer_pricelist" />
+										<div class="text-muted">Select Offer Pricelist based on your Google Shopping
+											Account
+										</div>
+										<div class="content-group">
+											<div class="mt16">
+												<field name="google_shop_offer_pricelist" widget="selection"
+													attrs="{'required':[('google_shop_instance_id','!=',False)]}"
+													class="oe_inline" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</xpath>
+			</field>
+		</record>
+
+		<!-- Action Section -->
+		<record id="google_shopping_setting_config_action"
+			model="ir.actions.act_window">
+			<field name="name">Settings</field>
+			<field name="res_model">res.config.settings</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="google_shopping_setting_config_view" />
+			<field name="target">inline</field>
+			<field name="context">{'module' : 'google_shopping_feed_gcs'}</field>
+		</record>
+
+		<!-- Child Menu Section -->
+		<menuitem id="google_shopping_setting_config_menu"
+			name="Settings"
+			parent="google_shopping_feed_gcs.google_shopping_feed_config_menu"
+			sequence="1" action="google_shopping_setting_config_action"
+			groups="google_shopping_feed_gcs.group_google_shopping_feed_user,base.group_system" />
+
+	</data>
+</odoo>

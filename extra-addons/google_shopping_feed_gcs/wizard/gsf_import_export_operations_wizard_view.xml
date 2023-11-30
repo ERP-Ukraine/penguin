@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+	
+		<!-- Odoo <=> Odoo Google Shopping Operations -->
+		<!-- Form View Section -->
+		<record
+			id="google_shoppig_process_import_export_from_more_view" model="ir.ui.view">
+			<field name="name">Prepare Product For Export In Google Shopping</field>
+			<field name="model">google.shopping.process.import.export</field>
+			<field name="priority">100</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<field name="instance_ids" widget="many2many_tags"
+							domain="[('state','=','confirmed')]"
+							options="{'no_create':True,'no_create_edit': True}" required="1" />
+					</group>
+					<footer>
+						<button string="Prepare" class="oe_highlight" type="object"
+							name="prepare_product_for_export_to_gsf" />
+						<button string="Cancel" class="oe_highlight"
+							special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<!-- Action Menu -->
+		<record id="google_shopping_prepare_product_for_export_action"
+			model="ir.actions.act_window">
+			<field name="name">Prepare Product For Export In Google Shopping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">google.shopping.process.import.export</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<!-- TODO: check if we need this -->
+			<field name="binding_model_id"
+				ref="product.model_product_template" />
+			<field name="binding_view_types">list,form</field>
+			<field name="view_id"
+				ref="google_shoppig_process_import_export_from_more_view" />
+		</record>
+	
+	
+		<!-- Odoo Google Shopping<=> Google Shopping Operations -->
+		<!-- Form View Section -->
+		<record id="odoo_google_shopping_operations_wizard_view" model="ir.ui.view">
+			<field name="name">Odoo Google Shopping Operations</field>
+			<field name="model">google.shopping.product.wizard</field>
+			<field name="priority">11</field>
+			<field name="arch" type="xml">
+				<form>
+					<footer>
+						<button name="export_products_in_google_shopping" string="Export" invisible="context.get('execute_operation_type','') != 'export_products_to_gsf'" class="oe_highlight" type="object" />
+						<button name="update_products_in_google_shopping" string="Update" invisible="context.get('execute_operation_type','') != 'update_products_to_gsf'" class="oe_highlight" type="object"  />
+						<button name="import_google_shopping_products_by_id" string="Import" invisible="context.get('execute_operation_type','') != 'import_products_info_byid_from_gsf'" class="oe_highlight" type="object" />
+						<button name="delete_google_shopping_products_by_id"  string="Delete" invisible="context.get('execute_operation_type','') != 'delete_products_byid_from_gsf'" class="oe_highlight" type="object" />
+						<button name="update_products_inventory_info_in_google_shopping" string="Update" invisible="context.get('execute_operation_type','') != 'update_products_inventory_info_byid_in_gsf'" class="oe_highlight" type="object" />
+						<button name="get_product_status_from_google_shopping" string="Get Status" invisible="context.get('execute_operation_type','') != 'get_products_status_from_gsf'" class="oe_highlight" type="object" />
+						
+						<button string="Cancel" class="oe_highlight" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+	
+		<!-- Export Product -->
+		<!-- Action Menu -->
+		<record id="google_export_product_in_google_shopping_action"
+			model="ir.actions.act_window">
+			<field name="name">Export Products in Google Shopping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">google.shopping.product.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="binding_model_id"
+				ref="google_shopping_feed_gcs.model_google_shopping_product_variants" />
+			<field name="binding_view_types">list,form</field>
+			<field name="view_id"
+				ref="odoo_google_shopping_operations_wizard_view" />
+			<field name="context"
+				eval="{'execute_operation_type': 'export_products_to_gsf'}" />
+		</record>
+			
+			
+		<!-- Update Product -->
+		<!-- Action Menu -->
+		<record id="google_update_product_in_google_shopping_action"
+			model="ir.actions.act_window">
+			<field name="name">Update Products in Google Shopping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">google.shopping.product.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="binding_model_id"
+				ref="google_shopping_feed_gcs.model_google_shopping_product_variants" />
+			<field name="binding_view_types">list,form</field>
+			<field name="view_id"
+				ref="odoo_google_shopping_operations_wizard_view" />
+			<field name="context"
+				eval="{'execute_operation_type': 'update_products_to_gsf'}" />
+		</record>
+			
+		<!-- Import Products Informations -->
+		<!-- Action Menu -->
+		<record id="google_import_google_shopping_products_by_id_action"
+			model="ir.actions.act_window">
+			<field name="name">Import Products Informations</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">google.shopping.product.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="binding_model_id"
+				ref="google_shopping_feed_gcs.model_google_shopping_product_variants" />
+			<field name="binding_view_types">list,form</field>
+			<field name="view_id"
+				ref="odoo_google_shopping_operations_wizard_view" />
+			<field name="context"
+				eval="{'execute_operation_type': 'import_products_info_byid_from_gsf'}" />
+		</record>
+		
+			
+		<!-- Delete Products from Google Shopping -->
+		<!-- Action Menu -->
+		<record id="google_delete_google_shopping_products_by_id_action"
+			model="ir.actions.act_window">
+			<field name="name">Delete Products From Google Shopping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">google.shopping.product.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="binding_model_id"
+				ref="google_shopping_feed_gcs.model_google_shopping_product_variants" />
+			<field name="binding_view_types">list,form</field>
+			<field name="view_id"
+				ref="odoo_google_shopping_operations_wizard_view" />
+			<field name="context"
+				eval="{'execute_operation_type': 'delete_products_byid_from_gsf'}" />
+		</record>
+			
+		
+		<!-- Update Products Inventory Info on Google Shopping -->
+		<!-- Action Menu -->
+		<record id="google_update_products_inventory_info_on_google_shopping_action"
+			model="ir.actions.act_window">
+			<field name="name">Update Products Inventory Info in Google Shopping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">google.shopping.product.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="binding_model_id"
+				ref="google_shopping_feed_gcs.model_google_shopping_product_variants" />
+			<field name="binding_view_types">list,form</field>
+			<field name="view_id"
+				ref="odoo_google_shopping_operations_wizard_view" />
+			<field name="context"
+				eval="{'execute_operation_type': 'update_products_inventory_info_byid_in_gsf'}" />
+		</record>
+			
+		<!-- Get Product Status from Google Shopping -->
+		<!-- Action Menu -->
+		<record id="get_product_status_from_google_shopping_action"
+			model="ir.actions.act_window">
+			<field name="name">Get Product Status from Google Shopping</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">google.shopping.product.wizard</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="binding_model_id"
+				ref="google_shopping_feed_gcs.model_google_shopping_product_variants" />
+			<field name="binding_view_types">list,form</field>
+			<field name="view_id"
+				ref="odoo_google_shopping_operations_wizard_view" />
+			<field name="context"
+				eval="{'execute_operation_type': 'get_products_status_from_gsf'}" />
+		</record>
+	</data>
+</odoo>

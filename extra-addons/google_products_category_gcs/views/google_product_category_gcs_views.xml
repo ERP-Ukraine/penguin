@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+	<!-- Search View Section -->
+	<record id="google_product_category_gcs_search_view" model="ir.ui.view">
+		<field name="name">google.product.category.gcs.search</field>
+		<field name="model">google.product.category.gcs</field>
+		<field name="arch" type="xml">
+			<search string="Google Categories">
+				<field name="name" />
+			</search>
+		</field>
+	</record>
+
+	<!-- Tree View Section -->
+	<record id="google_product_category_gcs_tree_view" model="ir.ui.view">
+		<field name="name">google.product.category.gcs.tree</field>
+		<field name="model">google.product.category.gcs</field>
+		<field name="priority">1</field>
+		<field name="arch" type="xml">
+			<tree string="Google Categories">
+				<field name="category_code" />
+				<field name="name" />
+				<field name="parent_categ_id" />
+				<field name="complete_name" string="Category Full Name"/>
+			</tree>
+		</field>
+	</record>
+
+	<!-- Form View Section -->
+	<record id="google_product_category_gcs_form_view" model="ir.ui.view">
+		<field name="name">google.product.category.gcs.form</field>
+		<field name="model">google.product.category.gcs</field>
+		<field name="arch" type="xml">
+			<form class="oe_form_configuration">
+				<sheet>
+					<div class="oe_title">
+						<label for="name" string="Brand name"
+							class="oe_edit_only" />
+						<h1>
+							<field name="name" placeholder="e.g. Car" />
+						</h1>
+					</div>
+					
+					<group>
+						<group>
+							<field name="category_code" />
+						</group>
+						<group>
+							<field name="parent_categ_id" />
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Action Section -->
+	<record id="google_product_category_gcs_action"
+		model="ir.actions.act_window">
+		<field name="name">Google Product Categories</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">google.product.category.gcs</field>
+		<field name="search_view_id" ref="google_product_category_gcs_search_view" />
+		<field name="view_id" ref="google_product_category_gcs_tree_view" />
+	</record>
+
+
+	<!-- Menu Section -->
+	<menuitem 
+		id="google_product_category_gcs_menu"
+		action="google_product_category_gcs_action"
+		parent="sale.prod_config_main" />
+</odoo>

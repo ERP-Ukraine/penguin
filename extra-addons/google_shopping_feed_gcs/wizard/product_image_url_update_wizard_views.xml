@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View Section -->
+        <record id="product_image_url_update_wizard_form_view" model="ir.ui.view">
+            <field name="name">product.image.url.update.wizard.</field>
+            <field name="model">product.image.url.update.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="start_db_id" />
+                                <field name="end_db_id" /> 
+                            </group>
+                            <group />
+                        </group>
+                        <footer>
+                            <button string="Update Extra Product Media URLs" type="object" 
+                                name="update_extra_product_media_urls" 
+                                class="oe_highlight" />
+                            <button string="Update Product Profile Image URL" type="object" 
+                                name="update_product_profile_image_url" 
+                                class="oe_highlight" />
+                            <button string="Cancel" class="oe_highlight" special="cancel" />
+                        </footer>
+                    </sheet>
+                    >
+                </form>
+            </field>
+        </record>
+
+        <!-- Action View Section -->
+        <record id="product_image_url_update_wizard_action" model="ir.actions.act_window">
+            <field name="name">Product Image URLs Update</field>
+            <field name="res_model">product.image.url.update.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="product_image_url_update_wizard_form_view" />
+            <field name="target">new</field>
+        </record>
+        
+        <!-- Menu Section -->
+        <menuitem id="product_image_url_update_wizard_menu" name="Product Image URLs Update" 
+            parent="google_shopping_feed_gcs.google_shopping_feed_config_menu" sequence="4" 
+            action="product_image_url_update_wizard_action" />
+    </data>
+</odoo>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+	<data>
+
+		<!-- Search View Section -->
+		<record id="google_shopping_feed_instance_search_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.feed.search</field>
+			<field name="model">google.shopping.feed.instance</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name" />
+
+					<group expand="0" string="Group By...">
+						<filter name="name" string="Instance" icon="terp-personal"
+							context="{'group_by':'name'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Tree View Section -->
+		<record id="google_shopping_feed_instance_tree_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.feed.tree</field>
+			<field name="model">google.shopping.feed.instance</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name" />
+					<field name="gs_account_id" />
+					<field name="country_id" />
+					<field name="gs_company_id" />
+					<field name="state" decoration-success="state == 'confirmed'"
+						decoration-info="state == 'authorized'" widget="badge"
+						optional="show" />
+					<field name="language" optional="hide" />
+					<field name="pricelist" optional="hide" />
+					<field name="offer_pricelist" optional="hide"/>
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View Section -->
+		<record id="google_shopping_feed_instance_form_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.feed.instance.form</field>
+			<field name="model">google.shopping.feed.instance</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button class="btn-primary" name="confirm_gsf_instance"
+							type="object" string="Confirm Shopping Instance"
+							attrs="{'invisible': [('state', '!=', 'new')]}" />
+
+						<button class="btn-primary" name="reset_new_gsf_instance"
+							type="object" string="Reset To New"
+							attrs="{'invisible': [('state', '!=', 'confirmed')]}" />
+							 
+						<field name="state" widget="statusbar" />
+					</header>
+					<sheet>
+						<field name="image_1920" widget="image" class="oe_avatar"
+							options="{&quot;preview_image&quot;: &quot;image_128&quot;}" />
+						<div class="oe_title">
+							<label class="oe_edit_only" for="name"
+								string="Instance Name" />
+							<h1 class="d-flex flex-row justify-content-between">
+								<field name="name" class="text-truncate"
+									placeholder="Instance Name..." 
+									attrs="{'readonly': [('state', '!=', 'new')]}" />
+							</h1>
+						</div>
+
+						<notebook>
+							<page string="General Informations">
+								<group>
+									<group>
+										<field name="gs_account_id" required="1"
+											attrs="{'readonly': [('state', '!=', 'new')]}"
+											options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+										<field name="gs_company_id" required="1"
+											readonly="1" force_save="1" />
+									</group>
+									<group>
+									</group>
+								</group>
+
+								<group>
+									<group>
+										<field name="country_id" required="1"
+											attrs="{'readonly': [('state', '!=', 'new')]}"
+											options="{'no_create': True, 'no_create_edit': True , 'no_open': True}" />
+										<field name="language" required="1"
+											attrs="{'readonly': [('state', '!=', 'new')]}"
+											options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+										<field name="pricelist" required="1"
+											attrs="{'readonly': [('state', '!=', 'new')]}"
+											options="{'no_create': True,'no_create_edit': True , 'no_open': True}" />
+										<field name="offer_pricelist" attrs="{'readonly': [('state', '!=', 'new')]}"
+											options="{'no_create': True,'no_create_edit': True , 'no_open': True}"/>
+									</group>
+									<group>
+									</group>
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Action View Section -->
+		<record id="google_shopping_feed_instance_action"
+			model="ir.actions.act_window">
+			<field name="name">Google Shopping Instance</field>
+			<field name="res_model">google.shopping.feed.instance</field>
+			<field name="view_id"
+				ref="google_shopping_feed_instance_tree_view" />
+			<field name="help" type="html">
+				<div>
+					<br />
+					<p>
+						<b>There is no any Google Shopping Instance configured yet.</b>
+					</p>
+
+				</div>
+			</field>
+		</record>
+
+		<!-- Instance Menu Section -->
+		<menuitem id="google_shopping_feed_instance_menu"
+			name="Shopping Instance"
+			parent="google_shopping_feed_gcs.google_shopping_feed_config_menu"
+			sequence="3" action="google_shopping_feed_instance_action" />
+
+	</data>
+</odoo>
