@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="payment_acquirer_form" model="ir.ui.view">
+        <field name="name">Wire Transfer Acquirer Form</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.payment_acquirer_form"/>
+        <field name="arch" type="xml">
+            <field name="country_ids" position="after">
+                <field name="use_b2b_limitation" />
+                <field name="b2b_payment_partners" widget="many2many_tags" attrs="{'invisible': [('use_b2b_limitation', '=', False)]}" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
