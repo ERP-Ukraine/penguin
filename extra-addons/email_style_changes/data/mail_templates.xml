@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <template id="mail_notification_paynow_red" inherit_id="mail.mail_notification_paynow">
+        <xpath expr="//tr/td[@align='center' and contains(@style, 'min-width: 590px; padding: 8px; font-size:11px;')]" position="replace">
+            <td align="center" style="min-width: 590px; padding: 8px; font-size:11px;"></td>
+        </xpath>
+        <xpath expr="//tr/td[@style='padding: 0']/div[1]" position="replace"></xpath>
+    </template>
+
+    </data>
+</odoo>
