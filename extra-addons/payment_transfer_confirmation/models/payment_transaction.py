@@ -12,6 +12,7 @@ class TransferPaymentTransaction(models.Model):
     # policy changes, we could easily bring this code up
 
     def _process_feedback_data(self, data):
+        # super()._process_feedback_data(data) some problem fix
         super()._send_payment_request()
         if self.provider != 'transfer':
             return
