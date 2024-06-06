@@ -14,12 +14,20 @@ class SaleOrderLine(models.Model):
                     line.product_id.display_name, line.order_id.name, line.order_id.company_id, values)
             ]
         procurements = []
-        for warehouse_id in warehouse_ids:
+        for num, warehouse_id in enumerate(warehouse_ids):
             if float_compare(product_qty, 0, precision_digits=precision) != 1:
                 return procurements
             warehouse_qty = line.product_id.with_context(warehouse=warehouse_id.id).free_qty
             # skip this warehouse if there is no product free qty
             if float_compare(warehouse_qty, 0, precision_digits=precision) != 1:
+                # add products without balances to be able to backorder later
+                if num == (len(warehouse_ids) - 1) and not procurements:
+                    return [
+                        self.env['procurement.group'].Procurement(
+                            line.product_id, product_qty, procurement_uom,
+                            line.order_id.partner_shipping_id.property_stock_customer,
+                            line.product_id.display_name, line.order_id.name, line.order_id.company_id, values)
+                    ]
                 continue
             qty_delta = float_compare(warehouse_qty, product_qty, precision_digits=precision)
             reserved_qty = product_qty if qty_delta != -1 else warehouse_qty
