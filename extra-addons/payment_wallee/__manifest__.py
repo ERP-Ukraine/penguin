@@ -27,7 +27,7 @@
     ],
     'images': ['static/description/banner.png',
     ],
-    'installable': True,
+    'installable': False,
     'uninstall_hook': 'uninstall_hook',
     'assets': {
             'web.assets_frontend': [

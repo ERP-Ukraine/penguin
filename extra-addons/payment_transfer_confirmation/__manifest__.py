@@ -14,7 +14,7 @@
         'views/payment_transaction_views.xml',
     ],
     'auto_install': False,
-    'installable': True,
+    'installable': False,
     'application': False,
     'post_init_hook': 'wire_transfer_enable_authorization',
 }

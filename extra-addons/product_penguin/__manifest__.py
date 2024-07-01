@@ -11,7 +11,7 @@
         'views/product_attribute_views.xml',
         'views/product_views.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'license': 'LGPL-3',
 }

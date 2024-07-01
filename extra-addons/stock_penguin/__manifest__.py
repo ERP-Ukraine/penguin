@@ -13,7 +13,7 @@
         'report/report_deliveryslip.xml',
         'report/report_stockpicking_operations.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

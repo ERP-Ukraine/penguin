@@ -1,6 +1,7 @@
 {
     'name': 'Transfer Scripts',
     'version': '1.0',
+    'license': 'LGPL-3',
     'category': 'Tools',
     'depends': [
         'base_penguin',

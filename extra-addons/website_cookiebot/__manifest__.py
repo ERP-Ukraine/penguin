@@ -9,6 +9,7 @@
     "author": "Trey (www.trey.es), Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/website",
     "license": "AGPL-3",
+    "installable": False,
     "depends": ["website"],
     "data": [
         "templates/assets.xml",

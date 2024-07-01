@@ -11,6 +11,6 @@
         'data/mail_templates.xml',
     ],
     'application': False,
-    'installable': True,
+    'installable': False,
     'auto_install': False,
 }

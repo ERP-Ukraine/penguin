@@ -9,7 +9,7 @@
     'version': '1.1',
     'depends': ['sale_arnoldsports', 'website_sale_stock_penguin'],
     'data': ['views/sale_order_views.xml'],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

@@ -17,6 +17,6 @@
             'website_bloopark_detail/static/src/js/script.js',
         ],
     },
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }

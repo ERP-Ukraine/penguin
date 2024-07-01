@@ -21,11 +21,11 @@
 
     # Summary Informations
     # Summary: Approx 200 Char
-    # Description: 
+    # Description:
     'summary': """
         Google Product Categories GCS
     """,
-    'description': """ 
+    'description': """
         Google Product Categories GCS
     """,
 
@@ -51,11 +51,11 @@
         # wizard/
     ],
 
-    # Application Main Image    
+    # Application Main Image
     'images': ['static/description/app_profile_image.jpg'],
 
     # Technical
-    'installable': True,
+    'installable': False,
     'application': True,
     'auto_install': False,
     'active': False,

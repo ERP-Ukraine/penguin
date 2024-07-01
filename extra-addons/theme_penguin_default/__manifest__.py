@@ -14,6 +14,6 @@
         'static/description/theme_penguin_default_screenshot.jpg',
     ],
     'auto_install': True,
-    'installable': True,
+    'installable': False,
     'post_init_hook': '_post_set_footer',
 }

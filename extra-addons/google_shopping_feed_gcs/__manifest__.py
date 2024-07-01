@@ -20,15 +20,15 @@
     'license': 'OPL-1',
 
     'summary': """
-Google Shopping is expanding worldwide and along with Google Shopping, Your business the potential to grow 
+Google Shopping is expanding worldwide and along with Google Shopping, Your business the potential to grow
 globally. If you use Odoo to manage your backend operations along with having a Google Shopping Store,
-Odoo Google Shopping Integration becomes absolutely vital for you. Odoo Google Shopping Connector will help 
-you integrate and manage your Google Shopping Store in Odoo. Perform various operations like Export products, 
+Odoo Google Shopping Integration becomes absolutely vital for you. Odoo Google Shopping Connector will help
+you integrate and manage your Google Shopping Store in Odoo. Perform various operations like Export products,
 Updating products information, Updating inventory, Deleting products, and Much more.
 
-Odoo Google Merchant Connector, Odoo Google Merchant Center, Odoo Google Shopping Connector, 
+Odoo Google Merchant Connector, Odoo Google Merchant Center, Odoo Google Shopping Connector,
 Odoo Google Shopping Feed, Odoo Google Feed, Odoo Google Product Feed
-        
+
 GCS also provides various types of solutions, such as Odoo WooCommerce Integration, Odoo Shopify Integration,
 Odoo Direct Print, Odoo Amazon Connector, Odoo eBay Odoo Integration, Odoo Amazon Integration,
 Odoo Magento Integration, Dropshipper EDI Integration, Dropshipping EDI Integration, Shipping Integrations,
@@ -39,16 +39,16 @@ Dashboard Solution, Cloud Storage Solution, MailChimp Connector, PrestaShop Conn
 Power BI, Odoo Saas, Quickbook Connector, Multi Vendor Management, BigCommerce Odoo Connector,
 Rest API, Email Template, Website Theme, Various Website Solutions, etc.
     """,
-    'description': """ 
-Google Shopping is expanding worldwide and along with Google Shopping, Your business the potential to grow 
+    'description': """
+Google Shopping is expanding worldwide and along with Google Shopping, Your business the potential to grow
 globally. If you use Odoo to manage your backend operations along with having a Google Shopping Store,
-Odoo Google Shopping Integration becomes absolutely vital for you. Odoo Google Shopping Connector will help 
-you integrate and manage your Google Shopping Store in Odoo. Perform various operations like Export products, 
+Odoo Google Shopping Integration becomes absolutely vital for you. Odoo Google Shopping Connector will help
+you integrate and manage your Google Shopping Store in Odoo. Perform various operations like Export products,
 Updating products information, Updating inventory, Deleting products, and Much more.
 
-Odoo Google Merchant Connector, Odoo Google Merchant Center, Odoo Google Shopping Connector, 
+Odoo Google Merchant Connector, Odoo Google Merchant Center, Odoo Google Shopping Connector,
 Odoo Google Shopping Feed, Odoo Google Feed, Odoo Google Product Feed
-        
+
 GCS also provides various types of solutions, such as Odoo WooCommerce Integration, Odoo Shopify Integration,
 Odoo Direct Print, Odoo Amazon Connector, Odoo eBay Odoo Integration, Odoo Amazon Integration,
 Odoo Magento Integration, Dropshipper EDI Integration, Dropshipping EDI Integration, Shipping Integrations,
@@ -101,11 +101,11 @@ Rest API, Email Template, Website Theme, Various Website Solutions, etc.
         # wizard/
     ],
 
-    # Application Main Image    
+    # Application Main Image
     'images': ['static/description/app_profile_image.jpg'],
 
     # Technical
-    'installable': True,
+    'installable': False,
     'application': True,
     'auto_install': False,
     'active': False,

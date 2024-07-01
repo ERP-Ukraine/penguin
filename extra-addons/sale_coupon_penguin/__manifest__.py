@@ -19,7 +19,7 @@
             '/sale_coupon_penguin/static/src/scss/pengin_coupon_report.scss',
         ]
     },
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

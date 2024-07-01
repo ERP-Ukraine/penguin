@@ -7,6 +7,7 @@
     'author': 'ERP Ukraine',
     'website': 'https://erp.co.ua',
     'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
     'category': 'Marketing',
     'depends': ['base', 'mass_mailing'],
     'data': [
@@ -14,7 +15,7 @@
         'views/mailing_contact_views.xml',
     ],
     'demo': [],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

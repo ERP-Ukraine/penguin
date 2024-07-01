@@ -13,6 +13,6 @@
         'views/account_move_views.xml'
     ],
     'application': False,
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }

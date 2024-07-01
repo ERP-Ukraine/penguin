@@ -18,6 +18,6 @@
         'views/product_product_views.xml',
     ],
     'auto_install': False,
-    'installable': True,
+    'installable': False,
     'application': False,
 }

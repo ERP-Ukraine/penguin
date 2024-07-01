@@ -13,7 +13,7 @@
         'website_sale_coupon',
         'sale_coupon_penguin',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }
