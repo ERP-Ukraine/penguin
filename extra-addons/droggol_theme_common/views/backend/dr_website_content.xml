@@ -27,18 +27,18 @@
                     </div>
                     <group>
                         <group>
-                            <field name="content_type" widget="radio" attrs="{'readonly': [('id', '!=', False)]}"/>
+                            <field name="content_type" widget="radio" readonly="id"/>
                             <field name="identifier" groups="base.group_no_one"/>
-                            <field name="icon" attrs="{'invisible': [('content_type', 'in', ['attribute_popup'])]}"/>
-                            <field name="description" attrs="{'invisible': [('content_type', 'in', ['tab', 'attribute_popup'])]}"/>
-                            <div attrs="{'invisible': [('content_type', 'in', ['attribute_popup'])]}" colspan="3" class="text-center">You can find icon at <a href="https://fontawesome.com/v4.7.0/icons/" target="_blank">FontAwesome</a>.</div>
+                            <field name="description" invisible="content_type in ['tab', 'attribute_popup']"/>
+                            <field name="icon" invisible="content_type == 'attribute_popup'"/>
                         </group>
                     </group>
+                    <p invisible="content_type == 'attribute_popup'">You can find icon at <a href="https://fontawesome.com/v4.7.0/icons/" target="_blank">FontAwesome</a>.</p>
                     <notebook>
-                        <page name="tab_products" string="Products" attrs="{'invisible': [('content_type', 'in', ['offer_popup', 'attribute_popup'])]}">
+                        <page name="tab_products" string="Products" invisible="content_type in ['offer_popup', 'attribute_popup']">
                             <field name="dr_tab_products_ids" />
                         </page>
-                        <page name="offer_products" string="Products" attrs="{'invisible': [('content_type', 'in', ['tab', 'attribute_popup'])]}">
+                        <page name="offer_products" string="Products" invisible="content_type in ['tab', 'attribute_popup']">
                             <field name="dr_offer_products_ids" />
                         </page>
                     </notebook>
@@ -52,6 +52,7 @@
         <field name="model">dr.website.content</field>
         <field name="arch" type="xml">
             <tree string="Content">
+                <field name="sequence" widget="handle"/>
                 <field name="content_type" widget="badge" decoration-info="content_type == 'tab'" decoration-success="content_type == 'offer_popup'" decoration-warning="content_type == 'attribute_popup'"/>
                 <field name="name"/>
             </tree>
@@ -82,6 +83,6 @@
 
     <menuitem id="menu_dr_website_content"
         action="dr_website_content_action"
-        parent="website_sale.menu_product_settings" sequence="15"/>
+        parent="website_sale.menu_catalog" sequence="5"/>
 
 </odoo>

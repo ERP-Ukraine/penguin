@@ -208,16 +208,16 @@
                         <div class="card tp-editor-bg-color-n-shadow p-4 p-lg-5 h-100">
                             <header>
                                 <h5>Beginner</h5>
-                                <div class="pb16 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                    <hr class="w-100 mx-auto"/>
+                                <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                                 </div>
                                 <h2>$ 8.80</h2>
                             </header>
                             <p class="mt-4 mb-0">Morbi tincidunt ultrices fermentum. Suspendisse egestas ipsum eu.</p>
-                            <div class="pb16 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush border-0">
                                 <li class="list-group-item tp-editor-copy-n-move p-1 border-0 bg-transparent" data-name="Line">
                                     <span class="p-1 fa fa-check text-o-color-1"/> Cras justo odio
                                 </li>
@@ -247,16 +247,16 @@
                         <div class="card tp-editor-bg-color-n-shadow p-4 p-lg-5 h-100">
                             <header>
                                 <h5>Professional</h5>
-                                <div class="pb16 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                    <hr class="w-100 mx-auto"/>
+                                <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                                 </div>
                                 <h2>$ 15.80</h2>
                             </header>
                             <p class="mt-4 mb-0">Morbi tincidunt ultrices fermentum. Suspendisse egestas ipsum eu.</p>
-                            <div class="pb16 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush border-0">
                                 <li class="list-group-item tp-editor-copy-n-move p-1 border-0 bg-transparent" data-name="Line">
                                     <span class="p-1 fa fa-check text-o-color-1"/> Cras justo odio
                                 </li>
@@ -286,16 +286,16 @@
                         <div class="card tp-editor-bg-color-n-shadow p-4 p-lg-5 h-100">
                             <header>
                                 <h5>Business</h5>
-                                <div class="pb16 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                    <hr class="w-100 mx-auto"/>
+                                <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                    <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                                 </div>
                                 <h2>$ 21.00</h2>
                             </header>
                             <p class="mt-4 mb-0">Morbi tincidunt ultrices fermentum. Suspendisse egestas ipsum eu.</p>
-                            <div class="pb16 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush border-0">
                                 <li class="list-group-item tp-editor-copy-n-move p-1 border-0 bg-transparent" data-name="Line">
                                     <span class="p-1 fa fa-check text-o-color-1"/> Cras justo odio
                                 </li>
@@ -348,8 +348,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pb4 pt4 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb4 pt4 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
                             <div class="p-3">
                                 <ul class="list-group list-group-flush">
@@ -379,8 +379,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="pb4 pt4 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb4 pt4 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
                             <div class="px-3 pt-2 text-center">
                                 <h1><font style="font-size: 48px;">$3</font></h1>
@@ -409,8 +409,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pb4 pt4 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb4 pt4 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
                             <div class="p-3">
                                 <ul class="list-group list-group-flush">
@@ -440,8 +440,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="pb4 pt4 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb4 pt4 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
                             <div class="px-3 pt-2 text-center">
                                 <h1><font style="font-size: 48px;">$8</font></h1>
@@ -470,8 +470,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="pb4 pt4 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb4 pt4 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
                             <div class="p-3">
                                 <ul class="list-group list-group-flush">
@@ -501,8 +501,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="pb4 pt4 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                                <hr class="w-100 mx-auto"/>
+                            <div class="pb4 pt4 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="w-100 mx-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                             </div>
                             <div class="px-3 pt-2 text-center">
                                 <h1><font style="font-size: 48px;">$12</font></h1>
@@ -523,8 +523,8 @@
             <div class="container">
                 <div class="row s_nb_column_fixed s_col_no_bgcolor">
                     <div class="col-lg-6 py-3">
-                        <div class="media tp-editor-bg-color-n-shadow align-items-center border">
-                            <div class="p-4 mr-3">
+                        <div class="d-flex tp-editor-bg-color-n-shadow align-items-center border">
+                            <div class="p-4 me-3">
                                 <h2 class="text-o-color-1 mb-0"><b>$19.00</b></h2>
                                 <p>per month</p>
                                 <a href="#" class="btn btn-primary mt-2">Purchase</a>
@@ -538,8 +538,8 @@
                         </div>
                     </div>
                     <div class="col-lg-6 py-3">
-                        <div class="media tp-editor-bg-color-n-shadow align-items-center border">
-                            <div class="p-4 mr-3">
+                        <div class="d-flex tp-editor-bg-color-n-shadow align-items-center border">
+                            <div class="p-4 me-3">
                                 <h2 class="text-o-color-1 mb-0"><b>$48.99</b></h2>
                                 <p>per month</p>
                                 <a href="#" class="btn btn-primary mt-2">Purchase</a>

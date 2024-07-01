@@ -3,7 +3,7 @@
 }
 
 // ======  Style 1 =========
-.tp-dynamic-snippet-tab-1 {
+.tp-droggol-builder-snippet-tab-1 {
     .d_category_lable {
         &.d_active {
             font-weight: bold;
@@ -35,7 +35,7 @@
 
 // ======  Style 2 =========
 
-.tp-dynamic-snippet-tab-2 {
+.tp-droggol-builder-snippet-tab-2 {
     .d_category_lable {
         &:hover, &.d_active {
             border: 1px solid o-color('primary') !important;
@@ -47,12 +47,12 @@
 
 // ======  Style 3 =========
 
-.tp-dynamic-snippet-tab-3 {
+.tp-droggol-builder-snippet-tab-3 {
     .d_category_lable {
-        color: gray('500');
+        color: map-get($grays, '500');
         &.d_active {
             border-bottom: 2px solid o-color('primary');
-            color: gray('600');
+            color: map-get($grays, '600');
             font-weight: 500;
         }
     }
@@ -60,7 +60,7 @@
 
 // ======  Style 4 =========
 
-.tp-dynamic-snippet-tab-4 {
+.tp-droggol-builder-snippet-tab-4 {
     overflow-x: auto;
     overflow-y: hidden;
     .d_category_lable {
@@ -77,7 +77,7 @@
 
 // ======  Style 5 =========
 
-.tp-dynamic-snippet-tab-5 {
+.tp-droggol-builder-snippet-tab-5 {
     .d_category_lable {
         border-radius: 3px;
         border: 1px solid $border-color;
@@ -92,7 +92,7 @@
 
 // ======  Style 6 =========
 
-.tp-dynamic-snippet-tab-6 {
+.tp-droggol-builder-snippet-tab-6 {
     .d_category_lable:not(:last-child):after {
         display: inline-block;
         content: '|';

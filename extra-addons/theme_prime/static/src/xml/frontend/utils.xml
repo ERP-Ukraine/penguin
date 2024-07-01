@@ -14,6 +14,14 @@
         </t>
     </t>
 
+    <t t-name="s_mobile_product_name">
+        <p class="card-title mt-1 mb-1 text-truncate fw-light d-product-name">
+            <a t-att-href="item.website_url">
+                <t t-out="item.name"/>
+            </a>
+        </p>
+    </t>
+
     <t t-name="dr_s_lable_tmpl">
         <t t-if="widget._isActionEnabled('label') &amp;&amp; item.label_id">
             <span class="tp-lable-generic-tmpl" t-out="item.label_template"/>
@@ -22,9 +30,9 @@
     </t>
 
     <t t-name="tp-snippet-product-price">
-        <div class="d-product-price h6">
-            <h6 t-attf-class="d-inline-block mb-0 font-weight-light #{!notPrimary ?'text-primary' : ''}" t-out="item.price"/>
-            <h6 t-if="item.has_discounted_price" class="text-muted mb-0 d-inline-block small" style="text-decoration: line-through; white-space: nowrap;" t-out="item.list_price"/>
+        <div t-attf-class="d-product-price #{!item.visibility ? 'small' : 'h6'} #{_classes}">
+            <span t-attf-class="d-inline-block mb-0 fw-light #{!notPrimary ? 'text-primary' : ''} #{!item.visibility ? 'small mb-3' : 'h6'}" t-out="item.price"/>
+            <h6 t-if="item.has_discounted_price &amp;&amp; item.list_price !== ' '" t-attf-class="#{hide_discount &amp;&amp; widget &amp;&amp; widget.isMobile ? 'd-none' : 'd-inline-block ms-2'} text-muted mb-0 small" style="text-decoration: line-through; white-space: nowrap;" t-out="item.list_price"/>
         </div>
     </t>
 

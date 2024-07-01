@@ -5,14 +5,20 @@
             height: 55px;
             width: 55px;
             .dri {
-                line-height: 55px;
+                line-height: 53px;
                 font-size: 18px;
             }
         }
     }
-    @include media-breakpoint-down(md) {
-        .style-4 {
+    @include media-breakpoint-down(lg) {
+        .tp-countdown-container {
             justify-content: center !important;
+        }
+        .owl-prev {
+            left: -15px !important;
+        }
+        .owl-next {
+            right: -15px !important;
         }
     }
     .dr_product_img {
@@ -56,7 +62,7 @@
     .owl-nav {
         @include o-position-absolute($top: -43px, $right: 30px);
         button.owl-prev, button.owl-next {
-            background: lighten(o-color('primary'), 40%) !important;
+            background: lighten(o-color('primary'), 37%) !important;
             padding: 2px !important;
             border-radius: 13px;
         }
@@ -69,19 +75,9 @@
 
 // Full product snippet
 .s_d_single_product_snippet_wrapper {
-    .d_single_product_continer {
-        @include media-breakpoint-up(md) {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0px auto;
-        }
-        @include media-breakpoint-down(md) {
-            margin-left: 5%;
-            margin-right: 5%;
-        }
-    }
-    .d_single_product_body {
-        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    .tp-close {
+        // Remove close icon, coming from quick view template
+        display: none;
     }
 }
 
@@ -118,7 +114,7 @@
 
 // === category cards ===
 .s_tp_category_style_1 {
-    outline:1px solid gray('300');
+    outline:1px solid map-get($grays, '300');
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     background-color: white;
@@ -137,6 +133,15 @@
         h3 {
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.68);
         }
+    }
+}
+.s_tp_category_style_5, .s_category_brands {
+    .card {
+        transition: all 0.5s;
+    }
+    .card:hover {
+        border-color: o-color('primary') !important;
+        transform: translateY(-5px);
     }
 }
 
@@ -214,6 +219,13 @@
 
 .tp-show-variant-image .tp-variant-image {
     max-height: 680px;
+    &.tp-product-image-fade-animation {
+        animation: fadeIn 1s;
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    }
 }
 
 // Brands
@@ -251,11 +263,11 @@
 .tp_product_list_cards_3 {
     .d_add_to_cart_btn {
         @include o-position-absolute($top: 7px, $right: 10px);
-        color: gray('600');
+        color: map-get($grays, '600');
         height: 2.2rem;
         width: 2.2rem;
         border-radius: 100%;
-        border: 1px solid gray('300');
+        border: 1px solid map-get($grays, '300');
         line-height: 2.2rem;
         background-color: #f3f5f9;
         &:hover {
@@ -275,7 +287,7 @@
             background-color: rgba(0, 0, 0, 0.48) !important;
         }
     }
-    .media {
+    .tp-media {
         &:hover {
             .d_product_quick_view {
                 opacity: 1;
@@ -285,13 +297,22 @@
 }
 
 .s_category_tabs_snippet_wrapper {
+    &.tp-side-menu {
+        height: 100% !important;
+        .s_category_tabs_snippet {
+            height: 100% !important;
+        }
+    }
     .tp_mega_menu_tab_style_1 {
         border-left: 3px solid transparent;
-        transition: all 0.3s;
+        transition: background-color 0.3s;
         &.tp-active-category {
             background-color: #f7f8fa;
             border-left: 3px solid o-color('primary');
         }
+    }
+    .tp-submenu-float {
+        z-index: 3;
     }
     .tp_mega_menu_tab_style_2 {
         transition: all 0.3s;

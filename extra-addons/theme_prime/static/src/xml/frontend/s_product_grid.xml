@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="row">
-                        <t t-foreach="data" t-as="item">
+                        <t t-foreach="data" t-as="item" t-key="item.id">
                             <div t-if="item_index &lt;= 3" class="col-6 mt-3">
                                 <t t-call="s_card_style_3">
                                     <t t-set="isForGridSnippet" t-value="true"></t>
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <t t-foreach="data" t-as="item">
+                    <t t-foreach="data" t-as="item" t-key="item.id">
                         <div class="h-100 pt-3" t-if="item_index === 4">
                             <t t-call="s_card_style_3">
                                 <t t-set="isForGridSnippet" t-value="true"></t>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="row">
-                        <t t-foreach="data" t-as="item">
+                        <t t-foreach="data" t-as="item" t-key="item.id">
                             <div t-if="item_index &gt; 4" class="col-6 mt-3">
                                 <t t-call="s_card_style_3">
                                     <t t-set="isForGridSnippet" t-value="true"></t>

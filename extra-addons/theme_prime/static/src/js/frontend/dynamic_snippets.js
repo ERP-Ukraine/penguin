@@ -1,36 +1,66 @@
-odoo.define('theme_prime.dynamic_snippets', function (require) {
-"use strict";
+/** @odoo-module **/
 
-const {_t, qweb} = require('web.core');
-const publicWidget = require('web.public.widget');
-const ProductRootWidget = require('theme_prime.product.root.widget');
-const RootWidget = require('theme_prime.root.widget');
-const config = require('web.config');
-const QuickViewDialog = require('theme_prime.product_quick_view');
-const sAnimations = require('website.content.snippets.animation');
-const { primeUtilities, OwlMixin, MarkupRecords, ProductsBlockMixins, CategoryPublicWidgetMixins, ProductCarouselMixins, CartManagerMixin, HotspotMixns, cartMixin, TabsMixin} = require('theme_prime.mixins');
-require('website.content.menu');
+import "@website/js/content/menu";
+import publicWidget from "@web/legacy/js/public/public_widget";
+import ProductRootWidget from "@theme_prime/js/core/product_root_widget";
+import RootWidget from "@theme_prime/js/core/snippet_root_widget";
+import { SIZES, utils as uiUtils } from "@web/core/ui/ui_service";
+import { QuickViewDialog } from "@theme_prime/js/frontend/quick_view_dialog";
+import animations from "@website/js/content/snippets.animation";
+import { OwlMixin, MarkupRecords, ProductsBlockMixins, CategoryPublicWidgetMixins, ProductCarouselMixins, CartManagerMixin, HotspotMixns, cartMixin, TabsMixin } from "@theme_prime/js/core/mixins";
+import { pick } from "@web/core/utils/objects";
+import { groupBy } from "@web/core/utils/arrays";
+import { renderToElement } from "@web/core/utils/render";
+import { localization } from "@web/core/l10n/localization";
+import { _t } from "@web/core/l10n/translation";
 
 // Hack ODOO is handling hover by self so manually trigger event remove when new bootstrap is merged in ODOO :)
 
 publicWidget.registry.hoverableDropdown.include({
     _onMouseEnter: function (ev) {
-        if (config.device.size_class <= config.device.SIZES.SM) {return}
+        if (uiUtils.isSmall()) {return}
         // currentTarget dropdown
         $(ev.currentTarget).trigger('show.tp.dropdown');
         this._super.apply(this, arguments);
     },
 });
 
+publicWidget.registry.tp_preview_wrapper = publicWidget.Widget.extend({
+    selector: '#tp_wrap',
+    events: {
+        'click': '_onClick',
+        'tp-reload': '_onReload',
+    },
+    start: function () {
+        window.dispatchEvent(new CustomEvent('TP_WRAPPER_READY'));
+        $('body').addClass('tp-preview-element');
+        $('.tp-bottombar-component .tp-bottom-action-btn').addClass('pe-none');
+        return this._super.apply(this, arguments);
+    },
+    _onClick: function (ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+    },
+    _onReload: function () {
+        this.$domEl = this.$('.tp-droggol-builder-snippet');
+        this._setOffsetPosition();
+        return new Promise((resolve, reject) => {
+            this.trigger_up('widgets_start_request', { editableMode: true, $target: this.$domEl, onSuccess: resolve, onFailure: reject });
+        });
+    },
+    _setOffsetPosition: function () {
+        this.$domEl.find('> .container').removeClass('container').addClass('container-fluid');
+    }
+});
+
 // Products Cards
 publicWidget.registry.s_d_products_snippet = ProductRootWidget.extend(OwlMixin, ProductsBlockMixins, {
     selector: '.s_d_products_snippet_wrapper',
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/cards.xml', '/theme_prime/static/src/xml/frontend/utils.xml']),
 
     bodyTemplate: 'd_s_cards_wrapper',
     bodySelector: '.s_d_products_snippet',
     controllerRoute: '/theme_prime/get_products_data',
-    fieldstoFetch: ['name', 'price', 'dr_label_id', 'rating', 'public_categ_ids', 'product_variant_ids', 'dr_stock_label', 'colors'],
+    fieldstoFetch: ['name', 'dr_label_id', 'rating', 'public_categ_ids', 'product_variant_ids', 'dr_stock_label', 'colors'],
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
 
     /**
@@ -46,40 +76,38 @@ publicWidget.registry.s_d_products_snippet = ProductRootWidget.extend(OwlMixin, 
 });
 
 publicWidget.registry.s_product_listing_cards_wrapper = ProductRootWidget.extend(ProductsBlockMixins, MarkupRecords, {
-    selector: '.s_product_listing_cards_wrapper',
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/listing_cards.xml']),
+    selector: '.s_product_listing_cards_wrapper, .s_image_product_listing_cards_wrapper',
     bodyTemplate: 'd_s_cards_listing_wrapper',
     bodySelector: '.s_product_listing_cards',
     controllerRoute: '/theme_prime/get_listing_products',
-    fieldstoFetch: ['name', 'price', 'rating'],
-    snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
+    fieldstoFetch: ['name', 'rating'],
+    snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info', 'data-ui-config-info']),
 
     _getOptions: function () {
-        let value = _.pick(this.uiConfigInfo || {}, function (value, key, object) {
-            return _.contains(['bestseller', 'newArrived', 'discount'], key) && value;
-        });
+        let value = pick(this.uiConfigInfo || {}, 'bestseller', 'newArrived', 'discount');
         value['mode'] = this.selectionInfo.selectionType || 'manual';
+        value['shop_config_params'] = true;
         return value;
     },
     _processData: function (data) {
-        this.numOfCol = 12 / _.keys(data).length;
-        this._super.apply(this, arguments);
+        this.numOfCol = 12 / Object.keys(data.products).length;
         let result = [];
-        _.each(data, (list, key) => {
-            this._markUpValues(this.tpFieldsToMarkUp, list);
+        let {products} = data;
+        for (let key in products) {
+            const list = products[key];
             switch (key) {
                 case 'bestseller':
-                    result.push({title: _t("Best Seller"), products: list});
+                    result.push({ title: _t("Best Seller"), products: list });
                     break;
                 case 'newArrived':
-                    result.push({title: _t("Newly Arrived"), products: list});
+                    result.push({ title: _t("Newly Arrived"), products: list });
                     break;
                 case 'discount':
-                    result.push({title: _t("On Sale"), products: list});
+                    result.push({ title: _t("On Sale"), products: list });
                     break;
             }
             this._markUpValues(this.tpFieldsToMarkUp, list);
-        });
+        }
         return result;
     },
     _getLimit: function () {
@@ -98,22 +126,17 @@ publicWidget.registry.s_d_single_product_count_down = ProductRootWidget.extend(P
 
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
 
-    fieldstoFetch: ['name', 'price', 'offer_data', 'description_sale'],
+    fieldstoFetch: ['name', 'offer_data', 'description_sale'],
 
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || [])
-        .concat(['/theme_prime/static/src/xml/frontend/dynamic_snippets.xml']),
-    jsLibs: (ProductRootWidget.prototype.jsLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
+    extraLibs: (ProductRootWidget.prototype.extraLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
     /**
      * initialize owlCarousel.
      * @private
      */
     _modifyElementsAfterAppend: function () {
         this._super.apply(this, arguments);
-        this.trigger_up('widgets_start_request', {
-            editableMode: this.editableMode,
-            $target: this.$('.tp-countdown')
-        });
-        this.$('.droggol_product_slider_single_product').owlCarousel({ dots: false, margin: 20, rtl: _t.database.parameters.direction === 'rtl', stagePadding: 5, rewind: true, nav: true, navText: ['<i class="dri dri-arrow-left-l"></i>', '<i class="dri dri-arrow-right-l"></i>'], responsive: {0: {items: 1,},}});
+        this._reloadWidget({ selector: '.tp-countdown'});
+        this.$('.droggol_product_slider_single_product').owlCarousel({ dots: false, margin: 20, rtl: localization.direction === 'rtl', stagePadding: 5, rewind: true, nav: true, navText: ['<i class="dri dri-arrow-left-l"></i>', '<i class="dri dri-arrow-right-l"></i>'], responsive: {0: {items: 1,},}});
     },
 });
 
@@ -123,13 +146,12 @@ publicWidget.registry.s_product_listing_tabs_snippet = ProductRootWidget.extend(
     bodySelector: '.s_product_listing_tabs',
     supportedTypes: ['bestseller', 'discount', 'newArrived'],
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
-    read_events: _.extend({ 'click .d_category_lable': '_onCategoryTabClick' }, ProductRootWidget.prototype.read_events),
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/cards.xml', '/theme_prime/static/src/xml/frontend/utils.xml', '/theme_prime/static/src/xml/frontend/category_filters.xml']),
+    read_events: Object.assign({ 'click .d_category_lable': '_onCategoryTabClick' }, ProductRootWidget.prototype.read_events),
 
     _getDomainValues: function (recordID) {
         let { limit } = this.uiConfigInfo;
-        let params = { limit: limit };
-        let selectedTab = _.findWhere(this.categories, {id: recordID});
+        let params = { limit: limit, fields: this.fieldstoFetch };
+        let selectedTab = this.categories.find(c => c.id === recordID);
         let productListingType = selectedTab ? selectedTab.type : 'bestseller';
         if (productListingType === 'discount') {
             params['domain'] = [['dr_has_discount', '!=', false]];
@@ -203,8 +225,7 @@ publicWidget.registry.s_category_snippet = ProductRootWidget.extend(OwlMixin, Ma
     bodySelector: '.s_d_category_snippet',
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
     controllerRoute: '/theme_prime/get_products_by_category',
-    read_events: _.extend({'click .d_category_lable': '_onCategoryTabClick'}, ProductRootWidget.prototype.read_events),
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/cards.xml', '/theme_prime/static/src/xml/frontend/utils.xml', '/theme_prime/static/src/xml/frontend/category_filters.xml']),
+    read_events: Object.assign({'click .d_category_lable': '_onCategoryTabClick'}, ProductRootWidget.prototype.read_events),
 
     start: function () {
         this.isBrand = this.$target.hasClass('s_products_by_brands_tabs_wrapper');
@@ -266,13 +287,10 @@ publicWidget.registry.s_category_snippet = ProductRootWidget.extend(OwlMixin, Ma
      * @override
      */
     _setDBData: function (data) {
-        var categories = _.map(this.selectionInfo.recordsIDs, function (categoryID) {
-            return _.findWhere(data.categories, {id: categoryID});
-        });
-        this.categories = _.compact(categories);
-        this.fetchedCategories = _.map(this.categories, function (category) {
-            return category.id;
-        });
+        let recordsIDs = this.selectionInfo.recordsIDs || [];
+        let categories = recordsIDs.map((categoryID) => {return data.categories.find(c => c.id === categoryID);});
+        this.categories = categories.filter((x) => !!x);
+        this.fetchedCategories = this.categories.map((category) => { return category.id; });
         this.selectionInfo.recordsIDs = this.fetchedCategories;
         this._super.apply(this, arguments);
     },
@@ -284,9 +302,8 @@ publicWidget.registry.s_single_category_snippet = ProductRootWidget.extend(Categ
     bodySelector: '.s_d_single_category_snippet',
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
     controllerRoute: '/theme_prime/get_products_by_category',
-    fieldstoFetch: ['name', 'price', 'rating', 'public_categ_ids'],
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/dynamic_snippets.xml', '/theme_prime/static/src/xml/frontend/utils.xml']),
-    jsLibs: (ProductRootWidget.prototype.jsLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
+    fieldstoFetch: ['name', 'rating', 'public_categ_ids'],
+    extraLibs: (ProductRootWidget.prototype.extraLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
     /**
      * @private
      */
@@ -312,21 +329,57 @@ publicWidget.registry.s_single_category_snippet = ProductRootWidget.extend(Categ
         if (this.categoryName) {
             // group of 8 products
             var items = 8;
-            if (config.device.isMobile || config.device.size_class === 3) {
+            if (uiUtils.isSmall() || uiUtils.getSize() === 3) {
                 items = 4;
             }
             this._markUpValues(this.tpFieldsToMarkUp, data.products);
-            var group = _.groupBy(data.products, function (product, index) {
+            var group = groupBy(data.products, function (product) {
+                let index = data.products.findIndex(x => x.id === product.id);
                 return Math.floor(index / (items));
             });
-            return _.toArray(group);
+            return Object.keys(group).map((key) => group[key]);
         } else {
             return [];
         }
     },
     initializeOwlSlider: function () {
-        this.$('.droggol_product_category_slider').owlCarousel({ dots: false, margin: 10, stagePadding: 5, rtl: _t.database.parameters.direction === 'rtl', rewind: true, nav: true, navText: ['<div class="badge text-primary"><i class="dri font-weight-bold dri-chevron-left-l"></i></div>', '<div class="badge text-primary"><i class="dri dri-chevron-right-l font-weight-bold"></i></div>'], responsive: {0: {items: 1}, 576: {items: 1}, 768: {items: 1}, 992: {items: 1}, 1200: {items: 1}}});
+        this.$('.droggol_product_category_slider').owlCarousel({ dots: false, margin: 10, stagePadding: 1, rtl: localization.direction === 'rtl', rewind: true, nav: true, navText: ['<div class="badge text-primary"><i class="dri font-weight-bold dri-chevron-left-l"></i></div>', '<div class="badge text-primary"><i class="dri dri-chevron-right-l font-weight-bold"></i></div>'], responsive: {0: {items: 1}, 576: {items: 1}, 768: {items: 1}, 992: {items: 1}, 1200: {items: 1}}});
     }
+});
+publicWidget.registry.s_category_brands = RootWidget.extend(ProductsBlockMixins, {
+    selector: '.s_category_small, .s_brands_small',
+    snippetNodeAttrs: (RootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
+    controllerRoute: '/theme_prime/get_brands_category_data',
+    bodyTemplate: 's_category_brands',
+    fieldstoFetch: ['name'],
+    /**
+    * @private
+    */
+    _getImgUrl: function(id) {
+        return this._getResModel() === 'product.attribute.value' ? `/web/image/${this._getResModel()}/${id}/dr_image` : `/web/image/${this._getResModel()}/${id}/image_128`;
+    },
+    /**
+    * @private
+    */
+    _getItemUrl: function (record) {
+        return this._getResModel() === 'product.attribute.value' ? `/shop?attrib=${record.attribute_id[0]}-${record.id}` : `/shop/category/${record.id}`;
+    },
+    /**
+    * @private
+    */
+    _getBodyDetails: function(resModel) {
+        let resModels = {'product.attribute.value': {title: _t('Shop By Brands'), url: '/shop/all-brands'}, 'product.public.category': {title: _t('Shop By Categories'), url: '/shop'}};
+        return resModels[resModel];
+    },
+    _getResModel: function() {
+        return this.$target.get(0).dataset.tpResModel;
+    },
+    /**
+    * @private
+    */
+    _getOptions: function () {
+        return this.selectionInfo ? { model: this._getResModel() } : this._super.apply(this, arguments);
+    },
 });
 
 // Full product snippet
@@ -340,8 +393,6 @@ publicWidget.registry.s_single_product_snippet = RootWidget.extend(ProductCarous
     noDataTemplateString: _t("No product found"),
     noDataTemplateSubString: _t("Sorry, this product is not available right now"),
     displayAllProductsBtn: false,
-
-    xmlDependencies: (RootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/dynamic_snippets.xml']),
 
     _setCamelizeAttrs: function () {
         this._super.apply(this, arguments);
@@ -367,9 +418,7 @@ publicWidget.registry.s_single_product_snippet = RootWidget.extend(ProductCarous
     },
     _modifyElementsAfterAppend: function () {
         this._super.apply(this, arguments);
-        this.trigger_up('widgets_start_request', {
-            $target: this.$('.oe_website_sale'),
-        });
+        this._reloadWidget({ selector: '.oe_website_sale' });
         this._bindEvents(this._getBodySelectorElement());
     },
 });
@@ -396,15 +445,13 @@ publicWidget.registry.s_d_single_product_cover_snippet = publicWidget.registry.s
     },
 });
 
-publicWidget.registry.s_d_top_categories = RootWidget.extend({
+publicWidget.registry.s_d_top_categories = RootWidget.extend(MarkupRecords, {
     selector: '.s_d_top_categories',
     bodyTemplate: 's_top_categories_snippet',
     bodySelector: '.s_d_top_categories_container',
     controllerRoute: '/theme_prime/get_top_categories',
 
     snippetNodeAttrs: (RootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info', 'data-ui-config-info']),
-
-    xmlDependencies: (RootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/dynamic_snippets.xml']),
 
     noDataTemplateString: _t("No categories found!"),
 
@@ -430,12 +477,14 @@ publicWidget.registry.s_d_top_categories = RootWidget.extend({
     },
     _setDBData: function (data) {
         this._super.apply(this, arguments);
-        var FetchedCategories = _.map(data, function (category) {
+        data = data || [];
+        var FetchedCategories = data.map((category) => {
             return category.id;
         });
         var categoryIDs = [];
-        _.each(this.selectionInfo.recordsIDs, function (categoryID) {
-            if (_.contains(FetchedCategories, categoryID)) {
+        let recordsIDs = this.selectionInfo.recordsIDs || [];
+        recordsIDs.forEach((categoryID) => {
+            if (FetchedCategories.includes(categoryID)) {
                 categoryIDs.push(categoryID);
             }
         });
@@ -445,9 +494,10 @@ publicWidget.registry.s_d_top_categories = RootWidget.extend({
     * @private
     */
     _processData: function (data) {
-        return _.map(this.selectionInfo.recordsIDs, function (categoryID) {
-            return _.findWhere(data, {id: categoryID});
-        });
+        let recordsIDs = this.selectionInfo.recordsIDs || [];
+        this._markUpValues(['min_price'], data);
+        let res = recordsIDs.map((categoryID) => { return data.find(c => c.id === categoryID); });
+        return res;
     },
 });
 
@@ -460,10 +510,9 @@ publicWidget.registry.s_d_product_count_down = ProductRootWidget.extend(Products
 
     controllerRoute: '/theme_prime/get_products_data',
 
-    fieldstoFetch: ['name', 'price', 'description_sale', 'rating', 'public_categ_ids', 'offer_data'],
+    fieldstoFetch: ['name', 'description_sale', 'rating', 'public_categ_ids', 'offer_data'],
 
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/2_col_deal.xml']),
-    jsLibs: (ProductRootWidget.prototype.jsLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
+    extraLibs: (ProductRootWidget.prototype.extraLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
     /**
      * @private
      */
@@ -488,16 +537,13 @@ publicWidget.registry.s_d_product_count_down = ProductRootWidget.extend(Products
      */
     _modifyElementsAfterAppend: function () {
         this._super.apply(this, arguments);
-        this.trigger_up('widgets_start_request', {
-            editableMode: this.editableMode,
-            $target: this.$('.tp-countdown'),
-        });
+        this._reloadWidget({ selector: '.tp-countdown' });
         this.$('.droggol_product_slider_top').owlCarousel({
             dots: false,
             margin: 20,
             stagePadding: 5,
             rewind: true,
-            rtl: _t.database.parameters.direction === 'rtl',
+            rtl: localization.direction === 'rtl',
             nav: true,
             navText: ['<i class="dri h4 dri-chevron-left-l"></i>', '<i class="dri h4 dri-chevron-right-l"></i>'],
             responsive: {0: {items: 1}, 768: {items: 2}, 992: {items: 1}, 1200: {items: 1},
@@ -512,8 +558,7 @@ publicWidget.registry.s_two_column_card_wrapper = ProductRootWidget.extend(OwlMi
     bodySelector: '.s_two_column_cards',
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info', 'data-ui-config-info']),
     controllerRoute: '/theme_prime/get_products_data',
-    fieldstoFetch: ['name', 'price', 'dr_label_id', 'rating', 'public_categ_ids', 'product_variant_ids', 'description_sale', 'colors', 'dr_stock_label'],
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/cards.xml', '/theme_prime/static/src/xml/frontend/utils.xml']),
+    fieldstoFetch: ['name', 'dr_label_id', 'rating', 'public_categ_ids', 'product_variant_ids', 'description_sale', 'colors', 'dr_stock_label'],
 
     _setCamelizeAttrs: function () {
         this._super.apply(this, arguments);
@@ -531,9 +576,7 @@ publicWidget.registry.s_two_column_card_wrapper = ProductRootWidget.extend(OwlMi
      */
     _modifyElementsAfterAppend: function () {
         this._super.apply(this, arguments);
-        this.trigger_up('widgets_start_request', {
-            $target: this.$('.tp-color-preview-container'),
-        });
+        this._reloadWidget({ selector: '.tp-product-preview-swatches'});
         if (this.uiConfigInfo.mode === 'slider') {
             this.initializeOwlSlider(this.uiConfigInfo.ppr, true);
         }
@@ -548,11 +591,9 @@ publicWidget.registry.s_d_product_small_block = ProductRootWidget.extend(Product
 
     controllerRoute: '/theme_prime/get_products_data',
 
-    fieldstoFetch: ['name', 'price', 'rating', 'public_categ_ids'],
+    fieldstoFetch: ['name', 'rating', 'public_categ_ids', 'dr_label_id'],
 
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/2_col_deal.xml']),
-    jsLibs: (ProductRootWidget.prototype.jsLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
-
+    extraLibs: (ProductRootWidget.prototype.extraLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
     /**
      * initialize owlCarousel.
      * @private
@@ -561,17 +602,16 @@ publicWidget.registry.s_d_product_small_block = ProductRootWidget.extend(Product
         var self = this;
         this._super.apply(this, arguments);
         this.inConfirmDialog = this.$el.hasClass('in_confirm_dialog');
-        var numOfCol = this.inConfirmDialog ? 4 : 3;
         if (this.inConfirmDialog) {
             this.$('.owl-carousel').removeClass('container');
         }
-        this.$('.droggol_product_slider_top').owlCarousel({ dots: false, margin: 20, stagePadding: this.inConfirmDialog ? 0 : 5, rewind: true, nav: true, rtl: _t.database.parameters.direction === 'rtl', navText: ['<i class="dri h4 dri-chevron-left-l"></i>', '<i class="dri h4 dri-chevron-right-l"></i>'],
+        this.$('.droggol_product_slider_top').owlCarousel({ dots: false, margin: 20, stagePadding: this.inConfirmDialog ? 0 : 5, rewind: true, nav: true, rtl: localization.direction === 'rtl', navText: ['<i class="dri h4 dri-chevron-left-l"></i>', '<i class="dri h4 dri-chevron-right-l"></i>'],
             onInitialized: function () {
                 var $img = self.$('.d-product-img:first');
                 if (self.$('.d-product-img:first').length) {
                     $img.one("load", function () {
                         setTimeout(function () {
-                            if (!config.device.isMobile) {
+                            if (!uiUtils.isSmall()) {
                                 var height = self.$target.parents('.s_d_2_column_snippet').find('.s_d_product_count_down .owl-item.active .tp-side-card').height();
                                 self.$('.owl-item').height(height+1);
                             }
@@ -579,36 +619,39 @@ publicWidget.registry.s_d_product_small_block = ProductRootWidget.extend(Product
                     });
                 }
             },
-            responsive: {0: {items: 2}, 576: {items: 2}, 768: {items: 2}, 992: {items: 2}, 1200: {items: numOfCol}
+            responsive: {0: {items: 2}, 576: {items: 2}, 768: {items: 2}, 992: {items: 2}, 1200: {items: 3}
             },
         });
     },
 });
 
-publicWidget.registry.s_d_image_products_block = ProductRootWidget.extend(ProductsBlockMixins, {
+publicWidget.registry.s_d_image_products_block = ProductRootWidget.extend(ProductsBlockMixins, MarkupRecords, {
     selector: '.s_d_image_products_block_wrapper',
     bodyTemplate: 's_d_image_products_block_tmpl',
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
     bodySelector: '.s_d_image_products_block',
     controllerRoute: '/theme_prime/get_products_data',
-    fieldstoFetch: ['name', 'price', 'rating', 'public_categ_ids'],
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/s_image_products.xml']),
-    jsLibs: (ProductRootWidget.prototype.jsLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
-
+    fieldstoFetch: ['name', 'rating', 'public_categ_ids'],
+    extraLibs: (ProductRootWidget.prototype.extraLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
+    _getOptions: function () {
+        return {'shop_config_params': true};
+    },
     _processData: function (data) {
         var products = this._getProducts(data);
+        this._markUpValues(this.tpFieldsToMarkUp, products);
         var items = 6;
-        if (config.device.isMobile) {
+        if (uiUtils.isSmall()) {
             items = 4;
         }
-        var group = _.groupBy(products, function (product, index) {
+        var group = groupBy(products, function (product) {
+            let index = products.findIndex(x => x.id === product.id);
             return Math.floor(index / (items));
         });
-        return _.toArray(group);
+        return Object.keys(group).map((key) => group[key]);
     },
     _modifyElementsAfterAppend: function () {
         this._super.apply(this, arguments);
-        this.$('.droggol_product_slider_top').owlCarousel({ dots: false, margin: 10, stagePadding: 5, rewind: true, nav: true, rtl: _t.database.parameters.direction === 'rtl', navText: ['<i class="dri h4 dri-chevron-left-l"></i>', '<i class="dri h4 dri-chevron-right-l"></i>'], responsive: {0: {items: 1}, 576: {items: 1}, 768: {items: 1}, 992: {items: 1}, 1200: {items: 1}},
+        this.$('.droggol_product_slider_top').owlCarousel({ dots: false, margin: 10, stagePadding: 5, rewind: true, nav: true, rtl: localization.direction === 'rtl', navText: ['<i class="dri h4 dri-chevron-left-l"></i>', '<i class="dri h4 dri-chevron-right-l"></i>'], responsive: {0: {items: 1}, 576: {items: 1}, 768: {items: 1}, 992: {items: 1}, 1200: {items: 1}},
         });
     },
 });
@@ -619,8 +662,7 @@ publicWidget.registry.s_d_products_grid_wrapper = ProductRootWidget.extend(Produ
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
     bodySelector: '.s_d_products_grids',
     controllerRoute: '/theme_prime/get_products_data',
-    fieldstoFetch: ['name', 'price', 'rating', 'public_categ_ids', 'offer_data'],
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/s_product_grid.xml', '/theme_prime/static/src/xml/frontend/utils.xml', '/theme_prime/static/src/xml/cards.xml']),
+    fieldstoFetch: ['name', 'rating', 'public_categ_ids', 'offer_data'],
     _getOptions: function () {
         if (!this.selectionInfo) {
             return false;
@@ -633,27 +675,44 @@ publicWidget.registry.s_d_products_grid_wrapper = ProductRootWidget.extend(Produ
      */
     _modifyElementsAfterAppend: function () {
         this._super.apply(this, arguments);
-        this.trigger_up('widgets_start_request', {
-            editableMode: this.editableMode,
-            $target: this.$('.tp-countdown')
-        });
+        this._reloadWidget({ selector: '.tp-countdown' });
     }
 });
 // Mega menus not crystal clear code :(
 publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
-    selector: '.s_category_tabs_snippet_wrapper',
+    selector: '.s_category_tabs_snippet_wrapper:not(.tp-side-menu), .s_tp_categories_menu',
     bodySelector: '.s_category_tabs_snippet',
     bodyTemplate: 's_category_tabs_snippet_wrapper',
     controllerRoute: '/theme_prime/get_megamenu_categories',
-    xmlDependencies: (RootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/hierarchical_category_templates.xml']),
     snippetNodeAttrs: (RootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info', 'data-ui-config-info']),
-    read_events: _.extend({
+    read_events: Object.assign({
         'mouseover .tp-menu-category-tab': '_onActivateMenuItem',
+        'mouseleave .tp-side-menu': '_onMouseLeave',
         'click .tp-menu-category-tab': '_onActivateMenuItem',
     }, RootWidget.prototype.events),
 
-    isMobileDevice: config.device.size_class <= config.device.SIZES.MD,
-
+    isMobileDevice: uiUtils.getSize() <= SIZES.MD,
+    /**
+ * @override
+ */
+    start: function () {
+        let defs = [this._super.apply(this, arguments)];
+        this.isSideMenu = false;
+        if (this.$target.hasClass('s_tp_categories_menu')) {
+            this.$target.find('.s_category_tabs_snippet_wrapper').addClass('tp-side-menu');
+            this.isSideMenu = true;
+        }
+        return Promise.all(defs);
+    },
+    _onMouseLeave: function(ev) {
+        if (this.isSideMenu) {
+            this.$target.find('.tp-submenu-float').addClass('d-none');
+            let activeTab = this.$target.get(0).querySelector('.tp-active-category');
+            if (activeTab) {
+                activeTab.classList.remove('tp-active-category');
+            }
+        }
+    },
     /**
      * @override
      */
@@ -666,13 +725,14 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
      * @override
      */
     _getLimit: function () {
-        return this.selectionInfo && this.selectionInfo.recordsIDs ? 21 : false;;
+        return this.selectionInfo && this.selectionInfo.recordsIDs ? 21 : false;
     },
     /**
      * @override
      */
     _getOptions: function () {
-        return this.selectionInfo && this.selectionInfo.recordsIDs ? { categoryIDs: this.selectionInfo.recordsIDs } : false;
+        let options = this.uiConfigInfo && this.uiConfigInfo.onlyDirectChild ? { onlyDirectChild: this.uiConfigInfo.onlyDirectChild } : { };
+        return this.selectionInfo && this.selectionInfo.recordsIDs ? { ...options , categoryIDs: this.selectionInfo.recordsIDs } : false;
     },
     /**
      * @override
@@ -685,7 +745,7 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
      */
     _isActionEnabled: function (actionName, actions) {
         let allActions = actions || this.uiConfigInfo.activeActions;
-        return _.contains(allActions, actionName);
+        return allActions.includes(actionName);
     },
 
     //--------------------------------------------------------------------------
@@ -698,6 +758,9 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
      * Display submenu
      */
     _activateCategory: function (categoryID) {
+        if (!this.editableMode) {
+            this.$target.find('.tp-submenu-float').removeClass('d-none');
+        }
         let $submenu = $(this.$(".tp-category-submenu[data-submenu-id='" + categoryID + "']"));
         this.$('.tp-category-submenu').addClass('d-none');
         $submenu.removeClass('d-none');
@@ -717,11 +780,7 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
      * @param {jQuery} $target
      */
     _activateCategorySubmenu: function ($target) {
-        this.trigger_up('widgets_start_request', {
-            editableMode: this.editableMode,
-            $target: $target.find('> .tp-mega-menu-snippet'),
-            onSuccess: this._setOffsetPosition.bind(this, $target),
-        });
+        this._reloadWidget({ target: $target.find('> .tp-mega-menu-snippet') });
         $target.addClass('tp-fetched-submenu');
     },
     /**
@@ -731,7 +790,8 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
      */
     getCategoryConfigData: function (categoryID) {
         if (this.uiConfigInfo && this.uiConfigInfo.categoryTabsConfig && this.uiConfigInfo.categoryTabsConfig.records) {
-            let record = _.findWhere(this.uiConfigInfo.categoryTabsConfig.records || [], { id: categoryID });
+            let records = this.uiConfigInfo.categoryTabsConfig.records || [];
+            let record = records.find((res) => res.id === categoryID);
             if (record) {
                 record['activeActions'] = [];
                 // force create activeActions array coz boolean is not acceptable
@@ -740,8 +800,8 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
                         record.activeActions.push(actionName);
                     }
                 });
+                return record;
             }
-            return record;
         }
         return {};
     },
@@ -752,7 +812,7 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
      * @return {String}
      */
     _getSelectionData: function (data) {
-        return JSON.stringify({ selectionType: "manual", recordsIDs: _.map(data, function (child) { return child.id }) });
+        return JSON.stringify({ selectionType: "manual", recordsIDs: data.map((child) => { return child.id }) });
     },
     /**
      * Set value for secondary attrs
@@ -773,17 +833,27 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
         if (this.editableMode && this.uiConfigInfo.categoryTabsConfig && this.uiConfigInfo.categoryTabsConfig.activeRecordID) {
             this._activateCategory(this.uiConfigInfo.categoryTabsConfig.activeRecordID);
         }
+        if (this.isSideMenu) {
+            let target = this.$target.get(0).querySelector('.s_category_tabs_snippet_wrapper');
+            let width = target.offsetWidth * 3.29;
+            if (target.querySelector('.tp-submenu-float')) {
+                target.querySelector('.tp-submenu-float').style.maxWidth = `${width}px`;
+                target.querySelector('.tp-submenu-float').style.width = `${width}px`;
+            }
+        }
     },
     /**
      * @override
      */
     _processData: function (data) {
         let result = [];
-        _.each(this.selectionInfo.recordsIDs, recordsID => {
-            let categoryRec = _.find(data, function (category) { return category.category.id === recordsID; });
+        let recordsIDs = this.selectionInfo.recordsIDs || [];
+        recordsIDs.forEach((recordsID) => {
+            let categoryRec = data.find(category => { return category.category.id === recordsID; });
             if (categoryRec && categoryRec.category) {
-                let { child } = this.getCategoryConfigData(categoryRec.category.id);
-                categoryRec['child'] = categoryRec.child.slice(0, child)
+                let res = this.getCategoryConfigData(categoryRec.category.id);
+                let child = res.child;
+                categoryRec['child'] = categoryRec.child.slice(0, child);
                 result.push(categoryRec);
             }
         });
@@ -816,7 +886,9 @@ publicWidget.registry.s_category_tabs_snippet = RootWidget.extend({
         }
         let menuID = parseInt($(ev.currentTarget).attr('tp-menu-id'));
         ev.stopPropagation();
-        this._activateCategory(menuID);
+        if (!ev.currentTarget.classList.contains('tp-active-category')) {
+            this._activateCategory(menuID);
+        }
     },
 });
 publicWidget.registry.s_tp_mega_menu_category_snippet = RootWidget.extend({
@@ -824,14 +896,13 @@ publicWidget.registry.s_tp_mega_menu_category_snippet = RootWidget.extend({
     bodySelector: '.s_tp_mega_menu_category_snippet_wrapper',
     bodyTemplate: 's_tp_hierarchical_category_wrapper',
     controllerRoute: '/theme_prime/get_megamenu_categories',
-    xmlDependencies: (RootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/hierarchical_category_templates.xml']),
     snippetNodeAttrs: (RootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info', 'data-ui-config-info']),
     /**
      * @private
      */
     _isActionEnabled: function (actionName, actions) {
         let allActions = actions || this.uiConfigInfo.activeActions;
-        return _.contains(allActions, actionName);
+        return allActions.includes(actionName);
     },
     _getOptions: function () {
         if (this.selectionInfo && this.selectionInfo.recordsIDs) {
@@ -841,7 +912,7 @@ publicWidget.registry.s_tp_mega_menu_category_snippet = RootWidget.extend({
     },
     /**
      * @override
-     */
+    */
     _getSortBy: function () {
         return this.uiConfigInfo && this.uiConfigInfo.childOrder ? this.uiConfigInfo.childOrder : 'count';
     },
@@ -854,28 +925,23 @@ publicWidget.registry.s_tp_mega_menu_category_snippet = RootWidget.extend({
         return this.uiConfigInfo.hasOwnProperty('limit') ? this.uiConfigInfo.limit : false;
     },
     _modifyElementsAfterAppend: function () {
-        this.trigger_up('widgets_start_request', {
-            editableMode: this.editableMode,
-            $target: this.$target.find('.tp-dynamic-snippet'),
-        });
-        this.trigger_up('widgets_start_request', {
-            editableMode: this.editableMode,
-            $target: this.$target.find('.s_d_brand_snippet_wrapper'),
-        });
+        this._reloadWidget({ selector: '.tp-droggol-builder-snippet' });
+        this._reloadWidget({ selector: '.s_d_brand_snippet_wrapper' });
     },
     _getProductSelectionData: function () {
-        return JSON.stringify({ selectionType: "advance", domain_params: { domain: [["public_categ_ids", "child_of", this.selectionInfo.recordsIDs]], limit: 5, order: "bestseller"} });
+        return this.JaysonStringify({ selectionType: "advance", domain_params: { domain: [["public_categ_ids", "child_of", this.selectionInfo.recordsIDs]], limit: 5, order: "bestseller"} });
     },
     _getUIConfigData: function () {
         let config = {};
         config[this.uiConfigInfo.productListing] = true;
-        return JSON.stringify(_.extend(config ,{'limit':3, 'style': 'tp_product_list_cards_4', 'header': 'tp_product_list_header_1', 'activeActions': ['rating', 'add_to_cart', 'wishlist', 'quick_view'], 'model': 'product.template'}))
+        return this.JaysonStringify(Object.assign({}, config, { 'limit': 3, 'style': 'tp_product_list_cards_4', 'header': 'tp_product_list_header_1', 'activeActions': ['rating', 'add_to_cart', 'wishlist', 'quick_view'], 'model': 'product.template' }));
     },
     _processData: function (data) {
-        let result = [];
+        let result = this.uiConfigInfo ? [] : false;
         this.recordsIDs = [];
-        _.each(this.selectionInfo.recordsIDs, recordsID => {
-            let categoryRec = _.find(data, function (category) { return category.category.id === recordsID; });
+        let recordsIDs = this.selectionInfo.recordsIDs || [];
+        recordsIDs.forEach((recordsID) => {
+            let categoryRec = data.find(category => { return category.category.id === recordsID; });
             if (categoryRec) {
                 result.push(categoryRec);
                 this.recordsIDs.push(recordsID);
@@ -890,7 +956,6 @@ publicWidget.registry.s_category_ui_snippet = ProductRootWidget.extend(ProductsB
     snippetNodeAttrs: (ProductRootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info']),
     bodyTemplate: 's_tp_category_wrapper_template',
     controllerRoute: '/theme_prime/get_categories_info',
-    xmlDependencies: (ProductRootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/s_category.xml']),
     fieldstoFetch: ['dr_category_label_id'],
     _setCamelizeAttrs: function () {
         this._super.apply(this, arguments);
@@ -904,38 +969,53 @@ publicWidget.registry.s_category_ui_snippet = ProductRootWidget.extend(ProductsB
         return {categoryIDs: this.categoriesTofetch, getCount: true};
     },
     _processData: function (data) {
-        let categories = _.map(this.categoriesTofetch, function (categoryID) {
-            return _.findWhere(data, {id: categoryID});
+        let categories = this.categoriesTofetch.map(categoryID => {
+            return data.find(c => c.id === categoryID);
         });
-        return _.compact(categories);
+        return categories.filter((x) => !!x);
     },
 });
 
 publicWidget.registry.s_d_brand_snippet = RootWidget.extend({
-    selector: '.s_d_brand_snippet_wrapper',
+    selector: '.s_d_brand_snippet_wrapper.tp-droggol-builder-snippet',
 
     controllerRoute: '/theme_prime/get_brands',
     bodyTemplate: 's_d_brand_snippet',
     bodySelector: '.s_d_brand_snippet',
     fieldstoFetch: ['id', 'name', 'attribute_id'],
     displayAllProductsBtn: false,
+    snippetNodeAttrs: (RootWidget.prototype.snippetNodeAttrs || []).concat(['data-selection-info', 'data-ui-config-info']),
     noDataTemplateString: _t("No brands are found!"),
     noDataTemplateSubString: _t("Sorry, We couldn't find any brands right now"),
-    xmlDependencies: (RootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/brands.xml']),
-    jsLibs: (RootWidget.prototype.jsLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
+    extraLibs: (RootWidget.prototype.extraLibs || []).concat(['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js']),
 
     /**
      * @private
      */
     _getOptions: function () {
-        this.brandCount = parseInt(this.$target.get(0).dataset.brandCount);
+        // Hack
+        this.recordsIDs = this.selectionInfo && this.selectionInfo.recordsIDs || [];
         this.categories = this.$target.get(0).dataset.categories;
-        this.mode = this.$target.get(0).dataset.mode;
-        this.cardStyle = this.$target.get(0).dataset.cardStyle || 'tp_brand_card_style_1';
+        this.mode = this.uiConfigInfo && this.uiConfigInfo.mode || 'slider';
+        this.cardStyle = this.uiConfigInfo && this.uiConfigInfo.style || 'tp_brand_card_style_1';
         return {
             limit: this.brandCount,
+            recordsIDs: this.recordsIDs,
             categories: this.categories ? JSON.parse(this.categories) : false,
         };
+    },
+    _processData: function(data) {
+        if (!this.recordsIDs.length) {
+            return data;
+        }
+        let matchedRecords = [];
+        this.selectionInfo.recordsIDs.forEach((resID) => {
+            let record = data.find((rec) => rec.id === resID);
+            if (record) {
+                matchedRecords.push(record);
+            }
+        });
+        return matchedRecords;
     },
     _modifyElementsAfterAppend: function () {
         this._super.apply(this, arguments);
@@ -945,18 +1025,24 @@ publicWidget.registry.s_d_brand_snippet = RootWidget.extend({
             // remove col-* classes
             this.$('.s_d_brand_snippet > .row > *').removeAttr('class');
             this.$('.s_d_brand_snippet > .row').removeClass('row');
-            this.$('.owl-carousel').owlCarousel({ nav: false, dots:false, autoplay: true, autoplayTimeout: 4000, responsive: {0: {items: 2}, 576: {items: 4}}});
+            this.$('.owl-carousel').owlCarousel({ nav: false, dots: false, autoplay: true, autoplayTimeout: 4000, rtl: localization.direction === 'rtl', responsive: {0: {items: 2}, 576: {items: 4}}});
         }
     },
 });
 
-publicWidget.registry.tp_image_hotspot = publicWidget.Widget.extend(HotspotMixns, cartMixin, CartManagerMixin, primeUtilities, {
+publicWidget.registry.tp_image_hotspot = publicWidget.Widget.extend(HotspotMixns, cartMixin, CartManagerMixin, MarkupRecords, {
     // V15 refector whole widget such a way that we can pass params directly in Qweb
     // <t t-if="productInfo"> is bad code
 
     selector: '.tp_hotspot',
-    primeXmlDependencies: ['/theme_prime/static/src/xml/frontend/image_hotspot.xml'],
     disabledInEditableMode: false,
+    tpFieldsToMarkUp: ['price', 'rating', 'list_price', 'label_template', 'dr_stock_label', 'colors'],
+
+    init: function () {
+        this._super.apply(this, arguments);
+        this.rpc = this.bindService("rpc");
+        this.notification = this.bindService("notification");
+    },
 
     /**
      * @override
@@ -971,10 +1057,10 @@ publicWidget.registry.tp_image_hotspot = publicWidget.Widget.extend(HotspotMixns
         }
         if (this.editableMode && this.hotspotType === 'dynamic' && this.onHotspotClick === 'modal') {
             this.$target.removeAttr('tabindex');
-            this.$target.removeAttr('data-toggle');
-            this.$target.removeAttr('data-trigger');
+            this.$target.removeAttr('data-bs-toggle');
+            this.$target.removeAttr('data-bs-trigger');
         } else {
-            this.$target.attr({ tabindex: '0', 'data-toggle': 'popover', 'data-trigger': 'focus' });
+            this.$target.attr({ tabindex: '0', 'data-bs-toggle': 'popover', 'data-bs-trigger': 'focus' });
         }
         return Promise.all(defs);
     },
@@ -989,23 +1075,19 @@ publicWidget.registry.tp_image_hotspot = publicWidget.Widget.extend(HotspotMixns
      * @returns {Promise}
      */
     _fetchData: async function () {
-        return await this._rpc({
-            route: '/theme_prime/get_products_data',
-            params: {
-                'domain': [['id', 'in', [parseInt(this.$target.get(0).dataset.productId)]]],
-                'fields': ['description_sale', 'rating'],
-                'limit': 1
-            },
-        })
+        return await this.rpc('/theme_prime/get_products_data', {
+            'domain': [['id', 'in', [parseInt(this.$target.get(0).dataset.productId)]]],
+            'fields': ['description_sale', 'rating'],
+            'limit': 1
+        });
     },
     /**
      * initialize popover
      */
     _initPopover: function () {
         let self = this;
-        this.$target.popover({animation: true, container: 'body', html: true, placement: 'auto', content: qweb.render('theme_prime.tp_img_static_template', {widget: this, data: this._getHotspotConfig()}),
-        }).on('shown.bs.popover', function () {
-            let $popover = $($(this).data("bs.popover").tip);
+        this.$target.popover({ animation: true, container: 'body', html: true, placement: 'auto', content: renderToElement('theme_prime.tp_img_static_template', {widget: this, data: this._getHotspotConfig()})}).on('shown.bs.popover', function () {
+            let $popover = $(window.Popover.getInstance(this).tip);
             $popover.off().on('click', '.tp-add-to-cart-action', ev => {
                 self.onAddToCartClick(ev, QuickViewDialog);
             });
@@ -1018,7 +1100,8 @@ publicWidget.registry.tp_image_hotspot = publicWidget.Widget.extend(HotspotMixns
     _isLoaded: function () {
         return new Promise((resolve, reject) => {
             var $relatedImage = $(this.$target.closest('.tp-img-hotspot-wrapper').find(".tp-img-hotspot-enable"));
-            if ($relatedImage.height() > 0 && $relatedImage.width() > 0) {
+            // ImagesLazyLoading Odoo hack
+            if ($relatedImage.get(0).naturalWidth) {
                 resolve();
             }
             $relatedImage.one("load", function () { resolve(); });
@@ -1028,11 +1111,12 @@ publicWidget.registry.tp_image_hotspot = publicWidget.Widget.extend(HotspotMixns
         if (this._isPublicUser()) {
             await this._isLoaded();
         }
-        let defs = [this._primeLoadExtras()];
+        let defs = [];
         if (this.onHotspotClick === 'popover') {
             if (this.hotspotType === 'dynamic') {
-                defs.push(this._fetchData())
-                let [anotherResult, data] = await Promise.all(defs);
+                defs.push(this._fetchData());
+                let [data] = await Promise.all(defs);
+                this._markUpValues(this.tpFieldsToMarkUp, data.products);
                 this.productInfo = data.products.length ? data.products[0] : false;
                 if (this.productInfo && this.productInfo.has_discounted_price) {
                     this.productInfo['discount'] = Math.round((this.productInfo.list_price_raw - this.productInfo.price_raw) / this.productInfo.list_price_raw * 100);
@@ -1051,7 +1135,7 @@ publicWidget.registry.tp_image_hotspot = publicWidget.Widget.extend(HotspotMixns
     },
 });
 
-sAnimations.registry.TpHotspotScroll = sAnimations.Animation.extend({
+publicWidget.registry.TpHotspotScroll = animations.Animation.extend({
     selector: '.tp_hotspot',
     effects: [{
         startEvents: 'scroll',
@@ -1062,6 +1146,4 @@ sAnimations.registry.TpHotspotScroll = sAnimations.Animation.extend({
             this.$target.blur();
         }
     },
-});
-
 });

@@ -1,75 +1,38 @@
-$tp-facebook-color: #3b5998;
-$tp-twitter-color: #00acee;
-$tp-envelope-color: o-color('primary');
-
-.tp-product-quick-view-layout {
-    .tp-share .fa {
-        transition: color 0.25s ease-in-out,background-color 0.25s ease-in-out;
-        width: 2rem;
-        height: 2rem;
-        line-height: 2rem;
-        &.fa-facebook {
-            color: $tp-facebook-color;
-            background-color: rgba($tp-facebook-color, 0.1);
-        }
-        &.fa-twitter {
-            color: $tp-twitter-color;
-            background-color: rgba($tp-twitter-color, 0.1);
-        }
-        &.fa-envelope {
-            color: $tp-envelope-color;
-            background-color: rgba($tp-envelope-color, 0.1);
-        }
+section#product_detail.tp-product-quick-view-layout {
+    .tp-close {
+        @include o-position-absolute($right: 12px, $top: 12px);
+        z-index: 1;
+        color: o-color('dark');
+        transition: 0.2s;
+        font-size: 20px;
         &:hover {
-            color: white;
-            &.fa-facebook {
-                background-color: $tp-facebook-color;
+            color: o-color('danger') !important;
+        }
+    }
+    .tp-share {
+        .s_share_facebook {
+            &, &:hover, &:focus {
+                @extend .text-facebook;
             }
-            &.fa-twitter {
-                background-color: $tp-twitter-color;
-            }
-            &.fa-envelope {
-                background-color: $tp-envelope-color;
+        }
+        .s_share_twitter {
+            &, &:hover, &:focus {
+                @extend .text-twitter;
             }
         }
     }
-    // Solve conflit with main product detail layout
-    .tp-product-detail-carousel {
+    // Solve conflit with product detail page layout
+    #o-carousel-product {
         position: relative !important;
         top: unset !important;
-        @include media-breakpoint-down(sm) {
-            .carousel-outer {
-                height: 370px !important;
-            }
-        }
     }
 }
 
-.tp-custom-dialog {
-    .close {
-        @include o-position-absolute(8px, 8px);
-        font-size: 0.8rem;
-        width: 2rem;
-        height: 2rem;
-        opacity: 1;
-        z-index: 1;
-        border-radius: 100rem;
-        border: 1px solid $border-color;
-        &:focus {
-            outline: none;
-        }
-        &:hover {
-            color: o-color('danger');
-        }
-    }
+.tp-product-variant-selector-modal-dialog {
+    @include dr-product-attribute-center($max-width: 450px);
 }
-
-// Cart Flow
-
-.d_product_quick_view_dialog {
-    &.is_mini {
-        @include dr-product-attribute-center($max-width: 450px);
-    }
+.tp-close {
+    z-index: 1;
 }
 
 .d_cart_confirmation_dialog {

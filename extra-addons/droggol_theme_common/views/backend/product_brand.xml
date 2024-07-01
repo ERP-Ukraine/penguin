@@ -31,7 +31,7 @@
             <tree string="Brands" expand="1" create="0">
                 <field name="sequence" widget="handle"/>
                 <field name="name" string="Name"/>
-                <field name="attribute_id" invisible="1"/>
+                <field name="attribute_id" column_invisible="1"/>
                 <groupby name="attribute_id">
                     <button name="open_create_brand_value" string="Add New Brand" type="object" class=""/>
                 </groupby>
@@ -63,6 +63,6 @@
 
     <menuitem id="menu_dr_product_brand_values"
         action="dr_product_brand_values_action"
-        parent="website_sale.menu_product_settings" sequence="12"/>
+        parent="website_sale.menu_catalog" sequence="5"/>
 
 </odoo>

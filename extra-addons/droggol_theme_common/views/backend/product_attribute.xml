@@ -18,17 +18,17 @@
                             <field name="dr_search_suggestion"/>
                         </group>
                         <group>
-                            <field name="dr_radio_image_style" widget="radio" attrs="{'invisible': [('display_type', '!=', 'radio_image')]}"/>
+                            <field name="dr_radio_image_style" widget="radio" invisible="display_type != 'radio_image'"/>
                         </group>
                     </group>
                 </page>
             </page>
             <xpath expr="//field[@name='value_ids']/tree/field[last()]" position="after">
-                <field name="dr_brand_description" attrs="{'column_invisible': [('parent.dr_is_brand', '=', False)]}"/>
-                <field name="dr_image" attrs="{'column_invisible': [('parent.display_type', '!=', 'radio_image')]}" widget="image" class="oe_avatar"/>
+                <field name="dr_brand_description" column_invisible="not parent.dr_is_brand"/>
+                <field name="dr_image" column_invisible="parent.display_type != 'radio_image'" widget="image" class="oe_avatar"/>
             </xpath>
             <xpath expr="//field[@name='value_ids']/tree/field[@name='is_custom']" position="attributes">
-                <attribute name="attrs">{'column_invisible': [('parent.dr_is_brand', '=', True)]}</attribute>
+                <attribute name="column_invisible">parent.dr_is_brand</attribute>
             </xpath>
         </field>
     </record>
@@ -39,7 +39,7 @@
         <field name="inherit_id" ref="product.product_template_attribute_value_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='html_color']" position="after">
-                <field name="dr_thumb_image" widget="image" nolabele="1" attrs="{'invisible': [('display_type', '!=', 'color')]}" class="oe_avatar float-left"/>
+                <field name="dr_thumb_image" widget="image" invisible="display_type != 'color'" class="oe_avatar float-start"/>
             </xpath>
         </field>
     </record>

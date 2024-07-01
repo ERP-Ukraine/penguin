@@ -1,46 +1,90 @@
-odoo.define('theme_prime.website_sale', function (require) {
-'use strict';
+/** @odoo-module **/
 
-require('website_sale.website_sale');
-require('@website_sale/js/website_sale_category_link');
-const publicWidget = require('web.public.widget');
-const concurrency = require('web.concurrency');
-const sAnimations = require('website.content.snippets.animation');
-const Dialog = require('web.Dialog');
-const config = require('web.config');
-const { _t, qweb } = require('web.core');
-const wSaleUtils = require('website_sale.utils');
-const { ProductCarouselMixins, CartManagerMixin } = require('theme_prime.mixins');
+import "@website_sale/js/website_sale";
+import "@website_sale_stock_wishlist/js/website_sale";
+import { KeepLast } from "@web/core/utils/concurrency";
+import publicWidget from "@web/legacy/js/public/public_widget";
+import animations from "@website/js/content/snippets.animation";
+import Dialog from "@web/legacy/js/core/dialog";
+import { sprintf } from "@web/core/utils/strings";
+import { ProductCarouselMixins } from "@theme_prime/js/core/mixins";
+import { Sidebar } from "@theme_prime/js/sidebar";
+import { renderToElement } from "@web/core/utils/render";
+import { hasTouch } from "@web/core/browser/feature_detection";
+import { SIZES, utils as uiUtils } from "@web/core/ui/ui_service";
+import { localization } from "@web/core/l10n/localization";
+import { _t } from "@web/core/l10n/translation";
+import { markup } from "@odoo/owl";
 
-const isMobileEnv = config.device.size_class <= config.device.SIZES.LG && config.device.touch;
+const isMobileEnv = uiUtils.getSize() <= SIZES.LG && hasTouch();
 
-publicWidget.registry.ProductCategoriesLinks.include({
-    _openLink: function (ev) {
-        if (odoo.dr_theme_config.json_shop_filters.filter_method !== 'lazy') {
-            this._super.apply(this, arguments);
-        }
-    },
-});
+// FIXME: JAT
+// Bottombar's filter is outside of public widget so it's hard to communicate and maintain state.
+// This variable should be inside public widget and _onClickOpenFilterSidebar method should use DOM elements of widget itself not global.
+let filterSidebarInstance = false;
 
 publicWidget.registry.WebsiteSale.include({
-    xmlDependencies: (publicWidget.registry.WebsiteSale.prototype.xmlDependencies || []).concat(
-        ['/theme_prime/static/src/xml/shop.xml']
+    jsLibs: (publicWidget.registry.WebsiteSale.prototype.jsLibs || []).concat(
+        ['/theme_prime/static/lib/drift-master-1.5.0/dist/Drift.js'],
     ),
-    events: _.extend({}, publicWidget.registry.WebsiteSale.prototype.events || {}, {
+    cssLibs: (publicWidget.registry.WebsiteSale.prototype.cssLibs || []).concat(
+        ['/theme_prime/static/lib/drift-master-1.5.0/dist/drift-basic.css'],
+    ),
+    events: Object.assign({}, publicWidget.registry.WebsiteSale.prototype.events || {}, {
+        'click .tp-attribute': '_onClickAttribute',
+        'input .tp-search-attribute-value': '_onChangeSearchAttributeValue',
+        'click .tp-filter-attribute-title.collapsible': '_onClickFilterAttributeTitle',
         'submit form.js_attributes': '_onFormSubmit',
-        'click .tp-filter-sidebar-toggle': '_onClickToggleSidebar',
-        'click .tp-sidebar-backdrop': '_onClickToggleSidebar',
-        'click .tp-category-pill-container a': '_onClickCategoryPillLink',
+        'click .tp-open-filter-sidebar': '_onClickOpenFilterSidebar',
+        "click .tp-load-more-btn": "_onClickLoadMoreBtn",
         'click [data-link-href]': '_openLink',
+        "click .tp-action-buttons-toggler": "_onClickActionButtonsToggler",
+        "click .tp-bulk-price-block": "_onClickBulkQty",
     }),
     init: function () {
         this._super.apply(this, arguments);
-        this.selectorToReplace = ['.tp-category-pill-container', '.tp-shop-topbar', '.o_wsale_products_main_row'];
-        this.dp = new concurrency.DropPrevious();
-        $('.tp-filter-bottom-sidebar-toggle').on('click', this._onClickToggleSidebar.bind(this)); // JAT: To work for bottombar
+        this.isLazyLoad = odoo.dr_theme_config.json_shop_layout.layout == "prime" && odoo.dr_theme_config.json_shop_filters.lazy_method;
+        this.selectorToReplace = ['.tp-category-pill-container', '.tp-shop-topbar', '.tp-shop-row'];
+        this.classToIgnore = ['tp-search-attribute-value', 'tp-slider'];
+        this.driftImages = [];
+        this.keepLast = new KeepLast();
+        $('.tp-filter-bottom-sidebar-toggle').off().on('click', this._onClickOpenFilterSidebar.bind(this)); // JAT: To work for bottombar
+    },
+    start() {
+        if (this.el.classList.contains("tp-shop-layout") && this.isLazyLoad) {
+            window.addEventListener('popstate', this._handleBackNavigation);
+        }
+        if (this.el.querySelector(".tp-load-more-on-scroll")) {
+            this.loadMoreObserver = new IntersectionObserver(entries => {
+                entries.forEach((entry) => {
+                    if (entry.intersectionRatio > 0) {
+                        this._loadMoreProducts(this.el.querySelector(".tp-load-more-on-scroll").getAttribute("href"));
+                        this.el.querySelector(".tp-load-more-on-scroll").remove();
+                    }
+                })
+            }, {});
+            this.loadMoreObserver.observe(this.el.querySelector(".tp-load-more-on-scroll"));
+        }
+        this.isQuickViewDialog = this.el.classList.contains('tp-product-quick-view-layout');
+        return this._super(...arguments);
     },
     _startZoom: function () {
-        // Disable zoomOdoo, Because we have Drift
+        const namespace = localization === "rtl" ? "tp-rtl" : "tp";
+        const zoomConfig = odoo.dr_theme_config.json_zoom;
+        if (zoomConfig.zoom_enabled) {
+            const images = this.el.querySelectorAll("img[data-zoom]");
+            for (const image of images) {
+                image.classList.add("cursor-pointer");
+                const imageVals = { namespace: namespace, sourceAttribute: "src", inlineOffsetY: -50, paneContainer: image.parentElement, zoomFactor: zoomConfig.zoom_factor || 2, inlinePane: 992, touchDelay: 500 };
+                const zoomImage = image.dataset.zoomImage;
+                if (zoomImage) {
+                    imageVals.sourceAttribute = "data-zoom-image";
+                    this.driftImages.push(new Drift(image, imageVals));
+                }
+            }
+        } else {
+            this._super(...arguments);
+        }
     },
     _onChangeCombination: function (ev, $parent, combination) {
         this._super.apply(this, arguments);
@@ -57,16 +101,16 @@ publicWidget.registry.WebsiteSale.include({
             }
         }
         // Discount percentage
-        const $price = $parent.find('h3.h4.css_editable_mode_hidden, h4.css_editable_mode_hidden');
+        const $price = $parent.find('.product_price h3.css_editable_mode_hidden');
         let $percentage = $parent.find('.tp-discount-percentage');
         if (combination.has_discounted_price) {
             const percentage = Math.round((combination.list_price - combination.price) / combination.list_price * 100);
             if (percentage) {
-                const percentageText = _.str.sprintf(_t('(%d%% OFF)'), percentage);
+                const percentageText = sprintf(_t('(%s% OFF)'), percentage);
                 if ($percentage.length) {
                     $percentage.text(percentageText);
                 } else {
-                    $percentage = $('<small class="tp-discount-percentage d-none d-md-inline-block ml-1">' + percentageText + '</small>');
+                    $percentage = $('<small class="tp-discount-percentage d-none d-md-inline-block ms-1">' + percentageText + '</small>');
                     $percentage.appendTo($price);
                 }
             } else {
@@ -76,163 +120,119 @@ publicWidget.registry.WebsiteSale.include({
             $percentage.remove();
         }
 
-        if (combination.dr_extra_fields && window.location.search.indexOf('enable_editor') === -1) {  // based on carousel code
-            var rootComponentSelectors = ['tr.js_product','.oe_website_sale','.o_product_configurator'];
-            var $productContainer = $parent.closest(rootComponentSelectors.join(', '))
-            var $newExtraFields = $(combination.dr_extra_fields);
-            var $extraFields = $productContainer.find('.dr_extra_fields');
-            $extraFields.replaceWith($newExtraFields);
+        // Bulk Price
+        const $productContainer = $parent.closest('tr.js_product, .oe_website_sale, .o_product_configurator');
+        const $bulkPriceContainer = $productContainer.find('.tp-bulk-price-container');
+        if ($bulkPriceContainer) {
+            $bulkPriceContainer.empty();
         }
-    },
-    _updateProductImage: function ($productContainer, displayImage, productId, productTemplateId, newCarousel, isCombinationPossible) {
-        var $carousel = $productContainer.find('.d_shop_product_details_carousel');
-        if ($carousel.length) {
-            if (window.location.search.indexOf('enable_editor') === -1) {
-                var $newCarousel = $(newCarousel);
-                $carousel.after($newCarousel);
-                $carousel.remove();
-                $carousel = $newCarousel;
-                $carousel.carousel(0);
-                this._startZoom();
-                this.trigger_up('widgets_start_request', {$target: $carousel});
-                ProductCarouselMixins._bindEvents($productContainer);
-            }
-            $carousel.toggleClass('css_not_available', !isCombinationPossible);
-        } else {
-            $carousel = $productContainer.find('#o-carousel-product');
-            this._super.apply(this, arguments);
-        }
-
-        let $container = $productContainer.parents('.tp-show-variant-image');
-        if ($container.length) {
-            let src = $carousel.find('.tp-drift-zoom-img:first').attr('src');
-            if (src !== $container.find('.tp-variant-image').attr('src')) {
-                $container.find('.tp-variant-image').fadeOut(400);
-                _.delay(function () {$container.find('.tp-variant-image').attr('src', src).fadeIn(650);}, 400);
+        if (combination.bulk_price && combination.bulk_price.length) {
+            let doRenderPrices = combination.bulk_price.length === 1 ? combination.bulk_price[0].qty > 1 : true;
+            if (doRenderPrices) {
+                $(renderToElement("theme_prime.BulkPrice", { prices: combination.bulk_price, inputQty: parseInt($parent.find('input.quantity').val()), isQuickViewDialog: this.isQuickViewDialog, markup, parseInt, })).appendTo($bulkPriceContainer);
             }
         }
-    },
-    _onClickToggleSidebar: function (ev) {
-        ev.preventDefault();
-        this._toggleSidebar();
-    },
-    _toggleSidebar: function () {
-        this.$('.tp-sidebar-backdrop').removeClass('show d-block');
-        if (this.$('#products_grid_before').hasClass('open')) {
-            this.$('#products_grid_before').removeClass('open');
-            $('#wrapwrap').css('z-index', 0);
-        } else {
-            this.$('.tp-sidebar-backdrop').addClass('show d-block');
-            this.$('#products_grid_before').addClass('open');
-            $('#wrapwrap').css('z-index', 'unset');
-        }
-        this.$('.tp-filter-sidebar-item').toggleClass('show d-none');
-    },
-    _onChangeAttribute: function (ev) {
-        if (!ev.currentTarget.classList.contains('tp-search')) {
-            this._super.apply(this, arguments);
-        }
-    },
-    _onClickCategoryPillLink: function (ev) {
-        if (odoo.dr_theme_config.json_shop_filters.filter_method === 'lazy') {
-            ev.preventDefault();
-            this._replaceContent(ev.currentTarget.getAttribute('href'));
-        }
-    },
-    _openLink: function (ev) {
-        if (odoo.dr_theme_config.json_shop_filters.filter_method === 'lazy') {
-            ev.preventDefault();
-            this._replaceContent(ev.currentTarget.getAttribute('data-link-href'));
-        }
-    },
-    _onFormSubmit: function (ev) {
-        if (odoo.dr_theme_config.json_shop_filters.filter_method === 'lazy') {
-            ev.preventDefault();
-            const $form = $(ev.currentTarget).closest('form');
-            const url = window.location.pathname + '?' + $form.serialize();
-            this._replaceContent(url);
-        }
-    },
-    _replaceContent: function (url) {
-        document.getElementById('wrapwrap').scrollTo({top: 0, behavior: 'smooth'});
-        const isSidebarOpen = this.$('#products_grid_before').hasClass('open');
-        if (isSidebarOpen) {
-            this._toggleSidebar();
-        }
-        this.$('#products_grid').empty();
-        this.$shopLoader = $(qweb.render('theme_prime.ShopLoader'));
-        this.$shopLoader.appendTo(this.$('#products_grid'));
-        window.history.pushState({}, '', url);
-        this.dp.add(
-            new Promise(function (resolve, reject) {
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    success: function (data) {
-                        resolve(data);
-                    }
-                });
-            })
-        ).then(data => {
-            this._replaceShopContent(data);
-            this.trigger_up('widgets_start_request', {
-                $target: this.$el,
-            });
-            this.$shopLoader.remove();
-            $('.tp-filter-bottom-sidebar-toggle').on('click', this._onClickToggleSidebar.bind(this));
-        });
-    },
-    _replaceShopContent: function (data) {
-        this.selectorToReplace.forEach(selector => {
-            this.$(selector).replaceWith($(data).find(selector));
-        });
-    },
-});
 
-//------------------------------------------------------------------------------
-// Shop Page
-//------------------------------------------------------------------------------
-publicWidget.registry.TpSelectedAttributes = publicWidget.Widget.extend({
-    selector: '.tp-selected-attributes',
-    events: {
-        'click .tp-attribute': '_onClickAttribute'
+        if (combination.tp_extra_fields) {
+            const $extraFields = $productContainer.find('.tp_extra_fields');
+            $extraFields.replaceWith($(combination.tp_extra_fields));
+        }
     },
-    init: function () {
-        this._super.apply(this, arguments);
-        this.$form = $('.js_attributes');
-    },
-    _onClickAttribute: function (ev) {
-        if (ev.currentTarget.classList.contains('clear')) {
-            this.el.querySelectorAll('.tp-attribute').forEach(el => {
-                this._deactivateFilter(el);
-            });
-            this.$form.submit();
+    _updateProductImage: function ($productContainer, displayImage, productId, productTemplateId, newImages, isCombinationPossible) {
+        if ($productContainer.hasClass('auto-add-product')) {
             return;
         }
-        this._deactivateFilter(ev.currentTarget);
-        this.$form.submit();
+        let $images = $productContainer.find(this._getProductImageContainerSelector());
+        if ($images.length && !this._isEditorEnabled()) {
+            const $newImages = $(newImages);
+            $images.after($newImages);
+            $images.remove();
+            $images = $newImages;
+            if ($images.attr('id') === 'o-carousel-product') {
+                $images.carousel(0);
+            }
+            this._startZoom();
+            // fix issue with carousel height
+            this.trigger_up('widgets_start_request', {$target: $images});
+            ProductCarouselMixins._bindEvents($productContainer);  // Hook
+        }
+        $images.toggleClass('css_not_available', !isCombinationPossible);
+
+        // For left panel dynamic snippet
+        const $container = $productContainer.parents('.tp-show-variant-image');
+        if ($container.length) {
+            const imageEl = $container.find('.tp-variant-image')[0];
+            const src = $images.find('.product_detail_img').first().attr('src');
+            if (src !== imageEl.src) {
+                imageEl.classList.remove("tp-product-image-fade-animation");
+                imageEl.src = src;
+                imageEl.addEventListener('load', () => {
+                    imageEl.classList.add("tp-product-image-fade-animation");
+                }, { once: true });
+            }
+        }
+    },
+    _onClickBulkQty(ev) {
+        const $qtyInput = this.$(".js_main_product input[name='add_qty']").first();
+        $qtyInput.val(ev.currentTarget.dataset.qty).trigger("change");
+    },
+    _onClickOpenFilterSidebar: function (ev) {
+        ev.preventDefault();
+        // Clear sliders
+        $(".tp-slider").each(function () {
+            $(this).data("ionRangeSlider").destroy();
+        });
+
+        const sidebarHtml = renderToElement("theme_prime.ShopFilterSidebar", { content: markup($(".tp-filters-container")[0].innerHTML) });
+        return new Sidebar(this, {
+            title: _t("Filters"),
+            icon: "fa fa-filter",
+            class: "tp-shop-filter-sidebar",
+            contentHtml: sidebarHtml,
+            parentSelector: ".oe_website_sale",
+            position: "start",
+        }).show().then(instance => {
+            filterSidebarInstance = instance;
+            this.trigger_up("widgets_start_request", {
+                $target: $(".tp-filter-attribute"),
+            });
+        });
+    },
+    _onClickAttribute: function (ev) {
+        if (ev.currentTarget.classList.contains("clear")) {
+            this.el.querySelectorAll(".tp-attribute").forEach(el => {
+                this._deactivateFilter(el);
+            });
+        } else {
+            this._deactivateFilter(ev.currentTarget);
+        }
+        this.$("form.js_attributes").submit();
     },
     _deactivateFilter: function (el) {
-        const type = el.dataset.type;
-        const id = el.dataset.id;
-        if (type === 'price') {
-            this.$form.find('input[name=min_price]').remove();
-            this.$form.find('input[name=max_price]').remove();
+        const { id, type } = el.dataset;
+        if (type === "price") {
+            if (this.el.querySelector(".js_attributes input[name=min_price]")) {
+                this.el.querySelector(".js_attributes input[name=min_price]").remove();
+            }
+            if (this.el.querySelector(".js_attributes input[name=max_price]")) {
+                this.el.querySelector(".js_attributes input[name=max_price]").remove();
+            }
         }
-        const $input = this.$form.find('input[id=' + id + ']');
-        $input.prop('checked', false);
-        const $select = this.$form.find('option[id=' + id + ']').closest('select');
-        $select.val('');
-    }
-});
-
-publicWidget.registry.TpFilterAttribute = publicWidget.Widget.extend({
-    selector: '.tp-filter-attribute',
-    events: {
-        'input .tp-search': '_onChangeSearch',
-        'click .tp-filter-attribute-title.collapsible': '_onClickFilterAttributeTitle',
+        const inputEl = this.el.querySelector(`.js_attributes input[id=${id}]`);
+        if (inputEl) {
+            inputEl.checked = false;
+        }
+        const optionEl = this.el.querySelector(`.js_attributes option[id=${id}]`);
+        if (optionEl) {
+            optionEl.closest("select").value = "";
+        }
     },
-    _onChangeSearch: function (ev) {
+    _onClickSubmitWishlistStockNotificationForm(ev) {
+        // From module: website_sale_stock_wishlist
+        const productId = JSON.parse(ev.currentTarget.closest('.tp-wishlist-item').dataset.productTrackingInfo).item_id;
+        this._handleClickSubmitStockNotificationForm(ev, productId);
+    },
+    _onChangeSearchAttributeValue: function (ev) {
         ev.stopPropagation();
         const value = ev.currentTarget.value.trim();
         if (value) {
@@ -255,6 +255,131 @@ publicWidget.registry.TpFilterAttribute = publicWidget.Widget.extend({
             $(ev.currentTarget).siblings('.tp-filter-attribute-collapsible-area').slideDown('fast');
         }
         $(ev.currentTarget).toggleClass('expanded');
+    },
+    _onChangeAttribute: function (ev) {
+        if (![...ev.currentTarget.classList].some(className => this.classToIgnore.indexOf(className) !== -1)) {
+            this._super.apply(this, arguments);
+        }
+    },
+    _openLink: function (ev) {
+        ev.preventDefault();
+        if (this.isLazyLoad) {
+            this._replaceContent(ev.currentTarget.getAttribute('data-link-href'));
+        } else {
+            window.location.href = ev.currentTarget.getAttribute('data-link-href');
+        }
+    },
+    _onFormSubmit: function (ev) {
+        if (this.isLazyLoad) {
+            ev.preventDefault();
+            const $form = $(ev.currentTarget).closest('form');
+            const url = window.location.pathname + '?' + $form.serialize();
+            this._replaceContent(url);
+        }
+    },
+    _replaceContent: function (url) {
+        document.getElementById('wrapwrap').scrollTo({top: 0, behavior: 'smooth'});
+        if (filterSidebarInstance) {
+            filterSidebarInstance.hide();
+        }
+        this.$('#products_grid').empty();
+        this.$shopLoader = $(renderToElement('theme_prime.Loader'));
+        this.$shopLoader.appendTo(this.$('#products_grid'));
+        window.history.pushState({}, '', url);
+        this.keepLast.add(
+            new Promise(function (resolve, reject) {
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (data) {
+                        resolve(data);
+                    }
+                });
+            })
+        ).then(data => {
+            this._replaceShopContent(data);
+            this.trigger_up('widgets_start_request', {
+                $target: this.$el,
+            });
+        });
+    },
+    _onClickLoadMoreBtn: function (ev) {
+        ev.preventDefault();
+        this._loadMoreProducts(ev.currentTarget.getAttribute("href"));
+        ev.currentTarget.remove();
+    },
+    _loadMoreProducts: function (url) {
+        this.$shopLoader = $(renderToElement("theme_prime.Loader", { height: "20vh" }));
+        this.$shopLoader.appendTo(this.$(".tp-product-pager"));
+        this.keepLast.add(
+            new Promise((resolve, reject) => {
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: data => {
+                        resolve(data);
+                    }
+                });
+            })
+        ).then(data => {
+            $(data).find(".tp-product-item").insertAfter(this.$(".tp-product-item:last"));
+            this.$(".tp-product-pager").replaceWith($(data).find(".tp-product-pager"));
+            this.trigger_up("widgets_start_request", {
+                $target: this.$el,
+            });
+        });
+    },
+    _replaceShopContent: function (data) {
+        this.selectorToReplace.forEach(selector => {
+            this.$(selector).replaceWith($(data).find(selector));
+        });
+    },
+    _handleBackNavigation: function (event) {
+        window.location.reload();
+    },
+    _setUrlHash: function ($parent) {
+        if (!this.el.classList.contains("tp-noupdate-variant-change-url")) {
+            return this._super.apply(this, arguments);
+        }
+    },
+    _onClickActionButtonsToggler: function (ev) {
+        this.el.querySelectorAll('.tp-action-buttons-toggler').forEach(el => {
+            el.classList.remove("d-none");
+        });
+        this.el.querySelectorAll('.tp-action-toggle').forEach(el => {
+            el.classList.add("d-none");
+        });
+        ev.currentTarget.classList.add("d-none");
+        ev.currentTarget.parentElement.querySelectorAll('.tp-action-toggle').forEach(el => {
+            el.classList.toggle("d-none");
+        });
+    },
+    destroy: function () {
+        window.removeEventListener('popstate', this._handleBackNavigation);
+        if (this.loadMoreObserver && this.el.querySelector(".tp-load-more-on-scroll")) {
+            this.loadMoreObserver.unobserve(this.el.querySelector(".tp-load-more-on-scroll"));
+        }
+        this.driftImages.forEach(drift => { drift.disable() });
+        this._super.apply(this, arguments);
+    },
+});
+
+//------------------------------------------------------------------------------
+// Shop Page
+//------------------------------------------------------------------------------
+publicWidget.registry.TpShopButtons = animations.Animation.extend({
+    selector: ".tp-shop-page",
+    effects: [{
+        startEvents: "scroll",
+        update: "_onScroll",
+    }],
+    _onScroll: function () {
+        document.querySelectorAll(".tp-action-buttons-toggler").forEach(el => {
+            el.classList.remove("d-none");
+        });
+        document.querySelectorAll(".tp-action-toggle").forEach(el => {
+            el.classList.add("d-none");
+        });
     },
 });
 
@@ -318,6 +443,41 @@ publicWidget.registry.TpRangeFilter = publicWidget.Widget.extend({
             this.$el.append($('<input>', {type: 'hidden', name:'max_' + this.key, value: this.slider.result.to}));
         }
     },
+    destroy: function () {
+        this._super.apply(this, arguments);
+        this.slider.destroy();
+    }
+});
+
+publicWidget.registry.TpProductPreviewSwatches = publicWidget.Widget.extend({
+    selector: ".tp-product-preview-swatches",
+    events: {
+        "mouseenter .tp-swatch:not(.more)": "_onMouseEnterSwatch",
+        "mouseleave": "_onMouseLeave",
+    },
+    start: function () {
+        this.imageEl = this.el.closest(this.el.dataset.parentSelector).querySelector(this.el.dataset.imgSelector);
+        return this._super.apply(this, arguments);
+    },
+    _onMouseEnterSwatch: function (ev) {
+        this._updateImgSrc(ev.currentTarget.dataset.previewImgSrc);
+        ev.currentTarget.classList.add("active");
+    },
+    _onMouseLeave: function () {
+        this._updateImgSrc();
+    },
+    _updateImgSrc: function (src=false) {
+        this.imageEl.classList.remove("tp-product-preview-active");
+        this.el.querySelectorAll(".tp-swatch").forEach((el, index) => {
+            el.classList.remove("active");
+        });
+        this.imageEl.src = src || this.el.dataset.defaultImgSrc;
+        this.imageEl.addEventListener('load', () => {
+            if (src) {
+                this.imageEl.classList.add("tp-product-preview-active");
+            }
+        }, { once: true });
+    },
 });
 
 //------------------------------------------------------------------------------
@@ -326,89 +486,59 @@ publicWidget.registry.TpRangeFilter = publicWidget.Widget.extend({
 publicWidget.registry.websiteSaleCarouselProduct.include({
     _updateJustifyContent: function () {
         this._super.apply(this, arguments);
-        const $indicatorsDiv = this.$target.find('.carousel-indicators');
-        $indicatorsDiv.css('justify-content', 'center');
+        const indicatorsDivEl = this.target.querySelector('.carousel-indicators');
+        if (indicatorsDivEl) {
+            indicatorsDivEl.style['justify-content'] = 'center';
+        }
     },
 });
 
-publicWidget.registry.TpProductNavigator = publicWidget.Widget.extend({
-    selector: '.tp-product-navigator',
-    disabledInEditableMode: true,
+publicWidget.registry.TpProductDetailPage = publicWidget.Widget.extend({
+    selector: '.o_wsale_product_page',
+    events: {
+        'click .o_product_page_reviews_link': '_onClickProductRating',
+    },
     start: function () {
-        this.el.querySelectorAll('.tp-natigation-btn').forEach((el, index) => {
-            const popoverEl = this.el.querySelector(`.media[data-content-id=${el.dataset.contentId}]`);
+        this.popovers = [];
+        this.el.querySelectorAll('.tp-navigation-btn').forEach((el, index) => {
+            const popoverEl = this.el.querySelector(`.tp-navigation-content[data-content-id=${el.dataset.contentId}]`);
             if (popoverEl) {
                 const clonePopoverEl = popoverEl.cloneNode(true);
                 clonePopoverEl.classList.remove('d-none');
-                $(el).popover({
+                const popover = new Popover(el, {
+                    animation: true,
+                    template: '<div class="popover border shadow-sm" role="popover"><div class="popover-arrow"></div><div class="popover-body p-0"></div></div>',
                     content: clonePopoverEl.outerHTML,
-                    template: '<div class="popover border shadow-sm" role="tooltip"><div class="arrow"></div><div class="popover-body p-0"></div></div>',
                     html: true,
                     placement: 'bottom',
                     trigger: 'hover',
-                    offset: '5 5',
+                    offset: [8, 8],
                 });
+                this.popovers.push(popover);
             }
         });
-        return this._super.apply(this, arguments);
-    },
-    destroy: function () {
-        this._super.apply(this, arguments);
-        this.$('.tp-natigation-btn').popover('dispose');
-    }
-});
 
-publicWidget.registry.TpDriftZoom = publicWidget.Widget.extend({
-    selector: '.tp-drift-zoom',
-    disabledInEditableMode: true,
-    jsLibs: ['/theme_prime/static/lib/drift-master-1.4.0/dist/Drift.js'],
-    cssLibs: ['/theme_prime/static/lib/drift-master-1.4.0/dist/drift-basic.css'],
-    start: function () {
-        this.images = [];
-        const className = _t.database.parameters.direction === 'rtl' ? 'tp-rtl' : 'tp';
-        const zoomConfig = odoo.dr_theme_config.json_zoom;
-        if (zoomConfig.zoom_enabled) {
-            this.el.querySelectorAll('.tp-drift-zoom-img').forEach((el, index) => {
-                const imageVals = {namespace: className, sourceAttribute: 'src', inlineOffsetY: -50, paneContainer: el.parentElement, zoomFactor: zoomConfig.zoom_factor || 2, inlinePane: 992, touchDelay: 500};
-                const bigImage = el.dataset.zoomImage;
-                if (bigImage) {
-                    imageVals.sourceAttribute = 'data-zoom-image';
-                }
-                if (zoomConfig.disable_small && !bigImage) {
-                    return false;
-                }
-                this.images.push(new Drift(el, imageVals));
-            });
+        const productDetailTabEl = this.el.querySelector('.tp-product-details-tab');
+        productDetailTabEl.querySelectorAll(':scope > ul.nav-tabs a.nav-link').forEach(el => {
+            el.classList.remove('active');
+        });
+        productDetailTabEl.querySelectorAll(':scope > .tab-content > .tab-pane').forEach(el => {
+            el.classList.remove('active', 'show');
+        });
+        const firstTabEl = productDetailTabEl.querySelector(':scope > ul.nav-tabs > li.nav-item:first-child > a.nav-link');
+        if (firstTabEl) {
+            new Tab(firstTabEl).show();
         }
         return this._super.apply(this, arguments);
     },
-    destroy: function () {
-        this.images.forEach(drift => {
-            drift.disable();
-        });
-        this._super.apply(this, arguments);
-    }
-});
-
-publicWidget.registry.TpProductRating = publicWidget.Widget.extend({
-    selector: '.oe_website_sale .o_product_page_reviews_link',
-    events: {
-        'click': '_onClickProductRating',
-    },
     _onClickProductRating: function () {
-        $('.nav-link[href="#tp-product-rating-tab"]').click();
-        $('html, body').animate({scrollTop: $('.tp-product-details-tab').offset().top});
-    }
-});
-
-publicWidget.registry.TpProductDetailsTab = publicWidget.Widget.extend({
-    selector: '.tp-product-details-tab',
-    start: function () {
-        this.$('> ul.nav-tabs > li.nav-item > a.nav-link').removeClass('active');
-        this.$('> ul.nav-tabs > li.nav-item:first > a.nav-link').addClass('active');
-        this.$('> .tab-content .tab-pane').removeClass('active show');
-        this.$('> .tab-content .tab-pane:first').addClass('active show');
-        return this._super.apply(this, arguments);
+        const ratingTabEl = this.el.querySelector('[href="#tp-product-rating-tab"]')
+        new Tab(ratingTabEl).show();
+        document.querySelector('#wrapwrap').scrollTop = ratingTabEl.offsetTop;
+    },
+    destroy: function () {
+        this.popovers.forEach(popover => { popover.dispose() });
+        this._super.apply(this, arguments);
     }
 });
 
@@ -418,6 +548,7 @@ publicWidget.registry.TpLazyDialog = publicWidget.Widget.extend({
         'click': '_onClick',
     },
     init: function () {
+        this.rpc = this.bindService("rpc");
         this.dialogContent = false;
         this._super.apply(this, arguments);
     },
@@ -425,13 +556,10 @@ publicWidget.registry.TpLazyDialog = publicWidget.Widget.extend({
         ev.preventDefault();
         const { resId, resModel, field } = this.el.dataset;
         if (!this.dialogContent) {
-            const result = await this._rpc({
-                route: '/theme_prime/get_dialog_content',
-                params: {
-                    res_id: resId,
-                    res_model: resModel,
-                    fields: [field],
-                },
+            const result = await this.rpc('/theme_prime/get_dialog_content', {
+                res_id: resId,
+                res_model: resModel,
+                fields: [field],
             });
             if (result && result[0][field]) {
                 this.dialogContent = result[0][field];
@@ -454,7 +582,7 @@ publicWidget.registry.TpLazyDialog = publicWidget.Widget.extend({
     },
 });
 
-sAnimations.registry.TpStickyAddToCart = sAnimations.Animation.extend({
+publicWidget.registry.TpStickyAddToCart = animations.Animation.extend({
     selector: '.tp-sticky-add-to-cart, .tp-bottom-bar-add-to-cart',
     disabledInEditableMode: true,
     effects: [{
@@ -488,77 +616,9 @@ sAnimations.registry.TpStickyAddToCart = sAnimations.Animation.extend({
     }
 });
 
-// Lot's of hacks we can do it better but yes i'm gangsta :)
-publicWidget.registry.tpColorPreview = publicWidget.Widget.extend({
-    selector: '.tp-color-preview-container',
-    events: {
-        'mouseenter': '_onHoverContainer',
-        'mouseleave': '_onStopHoverContainer',
-        'mouseenter .tp-color-attr-pill': '_onHoverPill',
-    },
-    start: function () {
-        this.isForSnippet = this.$target.hasClass('tp_snippet_for_card')
-        this.$tpParentNode = this.isForSnippet ? $(this.$target.parents('.tp_product_card')) : $(this.$target.parents('.oe_product_cart'));
-        this.$image = this.isForSnippet ? $(this.$tpParentNode.find('.d-product-img')) : $(this.$tpParentNode.find('.tp-product-image-container img'));
-        this.$imageContainer = this.isForSnippet ? $(this.$tpParentNode.find('.d-product-img')) : $(this.$tpParentNode.find('.tp-product-image-container'));
-        this.defaultImgSrc = this.$image.attr('src');
-        return this._super.apply(this, arguments);
-    },
-    _getPreviewImage: function (attrID) {
-        return this._rpc({route: '/theme_prime/get_product_variant_img', params: {attrID: attrID}});
-    },
-    _updateProductImage: function (imgUrl) {
-        let self = this;
-        this.$image.attr('src', imgUrl);
-        this.$imageContainer.removeClass('tp-image-added');
-        setTimeout(function () {self.$imageContainer.addClass('tp-image-added')}, 10);
-    },
-    _onHoverPill: function (ev) {
-        let $target = $(ev.currentTarget);
-        this.$('.tp-color-attr-pill').removeClass('tp-active');
-        $target.addClass('tp-active');
-        let colorID = parseInt($target.attr('data-pill-id'));
-        this._getPreviewImage(colorID).then().then(data => {
-            this._updateProductImage(data);
-        });
-    },
-    _onHoverContainer: function () {
-        this.$tpParentNode.addClass('tp-color-preview-enable');
-    },
-    _onStopHoverContainer: function () {
-        this.$image.attr('src', this.defaultImgSrc);
-        this.$tpParentNode.removeClass('tp-color-preview-enable');
-        this.$('.tp-color-attr-pill').removeClass('tp-active');
-    }
-});
-
-//------------------------------------------------------------------------------
-// Portal Reorder
-//------------------------------------------------------------------------------
-
-publicWidget.registry.tpReorder = publicWidget.Widget.extend(CartManagerMixin, {
-    selector: '.tp-reorder-btn',
-    events: {
-        'click': '_onClickReorderBtn',
-    },
-    _onClickReorderBtn: function (ev) {
-        let orderId = ev.currentTarget.dataset.orderId;
-        this._rpc({
-            route: `/theme_prime/reorder/${orderId}`,
-            params: {}
-        }).then((data) => {
-            if (data) {
-                wSaleUtils.updateCartNavBar(data);
-                this._handleCartConfirmation('side_cart', data);
-            }
-        });
-    },
-});
-
 //------------------------------------------------------------------------------
 // Brand Page
 //------------------------------------------------------------------------------
-
 publicWidget.registry.TpBrandPage = publicWidget.Widget.extend({
     selector: '.tp-all-brands-page',
     events: {
@@ -581,6 +641,4 @@ publicWidget.registry.TpBrandPage = publicWidget.Widget.extend({
             this.el.querySelector('.tp-grouped-brands[data-brand="' + searchAlphabet + '"]').classList.remove('d-none');
         }
     }
-});
-
 });

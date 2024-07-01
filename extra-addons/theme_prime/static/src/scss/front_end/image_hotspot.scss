@@ -26,7 +26,7 @@ $tp-hotspot-color-pack: (
     width: 23px;
     height: 23px;
     &.tp-hotspot-light:after {
-        border: 2px solid gray('600') !important;
+        border: 2px solid map-get($grays, '600') !important;
     }
     &:after {
         display: inline-block;
@@ -55,7 +55,7 @@ $tp-hotspot-color-pack: (
     }
     &.tp-hotspot-light {
         background: $tp-hotspot-light;
-        color: gray('600');
+        color: map-get($grays, '600');
     }
     &:before {
         content: "\e870";
@@ -86,7 +86,7 @@ $tp-hotspot-color-pack: (
     &.tp-hotspot-light {
         animation: pulse-primary-pointer 2s infinite;
         background: $tp-hotspot-light;
-        color: gray('600');
+        color: map-get($grays, '600');
     }
     &:before {
         content: "\e902";
@@ -125,7 +125,7 @@ $tp-hotspot-color-pack: (
     height: 27px;
     &.tp-hotspot-primary {
         background-color: o-color('primary');
-        color: color-yiq(o-color('primary'));
+        color: color-contrast(o-color('primary'));
         &:after, &:before {
             border-color: o-color('primary');
         }
@@ -142,7 +142,7 @@ $tp-hotspot-color-pack: (
     }
     &.tp-hotspot-light {
         background-color: $tp-hotspot-light;
-        color: gray('600');
+        color: map-get($grays, '600');
         &:after, &:before {
             border-color: $tp-hotspot-light;
         }

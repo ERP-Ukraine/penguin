@@ -1,15 +1,24 @@
-odoo.define('theme_prime.wishlist', function (require) {
-"use strict";
+/** @odoo-module **/
 
-const publicWidget = require('web.public.widget');
-require('website_sale_wishlist.wishlist');
-var B2bMixin = require('theme_prime.mixins').B2bMixin;
+import '@website_sale_wishlist/js/website_sale_wishlist';
+import publicWidget from "@web/legacy/js/public/public_widget";
+import { B2bMixin } from "@theme_prime/js/core/mixins";
 
-publicWidget.registry.ProductWishlist.include(_.extend({}, B2bMixin, {
-    events: _.extend({
+publicWidget.registry.ProductWishlist.include(Object.assign({}, B2bMixin, {
+    events: Object.assign({}, {
         'click .wishlist-section .tp_wish_rm': '_onClicktpRemoveWishlistItem',
         'click .wishlist-section .tp_wish_add': '_onClicktpAddWishlistItem',
     }, publicWidget.registry.ProductWishlist.prototype.events),
+    init: function () {
+        this._super.apply(this, arguments);
+        this.notification = this.bindService("notification");
+    },
+    willStart: async function () {
+        await this._super();
+        const res = await $.get('/shop/wishlist', { count: 1 });
+        this.wishlistProductIDs = JSON.parse(res);
+        sessionStorage.setItem('website_sale_wishlist_product_ids', res);
+    },
     _onClicktpAddWishlistItem: function (ev) {
         if (this._isB2bModeEnabled()) {
             this._loggedInNotification();
@@ -38,11 +47,10 @@ publicWidget.registry.ProductWishlist.include(_.extend({}, B2bMixin, {
         const productID = $tpWishlistItem.data('product-id');
         const wishID = $tpWishlistItem.data('wish-id');
 
-        this._rpc({
-            route: '/shop/wishlist/remove/' + wishID,
-        }).then(() => $tpWishlistItem.hide());
+        this.rpc('/shop/wishlist/remove/' + wishID).then(() => $tpWishlistItem.hide());
 
-        this.wishlistProductIDs = _.without(this.wishlistProductIDs, productID);
+        this.wishlistProductIDs = this.wishlistProductIDs.filter((p) => p !== productID);
+        sessionStorage.setItem('website_sale_wishlist_product_ids', JSON.stringify(this.wishlistProductIDs));
         if (this.wishlistProductIDs.length === 0) {
             if (deferred_redirect) {
                 deferred_redirect.then(() => this._redirectNoWish());
@@ -52,11 +60,7 @@ publicWidget.registry.ProductWishlist.include(_.extend({}, B2bMixin, {
     },
     _updateWishlistView: function () {
         this._super.apply(this, arguments);
-
         const wishlistCount = this.wishlistProductIDs.length;
         $('.tp-wishlist-counter').text(wishlistCount);
-        $('.o_wsale_my_wish.tp-btn-in-bottom-bar').removeClass('d-none');
     }
 }));
-
-});

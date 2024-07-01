@@ -6,27 +6,33 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-rocket text-o-color-1 rounded-circle mr-4 bg-200"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-rocket text-o-color-1 rounded-circle me-4 bg-200"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Creative ideas</h5>
                                 <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-magic text-o-color-1 rounded-circle mr-4 bg-200"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-magic text-o-color-1 rounded-circle me-4 bg-200"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Excellent features</h5>
                                 <p>Suspendisse potenti. Cras a dui et nisl egestas ornare eu quis odio. Sed bibendum in ante.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-laptop text-o-color-1 rounded-circle mr-4 bg-200"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-laptop text-o-color-1 rounded-circle me-4 bg-200"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Fully responsive</h5>
                                 <p>In hac habitasse platea dictumst. Praesent cursus congue felis, nec pellentesque nulla ornare.</p>
                             </div>
@@ -66,9 +72,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-rocket fa-2x mr-4 text-o-color-1"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-rocket fa-2x me-4 text-o-color-1"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Creative ideas</h5>
                                 <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean pretium ac enim eget dignissim.</p>
                                 <a href="#">Learn More</a>
@@ -76,9 +84,11 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-magic fa-2x mr-4 text-o-color-1"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-magic fa-2x me-4 text-o-color-1"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Excellent features</h5>
                                 <p>Suspendisse potenti. Cras a dui et nisl egestas ornare eu quis odio. Sed bibendum in ante vel accumsan. Praesent scelerisque.</p>
                                 <a href="#">Learn More</a>
@@ -86,9 +96,11 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-laptop fa-2x mr-4 text-o-color-1"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-laptop fa-2x me-4 text-o-color-1"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Fully responsive</h5>
                                 <p>In hac habitasse platea dictumst. Praesent cursus congue felis, nec pellentesque nulla ornare sed. Aliquam eget aliquam urna.</p>
                                 <a href="#">Learn More</a>
@@ -96,9 +108,11 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-book fa-2x mr-4 text-o-color-1"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-book fa-2x me-4 text-o-color-1"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Extensive documentation</h5>
                                 <p>Aenean varius ligula vel augue condimentum scelerisque. In a urna at tortor tincidunt gravida sit amet vel eros. Integer et.</p>
                                 <a href="#">Learn More</a>
@@ -106,9 +120,11 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-leaf fa-2x mr-4 text-o-color-1"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-leaf fa-2x me-4 text-o-color-1"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Modern design</h5>
                                 <p>Proin purus dui, feugiat id ipsum eu, varius ornare ex. Mauris elit dolor, consectetur ac accumsan eu, commodo et odio eget.</p>
                                 <a href="#">Learn More</a>
@@ -116,9 +132,11 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="media">
-                            <i class="fa fa-code fa-2x mr-4 text-o-color-1"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fa fa-code fa-2x me-4 text-o-color-1"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Clean code</h5>
                                 <p>Nam blandit arcu vel mi mollis faucibus. Nam justo velit, maximus viverra volutpat eu, hendrerit et velit. Pellentesque tincidunt.</p>
                                 <a href="#">Learn More</a>
@@ -195,27 +213,33 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-4 py-3">
-                        <div class="media">
-                            <span class="fa fa-phone fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-phone rounded-circle text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Phone Number</h6>
                                 <p class="mb-0">+91 70466 01320</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-4 py-3">
-                        <div class="media">
-                            <span class="fa fa-map-marker fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-map-marker rounded-circle text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Address</h6>
                                 <p class="mb-0">New York, United States</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-4 py-3">
-                        <div class="media">
-                            <span class="fa fa-envelope-o fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-envelope-o rounded-circle text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Email</h6>
                                 <p class="mb-0">info@droggol.com</p>
                             </div>
@@ -303,27 +327,33 @@
             <div class="container">
                 <div class="row justify-content-center s_nb_column_fixed">
                     <div class="col-12 col-md-4 py-3 mx-auto tp-icon-block">
-                        <div class="media px-md-2 px-lg-5">
-                            <span class="fa fa-rocket fa-2x mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex px-md-2 px-lg-5">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-rocket fa-2x me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">FREE SHIPPING</h6>
                                 <p class="mb-0">In 2-3 Days</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-4 py-3 mx-auto tp-icon-block">
-                        <div class="media px-md-2 px-lg-5">
-                            <span class="fa fa-refresh fa-2x mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex px-md-2 px-lg-5">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-refresh fa-2x me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">FREE RETURNS</h6>
                                 <p class="mb-0">No Questions Asked</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-4 py-3 mx-auto tp-icon-block">
-                        <div class="media px-md-2 px-lg-5">
-                            <span class="fa fa-phone fa-2x mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex px-md-2 px-lg-5">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-phone fa-2x me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">FREE SUPPORT</h6>
                                 <p class="mb-0">30 Days Support</p>
                             </div>
@@ -339,54 +369,66 @@
             <div class="container">
                 <div class="row justify-content-center border s_nb_column_fixed">
                     <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1">
-                        <div class="media align-items-center tp-icon-block-icon">
-                            <span class="fa fa-truck fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center tp-icon-block-icon">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-truck fa-2x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Free Delivery</h6>
                                 <p class="mb-0">All oders over $100</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1">
-                        <div class="media align-items-center tp-icon-block-icon">
-                            <span class="fa fa-credit-card fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center tp-icon-block-icon">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-credit-card fa-2x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Safe Payment</h6>
                                 <p class="mb-0">100% secure payment</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1">
-                        <div class="media align-items-center tp-icon-block-icon">
-                            <span class="fa fa-phone fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center tp-icon-block-icon">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-phone fa-2x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Help Center</h6>
                                 <p class="mb-0">24 X 7 support</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1">
-                        <div class="media align-items-center tp-icon-block-icon">
-                            <span class="fa fa-undo fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center tp-icon-block-icon">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-undo fa-2x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Free Returns</h6>
                                 <p class="mb-0">No Questions Asked</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1">
-                        <div class="media align-items-center tp-icon-block-icon">
-                            <span class="fa fa-rocket fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center tp-icon-block-icon">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-rocket fa-2x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Fast Shipping</h6>
                                 <p class="mb-0">In 2-3 Days</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1">
-                        <div class="media align-items-center tp-icon-block-icon">
-                            <span class="fa fa-smile-o fa-2x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center tp-icon-block-icon">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-smile-o fa-2x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h6 class="mb-1">Happy Customers</h6>
                                 <p class="mb-0">12k+ Customers</p>
                             </div>
@@ -432,17 +474,17 @@
                 <div class="row s_nb_column_fixed text-lg-center">
                     <div class="col-12 col-lg-4">
                         <h6 class="my-2">
-                            <i class="fa fa-exchange mr-2"></i> Free returns
+                            <i class="fa fa-exchange me-2"></i> Free returns
                         </h6>
                     </div>
                     <div class="col-12 col-lg-4">
                         <h6 class="my-2">
-                            <i class="fa fa-truck mr-2"></i> Free Shipping for order over $200
+                            <i class="fa fa-truck me-2"></i> Free Shipping for order over $200
                         </h6>
                     </div>
                     <div class="col-12 col-lg-4">
                         <h6 class="my-2">
-                            <i class="fa fa-life-ring mr-2"></i> Free support
+                            <i class="fa fa-life-ring me-2"></i> Free support
                         </h6>
                     </div>
                 </div>

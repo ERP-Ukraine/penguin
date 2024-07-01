@@ -95,7 +95,7 @@
         <section class="s_banner_3 pt16 pb16">
             <div class="container">
                 <div class="row s_col_no_bgcolor">
-                    <div class="col-12 col-lg-4 py-3">
+                    <div class="col-12 col-lg-4 position-relative py-3">
                         <div class="tp-animation-layla">
                             <a href="#"><img src="/web/image/theme_prime.s_banner_3_1" class="w-100" alt="Banner Image 01"/></a>
                             <div class="tp-banner-content tp-editor-bg-color-n-shadow o_cc o_cc1 rounded">
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-4 py-3">
+                    <div class="col-12 col-lg-4 position-relative py-3">
                         <div class="tp-animation-layla">
                             <a href="#"><img src="/web/image/theme_prime.s_banner_3_2" class="w-100" alt="Banner Image 02"/></a>
                             <div class="tp-banner-content tp-editor-bg-color-n-shadow o_cc o_cc1 rounded">
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-4 py-3">
+                    <div class="col-12 col-lg-4 position-relative py-3">
                         <div class="tp-animation-layla">
                             <a href="#"><img src="/web/image/theme_prime.s_banner_3_3" class="w-100" alt="Banner Image 03"/></a>
                             <div class="tp-banner-content tp-editor-bg-color-n-shadow o_cc o_cc1 rounded">
@@ -129,7 +129,7 @@
             <div class="container">
                 <div class="row s_col_no_bgcolor">
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="tp-animation-layla">
+                        <div class="tp-animation-layla position-relative">
                             <a href="#"><img src="/web/image/theme_prime.s_banner_4_1" class="w-100" alt="Banner Image 01"/></a>
                             <div class="tp-banner-content">
                                 <h6>Collections</h6>
@@ -138,7 +138,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="tp-animation-layla">
+                        <div class="tp-animation-layla position-relative">
                             <a href="#"><img src="/web/image/theme_prime.s_banner_4_2" class="w-100" alt="Banner Image 02"/></a>
                             <div class="tp-banner-content">
                                 <h6>Collections</h6>
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 py-3">
-                        <div class="tp-animation-layla">
+                        <div class="tp-animation-layla position-relative">
                             <a href="#"><img src="/web/image/theme_prime.s_banner_4_3" class="w-100" alt="Banner Image 03"/></a>
                             <div class="tp-banner-content">
                                 <h6>Collections</h6>
@@ -165,7 +165,7 @@
             <div class="container">
                 <div class="row s_col_no_bgcolor s_nb_column_fixed">
                     <div class="col-12 col-lg-6 py-3">
-                        <div class="row no-gutters s_col_no_bgcolor s_nb_column_fixed">
+                        <div class="row g-0 s_col_no_bgcolor s_nb_column_fixed">
                             <div class="col-12 col-sm-6 o_cc o_cc2 pt80 pb80 tp-editor-bg-color-n-shadow">
                                 <div class="px-4 text-center">
                                     <h4>Featured</h4>
@@ -178,7 +178,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 py-3">
-                        <div class="row no-gutters s_col_no_bgcolor s_nb_column_fixed">
+                        <div class="row g-0 s_col_no_bgcolor s_nb_column_fixed">
                             <div class="col-12 col-sm-6 o_cc o_cc2 pt80 pb80 tp-editor-bg-color-n-shadow">
                                 <div class="px-4 text-center">
                                     <h4>Fresh Arrival</h4>
@@ -201,7 +201,7 @@
                 <div class="row s_col_no_bgcolor s_nb_column_fixed">
                     <div class="col-12 col-md-6 col-lg-4 py-3">
                         <img src="/web/image/theme_prime.s_banner_6_1" class="img img-fluid" alt="Banner Image 01"/>
-                        <div class="tp-banner-content tp-editor-bg-color-n-shadow shadow p-3 o_cc o_cc1 position-relative text-center">
+                        <div class="tp-banner-content tp-editor-bg-color-n-shadow p-3 o_cc o_cc1 position-relative text-center border">
                             <img src="/web/image/theme_prime.s_brand_1" class="img img-fluid" style="width: 25%;" alt="Banner Brand Image 01"/>
                             <h4 class="mt-2">New Collection</h4>
                             <p class="lead mb-1">Starting at $150.</p>
@@ -210,7 +210,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 py-3">
                         <img src="/web/image/theme_prime.s_banner_6_2" class="img img-fluid" alt="Banner Image 02"/>
-                        <div class="tp-banner-content tp-editor-bg-color-n-shadow shadow p-3 o_cc o_cc1 position-relative text-center">
+                        <div class="tp-banner-content tp-editor-bg-color-n-shadow p-3 o_cc o_cc1 position-relative text-center border">
                             <img src="/web/image/theme_prime.s_brand_2" class="img img-fluid" style="width: 25%;" alt="Banner Brand Image 02"/>
                             <h4 class="mt-2">Winter Collection</h4>
                             <p class="lead mb-1">Starting at $99.</p>
@@ -219,7 +219,7 @@
                     </div>
                     <div class="col-12 col-md-6 col-lg-4 py-3">
                         <img src="/web/image/theme_prime.s_banner_6_3" class="img img-fluid" alt="Banner Image 03"/>
-                        <div class="tp-banner-content tp-editor-bg-color-n-shadow shadow p-3 o_cc o_cc1 position-relative text-center">
+                        <div class="tp-banner-content tp-editor-bg-color-n-shadow p-3 o_cc o_cc1 position-relative text-center border">
                             <img src="/web/image/theme_prime.s_brand_3" class="img img-fluid" style="width: 25%;" alt="Banner Brand Image 03"/>
                             <h4 class="mt-2">Trending Collection</h4>
                             <p class="lead mb-1">Starting at $200.</p>
@@ -372,7 +372,7 @@
                 <div class="row s_col_no_bgcolor s_nb_column_fixed">
                     <div class="col-12">
                         <h4 style="text-align: center;">Hurry up!</h4>
-                        <h2 style="text-align: center;" class="display-3 font-weight-bold">HUGE SALE!</h2>
+                        <h2 style="text-align: center;" class="display-3 fw-bold">HUGE SALE!</h2>
                         <h4 style="text-align: center;">Up to 20% off on all products.</h4>
                         <div style="text-align: center;"><a href="/shop" class="btn btn-primary mt32">Shop Now</a></div>
                     </div>
@@ -386,18 +386,18 @@
             <div class="container">
                 <div class="row s_col_no_bgcolor s_nb_column_fixed">
                     <div class="col-12 col-lg-6 py-3">
-                        <div class="media border align-items-center tp-editor-bg-color-n-shadow">
-                            <img src="/web/image/theme_prime.s_brand_1" class="mr-2 img img-fluid border-right" alt="Banner Image 01" style="width: 20% !important; padding: 10px !important;"/>
-                            <div class="media-body p-2">
+                        <div class="d-flex border align-items-center tp-editor-bg-color-n-shadow">
+                            <img src="/web/image/theme_prime.s_brand_1" class="flex-shrink-0 me-2 img img-fluid border-end" alt="Banner Image 01" style="width: 20% !important; padding: 10px !important;"/>
+                            <div class="flex-grow-1 p-2">
                                 <h5>Up To 10% Off</h5>
                                 <p class="lead mb-0">Get discount on shoes on order above $150.</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6 py-3">
-                        <div class="media border align-items-center tp-editor-bg-color-n-shadow">
-                            <img src="/web/image/theme_prime.s_brand_2" class="mr-2 img img-fluid border-right" alt="Banner Image 02" style="width: 20% !important; padding: 10px !important;"/>
-                            <div class="media-body p-2">
+                        <div class="d-flex border align-items-center tp-editor-bg-color-n-shadow">
+                            <img src="/web/image/theme_prime.s_brand_2" class="flex-shrink-0 me-2 img img-fluid border-end" alt="Banner Image 02" style="width: 20% !important; padding: 10px !important;"/>
+                            <div class="flex-grow-1 p-2">
                                 <h5>Up To 20% Off</h5>
                                 <p class="lead mb-0">Order above $250 and get free gift voucher.</p>
                             </div>
@@ -444,7 +444,7 @@
     <template id="s_banner_13" name="Banner - 13">
         <section class="s_banner_13 pt16 pb16">
             <div class="container">
-                <div class="row s_col_no_bgcolor no-gutters s_nb_column_fixed">
+                <div class="row s_col_no_bgcolor g-0 s_nb_column_fixed">
                     <div class="col-12 col-lg-6 p-1">
                         <div class="position-relative tp-animation-scale">
                             <img src="/web/image/theme_prime.s_banner_13_1" class="w-100" alt="Banner Image 01"/>
@@ -456,7 +456,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
-                        <div class="row s_col_no_bgcolor no-gutters s_nb_column_fixed">
+                        <div class="row s_col_no_bgcolor g-0 s_nb_column_fixed">
                             <div class="col-lg-12 p-1">
                                 <div class="position-relative tp-animation-scale">
                                     <img src="/web/image/theme_prime.s_banner_13_2" class="w-100" alt="Banner Image 02"/>
@@ -468,7 +468,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <div class="row s_col_no_bgcolor no-gutters s_nb_column_fixed">
+                                <div class="row s_col_no_bgcolor g-0 s_nb_column_fixed">
                                     <div class="col-lg-6 p-1">
                                         <div class="position-relative tp-animation-scale">
                                             <img src="/web/image/theme_prime.s_banner_13_3" class="w-100" alt="Banner Image 03"/>
@@ -510,7 +510,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <div class="d-flex flex-column h-100 justify-content-center oe_img_bg o_bg_img_center oe_custom_bg tp-editor-bg-both" style="background-image:url('/web/image/theme_prime.s_banner_14_2')">
+                        <div class="d-flex flex-column h-100 justify-content-center oe_img_bg o_bg_img_center oe_custom_bg" style="background-image:url('/web/image/theme_prime.s_banner_14_2')">
                             <div class="my-2 p-4 text-center">
                                 <h4>Your Add Text Here</h4>
                                 <p>Hurry up to reserve your spot now</p>

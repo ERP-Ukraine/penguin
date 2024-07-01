@@ -1,6 +1,18 @@
-$badge-padding-y: 0.6em;
+// Square UI
+$btn-border-radius: if(o-website-value('tp-square-ui'), 0rem, o-website-value('btn-border-radius'));
+$btn-border-radius-lg: if(o-website-value('tp-square-ui'), 0rem, o-website-value('btn-border-radius-lg'));
+$btn-border-radius-sm: if(o-website-value('tp-square-ui'), 0rem, o-website-value('btn-border-radius-sm'));
+
+$input-border-radius: if(o-website-value('tp-square-ui'), 0rem, o-website-value('input-border-radius'));
+$input-border-radius-lg: if(o-website-value('tp-square-ui'), 0rem, o-website-value('input-border-radius-lg'));
+$input-border-radius-sm: if(o-website-value('tp-square-ui'), 0rem, o-website-value('input-border-radius-sm'));
+
+$border-radius: if(o-website-value('tp-square-ui'), 0rem, null);
+$border-radius-sm: if(o-website-value('tp-square-ui'), 0rem, null);
+$border-radius-lg: if(o-website-value('tp-square-ui'), 0rem, null);
+
 $badge-padding-x: 0.8em;
-$badge-pill-padding-x: 1em;
+$badge-padding-y: 0.6em;
 
 $line-height-base: 1.4;
 $headings-line-height: 1.4;
@@ -19,14 +31,7 @@ $dropdown-header-color: o-color('primary');
 $dropdown-link-hover-color: o-color('primary');
 $dropdown-link-hover-bg: transparent;
 
-$input-border-color: o-color('300');
-$input-placeholder-color: o-color('500');
-$input-focus-box-shadow: none;
-$input-focus-border-color: o-color('primary');
-
-$badge-padding-y: 0.6em;
-$badge-padding-x: 0.8em;
-$badge-pill-padding-x: 1em;
+$navbar-toggler-focus-width: none;
 
 $pagination-focus-box-shadow: none;
 $pagination-border-width: 0;
@@ -36,15 +41,19 @@ $card-border-color: o-color('300');
 $lead-font-weight: 400;
 $lead-font-size: $font-size-base * 1.16;
 
-// Square UI
-$btn-border-radius: if(o-website-value('tp-square-ui'), 0rem, o-website-value('btn-border-radius'));
-$btn-border-radius-lg: if(o-website-value('tp-square-ui'), 0rem, o-website-value('btn-border-radius-lg'));
-$btn-border-radius-sm: if(o-website-value('tp-square-ui'), 0rem, o-website-value('btn-border-radius-sm'));
+// Forms (Few of them are reverted Odoo design styles)
+$input-bg: $body-bg;
+$input-border-color: o-color('300');
+$input-color: $body-color;
+$input-focus-bg: $input-bg;
+$input-focus-color: $input-color;
+$input-placeholder-color: o-color('500');
+$input-focus-box-shadow: none;
+$input-focus-border-color: o-color('primary');
 
-$input-border-radius: if(o-website-value('tp-square-ui'), 0rem, o-website-value('input-border-radius'));
-$input-border-radius-lg: if(o-website-value('tp-square-ui'), 0rem, o-website-value('input-border-radius-lg'));
-$input-border-radius-sm: if(o-website-value('tp-square-ui'), 0rem, o-website-value('input-border-radius-sm'));
+$form-check-input-border: 1px solid rgba($black, .25);
+$form-range-track-bg: $gray-300;
+$form-check-input-border-radius: 0;
+$form-check-input-focus-box-shadow: none;
 
-$border-radius: if(o-website-value('tp-square-ui'), 0rem, null);
-$border-radius-sm: if(o-website-value('tp-square-ui'), 0rem, null);
-$border-radius-lg: if(o-website-value('tp-square-ui'), 0rem, null);
+$hr-opacity: 0.65;

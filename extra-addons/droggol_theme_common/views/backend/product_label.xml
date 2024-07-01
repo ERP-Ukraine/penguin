@@ -8,11 +8,11 @@
             <form string="Label">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button class="oe_stat_button" type="object" name="action_open_products" icon="fa-cubes" attrs="{'invisible': [('product_count', '=', 0)]}">
+                        <button class="oe_stat_button" type="object" name="action_open_products" icon="fa-cubes" invisible="not product_count">
                             <field string="Products" name="product_count" widget="statinfo"/>
                         </button>
                     </div>
-                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active"/>
                     <div class="oe_title">
                         <label for="name"/>
                         <h1>
@@ -23,10 +23,9 @@
                         <group>
                             <field name="background_color" widget="color"/>
                             <field name="text_color" widget="color"/>
-                            <field name="style"/>
                         </group>
                         <group>
-                            <field name="website_id"/>
+                            <field name="style"/>
                             <field name="active" invisible="1"/>
                         </group>
                     </group>
@@ -44,7 +43,6 @@
                 <field name="background_color" widget="color"/>
                 <field name="text_color" widget="color"/>
                 <field name="style"/>
-                <field name="website_id"/>
             </tree>
         </field>
     </record>
@@ -58,7 +56,6 @@
                 <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
                 <group>
                     <filter string="Style" name="style" domain="" context="{'group_by':'style'}"/>
-                    <filter string="Website" name="website" domain="" context="{'group_by':'website_id'}"/>
                 </group>
             </search>
         </field>
@@ -73,6 +70,6 @@
 
     <menuitem id="menu_dr_product_label"
         action="dr_product_label_action"
-        parent="website_sale.menu_product_settings" sequence="14"/>
+        parent="website_sale.menu_catalog" sequence="5"/>
 
 </odoo>

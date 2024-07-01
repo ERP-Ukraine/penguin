@@ -1,12 +1,8 @@
-odoo.define('theme_prime.website.snippet.editor', function (require) {
-'use strict';
+/** @odoo-module **/
 
-require('website.snippet.editor');
-const weSnippetEditor = require('web_editor.snippet.editor');
-const { _lt } = require('web.core');
+import SnippetsMenu from "@website/js/editor/snippets.editor";
+import { _lt } from "@web/core/l10n/translation";
 
-weSnippetEditor.SnippetsMenu.include({
-    optionsTabStructure: [...weSnippetEditor.SnippetsMenu.prototype.optionsTabStructure, ['theme-prime-options', _lt("Theme Prime Options")]],
-});
-
+SnippetsMenu.SnippetsMenu.include({
+    optionsTabStructure: [...SnippetsMenu.SnippetsMenu.prototype.optionsTabStructure, ["theme-prime-options", _lt("Theme Prime Options")]],
 });

@@ -1,16 +1,16 @@
-odoo.define('theme_prime.product_quick_view', function (require) {
-'use strict';
+/** @odoo-module **/
 
-require('website_sale_comparison.comparison');
-const ajax = require('web.ajax');
-const Dialog = require('web.Dialog');
-const publicWidget = require('web.public.widget');
-const { ProductCarouselMixins } = require('theme_prime.mixins');
-const OwlDialog = require('web.OwlDialog');
+import '@website_sale_comparison/js/website_sale_comparison';
+import { jsonrpc } from "@web/core/network/rpc_service";
+import Dialog from '@web/legacy/js/core/dialog';
+import publicWidget from "@web/legacy/js/public/public_widget";
+import { ProductCarouselMixins } from "@theme_prime/js/core/mixins";
+// const OwlDialog = require('web.OwlDialog');
 
-const QuickViewDialog = Dialog.extend(ProductCarouselMixins, {
-    events: _.extend({}, Dialog.prototype.events, {
-        'dr_close_dialog': 'close'
+export const QuickViewDialog = Dialog.extend(ProductCarouselMixins, {
+    events: Object.assign({}, Dialog.prototype.events, {
+        'click .tp-close': 'close',
+        'dr_close_dialog': 'close',
     }),
     /**
      * @constructor
@@ -18,36 +18,33 @@ const QuickViewDialog = Dialog.extend(ProductCarouselMixins, {
     init: function (parent, options) {
         this.productID = options.productID;
         this.variantID = options.variantID || false;
-        this.mini = options.mini || false;
-        this._super(parent, _.extend({ renderHeader: false, renderFooter: false, technical: false, size: 'extra-large', backdrop: true }, options || {}));
+        this.isVariantSelectorDialog = options.mini || false;
+        options.size = this.isVariantSelectorDialog ? 'small' : 'extra-large';
+        this._super(parent, Object.assign({ renderHeader: false, renderFooter: false, technical: false }, options || {}));
     },
-    willStart: function () {
-        var quickView = ajax.jsonRpc('/theme_prime/get_quick_view_html', 'call', {
-            options: {productID: this.productID, variantID: this.variantID, mini: this.mini}
+    willStart: async function () {
+        await this._super(...arguments);
+        const result = await jsonrpc('/theme_prime/get_quick_view_html', {
+            options: {productID: this.productID, variantID: this.variantID, variant_selector: this.isVariantSelectorDialog}
         });
-        return Promise.all([quickView, this._super(...arguments)]).then((result) => {
-            if (result[0]) {
-                this.$content = $(result[0]);
-                this.autoAddProduct = this.mini && this.$content.hasClass('auto-add-product'); // We will not open the dialog for the single varint in mini view
-                if (this.autoAddProduct) {
-                    this.trigger('tp_auto_add_product');
-                }
+        if (result) {
+            this.$content = $(result);
+            this.autoAddProduct = this.isVariantSelectorDialog && this.$content.hasClass('auto-add-product'); // We will not open the dialog for the single varint in mini view
+            if (this.autoAddProduct) {
+                this.trigger('tp_auto_add_product');
             }
-        });
+        }
     },
     /**
      * @override
      */
     start: function () {
-        // Append close button to dialog
-        $('<button/>', {class: 'close', 'data-dismiss': "modal", html: '<i class="fa fa-times"/>'}).prependTo(this.$modal.find('.modal-content'));
-        this.$modal.find('.modal-dialog').addClass('modal-dialog-centered d_product_quick_view_dialog tp-custom-dialog');
-        if (this.mini) {
-            this.$modal.find('.modal-dialog').addClass('is_mini');
+        if (this.isVariantSelectorDialog) {
+            this.$modal.find(".modal-dialog").addClass("tp-product-variant-selector-modal-dialog");
         }
         $(this.$content).appendTo(this.$el);
         this._bindEvents(this.$el);
-        this.trigger_up('widgets_start_request', {
+        this.trigger_up("widgets_start_request", {
             $target: this.$el,
         });
         return this._super.apply(this, arguments);
@@ -60,18 +57,22 @@ const QuickViewDialog = Dialog.extend(ProductCarouselMixins, {
             if (!self.autoAddProduct) {
                 self.$modal.find(".modal-body").replaceWith(self.$el);
                 self.$modal.attr('open', true);
-                self.$modal.removeAttr("aria-hidden");
-                self.$modal.modal().appendTo(self.container);
-                self.$modal.focus();
+                self.$modal.appendTo(self.container);
+                const modal = new Modal(self.$modal[0], {
+                    focus: true,
+                });
+                modal.show();
                 self._openedResolver();
 
                 // Notifies OwlDialog to adjust focus/active properties on owl dialogs
-                OwlDialog.display(self);
+                // TODO: Migrate
+                // OwlDialog.display(self);
             }
         });
         if (options && options.shouldFocusButtons) {
             self._onFocusControlButton();
         }
+
         return self;
     },
 });
@@ -79,19 +80,15 @@ const QuickViewDialog = Dialog.extend(ProductCarouselMixins, {
 publicWidget.registry.d_product_quick_view = publicWidget.Widget.extend({
     selector: '.tp-product-quick-view-action, .tp_hotspot[data-on-hotspot-click="modal"]',
     read_events: {
-        'click': '_onClick',
+        'click': 'async _onClick',
     },
     /**
      * @private
      * @param  {Event} ev
      */
     _onClick: function (ev) {
-        this.QuickViewDialog = new QuickViewDialog(this, {
+        return this.QuickViewDialog = new QuickViewDialog(this, {
             productID: parseInt($(ev.currentTarget).attr('data-product-id'))
         }).open();
     },
-});
-
-return QuickViewDialog;
-
 });

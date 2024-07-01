@@ -37,27 +37,15 @@
                     <we-button data-name="style-3" data-select-class="style-3" data-select-data-attribute="s_countdown_3">Style - 3</we-button>
                     <we-button data-name="style-4" data-select-class="style-4" data-select-data-attribute="s_countdown_4">Style - 4</we-button>
                 </we-select>
-                <we-button-group string="Theme" class="ml-auto" data-dependencies="style-1, style-4">
-                    <we-button data-select-class="" title="None">
-                        <i class="fa fa-fw fa-ban"/>
-                    </we-button>
-                    <we-button data-select-class="tp-light" title="Light">
-                        <i class="fa fa-fw fa-sun-o"/>
-                    </we-button>
-                    <we-button data-select-class="tp-dark" title="Dark">
-                        <i class="fa fa-fw fa-moon-o"/>
-                    </we-button>
+                <we-button-group string="Theme" class="ms-auto" data-dependencies="style-1, style-4">
+                    <we-button data-select-class="" title="None"><i class="fa fa-fw fa-ban"/></we-button>
+                    <we-button data-select-class="tp-light" title="Light"><i class="fa fa-fw fa-sun-o"/></we-button>
+                    <we-button data-select-class="tp-dark" title="Dark"><i class="fa fa-fw fa-moon-o"/></we-button>
                 </we-button-group>
-                <we-button-group string="Alignment" class="ml-auto" data-dependencies="style-2, style-3, style-4">
-                    <we-button data-select-class="position-left">
-                        <i class="fa fa-fw fa-align-left"/>
-                    </we-button>
-                    <we-button data-select-class="position-center">
-                        <i class="fa fa-fw fa-align-center"/>
-                    </we-button>
-                    <we-button data-select-class="position-right">
-                        <i class="fa fa-fw fa-align-right"/>
-                    </we-button>
+                <we-button-group string="Alignment" class="ms-auto" data-dependencies="style-2, style-3, style-4">
+                    <we-button data-select-class="position-left"><i class="fa fa-fw fa-align-left"/></we-button>
+                    <we-button data-select-class="position-center"><i class="fa fa-fw fa-align-center"/></we-button>
+                    <we-button data-select-class="position-right"><i class="fa fa-fw fa-align-right"/></we-button>
                 </we-button-group>
             </div>
         </xpath>

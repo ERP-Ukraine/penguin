@@ -20,6 +20,6 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <menuitem id="menu_dr_category_label" action="dr_category_label_action" parent="website_sale.menu_product_settings" sequence="16"/>
+    <menuitem id="menu_dr_category_label" action="dr_category_label_action" parent="website_sale.menu_catalog" sequence="5"/>
 
 </odoo>

@@ -9,25 +9,12 @@ class ThemePrime(models.AbstractModel):
 
     @api.model
     def _reset_default_config(self):
+        header_styles = list(range(1, 9))
+        for style in header_styles:
+            self.disable_view('theme_prime.template_header_style_%s' % style)
 
-        self.disable_view('theme_prime.template_header_style_1')
-        self.disable_view('theme_prime.template_header_style_2')
-        self.disable_view('theme_prime.template_header_style_3')
-        self.disable_view('theme_prime.template_header_style_4')
-        self.disable_view('theme_prime.template_header_style_5')
-        self.disable_view('theme_prime.template_header_style_6')
-        self.disable_view('theme_prime.template_header_style_7')
-        self.disable_view('theme_prime.template_header_style_8')
+        footer_styles = list(range(1, 11))
+        for style in footer_styles:
+            self.disable_view('theme_prime.template_footer_style_%s' % style)
 
-        self.disable_view('theme_prime.template_footer_style_1')
-        self.disable_view('theme_prime.template_footer_style_2')
-        self.disable_view('theme_prime.template_footer_style_3')
-        self.disable_view('theme_prime.template_footer_style_4')
-        self.disable_view('theme_prime.template_footer_style_5')
-        self.disable_view('theme_prime.template_footer_style_6')
-        self.disable_view('theme_prime.template_footer_style_7')
-        self.disable_view('theme_prime.template_footer_style_8')
-        self.disable_view('theme_prime.template_footer_style_9')
-        self.disable_view('theme_prime.template_footer_style_10')
-
-        super(ThemePrime, self)._reset_default_config()
+        super()._reset_default_config()

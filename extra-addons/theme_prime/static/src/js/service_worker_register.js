@@ -1,71 +1,82 @@
-odoo.define('theme_prime.service_worker_register', function (require) {
-'use strict';
+/** @odoo-module **/
 
-require('web.dom_ready');
-var Widget = require('web.Widget');
-var utils = require('web.utils');
+import publicWidget from "@web/legacy/js/public/public_widget";
+import { sprintf } from "@web/core/utils/strings";
+import { cookie } from "@web/core/browser/cookie";
+import { isIOS, isDisplayStandalone } from "@web/core/browser/feature_detection";
 
-var html = document.documentElement;
-var websiteID = html.getAttribute('data-website-id') || 0;
+const html = document.documentElement;
+const websiteID = html.getAttribute("data-website-id") || 0;
 
-var PWAiOSPopupWidget = Widget.extend({
-    xmlDependencies: ['/theme_prime/static/src/xml/pwa.xml'],
-    template: 'theme_prime.pwa_ios_popup',
+const PWAInstallBanner = publicWidget.Widget.extend({
+    template: "theme_prime.pwa_popup",
     events: {
-        'click': '_onClickPopup',
+        "click .close": "_onClickClose",
     },
-    _onClickPopup: function () {
-        utils.set_cookie(_.str.sprintf('tp-pwa-ios-popup-%s', websiteID), true);
-        this.destroy();
+    init() {
+        this._super(...arguments);
+        this.isIos = isIOS();
+        this.appName = odoo.dr_theme_config.pwa_name;
+        this.websiteID = websiteID;
+    },
+    _onClickClose: function () {
+        this.trigger_up("close_via_prompt");
     },
 });
 
-if (odoo.dr_theme_config.pwa_active) {
-    activateServiceWorker();
-} else {
-    deactivateServiceWorker();
-}
-
-function displayPopupForiOS () {
-    // Detects if device is on iOS
-    const isIos = () => {
-        return /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && (navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i));
-    }
-
-    // Detects if device is in standalone mode
-    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
-
-    // Checks if should display install popup notification
-    if (isIos() && !isInStandaloneMode()) {
-        if (!utils.get_cookie(_.str.sprintf('tp-pwa-ios-popup-%s', websiteID))) {
-            var widget = new PWAiOSPopupWidget();
-            widget.appendTo($('body'));
+publicWidget.registry.PWAActivationEvents = publicWidget.Widget.extend({
+    selector: "#wrapwrap",
+    custom_events: {
+        close_via_prompt: "_onPromptClose",
+    },
+    async start() {
+        const superResult = await this._super(...arguments);
+        if (odoo.dr_theme_config.pwa_active) {
+            this.activateServiceWorker();
+        } else {
+            this.deactivateServiceWorker();
         }
-    }
-}
-
-function activateServiceWorker() {
-    if (navigator.serviceWorker) {
-        navigator.serviceWorker.register('/service_worker.js').then(function (registration) {
-            console.log('ServiceWorker registration successful with scope:',  registration.scope);
-            displayPopupForiOS();
-        }).catch(function(error) {
-            console.log('ServiceWorker registration failed:', error);
-        });
-    }
-}
-
-function deactivateServiceWorker() {
-    if (navigator.serviceWorker) {
-        navigator.serviceWorker.getRegistrations().then(function (registrations) {
-            _.each(registrations, function (r) {
-                r.unregister();
-                console.log('ServiceWorker removed successfully');
+        return superResult;
+    },
+    showInstallBanner() {
+        if (isIOS()) {
+            if (!isDisplayStandalone()) {
+                if (!cookie.get(sprintf("tp-pwa-popup-%s", websiteID))) {
+                    this.installBanner = new PWAInstallBanner(this);
+                    this.installBanner.appendTo(document.body);
+                }
+            }
+        }
+    },
+    activateServiceWorker () {
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.register("/service_worker.js").then((registration) => {
+                console.log("ServiceWorker registration successful with scope:", registration.scope);
+                this.showInstallBanner();
+            }).catch(function (error) {
+                console.log("ServiceWorker registration failed:", error);
             });
-        }).catch(function (err) {
-            console.log('Service worker unregistration failed: ', err);
-        });
-    }
-}
-
+        }
+    },
+    deactivateServiceWorker () {
+        if (navigator.serviceWorker) {
+            navigator.serviceWorker.getRegistrations().then(function (registrations) {
+                registrations.forEach(r => {
+                    r.unregister();
+                    console.log("ServiceWorker removed successfully");
+                });
+            }).catch(function (err) {
+                console.log("Service worker unregistration failed: ", err);
+            });
+        }
+    },
+    _hideInstallBanner: function () {
+        cookie.set(sprintf("tp-pwa-popup-%s", websiteID), true);
+        if (this.installBanner) {
+            this.installBanner.destroy();
+        }
+    },
+    _onPromptClose: function () {
+        this._hideInstallBanner();
+    },
 });

@@ -1,20 +1,24 @@
-odoo.define('theme_prime.root.widget', function (require) {
-'use strict';
+/** @odoo-module **/
 
-const {primeUtilities} = require('theme_prime.mixins');
-const {qweb, _t} = require('web.core');
-const publicWidget = require('web.public.widget');
-const config = require('web.config');
+import { primeUtilities } from "@theme_prime/js/core/mixins";
+import publicWidget from "@web/legacy/js/public/public_widget";
+import { debounce, throttleForAnimation } from "@web/core/utils/timing";
+import { utils as uiUtils } from "@web/core/ui/ui_service";
+import { renderToElement, renderToString } from "@web/core/utils/render";
+import { _t } from "@web/core/l10n/translation";
+import { markup } from "@odoo/owl";
 
 const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
     disabledInEditableMode: false,
-    xmlDependencies: ['/theme_prime/static/src/xml/core/snippet_root_widget.xml'],
     controllerRoute: false,
     fieldstoFetch: false,
     bodyTemplate: false,
+    templateRenderToString: false,
     bodySelector: false,
     displayLoader: true,
     snippetNodeAttrs: [],
+    extraLibs: [],
+    IsAttrSet: false,
 
     // Droggol's attributs :)
     noDataTemplate: 'droggol_default_no_data_templ',
@@ -23,23 +27,11 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
     noDataTemplateSubString: _t("Sorry, We couldn't find any products"),
     displayAllProductsBtn: true,
     loaderTemplate: 'droggol_default_loader',
-
-    /**
-     * @override
-     */
-    willStart: function () {
-        // Bits 6, 5, and 4 must be 0, 1, and 0 respectively.
-        // But we will improve this in next version this is totally fine for now
-        // Otherwise, the Sh*t burns crazy evil crack
-        this.primeXmlDependencies = this.xmlDependencies;
-        this.xmlDependencies = null; // Must be do null from here always. Don't make a mistake to put above jsLibs otherwise widget life cycle will be fu*ked up
-        this.primeJsLibs = this.jsLibs;
-        this.primeCssLibs = this.cssLibs;
-        this.primeAssetLibs = this.assetLibs;
-        this.jsLibs = null;
-        this.cssLibs = null;
-        this.assetLibs = null;
-        return this._super.apply(this, arguments);
+    isMobile: uiUtils.isSmall(),
+    init: function () {
+        this._super.apply(this, arguments);
+        this.rpc = this.bindService("rpc");
+        this.notification = this.bindService("notification");
     },
     /**
      * @override
@@ -47,18 +39,20 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
     start: function () {
         let defs = [this._super.apply(this, arguments)];
         // Remove this code in next version
-        if (this.$target.hasClass('droggol_product_snippet')) {
-            // this._renderAndAppendQweb('tp_block_deprecated_notice');
+        if (this.$target.hasClass('droggol_product_snippet') || this.$target.hasClass('tp-dynamic-snippet') || this.$target.hasClass('tp-droggol-dynamic-snippet')) {
+            this._renderAndAppendQweb('tp_block_deprecated_notice', 'tp_block_deprecated_notice', true);
             return Promise.all(defs);
         }
         this._setCamelizeAttrs();
+        if (!this.IsAttrSet && this.$target.hasClass('tp-mega-menu-snippet')) {
+            return Promise.all(defs);
+        }
         let params = this._getParameters();
-        this.isMobile = config.device.isMobile;
-        if (this.controllerRoute && !_.isEmpty(params)) {
+        if (this.controllerRoute && Object.keys(params).length) {
             if (this.fieldstoFetch) {
-                _.extend(params, {fields: this._getFieldsList()});
+                params = { ...params, ...{ fields: this._getFieldsList() } };
             }
-            this._onResizeChange = _.debounce(this._onWindowResize, 100);
+            this._onResizeChange = debounce(this._onWindowResize, 100);
             $(window).resize(() => {
                 this._onResizeChange();
             });
@@ -74,11 +68,29 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
     * @override
     */
     destroy: function () {
+        if (!this.IsAttrSet && this.$target.hasClass('tp-mega-menu-snippet')) {
+            return this._super.apply(this, arguments);
+        }
+        this.options.wysiwyg && this.options.wysiwyg.odooEditor.observerUnactive();
         this._super.apply(this, arguments);
         this._modifyElementsBeforeRemove();
         this._getBodySelectorElement().empty();
+        this.options.wysiwyg && this.options.wysiwyg.odooEditor.observerActive();
     },
-
+    /**
+     * No need to return promise here for the moment we are not using it anywhere but we might need it in future :)
+     */
+    _reloadWidget: async function (data) {
+        let {selector, target} = data;
+        if (!target && selector && !this.$target.find(selector).length) {
+            return;
+        } else {
+            target = target ? target : this.$target.find(selector);
+        }
+        return new Promise((resolve, reject) => {
+            this.trigger_up('widgets_start_request', { editableMode: this.editableMode, $target: target, onSuccess: resolve, onFailure: reject});
+        });
+    },
     //--------------------------------------------------------------------------
     // Private
     //--------------------------------------------------------------------------
@@ -88,7 +100,7 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
     */
     _appendLoader: function () {
         if (this.displayLoader && this.loaderTemplate) {
-            this._renderAndAppendQweb(this.loaderTemplate, 'd_loader_default');
+            this._renderAndAppendQweb(this.loaderTemplate, 'd_loader_default', true);
         }
     },
     /**
@@ -96,7 +108,7 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
      */
     _appendNoDataTemplate: function () {
         if (this.noDataTemplate) {
-            this._renderAndAppendQweb(this.noDataTemplate, 'd_no_data_tmpl_default');
+            this._renderAndAppendQweb(this.noDataTemplate, 'd_no_data_tmpl_default', true);
         }
     },
     /**
@@ -117,6 +129,13 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
                 this.$target.removeAttr(attr);
             });
         }
+    },
+    _markUpResults: function(result) {
+        return markup(result);
+    },
+    // Funny hack
+    JaysonStringify: function (data) {
+        return JSON.stringify(data);
     },
     /**
      * @private
@@ -189,7 +208,7 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
      * @private
      */
     _isPublicUser: function () {
-        return _.has(odoo.dr_theme_config, "is_public_user") && odoo.dr_theme_config.is_public_user;
+        return odoo.dr_theme_config.hasOwnProperty("is_public_user") && odoo.dr_theme_config.is_public_user;
     },
     /**
      * @private
@@ -207,7 +226,7 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
      * @private
      */
     _fetchData: async function (params) {
-        return await this._rpc({route: this.controllerRoute, params: params});
+        return await this.rpc(this.controllerRoute, params);
     },
     /**
      * @private
@@ -219,9 +238,9 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
             var position = this.$relativeTarget.scrollTop();
             if (this.$megaMenu.length) {
                 // throttle needed otherwise sometimes it's crash the chrome :)
-                this.$megaMenu.on('show.bs.dropdown show.tp.dropdown', _.throttle(ev => { resolve()}, 200));
+                this.$megaMenu.on('show.bs.dropdown show.tp.dropdown', throttleForAnimation(ev => { resolve()}, 200));
             } else {
-                this.$relativeTarget.on('scroll.snippet_root_scroll', _.throttle(ev => {
+                this.$relativeTarget.on('scroll.snippet_root_scroll', throttleForAnimation(ev => {
                     var scroll = this.$relativeTarget.scrollTop();
                     if (scroll > position) {
                         // Trigger only when scrollDown
@@ -271,6 +290,10 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
             let capitalString = capital.join("");
             let attrVal = this.$target.get(0).dataset[capitalString];
             this[capitalString] = attrVal !== undefined ? JSON.parse(attrVal) : false;
+            this[`${capitalString}_init`] = attrVal !== undefined ? JSON.parse(attrVal) : false;
+            if (this[capitalString]) {
+                this.IsAttrSet = true;
+            }
         });
     },
     /**
@@ -282,11 +305,13 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
      * @private
      */
     _renderAndAppendQweb: function (template, className, data) {
-        if (!template) {
+        // observer shit needed but wait for someone to report a bug don't want to spread shit here
+        if (!template || !data) {
             // for safety
             return;
         }
-        let $template = $(qweb.render(template, {data: data, widget: this}));
+        const renderAs = this.templateRenderToString ? renderToString : renderToElement;
+        let $template = $(renderAs(template, { data, widget: this }));
         $template.addClass(className);
         // html() make sure template appends only once.
         this._getBodySelectorElement().html($template);
@@ -295,9 +320,15 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
      * @private
      */
     _renderContent: function (data) {
+        // Should remove this below observer shit someday we need to rework on few things.
+        // May be we might remove publicWidget it self and implementation our own way to render snippet
+        // In this particular version 16.0 publicWidget is bit changed.
+        // But any way thanks to Quentin for everything :)
+        this.options.wysiwyg && this.options.wysiwyg.odooEditor.observerUnactive();
         this._cleanBeforeAppend();
         this._renderAndAppendQweb(this.bodyTemplate, 'd_body_tmpl_default', data);
         this._modifyElementsAfterAppend();
+        this.options.wysiwyg && this.options.wysiwyg.odooEditor.observerActive();
     },
     /**
     * @private
@@ -321,5 +352,4 @@ const ThemePrimeRootWidget = publicWidget.Widget.extend(primeUtilities, {
 
 publicWidget.registry.tp_root_widget = ThemePrimeRootWidget;
 
-return ThemePrimeRootWidget;
-});
+export default ThemePrimeRootWidget;

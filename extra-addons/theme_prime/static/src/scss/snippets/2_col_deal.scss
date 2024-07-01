@@ -34,7 +34,7 @@
                 flex-grow: 1;
                 .d-product-img {
                     max-height: 215px;
-                    @include media-breakpoint-down(md) {
+                    @include media-breakpoint-down(lg) {
                         max-height: 365px;
                     }
                 }

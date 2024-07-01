@@ -8,7 +8,7 @@
             <form string="Shortcuts">
                 <sheet>
                     <div class="alert alert-info oe_edit_only" role="alert">
-                        Icon size must be 192x192.
+                        The icon must be a 192x192 PNG.
                     </div>
                     <field name="icon" widget="image" class="oe_avatar"/>
                     <div class="oe_title">
@@ -39,6 +39,8 @@
         <field name="arch" type="xml">
             <tree string="Shortcuts">
                 <field name="name"/>
+                <field name="short_name"/>
+                <field name="url"/>
             </tree>
         </field>
     </record>

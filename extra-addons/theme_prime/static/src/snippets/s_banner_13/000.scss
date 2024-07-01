@@ -1,5 +1,5 @@
 .s_banner_13 {
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-down(md) {
         .tp-animation-scale img {
             min-height: 300px;
             object-fit: cover;

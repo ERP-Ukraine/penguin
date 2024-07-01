@@ -1,28 +1,29 @@
-odoo.define('theme_prime.product.root.widget', function (require) {
-'use strict';
+/** @odoo-module **/
 
-require('website_sale.utils');
-const config = require('web.config');
-const {qweb, _t} = require('web.core');
-const RootWidget = require('theme_prime.root.widget');
-const QuickViewDialog = require('theme_prime.product_quick_view');
-const { cartMixin, CartManagerMixin , MarkupRecords} = require('theme_prime.mixins');
-let { Markup } = require('web.utils');
+import { utils as uiUtils } from "@web/core/ui/ui_service";
+import RootWidget from "@theme_prime/js/core/snippet_root_widget";
+import { QuickViewDialog } from "@theme_prime/js/frontend/quick_view_dialog";
+import { cartMixin, CartManagerMixin , MarkupRecords} from "@theme_prime/js/core/mixins";
+import { intersection } from "@web/core/utils/arrays";
+import { renderToString } from "@web/core/utils/render";
+import { _t } from "@web/core/l10n/translation";
+import { markup } from "@odoo/owl";
 
-return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
-
-    xmlDependencies: (RootWidget.prototype.xmlDependencies || []).concat(['/theme_prime/static/src/xml/frontend/notification_template.xml']),
+export default RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
 
     snippetNodeAttrs: (RootWidget.prototype.snippetNodeAttrs || []).concat(['data-ui-config-info']),
     tpFieldsToMarkUp: ['price', 'rating', 'list_price', 'label_template', 'dr_stock_label', 'colors'],
 
-    read_events: {
+    read_events: Object.assign({
         'click .d_add_to_cart_btn': '_onAddToCartClick',
         'click .d_add_to_wishlist_btn': '_onAddToWishlistClick',
-        'click .d_product_quick_view': '_onProductQuickViewClick',
-    },
-    events: {
-        'mouseenter .d_product_thumb_img': '_onMouseEnter',
+        'click .d_product_quick_view': '_onProductQuickViewClick'
+    }, RootWidget.prototype.read_events),
+
+    init() {
+        this.rpc = this.bindService("rpc");
+        this._super(...arguments);
+        this.wishlistProductIDs = [];
     },
 
     //--------------------------------------------------------------------------
@@ -56,7 +57,7 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
     * @private
     */
     _anyActionEnabled: function (actions) {
-        return _.intersection(actions, this.uiConfigInfo.activeActions).length >= 1;
+        return intersection(actions, this.uiConfigInfo.activeActions).length >= 1;
     },
     /**
      * @private
@@ -77,31 +78,28 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
      * @private
      */
     _initTips: function () {
-        this.$('[data-toggle="tooltip"]').tooltip();
+        this.$('[data-bs-toggle="tooltip"]').tooltip();
     },
     /**
      * @private
      */
     _isActionEnabled: function (actionName, actions) {
         let allActions = actions || this.uiConfigInfo.activeActions;
-        return _.contains(allActions, actionName);
+        return allActions.includes(actionName);
     },
     /**
      * @override
      */
     _modifyElementsAfterAppend: function () {
-        let self = this;
         this._initTips();
-        _.each(this.wishlistProductIDs, function (id) {
-            self.$('.d_add_to_wishlist_btn[data-product-product-id="' + id + '"]').prop("disabled", true).addClass('disabled');
+        this.wishlistProductIDs.forEach(id => {
+            this.$('.d_add_to_wishlist_btn[data-product-product-id="' + id + '"]').prop("disabled", true).addClass('disabled');
         });
         // [HACK] must be improve in next version.
         // Dev like it will work on both (shop and snippet)
         // Also in snippet only show similar_products buttons if similar_products exist
-        if (this.uiConfigInfo && this._isActionEnabled('show_similar')) {
-            this.trigger_up('widgets_start_request', {$target: this.$('.tp_show_similar_products')});
-            this.trigger_up('widgets_start_request', {$target: this.$('.tp-color-preview-container')});
-        }
+        this._reloadWidget({ selector: '.tp_show_similar_products'})
+        this._reloadWidget({ selector: '.tp-product-preview-swatches'})
         this._super.apply(this, arguments);
     },
     /**
@@ -112,7 +110,7 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
             this._getMustDisabledOptions().forEach(option => {
                 let enabledInShop = shopConfigParams['is_' + option + '_active'];
                 if (!enabledInShop) {
-                    this.uiConfigInfo['activeActions'] = _.without(this.uiConfigInfo.activeActions, option);
+                    this.uiConfigInfo['activeActions'] = this.uiConfigInfo.activeActions.filter((x) => x !== option);
                 }
             });
             // whether need to render whole container for
@@ -142,6 +140,7 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
             this.wishlistProductIDs = data.wishlist_products;
         }
         if (data.shop_config_params) {
+            this.shopConfig = data.shop_config_params;
             this._updateUserParams(data.shop_config_params);
         }
         this._super.apply(this, arguments);
@@ -173,16 +172,17 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
     * @private
     */
     _removeProductFromWishlist: function (wishlistID, productID) {
-        this._rpc({
-            route: '/shop/wishlist/remove/' + wishlistID,
-        }).then(() => {
+        this.rpc('/shop/wishlist/remove/' + wishlistID).then(() => {
             // I hate $
             let className = `.tp-notification.${productID}`;
             $(className).addClass('d-none');
             $(".d_add_to_wishlist_btn[data-product-product-id='" + productID + "']").prop("disabled", false).removeClass('disabled');
-            this.wishlistProductIDs = _.filter(this.wishlistProductIDs, function (id) { return id !== productID;});
+            this.wishlistProductIDs = this.wishlistProductIDs.filter(id => id !== productID);
             this._updateWishlistView();
         });
+    },
+    displayNotification: function (data) {
+        this.notification.add(data.message, data);
     },
     /**
      * @private
@@ -190,16 +190,12 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
      */
     _onAddToWishlistClick: function (ev) {
         let productID = parseInt($(ev.currentTarget).attr('data-product-product-id'));
-        this._rpc({
-            route: '/theme_prime/wishlist_general',
-            params: {product_id: productID},
-        }).then(res => {
+        this.rpc('/theme_prime/wishlist_general', { product_id: productID }).then(res => {
             this.wishlistProductIDs = res.products;
             this.displayNotification({
                 className: `tp-notification tp-bg-soft-danger ${productID}`,
-                messageIsHtml: true,
-                message: Markup(qweb.render('DroggolNotification', {color: 'danger', productName: res.name, message: _t('Added to your wishlist.'), iconClass: 'dri dri-wishlist'})),
-                buttons: [{text: _t("Wishlist"), click: () => {window.location = '/shop/wishlist';}}, { text: _t("Undo"), click: () => { this._removeProductFromWishlist(res.wishlist_id, productID);}}],
+                message: markup(renderToString('DroggolNotification', {color: 'danger', productName: res.name, message: _t('Added to your wishlist.'), iconClass: 'dri dri-wishlist'})),
+                buttons: [{name: _t("Wishlist"), onClick: () => {window.location = '/shop/wishlist';}}, { name: _t("Undo"), onClick: () => { this._removeProductFromWishlist(res.wishlist_id, productID);}}],
             });
             this._updateWishlistView();
             $(".d_add_to_wishlist_btn[data-product-product-id='" + productID + "']").prop("disabled", true).addClass('disabled');
@@ -211,18 +207,6 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
         }
         return data;
     },
-    /**
-     * @private
-     */
-    _onMouseEnter: function (ev) {
-        let $target = $(ev.currentTarget);
-        let src = $target.attr('src');
-        let productID = $target.attr('data-product-id');
-        let $card = this.$('.d_product_card[data-product-id=' + productID + ']');
-        $card.find('.d-product-img').attr('src', src);
-        $card.find('.d_product_thumb_img').removeClass('d_active');
-        $target.addClass('d_active');
-    },
     _cleanBeforeAppend: function () {
         if (this.uiConfigInfo && this.uiConfigInfo.mode === 'grid') {
             this._setClass();
@@ -232,15 +216,30 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
         this._super.apply(this, arguments);
         // Added this.response bcoz odoo is triggering resize from many places and this is totally shit for ex comparison
         // due to this no data template append first sometimes
-        if (this.uiConfigInfo && this.uiConfigInfo.mode === 'grid' && this.response) {
+        if (this.uiConfigInfo && this.uiConfigInfo.mode === 'grid' && this.response && !this.editableMode) {
             this._setClass();
             this._onSuccessResponse(this.response);
         }
     },
+    _onSuccessResponse: function () {
+        if (this.isMobile && this.uiConfigInfo && this.uiConfigInfo.mobileConfig) {
+            let keys = Object.keys(this.uiConfigInfo.mobileConfig);
+            keys.forEach((key) => {
+                if (this.uiConfigInfo[key] && this.uiConfigInfo.mobileConfig[key] === 'default') {
+                    this.uiConfigInfo.mobileConfig[key] = this.uiConfigInfo[key];
+                }
+            });
+            this.uiConfigInfo = { ... this.uiConfigInfo, ... this.uiConfigInfo.mobileConfig };
+        }
+        this._super.apply(this, arguments);
+    },
     _setClass: function () {
-        this.deviceSizeClass = config.device.size_class;
+        this.deviceSizeClass = uiUtils.getSize();
         if (this.deviceSizeClass <= 1) {
             this.cardSize = 12;
+            if (this.uiConfigInfo_init && this.uiConfigInfo_init.mobileConfig && this.uiConfigInfo_init.mobileConfig.style !== 'default' && this.uiConfigInfo.mobileConfig && this.uiConfigInfo.mobileConfig.mode === 'grid') {
+                this.cardSize = 6;
+            }
             this.cardColClass = 'col-' + this.cardSize.toString();
         } else if (this.deviceSizeClass === 2) {
             this.cardSize = 6;
@@ -253,6 +252,4 @@ return RootWidget.extend(cartMixin, CartManagerMixin, MarkupRecords, {
             this.cardColClass = 'col-lg-' + this.cardSize.toString();
         }
     }
-});
-
 });

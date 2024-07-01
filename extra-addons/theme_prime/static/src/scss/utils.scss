@@ -2,9 +2,9 @@
 // Utilities
 //------------------------------------------------------------------------------
 .tp-link-dark {
-    color: o-color('dark');
+    color: o-color('o-cc1-headings');
     transition: 0.2s;
-    @include hover {
+    &:hover {
         color: o-color('primary') !important;
     }
 }
@@ -12,7 +12,7 @@
 .tp-link-body {
     color: $body-color;
     transition: 0.2s;
-    @include hover {
+    &:hover {
         color: o-color('primary') !important;
     }
 }
@@ -63,6 +63,10 @@
     max-width: 100px;
     max-height: 100px;
 }
+.tp-image-128-max, .o_image_128_max {
+    max-width: 128px !important;
+    max-height: 128px !important;
+}
 .tp-bg-gradient-50-black:before {
     content: '';
     @include o-position-absolute($right: 0, $bottom: 0, $left: 0);
@@ -83,7 +87,7 @@
         -o-transition: all .4s ease;
         transition: all .4s ease;
     }
-    @include hover {
+    &:hover {
         img {
             transform: scale3d(1.05, 1.05, 1.05);
         }
@@ -94,7 +98,7 @@
     -webkit-transition: all .3s ease;
     -o-transition: all .3s ease;
     transition: all .3s ease;
-    @include hover-focus {
+    &:hover, &:focus {
         transform: translate3d(0, -10px, 0);
     }
 }
@@ -213,6 +217,6 @@ body:not(.editor_enable) .tp-animation-layla {
 }
 
 .tp-outline {
-    outline: 1px solid gray('400');
+    outline: 1px solid map-get($grays, '400');
     background-color: white;
 }

@@ -3,11 +3,11 @@
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
-from odoo.tools.translate import html_translate
 
 
 class ProductAttribute(models.Model):
-    _inherit = 'product.attribute'
+    _name = 'product.attribute'
+    _inherit = ['product.attribute', 'dr.cache.mixin']
 
     display_type = fields.Selection(
         selection_add=[
@@ -20,9 +20,10 @@ class ProductAttribute(models.Model):
     dr_radio_image_style = fields.Selection([
         ('default', 'Default'),
         ('image', 'Image'),
+        ('image_compact', 'Image (Compact)'),
         ('image_text', 'Image + Text'),
     ], default='default', string='Style')
-    dr_search_suggestion = fields.Selection([('auto', 'Autocomplete'), ('auto_suggestion', 'Autocomplete & Suggestion')], string="Search suggestion type")
+    dr_search_suggestion = fields.Selection([('auto', 'Autocomplete'), ('auto_suggestion', 'Autocomplete & Suggestion')], string='Search suggestion type')
     dr_is_brand = fields.Boolean('Is Brand?')
 
     @api.onchange('dr_is_brand')
@@ -48,11 +49,12 @@ class ProductAttribute(models.Model):
 
 
 class ProductAttributeValue(models.Model):
-    _inherit = 'product.attribute.value'
+    _name = 'product.attribute.value'
+    _inherit = ['product.attribute.value', 'dr.cache.mixin']
 
-    dr_image = fields.Binary(string='Image')
-    dr_brand_description = fields.Text(string='Description', translate=True)
-    ds_name = fields.Char(string='Search DS Name', compute="_compute_ds_name", search="_search_ds_name")
+    dr_image = fields.Binary('Image')
+    dr_brand_description = fields.Text('Description', translate=True)
+    ds_name = fields.Char('Search DS Name', compute="_compute_ds_name", search="_search_ds_name")
 
     def _compute_ds_name(self):
         for attr in self:
@@ -64,10 +66,11 @@ class ProductAttributeValue(models.Model):
 
 
 class ProductTemplateAttributeValue(models.Model):
-    _inherit = 'product.template.attribute.value'
+    _name = 'product.template.attribute.value'
+    _inherit = ['product.template.attribute.value', 'dr.cache.mixin']
 
     dr_image = fields.Binary('Image', related='product_attribute_value_id.dr_image')
-    dr_thumb_image = fields.Image("Swatch Image", max_width=128, max_height=128)
+    dr_thumb_image = fields.Image('Swatch Image', max_width=128, max_height=128)
 
 
 class ProductTemplateAttributeLine(models.Model):

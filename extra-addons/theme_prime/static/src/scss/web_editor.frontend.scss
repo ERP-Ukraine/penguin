@@ -1,9 +1,11 @@
 // JAT: Overrided whole file
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
     // Hook start
     #wrapwrap {
         img, .media_iframe_video, span.fa, i.fa {
-            transform: none !important;
+            &:not(.o_animate) {
+                transform: none !important;
+            }
         }
     }
     // Hook end
@@ -20,77 +22,8 @@
     transform: translate(-50%, -50%)
 }
 
-.ui-autocomplete {
-    max-height: 50vh;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    .ui-menu-item {
-        padding: 0;
-        > .ui-state-active {
-            border: none;
-            font-weight: normal;
-            margin: 0;
-        }
-    }
-}
-
-// Background shapes
-@function compute-shape-url-params($colors, $color-to-cc-bg-map) {
-    $url-params: '';
-    @each $i in $colors {
-        $mapped-color: map-get($color-to-cc-bg-map, $i);
-        // %23 is the url-encoded form of '#'
-        $color: str-replace("#{o-color($mapped-color)}", '#', '%23');
-        $url-params: '#{$url-params}&c#{$i}=#{$color}';
-    }
-    @return $url-params;
-}
-.o_we_shape {
-    @extend %o-we-background-layer;
-
-    // Default map to use to map shape file colors to color combination
-    // background colors.
-    $default-color-to-cc-bg-map: (
-        1: 4,
-        2: 3,
-        3: 2,
-        4: 1,
-        5: 5,
-    );
-    @each $module, $shapes in $o-bg-shapes {
-        @each $shape, $style in $shapes {
-            $colors: map-get($style, 'colors');
-            $color-to-cc-bg-map: map-merge($default-color-to-cc-bg-map, map-get($style, 'color-to-cc-bg-map') or ());
-            $url-params: compute-shape-url-params($colors, $color-to-cc-bg-map);
-            $extra-mappings: map-get($style, 'extra-mappings') or ();
-
-            // eg: o_website_shape_bg_1
-            &.o_#{$module}_#{str-replace($shape, '/', '_')} {
-                // When the shape is not customized, this URL, built in SCSS,
-                // allows for the shape to respond to palette changes.
-                // Mainly useful for default pages built by the configurator.
-                background-image: url("/web_editor/shape/#{$module}/#{$shape}.svg?#{str-slice($url-params, 2)}");
-                background-position: map-get($style, 'position');
-                background-size: map-get($style, 'size');
-                background-repeat:
-                    if(map-get($style, 'repeat-x'), repeat, no-repeat)
-                    if(map-get($style, 'repeat-y'), repeat, no-repeat);
-
-                @each $mapping-name, $mapping in $extra-mappings {
-                    $color-to-cc-bg-map: map-merge($default-color-to-cc-bg-map, $mapping or ());
-                    $url-params: compute-shape-url-params($colors, $color-to-cc-bg-map);
-
-                    &.o_#{$mapping-name}_extra_shape_mapping {
-                        background-image: url("/web_editor/shape/#{$module}/#{$shape}.svg?#{str-slice($url-params, 2)}");
-                    }
-                }
-            }
-        }
-    }
-}
-@include media-breakpoint-down(sm) {
-    .o_we_shape {
+@include media-breakpoint-down(md) {
+    .o_we_shape:not(.o_shape_show_mobile) {
         display: none;
     }
 }
@@ -102,4 +35,81 @@
 }
 .o_we_flip_x.o_we_flip_y {
     transform: scale(-1);
+}
+
+// GRID LAYOUT
+.o_grid_mode {
+    @include media-breakpoint-down(lg) {
+        // No gaps in mobile view.
+        row-gap: 0px !important;
+        column-gap: 0px !important;
+    }
+    --grid-item-padding-y: 10px;
+    --grid-item-padding-x: 10px;
+
+    > * {
+        padding: var(--grid-item-padding-y) var(--grid-item-padding-x) !important;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .o_grid_mode {
+        display: grid !important;
+        grid-auto-rows: 50px;
+        grid-template-columns: repeat(12, 1fr);
+        row-gap: 0px;
+        column-gap: 0px;
+
+        --gutter-x: 0px;
+
+        > * {
+            margin: 0 !important;
+            width: 100%;
+            min-width: 0;
+        }
+    }
+
+    .container-fluid > .o_grid_mode {
+        --gutter-x: 30px;
+    }
+
+    .o_extra_menu_items .o_grid_mode {
+        display: flex !important;
+        row-gap: 0px !important;
+        column-gap: 0px !important;
+    }
+
+    .o_grid_item_image {
+        > img, > .media_iframe_video {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+
+        &.o_grid_item_image_contain > img,
+        > img[data-shape] {
+            object-fit: contain !important;
+        }
+
+        // Allowing "cover" for some hover effects.
+        &:not(.o_grid_item_image_contain) > img[data-shape$="geo_square"] {
+            &:not(
+                [data-hover-effect="dolly_zoom"],
+                [data-hover-effect="outline"],
+                [data-hover-effect="image_mirror_blur"],
+            ) {
+                object-fit: cover !important;
+            }
+        }
+    }
+}
+
+// Override the default image selection color used in "web_editor". This
+// prevents selected images from being covered with a blue filter in edit mode
+// (Website, Email Marketing). This allows to see the correct final rendering
+// of an image when it is edited.
+body.editor_enable:not(.o_basic_theme) .odoo-editor-editable {
+    img::selection {
+        background-color: transparent !important;
+    }
 }

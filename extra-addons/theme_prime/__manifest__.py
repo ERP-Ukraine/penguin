@@ -6,8 +6,7 @@
     'description': 'Powerful multipurpose eCommerce theme suitable for all kind of businesses like Electronics, Fashion, Sports, Beauty, Furniture and many more.',
     'summary': 'Powerful multipurpose eCommerce theme suitable for all kind of businesses like Electronics, Fashion, Sports, Beauty, Furniture and many more.',
     'category': 'Theme/eCommerce',
-    'version': '15.0.0.4.1',
-    'installable': False,
+    'version': '17.0.0.17',
     'depends': ['droggol_theme_common'],
 
     'license': 'OPL-1',
@@ -18,7 +17,7 @@
 
     'price': 289.00,
     'currency': 'USD',
-    'live_test_url': 'https://prime-15-electronics-1.droggol.com/',
+    'live_test_url': 'https://prime-17-electronics-1.droggol.com/',
 
     'images': [
         'static/description/prime_cover.png',
@@ -27,9 +26,12 @@
     'data': [
         'data/theme.ir.attachment.csv',
 
+        'views/sidebar.xml',
         'views/templates.xml',
         'views/components.xml',
         'views/layout.xml',
+        'views/shop_layout.xml',
+        'views/product_detail_page.xml',
         'views/pages.xml',
         'views/snippets.xml',
         'views/svg_images.xml',
@@ -61,6 +63,7 @@
     ],
     'assets': {
         'web.assets_frontend': [
+            ('prepend', 'theme_prime/static/src/js/website_sale_utils.js'),
             # Libraries
             'theme_prime/static/lib/OwlCarousel2-2.3.4/assets/owl.carousel.css',
             'theme_prime/static/lib/OwlCarousel2-2.3.4/assets/owl.theme.default.css',
@@ -68,17 +71,24 @@
             'theme_prime/static/src/js/website.js',
             'theme_prime/static/src/js/website_sale.js',
             'theme_prime/static/src/js/website_sale_wishlist.js',
+
             'theme_prime/static/src/js/sidebar.js',
+            'theme_prime/static/src/xml/sidebar.xml',
+
             'theme_prime/static/src/js/suggested_product_slider.js',
+            'theme_prime/static/src/xml/frontend/suggested_product_slider.xml',
+
             'theme_prime/static/src/js/service_worker_register.js',
+            'theme_prime/static/src/xml/pwa.xml',
+
             'theme_prime/static/src/js/core/mixins.js',
             'theme_prime/static/src/js/frontend/comparison.js',
             'theme_prime/static/src/js/frontend/quick_view_dialog.js',
-            'theme_prime/static/src/js/frontend/ajax_load_products.js',
             'theme_prime/static/src/js/frontend/bottombar.js',
 
             'theme_prime/static/src/scss/theme.scss',
             'theme_prime/static/src/scss/rtl.scss',
+            'theme_prime/static/src/scss/variants.scss',
             'theme_prime/static/src/scss/website.scss',
             'theme_prime/static/src/scss/website_sale.scss',
             'theme_prime/static/src/scss/sliders.scss',
@@ -92,18 +102,41 @@
             'theme_prime/static/src/scss/snippets/2_col_deal.scss',
             'theme_prime/static/src/scss/snippets/image_products.scss',
             'theme_prime/static/src/scss/front_end/bottom_bar.scss',
+            'theme_prime/static/src/snippets/s_blog_posts/000.scss',
             # Core
             'theme_prime/static/src/js/core/snippet_root_widget.js',
+            'theme_prime/static/src/xml/core/snippet_root_widget.xml',
+
             'theme_prime/static/src/js/core/product_root_widget.js',
+
             'theme_prime/static/src/js/core/cart_manager.js',
+            'theme_prime/static/src/xml/frontend/notification_template.xml',
+
             'theme_prime/static/src/js/core/cart_confirmation_dialog.js',
+            'theme_prime/static/src/xml/core/cart_confirmation_dialog.xml',
+
             # Snippets
+            'theme_prime/static/src/snippets/s_tp_countdown/000.xml',
             'theme_prime/static/src/js/frontend/dynamic_snippets.js',
+            'theme_prime/static/src/xml/frontend/dynamic_snippets.xml',
+            'theme_prime/static/src/xml/cards.xml',
+            'theme_prime/static/src/xml/listing_cards.xml',
+            'theme_prime/static/src/xml/frontend/utils.xml',
+            'theme_prime/static/src/xml/frontend/category_filters.xml',
+            'theme_prime/static/src/xml/frontend/2_col_deal.xml',
+            'theme_prime/static/src/xml/frontend/s_image_products.xml',
+            'theme_prime/static/src/xml/frontend/s_product_grid.xml',
+            'theme_prime/static/src/xml/frontend/hierarchical_category_templates.xml',
+            'theme_prime/static/src/xml/frontend/s_category.xml',
+            'theme_prime/static/src/xml/frontend/brands.xml',
+            'theme_prime/static/src/xml/frontend/image_hotspot.xml',   # TODO: kishan
+
             # Editor
             ('replace', 'web_editor/static/src/scss/web_editor.frontend.scss', 'theme_prime/static/src/scss/web_editor.frontend.scss'),
 
             # Search
             'theme_prime/static/src/js/frontend/search.js',
+            'theme_prime/static/src/xml/frontend/search_autocomplete.xml',
         ],
         'web._assets_primary_variables': [
             'theme_prime/static/src/scss/primary_variables.scss',
@@ -113,26 +146,18 @@
             'theme_prime/static/src/scss/bootstrap_overridden.scss',
         ],
         'website.assets_wysiwyg': [
+            'droggol_theme_common/static/src/js/hooks.js',
             'theme_prime/static/src/js/editor/snippets.editor.js',
             'theme_prime/static/src/scss/editor/editor.scss',
-            'theme_prime/static/src/scss/editor/dialogs/dialog_snippet_configurator.scss',
-            'theme_prime/static/src/scss/components/components.scss',
+
+            # 'theme_prime/static/src/scss/editor/dialogs/dialog_snippet_configurator.scss',
+            'theme_prime/static/src/xml/editor/dialogs/snippet_configurator_dialog.xml',
+            'theme_prime/static/src/xml/frontend/image_hotspot.xml',
+
+            'theme_prime/static/src/js/editor/snippets/snippets.options.js',
+            'theme_prime/static/src/xml/frontend/documents.xml',
+            'theme_prime/static/src/components/*'
         ],
-        'website.assets_editor': [
-            'theme_prime/static/src/js/core/theme_config.js',
-            'theme_prime/static/src/js/editor/snippet.options.js',
-            # Widgets
-            'theme_prime/static/src/js/editor/components/abstract_component.js',
-            'theme_prime/static/src/js/editor/components/product_selection_component.js',
-            'theme_prime/static/src/js/editor/components/dropdown_component.js',
-            'theme_prime/static/src/js/editor/components/selection_component.js',
-            'theme_prime/static/src/js/editor/components/body_component.js',
-            'theme_prime/static/src/js/editor/components/ui_component.js',
-            'theme_prime/static/src/js/editor/components/range_component.js',
-            'theme_prime/static/src/js/editor/components/boolean_component.js',
-            'theme_prime/static/src/js/editor/components/domain_component.js',
-            'theme_prime/static/src/js/editor/registries.js',
-            'theme_prime/static/src/js/editor/dialogs/dialog_snippet_configurator.js',
-        ],
+
     },
 }

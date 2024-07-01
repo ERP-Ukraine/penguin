@@ -1,1 +1,1 @@
-The documentation is available at https://prime-docs-v15-22051992.droggol.com/
+The documentation is available at https://prime-docs-v17-24052022.droggol.com/

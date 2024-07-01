@@ -1,9 +1,9 @@
-odoo.define('theme_prime.bottombar', function (require) {
-"use strict";
+/** @odoo-module **/
 
-var sAnimations = require('website.content.snippets.animation');
+import publicWidget from "@web/legacy/js/public/public_widget";
+import animations from "@website/js/content/snippets.animation";
 
-sAnimations.registry.tpBottomBar = sAnimations.Animation.extend({
+publicWidget.registry.tpBottomBar = animations.Animation.extend({
     selector: '.tp-bottombar-component',
     read_events: {
         'click .tp-drawer-action-btn': '_onClickDrawerActionBtn'
@@ -23,5 +23,4 @@ sAnimations.registry.tpBottomBar = sAnimations.Animation.extend({
         this.$('.tp-bottombar-secondary-element').toggleClass('tp-drawer-open');
         this.$target.toggleClass('tp-drawer-is-open');
     },
-});
 });

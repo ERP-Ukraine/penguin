@@ -4,7 +4,7 @@
     <template id="s_info_block_1" name="Info Block - 1">
         <section class="s_info_block_1 tp-editor-snippet-valign">
             <div class="container-fluid px-0">
-                <div class="row no-gutters s_nb_column_fixed align-items-center">
+                <div class="row g-0 s_nb_column_fixed align-items-center">
                     <div class="col-lg-4 offset-lg-1 p-4">
                         <h2>Proin est justo, euismod sit.</h2>
                         <p>Suspendisse est nunc, laoreet eget odio id, finibus convallis ipsum. Praesent eu nisi egestas, gravida dolor eget, suscipit lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla tincidunt eu.</p>
@@ -21,7 +21,7 @@
     <template id="s_info_block_2" name="Info Block - 2">
         <section class="s_info_block_2 tp-editor-snippet-valign">
             <div class="container-fluid px-0">
-                <div class="row no-gutters s_nb_column_fixed align-items-center">
+                <div class="row g-0 s_nb_column_fixed align-items-center">
                     <div class="col-lg-6">
                         <img src="/web/image/theme_prime.s_info_block_2_1" class="img img-fluid" alt="Info Block Image 01"/>
                     </div>
@@ -121,7 +121,7 @@
         <section class="s_info_block_6 pt16 pb16 tp-editor-snippet-valign">
             <div class="container-fluid">
                 <div class="row align-items-center s_col_no_bgcolor s_nb_column_fixed">
-                    <div class="col-12 offset-lg-1 col-lg-5 order-2 order-lg-0">
+                    <div class="col-12 offset-lg-1 col-lg-5 order-1">
                         <h5>On the Ear</h5>
                         <h1>Bluetooth Headset</h1>
                         <p>Vestibulum id laoreet sapien. Aliquam porttitor neque ut urna efficitur, eget tincidunt diam convallis. Vestibulum molestie nunc consectetur cursus tincidunt. Aenean interdum justo a tellus condimentum gravida.</p>
@@ -157,7 +157,7 @@
                         </div>
                         <a href="#" class="btn btn-primary mt-2">Shop Now</a>
                     </div>
-                    <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                    <div class="col-12 col-lg-6 mb-4 mb-lg-0 order-0 order-lg-2">
                         <img src="/web/image/theme_prime.s_info_block_6_1" class="img img-fluid mx-auto" alt="Info Block Image 01"/>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                         </div>
                         <div class="rounded-circle o_colored_level o_cc o_cc4 tp-badge-container tp-editor-bg-color-n-shadow">
                             <div class="tp-badge text-center">
-                                <div class="font-weight-bold">NEW</div>
+                                <div class="fw-bold">NEW</div>
                                 <div>Products</div>
                             </div>
                         </div>
@@ -231,49 +231,61 @@
             <div class="container">
                 <div class="row align-items-center s_col_no_bgcolor s_nb_column_fixed">
                     <div class="col-12 col-md-4">
-                        <div class="media align-items-center my-4 tp-editor-copy-n-move">
-                            <div class="media-body">
+                        <div class="d-flex align-items-center my-4 tp-editor-copy-n-move">
+                            <div class="flex-grow-1">
                                 <h5 style="text-align: right;">Free Delivery</h5>
                                 <p style="text-align: right;">All the lorem ipsum generators on the Internet<br/> tend to repeat predefined chunks as necessary.</p>
                             </div>
-                            <span class="fa fa-truck fa-3x text-o-color-1 ml-3"/>
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-truck fa-3x text-o-color-1 ms-3"/>
+                            </div>
                         </div>
-                        <div class="media align-items-center my-4 tp-editor-copy-n-move">
-                            <div class="media-body">
+                        <div class="d-flex align-items-center my-4 tp-editor-copy-n-move">
+                            <div class="flex-grow-1">
                                 <h5 style="text-align: right;">30 Days Return</h5>
                                 <p style="text-align: right;">Consectetur, from a Lorem Ipsum passage, and<br/> going through the cites of the word in classical.</p>
                             </div>
-                            <span class="fa fa-refresh fa-3x text-o-color-1 ml-3"/>
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-refresh fa-3x text-o-color-1 ms-3"/>
+                            </div>
                         </div>
-                        <div class="media align-items-center my-4 tp-editor-copy-n-move">
-                            <div class="media-body">
+                        <div class="d-flex align-items-center my-4 tp-editor-copy-n-move">
+                            <div class="flex-grow-1">
                                 <h5 style="text-align: right;">Genuine Product</h5>
                                 <p style="text-align: right;">Many desktop publishing packages and web<br/> page editors now use lorem ipsum as their.</p>
                             </div>
-                            <span class="fa fa-magic fa-3x text-o-color-1 ml-3"/>
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-magic fa-3x text-o-color-1 ms-3"/>
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-4">
                         <img src="/web/image/theme_prime.s_info_block_8_1" class="img img-fluid mx-auto" alt="Info Block Image 01"/>
                     </div>
                     <div class="col-12 col-md-4">
-                        <div class="media align-items-center my-4 tp-editor-copy-n-move">
-                            <span class="fa fa-phone fa-3x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center my-4 tp-editor-copy-n-move">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-phone fa-3x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>24X7 Support</h5>
                                 <p>All the lorem ipsum generators on the Internet<br/> tend to repeat predefined chunks as necessary.</p>
                             </div>
                         </div>
-                        <div class="media align-items-center my-4 tp-editor-copy-n-move">
-                            <span class="fa fa-rocket fa-3x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center my-4 tp-editor-copy-n-move">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-rocket fa-3x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Fast Service</h5>
                                 <p>Consectetur, from a Lorem Ipsum passage, and<br/> going through the cites of the word in classical.</p>
                             </div>
                         </div>
-                        <div class="media align-items-center my-4 tp-editor-copy-n-move">
-                            <span class="fa fa-thumbs-o-up fa-3x text-o-color-1 mr-3"/>
-                            <div class="media-body">
+                        <div class="d-flex align-items-center my-4 tp-editor-copy-n-move">
+                            <div class="flex-shrink-0">
+                                <span class="fa fa-thumbs-o-up fa-3x text-o-color-1 me-3"/>
+                            </div>
+                            <div class="flex-grow-1">
                                 <h5>Customer Satisfaction</h5>
                                 <p>Many desktop publishing packages and web<br/> page editors now use lorem ipsum as their.</p>
                             </div>

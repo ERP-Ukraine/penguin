@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <templates>
-    <t t-name="s_d_products_grid_tmpl">
+    <t t-name="s_d_products_grid_tmpl_suggested">
         <t t-if="data.length">
-            <div t-foreach="data" t-as="product" class="card w-100">
+            <div t-foreach="data" t-as="product" t-key="product.id" class="card w-100">
                 <a class="card-img-top" t-att-href="product.website_url">
                     <img loading="lazy" t-att-src="product.img_medium" class="img img-fluid" t-att-alt="product.name"/>
                 </a>

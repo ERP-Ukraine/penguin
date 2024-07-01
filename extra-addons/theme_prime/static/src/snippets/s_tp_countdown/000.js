@@ -1,59 +1,54 @@
-odoo.define('theme_prime.countdown', function (require) {
-'use strict';
+/** @odoo-module **/
 
-const publicWidget = require('web.public.widget');
-const time = require('web.time');
-const { qweb } = require('web.core');
+import { deserializeDateTime } from "@web/core/l10n/dates";
+import { renderToElement } from "@web/core/utils/render";
+import publicWidget from "@web/legacy/js/public/public_widget";
 
 publicWidget.registry.TpCountdown = publicWidget.Widget.extend({
-    selector: '.tp-countdown',
-    disabledInEditableMode: false,
-    xmlDependencies: ['/theme_prime/static/src/snippets/s_tp_countdown/000.xml'],
+    selector: ".tp-countdown",
     start: function () {
-        const self = this;
         const dueDate = this.el.dataset.dueDate;
-        const eventTime = dueDate.includes("-") ? moment(time.str_to_datetime(dueDate)) : moment.unix(this.el.dataset.dueDate);
-        const currentTime = moment();
-        const diffTime = eventTime - currentTime;
-        const interval = 1000;
-        let duration = moment.duration(diffTime);
-        if (this.el.dataset.countdownStyle) {
-            this.$('.tp-countdown-container').remove();
-            this.$target.prepend($(qweb.render(this.el.dataset.countdownStyle)));
+        let eventTime = luxon.DateTime.now();
+        if (dueDate.includes("-")) {
+            eventTime = deserializeDateTime(dueDate);
+        } else {
+            eventTime = luxon.DateTime.fromISO(new Date(parseInt(dueDate) * 1000).toISOString());
         }
-        this.$('.tp-end-msg-container').addClass('css_non_editable_mode_hidden');
-        if (diffTime > 0) {
+        if (this.el.dataset.countdownStyle) {
+            if (this.el.querySelector(".tp-countdown-container")) {
+                this.el.querySelector(".tp-countdown-container").remove();
+            }
+            this.$target.prepend($(renderToElement(this.el.dataset.countdownStyle)));
+        }
+        this.msgContainer = this.el.querySelector(".tp-end-msg-container");
+        if (this.msgContainer) {
+            this.msgContainer.classList.add("css_non_editable_mode_hidden");
+        }
+        if (Math.floor(eventTime.diffNow().as("seconds")) > 0) {
             this.countDownTimer = setInterval(() => {
-                duration = moment.duration(duration.asMilliseconds() - interval, 'milliseconds');
-                if (duration.asMilliseconds() < 0) {
+                const diff = eventTime.diffNow();
+                if (Math.floor(diff.as("seconds")) <= 0) {
                     this._endCountdown();
                 }
-                let d = parseInt(moment.duration(duration).asDays());
-                let h = moment.duration(duration).hours();
-                let m = moment.duration(duration).minutes();
-                let s = moment.duration(duration).seconds();
-
-                d = $.trim(d).length === 1 ? '0' + d : d;
-                h = $.trim(h).length === 1 ? '0' + h : h;
-                m = $.trim(m).length === 1 ? '0' + m : m;
-                s = $.trim(s).length === 1 ? '0' + s : s;
-
-                this.$('.countdown_days').text(d);
-                this.$('.countdown_hours').text(h);
-                this.$('.countdown_minutes').text(m);
-                this.$('.countdown_seconds').text(s);
-            }, interval);
+                const format = diff.toFormat("dd:hh:mm:ss").split(":");
+                this.el.querySelector(".countdown_days").textContent = format[0];
+                this.el.querySelector(".countdown_hours").textContent = format[1];
+                this.el.querySelector(".countdown_minutes").textContent = format[2];
+                this.el.querySelector(".countdown_seconds").textContent = format[3];
+            }, 1000);
         } else {
             this._endCountdown();
         }
         return this._super.apply(this, arguments);
     },
     _endCountdown: function () {
-        this.$('.countdown_days').text('00');
-        this.$('.countdown_hours').text('00');
-        this.$('.countdown_minutes').text('00');
-        this.$('.countdown_seconds').text('00');
-        this.$('.tp-end-msg-container').removeClass('css_non_editable_mode_hidden');
+        this.el.querySelector(".countdown_days").textContent = "00";
+        this.el.querySelector(".countdown_hours").textContent = "00";
+        this.el.querySelector(".countdown_minutes").textContent = "00";
+        this.el.querySelector(".countdown_seconds").textContent = "00";
+        if (this.msgContainer) {
+            this.msgContainer.classList.remove("css_non_editable_mode_hidden");
+        }
         if (this.countDownTimer) {
             clearInterval(this.countDownTimer);
         }
@@ -64,6 +59,4 @@ publicWidget.registry.TpCountdown = publicWidget.Widget.extend({
         }
         this._super.apply(this, arguments);
     },
-});
-
 });

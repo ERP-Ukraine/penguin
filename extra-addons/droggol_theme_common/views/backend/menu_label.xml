@@ -21,10 +21,10 @@
     </record>
 
     <menuitem name="Menu Labels"
-            id="menu_dr_website_menu_label"
-            action="dr_website_menu_label_action"
-            parent="website.menu_website_global_configuration"
-            sequence="46"
-            groups="base.group_no_one"/>
+        id="menu_dr_website_menu_label"
+        action="dr_website_menu_label_action"
+        parent="website.menu_website_global_configuration"
+        sequence="46"
+        groups="base.group_no_one"/>
 
 </odoo>

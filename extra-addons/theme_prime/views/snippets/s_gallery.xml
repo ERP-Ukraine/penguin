@@ -36,10 +36,10 @@
     <template id="s_gallery_3" name="Gallery - 3">
         <section class="s_gallery tp-image-gallery">
             <div class="container-fluid px-0">
-                <div class="row s_col_no_bgcolor no-gutters">
+                <div class="row s_col_no_bgcolor g-0">
                    <div t-foreach="list(range(1, 13))" t-as="number" class="col-6 col-sm-4 col-md-3 col-lg-2">
                         <t t-set="number" t-value="'%02d' % number"/>
-                        <div class="gallery-image gallery-zoom-in-effect gallery-overlay-effect">
+                        <div class="gallery-image gallery-zoom-in-effect gallery-overlay-effect position-relative">
                             <img class="img-fluid" t-attf-src="/web/image/theme_prime.s_gallery_#{number}" t-attf-title="Gallery Image #{number}" t-attf-alt="Gallery Image #{number}"/>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
     <template id="s_gallery_4" name="Gallery - 4">
         <section class="s_gallery tp-image-gallery">
             <div class="container-fluid px-0">
-                <div class="row no-gutters">
+                <div class="row g-0">
                    <div t-foreach="list(range(1, 7))" t-as="number" class="col-12 col-md-6 col-lg-4">
                         <t t-set="number" t-value="'%02d' % number"/>
                         <div class="gallery-image gallery-text-effect">

@@ -103,7 +103,7 @@
                     <div class="col-12 col-sm-6 col-lg-3 py-4">
                         <i class="fa fa-user fa-2x rounded-circle bg-o-color-1"/>
                         <div class="pb32 pt32 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                            <hr class="w-75 mr-auto"/>
+                            <hr class="w-75 me-auto"/>
                         </div>
                         <h4>200+</h4>
                         <p class="mt-4">
@@ -112,8 +112,8 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 py-4">
                         <i class="fa fa-magic fa-2x rounded-circle bg-o-color-1"/>
-                        <div class="pb32 pt32 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                            <hr class="w-75 mr-auto"/>
+                        <div class="s_hr pt32 pb32" data-snippet="s_hr" data-name="Separator">
+                            <hr class="w-75 me-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                         </div>
                         <h4>156</h4>
                         <p class="mt-4">
@@ -122,8 +122,8 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 py-4">
                         <i class="fa fa-smile-o fa-2x rounded-circle bg-o-color-1"/>
-                        <div class="pb32 pt32 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                            <hr class="w-75 mr-auto"/>
+                        <div class="s_hr pt32 pb32" data-snippet="s_hr" data-name="Separator">
+                            <hr class="w-75 me-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                         </div>
                         <h4>97 %</h4>
                         <p class="mt-4">
@@ -132,8 +132,8 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 py-4">
                         <i class="fa fa-cube fa-2x rounded-circle bg-o-color-1"/>
-                        <div class="pb32 pt32 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                            <hr class="w-75 mr-auto"/>
+                        <div class="s_hr pt32 pb32" data-snippet="s_hr" data-name="Separator">
+                            <hr class="w-75 me-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                         </div>
                         <h4>365 x 7</h4>
                         <p class="mt-4">
@@ -151,8 +151,8 @@
                 <div class="row">
                     <div class="col-12 col-sm-6 col-lg-3 py-4">
                         <h2><font style="font-size: 36px;">200+</font></h2>
-                        <div class="pb32 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                            <hr class="w-75 mr-auto"/>
+                        <div class="s_hr pt16 pb32" data-snippet="s_hr" data-name="Separator">
+                            <hr class="w-75 me-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                         </div>
                         <h6>Customers</h6>
                         <p class="mt-4">
@@ -161,8 +161,8 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 py-4">
                         <h2><font style="font-size: 36px;">156</font></h2>
-                        <div class="pb32 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                            <hr class="w-75 mr-auto"/>
+                        <div class="s_hr pt16 pb32" data-snippet="s_hr" data-name="Separator">
+                            <hr class="w-75 me-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                         </div>
                         <h6>New Ideas</h6>
                         <p class="mt-4">
@@ -171,8 +171,8 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 py-4">
                         <h2><font style="font-size: 36px;">97%</font></h2>
-                        <div class="pb32 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                            <hr class="w-75 mr-auto"/>
+                        <div class="s_hr pt16 pb32" data-snippet="s_hr" data-name="Separator">
+                            <hr class="w-75 me-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                         </div>
                         <h6>Happy Clients</h6>
                         <p class="mt-4">
@@ -181,8 +181,8 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3 py-4">
                         <h2><font style="font-size: 36px;">365 x 7</font></h2>
-                        <div class="pb32 pt16 s_hr text-300" data-snippet="s_hr" data-name="Separator">
-                            <hr class="w-75 mr-auto"/>
+                        <div class="s_hr pt16 pb32" data-snippet="s_hr" data-name="Separator">
+                            <hr class="w-75 me-auto" style="border-top-width: 1px; border-top-style: solid;"/>
                         </div>
                         <h6>Customer Support</h6>
                         <p class="mt-4">

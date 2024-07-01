@@ -1,56 +1,32 @@
-odoo.define('theme_prime.mixins', function (require) {
-"use strict";
+/** @odoo-module **/
 
-const ajax = require('web.ajax');
-let wUtils = require('website.utils');
-let { Markup} = require('web.utils');
-let {qweb, _t} = require('web.core');
-let ConfirmationDialog = require('theme_prime.cart_confirmation_dialog');
-let {updateCartNavBar} = require('website_sale.utils');
+import TpConfirmationDialog from "@theme_prime/js/core/cart_confirmation_dialog";
+import wSaleUtils from "@website_sale/js/website_sale_utils";
+import { loadJS } from "@web/core/assets";
+import { CartSidebar } from "@theme_prime/js/sidebar";
+import { renderToElement, renderToString } from "@web/core/utils/render";
+import { localization } from "@web/core/l10n/localization";
+import { _t } from "@web/core/l10n/translation";
+import { markup } from "@odoo/owl";
 
-const { CartSidebar } = require('theme_prime.sidebar');
-
-
-let DroggolUtils = {
-    _getDomainWithWebsite: function (domain) {
-        return domain.concat(wUtils.websiteDomain(this));
-    },
-    _getShopConfig: async function () {
-        return await this._rpc({ model: 'website', method: 'get_theme_prime_shop_config' });
-    },
-};
-
-let primeUtilities = {
+export let primeUtilities = {
     /**
      * @private
      * As method name suggest will refector someday
      */
     _primeLoadExtras: async function (extraMethod) {
         var proms = [];
-        if (this.primeXmlDependencies) {
-            proms.push.apply(proms, _.map(this.primeXmlDependencies, function (xmlPath) {
-                return ajax.loadXML(xmlPath, qweb);
-            }));
-        }
-        if (this.primeJsLibs || this.primeCssLibs || this.primeAssetLibs) {
-            this.jsLibs = this.primeJsLibs;
-            this.cssLibs = this.primeCssLibs;
-            this.assetLibs = this.primeAssetLibs;
-            this.primeJsLibs = null;
-            this.primeCssLibs = null;
-            this.primeAssetLibs = null;
-            proms.push(this._loadLibs(this));
-        }
+        await Promise.all(this.extraLibs.map(async (lib) => { await loadJS(lib);}));
         return await Promise.all(proms).then(() => { if (extraMethod) { extraMethod() }});
     }
 };
 
-let MarkupRecords = {
+export let MarkupRecords = {
     _markUpValues: function (fieldNames, records) {
         records.forEach(record => {
             for (const fieldName of fieldNames) {
                 if (record[fieldName]) {
-                    record[fieldName] = Markup(record[fieldName]);
+                    record[fieldName] = markup(record[fieldName]);
                 }
             }
         });
@@ -58,29 +34,30 @@ let MarkupRecords = {
     }
 };
 
-let B2bMixin = {
+export let B2bMixin = {
     _isB2bModeEnabled: function () {
         let data = $(document.documentElement).data();
         // visibility saved my a**
         // But we will find a better way in next version this is sh*t
         return data && !data.logged && odoo.dr_theme_config.json_b2b_shop_config && odoo.dr_theme_config.json_b2b_shop_config.dr_enable_b2b;
     },
-
+    displayNotification: function (data) {
+        this.notification.add(data.message, data);
+    },
     _loggedInNotification: function () {
-        let buttons = [{ text: _t('Log in'), click: () => { window.location = '/web/login'; } }];
+        let buttons = [{ name: _t('Log in'), onClick: () => { window.location = '/web/login'; } }];
         // Ugly hack
         // Just like géry debongnie I don't like Jquery
-        odoo.dr_theme_config.has_sign_up ? buttons.push({ text: _t('Sign Up'), click: () => { window.location = '/web/signup'; } }) : buttons.push({ text: _t('Close'), click: () => { $('.o_notification_manager .tp-login-notification').remove() } });
+        odoo.dr_theme_config.has_sign_up ? buttons.push({ name: _t('Sign Up'), onClick: () => { window.location = '/web/signup'; } }) : buttons.push({ text: _t('Close'), click: () => { $('.o_notification_manager .tp-login-notification').remove() } });
         this.displayNotification({
             className: 'tp-notification tp-login-notification tp-bg-soft-primary o_animate',
-            messageIsHtml: true,
-            message: Markup(qweb.render('DroggolNotification', { productName: _t('Log in to place an order'), iconClass: 'fa fa-sign-in', color: 'primary', message: _t('Please log in first.') })),
+            message: markup(renderToString('DroggolNotification', { productName: _t('Log in to place an order'), iconClass: 'fa fa-sign-in', color: 'primary', message: _t('Please log in first.') })),
             buttons: buttons,
         });
     },
 }
 
-let cartMixin = _.extend({}, B2bMixin, {
+export let cartMixin = Object.assign({}, B2bMixin, {
     /**
     * @private
     */
@@ -120,7 +97,7 @@ let cartMixin = _.extend({}, B2bMixin, {
     },
 });
 
-let ProductCarouselMixins = {
+export let ProductCarouselMixins = {
     _bindEvents: function ($target) {
         // Resolve conflict when multiple product carousel on same page
         const $carousel = $target.find('#o-carousel-product');
@@ -142,18 +119,26 @@ let ProductCarouselMixins = {
     },
 };
 
-let OwlMixin = {
-    jsLibs: ['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js'],
+export let OwlMixin = {
+    extraLibs: ['/theme_prime/static/lib/OwlCarousel2-2.3.4/owl.carousel.js'],
     initializeOwlSlider: function (ppr, isTwoColLayout) {
         let responsive = {0: {items: 1}, 576: {items: 2}, 768: {items: 3}, 992: {items: 3}, 1200: {items: ppr}};
+        if (this.uiConfigInfo_init && this.uiConfigInfo_init.mobileConfig &&this.uiConfigInfo_init.mobileConfig.style !== 'default') {
+            responsive[0] = { items: 2 };
+        }
         if (isTwoColLayout) {
             responsive = {0: {items: 1}, 576: {items: ppr}};
         }
-        this.$('.droggol_product_slider').owlCarousel({dots: false, margin: 20, stagePadding: 5, rewind: true, rtl: _t.database.parameters.direction === 'rtl', nav: true, navText: ['<i class="dri dri-arrow-left-l"></i>', '<i class="dri dri-arrow-right-l"></i>'], responsive: responsive});
+        let { direction } = localization;
+        this.$('.droggol_product_slider').owlCarousel({ dots: false, margin: 20, stagePadding: 5, rewind: true, rtl: direction === 'rtl', nav: true, navText: ['<i class="dri dri-arrow-left-l"></i>', '<i class="dri dri-arrow-right-l"></i>'], responsive: responsive});
+        if (direction === 'rtl') {
+            // Chrome update not allowing to lazy loaded image to be loaded when rtl is enabled with owlCarousel
+            this.$('.droggol_product_slider').find('img[loading="lazy"]').removeAttr('loading');
+        }
     }
 };
 
-let ProductsBlockMixins = {
+export let ProductsBlockMixins = {
     _setCamelizeAttrs: function () {
         this._super.apply(this, arguments);
         this.selectionType = false;
@@ -173,7 +158,7 @@ let ProductsBlockMixins = {
                 }
                 break;
             case 'advance':
-                if (_.isArray(this.selectionInfo.domain_params.domain)) {
+                if (Array.isArray(this.selectionInfo.domain_params.domain)) {
                     domain = this.selectionInfo.domain_params.domain;
                 }
                 break;
@@ -199,11 +184,12 @@ let ProductsBlockMixins = {
         let {products} = data;
         let selectionInfo = this.selectionInfo;
         if (selectionInfo && selectionInfo.selectionType === 'manual') {
-            products = _.map(selectionInfo.recordsIDs, function (productID) {
-                return _.findWhere(data.products, {id: productID}) || false;
+            products = selectionInfo.recordsIDs.map(productID => {
+                let results = data && data.products || data;
+                return results.find(p => p.id === productID) || false;
             });
         }
-        return _.compact(products);
+        return products.filter((x) => !!x);
     },
     /**
     * @private
@@ -214,7 +200,7 @@ let ProductsBlockMixins = {
     },
 };
 
-let HotspotMixns = {
+export let HotspotMixns = {
     _getHotspotConfig: function () {
         if (this.$target.get(0).dataset.hotspotType === 'static') {
             return {titleText: this.$target.get(0).dataset.titleText, subtitleText: this.$target.get(0).dataset.subtitleText, buttonLink: this.$target.get(0).dataset.buttonLink, hotspotType: this.$target.get(0).dataset.hotspotType, buttonText: this.$target.get(0).dataset.buttonText, imageSrc: this.$target.get(0).dataset.imageSrc};
@@ -222,7 +208,7 @@ let HotspotMixns = {
         return {};
     },
     _isPublicUser: function () {
-        return _.has(odoo.dr_theme_config, "is_public_user") && odoo.dr_theme_config.is_public_user;
+        return odoo.dr_theme_config.hasOwnProperty("is_public_user") && odoo.dr_theme_config.is_public_user;
     },
 
     _cleanNodeAttr: function () {
@@ -233,7 +219,7 @@ let HotspotMixns = {
     },
 };
 
-let CategoryPublicWidgetMixins = {
+export let CategoryPublicWidgetMixins = {
 
     _setCamelizeAttrs: function () {
         this._super.apply(this, arguments);
@@ -285,10 +271,15 @@ let CategoryPublicWidgetMixins = {
     },
 };
 
-var TabsMixin = {
+export let TabsMixin = {
     bodyTemplate: 'd_s_category_cards_wrapper',
-    fieldstoFetch: ['name', 'price', 'description_sale', 'dr_label_id', 'rating', 'public_categ_ids', 'product_template_image_ids', 'product_variant_ids', 'dr_stock_label', 'colors'],
+    fieldstoFetch: ['name', 'description_sale', 'dr_label_id', 'rating', 'public_categ_ids', 'product_template_image_ids', 'product_variant_ids', 'dr_stock_label', 'colors'],
     noDataTemplateSubString: _t("Sorry, We couldn't find any products under this category"),
+
+    init: function () {
+        this._super.apply(this, arguments);
+        this.rpc = this.bindService("rpc");
+    },
 
     _getDomainValues: function (recordID) {
         return {};
@@ -318,7 +309,7 @@ var TabsMixin = {
     * @returns {Integer} recordID
     */
     _fetchProductsByDomain: function (params) {
-        return this._rpc({route: this.controllerRoute, params: params});
+        return this.rpc(this.controllerRoute, params);
     },
     /**
      * Render and append new products.
@@ -328,16 +319,12 @@ var TabsMixin = {
      */
     _renderNewProducts: function (products, recordID) {
         this._markUpValues(this.tpFieldsToMarkUp, products);
-        var $tmpl = $(qweb.render('d_s_category_cards_item', {
-            data: products,
-            widget: this,
-            recordID: recordID
-        }));
+        var $tmpl = $(renderToElement('d_s_category_cards_item', {data: products, widget: this, recordID: recordID}));
         this.$('.d_loader_default').remove();
         $tmpl.appendTo(this.$('.d_s_category_cards_container'));
         this.initializeOwlSlider(this.uiConfigInfo.ppr);
-        this.trigger_up('widgets_start_request', {$target: this.$('.tp_show_similar_products')});
-        this.trigger_up('widgets_start_request', { $target: this.$('.tp-color-preview-container')});
+        this._reloadWidget({ selector: '.tp_show_similar_products'})
+        this._reloadWidget({ selector: '.tp-product-preview-swatches'})
     },
 
     //--------------------------------------------------------------------------
@@ -355,7 +342,7 @@ var TabsMixin = {
         var recordID = parseInt($target.attr('data-category-id'), 10);
         if (!this.$('.d_s_category_cards_item[data-category-id=' + recordID + ']').length) {
             if (this.loaderTemplate) {
-                var $template = $(qweb.render(this.loaderTemplate));
+                var $template = $(renderToElement(this.loaderTemplate));
                 $template.addClass('d_loader_default').appendTo(this.$('.d_s_category_cards_container'));
             }
             this._fetchAndAppendByCategory(recordID);
@@ -364,54 +351,48 @@ var TabsMixin = {
         }
     },
 };
-var CartManagerMixin = _.extend({}, B2bMixin, {
-
+export const CartManagerMixin = Object.assign({}, B2bMixin, {
     _handleCartConfirmation: function (cartFlow, data) {
-        cartFlow = cartFlow == 'default'? 'notification' : cartFlow;
-        var methodName = _.str.sprintf('_cart%s', _.str.classify(cartFlow));
-        return this[methodName](data);
+        const methods = {
+            default: "_cartNotification",
+            notification: "_cartNotification",
+            dialog: "_cartDialog",
+            side_cart: "_cartSideCart",
+        };
+        return this[methods[cartFlow]](data);
     },
-
+    displayNotification: function (data) {
+        this.notification.add(data.message, data);
+    },
     _cartNotification: function (data) {
         this.displayNotification({
             className: 'tp-notification tp-bg-soft-primary o_animate',
-            messageIsHtml: true,
-            message: Markup(qweb.render('DroggolNotification', { color: 'primary', productID: data.product_id, productName: data.product_name, message: _t('Added to your cart.')})),
-            buttons: [{text: _t('View cart'), click: () => {window.location = '/shop/cart';}}, {text: _t('Checkout'), click: () => {window.location = '/shop/checkout?express=1';}}],
+            message: markup(renderToString('DroggolNotification', { color: 'primary', productID: data.product_id, productName: data.product_name, message: _t('Added to your cart.')})),
+            buttons: [{name: _t('View cart'), onClick: () => {window.location = '/shop/cart';}}, {name: _t('Checkout'), onClick: () => {window.location = '/shop/checkout?express=1';}}],
         });
     },
 
     _cartDialog: function (data) {
-        new ConfirmationDialog(this, {data: data, size: 'medium'}).open();
+        new TpConfirmationDialog(this, {data: data, size: 'medium'}).open();
     },
 
     _cartSideCart: function (data) {
-        new CartSidebar(this).open();
+        return new CartSidebar(this, {
+            title: _t("Your Cart"),
+            icon: "dri dri-cart",
+            fetchUrl: "/shop/cart",
+            fetchParams: { type: "tp_cart_sidebar_request" },
+            position: "end",
+        }).show();
     },
 
     _customCartSubmit: function (params) {
         params.force_create = true;
         params.dr_cart_flow = odoo.dr_theme_config.cart_flow || 'notification';
-        return this._rpc({route: "/shop/cart/update_json", params: params}).then(async data => {
-            updateCartNavBar(data);
+        return this.rpc("/shop/cart/update_json", params).then(async data => {
+            wSaleUtils.updateCartNavBar(data);
             this.$el.trigger('dr_close_dialog', {});
             return this._handleCartConfirmation(params.dr_cart_flow, data);
         });
     },
-});
-
-return {
-    DroggolUtils: DroggolUtils,
-    HotspotMixns: HotspotMixns,
-    ProductCarouselMixins: ProductCarouselMixins,
-    CategoryPublicWidgetMixins: CategoryPublicWidgetMixins,
-    OwlMixin: OwlMixin,
-    ProductsBlockMixins: ProductsBlockMixins,
-    CartManagerMixin: CartManagerMixin,
-    cartMixin: cartMixin,
-    MarkupRecords: MarkupRecords,
-    TabsMixin: TabsMixin,
-    primeUtilities: primeUtilities,
-    B2bMixin: B2bMixin,
-};
 });

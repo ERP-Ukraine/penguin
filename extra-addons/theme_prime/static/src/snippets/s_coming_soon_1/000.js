@@ -1,8 +1,7 @@
-odoo.define('theme_prime.s_coming_soon_frontend', function (require) {
-'use strict';
+/** @odoo-module **/
 
-require('theme_prime.countdown');
-const publicWidget = require('web.public.widget');
+import "@theme_prime/snippets/s_tp_countdown/000";
+import publicWidget from "@web/legacy/js/public/public_widget";
 
 publicWidget.registry.s_coming_soon = publicWidget.Widget.extend({
     selector: '.s_coming_soon',
@@ -34,6 +33,4 @@ publicWidget.registry.TpCountdown.include({
         }
         this._super.apply(this, arguments);
     }
-});
-
 });

@@ -1,5 +1,5 @@
 .o_rtl {
-    .oe_website_sale .o_wsale_products_main_row {
+    .oe_website_sale {
         #products_grid_before .tp-price-filter {
             .irs--square {
                 direction: rtl;
@@ -23,10 +23,6 @@
     #o-carousel-product .carousel-control-prev > span, #o-carousel-product .carousel-control-next > span {
         transform: rotate(-180deg) !important;
     }
-}
-
-.drift-zoom-pane.tp-rtl-zoom-pane {
-    direction: rtl;
 }
 
 //------------------------------------------------------------------------------

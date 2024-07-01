@@ -1,9 +1,10 @@
-@mixin tp-icon-center($size) {
+@mixin tp-icon-center($size, $font-size) {
     padding: 0;
-    height: $size;
-    width: $size;
-    line-height: $size;
-    text-align: center;
+    height: $size+rem !important;
+    width: $size+rem !important;
+    line-height: $size+rem !important;
+    text-align: center !important;
+    font-size: $font-size+rem !important;
 }
 
 @mixin tp-font-icons {
@@ -12,173 +13,34 @@
     }
 }
 
-@mixin tp-scroll($width: 8px) {
+@mixin tp-scroll($width: 8px, $height: 8px) {
     @include media-breakpoint-up(md) {
         &::-webkit-scrollbar {
             width: $width;
+            height: $height;
         }
         &::-webkit-scrollbar-track {
-            background-color: o-color('300');
+            background-color: rgba(0,0,0,.07);
         }
         &::-webkit-scrollbar-thumb {
-            background-color: o-color('800');
-        }
-    }
-}
-
-@mixin dr-navbar-light-default {
-    background-color: gray('white') !important;
-    .navbar-brand {
-        color: $navbar-light-brand-color;
-        @include hover-focus {
-            color: $navbar-light-brand-hover-color;
-        }
-    }
-
-    .navbar-nav {
-        .nav-link {
-            color: $navbar-light-color;
-            @include hover-focus {
-                color: $navbar-light-hover-color;
-            }
-            &.disabled {
-                color: $navbar-light-disabled-color;
-            }
-        }
-        .show > .nav-link,
-        .active > .nav-link,
-        .nav-link.show,
-        .nav-link.active {
-            color: $navbar-light-active-color;
-        }
-    }
-
-    .navbar-toggler {
-        color: $navbar-light-color;
-        border-color: $navbar-light-toggler-border-color;
-    }
-
-    .navbar-toggler-icon {
-        background-image: $navbar-light-toggler-icon-bg;
-    }
-
-    .navbar-text {
-        color: $navbar-light-color;
-        a {
-            color: $navbar-light-active-color;
-            @include hover-focus {
-                color: $navbar-light-active-color;
-            }
+            background-color: rgba(0,0,0,.15);
         }
     }
 }
 
 @mixin tp-header-navbar-color-system() {
     $bg-color: o-color('menu-custom') or o-color('menu') or rgba(0, 0, 0, 0);
-    $color: color-yiq($bg-color);
-    @if $color == $yiq-text-dark {
+    $color: color-contrast($bg-color);
+    @if $color == $color-contrast-dark {
         color: $color;
     } @else {
         color: rgba($color, 0.8);
     }
     &:hover, &.active {
-        @if $color == $yiq-text-dark {
+        @if $color == $color-contrast-dark {
             color: o-color('primary');
         } @else {
             color: $color;
-        }
-    }
-}
-
-@mixin tp-mobile-header() {
-    @include media-breakpoint-down(md) {
-        // Toggle button
-        .tp-navbar-toggler {
-            border: none;
-            background: transparent !important;
-            &:focus {
-                outline: none;
-            }
-            .icon-bar {
-                width: 25px;
-                height: 2px;
-                background-color: o-color('primary');
-                display: block;
-                transition: all 0.2s;
-                margin: 5px 2px;
-            }
-            .top-bar {
-                transform: rotate(45deg);
-                transform-origin: 10% 10%;
-            }
-            .middle-bar {
-                opacity: 0;
-            }
-            .bottom-bar {
-                transform: rotate(-45deg);
-                transform-origin: 10% 90%;
-            }
-            &.collapsed {
-                .icon-bar {
-                    background-color: o-color('dark');
-                }
-                .top-bar, .bottom-bar  {
-                    transform: rotate(0);
-                }
-                .middle-bar {
-                    opacity: 1;
-                }
-            }
-        }
-        // In small device always white navbar
-        #wrapwrap > header > .navbar {
-            @include dr-navbar-light-default();
-        }
-        // Change Odoo style
-        #wrapwrap > header .collapsing #top_menu, #wrapwrap > header .show #top_menu {
-            padding-top: 0px;
-            padding-bottom: 0px;
-            text-align: left;
-        }
-        // Change navbar style also highlight menu
-        #top_menu_container {
-            max-width: 100%;
-            #top_menu_collapse {
-                margin-top: 0.5rem;
-                margin-left: -1rem;
-                margin-bottom: -0.5rem;
-                margin-right: -1rem;
-                border-top: 1px solid o-color('400');
-                #top_menu > .nav-item {
-                    > .nav-link {
-                        font-weight: $headings-font-weight;
-                        position: relative;
-                        padding: 1rem 2rem;
-                        border-bottom: 1px solid o-color('400');
-                    }
-                    &.tp-primary-bg > .nav-link > .dri {
-                        @include o-position-absolute($top: 18px, $left: 10px);
-                    }
-                }
-            }
-        }
-        // Account info
-        .tp-account-info {
-            a:not(.dropdown-item) {
-                color: o-color('dark') !important;
-                transition: 0.2s;
-                @include hover {
-                    color: o-color('primary') !important;
-                }
-            }
-            @include tp-font-icons {
-                font-size: 1.4rem;
-            }
-            .my_wish_quantity, .my_cart_quantity {
-                padding: 0.4em 0.6em;
-                border-radius: 40px;
-                vertical-align: top;
-            }
         }
     }
 }
@@ -187,11 +49,14 @@
     &:focus {
         outline: none;
     }
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
+        height: 30px;
+        width: 30px;
         .dri {
-            height: 30px;
-            width: 30px;
-            line-height: 30px !important;
+            color: map-get($grays, '500');
+            height: 27px;
+            width: 27px;
+            line-height: 27px !important;
         }
     }
     transition: all 0.3s;
@@ -213,13 +78,13 @@
 
 @mixin dr-owl-arrows-position-style ($left) {
     .owl-prev {
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             left: -15px;
         }
         @include o-position-absolute($bottom: 50%, $left: $left);
     }
     .owl-next {
-        @include media-breakpoint-down(md) {
+        @include media-breakpoint-down(lg) {
             right: -15px;
         }
         @include o-position-absolute($bottom: 50%, $right: $left);
@@ -234,38 +99,22 @@
     }
 
     // Center elements
-    .dr-list-variant-radio-circle {
-        justify-content: center !important;
-    }
-    .css_quantity {
+    .css_attribute_select {
         margin: auto;
-        display: flex;
-        justify-content: center;
-    }
-    .dr-list-variant-radio-square {
-        justify-content: center !important;
     }
     .variant_attribute .align-items-center {
         justify-content: center;
     }
-    .variant_attribute  li.dr-list-radio-attribute{
-        display: inline-block;
-        margin-right: 15px !important;
-    }
-
     .js_add_cart_variants {
         padding-right: 10px;
         padding-left: 10px;
-    }
-    .dr-variant {
-        justify-content: center !important;
     }
 
     // Carousel
     section#product_detail {
         text-align: center;
         .d_shop_product_details_carousel {
-            .carousel-indicators {
+            .o_carousel_product_indicators {
                 display: none !important;
                 > li {
                     height: 30px;
@@ -277,13 +126,9 @@
                 }
             }
             .carousel-outer {
-                height: 250px;
+                height: 250px !important;
             }
         }
-    }
-
-    .js_check_product{
-        flex-grow: 2.5;
     }
     .product_price {
         margin-top: 10px !important;

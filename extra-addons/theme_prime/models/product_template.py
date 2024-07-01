@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2019-Present Droggol Infotech Private Limited. (<https://www.droggol.com/>)
 
+from odoo.osv import expression
 from odoo import models, fields, api, tools
 
 
@@ -12,7 +13,7 @@ class ProductTemplate(models.Model):
     def _search_dr_has_discount(self, operator, value):
         pricelist_id = self._context.get('pricelist')
         if pricelist_id:
-            all_product_data, discounted_product_ids = self._get_product_pricelist_data(pricelist_id)
+            discounted_product_ids = self._get_product_pricelist_data(pricelist_id)
             operator = 'in' if operator == '!=' else 'not in'
             return [('id', operator, discounted_product_ids)]
         return []
@@ -36,7 +37,6 @@ class ProductTemplate(models.Model):
 
     @api.model
     def _pricelist_items_for_date(self, pricelist_id, date):
-        self.env['product.pricelist.item'].flush(['price', 'currency_id', 'company_id'])
         self.env.cr.execute(
             """ SELECT item.id FROM product_pricelist_item AS item
                 WHERE (item.pricelist_id = %s) AND (item.date_start IS NULL OR item.date_start<=%s) AND (item.date_end IS NULL OR item.date_end>=%s)
@@ -44,25 +44,26 @@ class ProductTemplate(models.Model):
         return [x[0] for x in self.env.cr.fetchall()]
 
     def _get_product_pricelist_data(self, pricelist_id):
-        all_product_data, discounted_product_ids, catch_date = self._get_product_pricelist_cache(pricelist_id)
+        discounted_product_ids, catch_date = self._get_product_pricelist_cache(pricelist_id)
         need_catch_update = self._need_catch_update(pricelist_id, catch_date)
         if need_catch_update:
             self.clear_caches()
-            all_product_data, discounted_product_ids, catch_date = self._get_product_pricelist_cache(pricelist_id)
-        return all_product_data, discounted_product_ids
+            discounted_product_ids, catch_date = self._get_product_pricelist_cache(pricelist_id)
+        return discounted_product_ids
 
     @tools.ormcache('pricelist_id')
     def _get_product_pricelist_cache(self, pricelist_id):
-        products = self.sudo().search([('sale_ok', '=', True)])    # Need sudo so all products are calculated
+        products = self.sudo().search([('sale_ok', '=', True), ('website_published', '=', True)])    # Need sudo so all products are calculated
         pricelist = self.env['product.pricelist'].browse(pricelist_id)
         discounted_product_ids = []
-        all_products_data = []
-        for product in products:
-            product_data = product._get_combination_info(pricelist=pricelist, only_template=True)
-            all_products_data.append(self._dr_process_product_data(product_data, product))
-            if product_data.get('has_discounted_price'):
-                discounted_product_ids.append(product.id)
-        return all_products_data, discounted_product_ids, fields.Datetime.to_string(fields.Datetime.now())
+        website = self.env['website'].get_current_website()
+        # TODO: check fiscal_position_sudo PGA
+        fiscal_position_sudo = website.fiscal_position_id.sudo()
+        all_products_prices = products._get_sales_prices(pricelist, fiscal_position_sudo)
+        for p_id, price_data in all_products_prices.items():
+            if price_data.get('base_price'):
+                discounted_product_ids.append(p_id)
+        return discounted_product_ids, fields.Datetime.to_string(fields.Datetime.now())
 
     def _dr_process_product_data(self, product_pricelist_data, product):
         return {'display_name': product_pricelist_data['display_name'], 'price': product_pricelist_data['price'], 'id': product_pricelist_data['product_template_id']}
@@ -82,17 +83,21 @@ class ProductTemplate(models.Model):
             FROM product_public_category_product_template_rel
                 JOIN product_template ON product_template.id = product_public_category_product_template_rel.product_template_id
                 """ + tables + """
-                RIGHT JOIN product_public_category ON product_public_category.id = product_public_category_product_template_rel.product_public_category_id
-            WHERE """ + where_clause + """ or product_template.id is NULL
+                JOIN product_public_category ON product_public_category.id = product_public_category_product_template_rel.product_public_category_id
+            WHERE """ + where_clause + """
             GROUP BY product_public_category.id;
         """
 
         self.env.cr.execute(query, where_clause_params)
         query_res = self.env.cr.dictfetchall()
 
-        result_count = dict([(line.get('product_public_category_id'), 0) for line in query_res])
+        website = self.env['website'].get_current_website()
+        all_categ = self.env['product.public.category'].search(website.website_domain())
+        all_categ_data = [{'path': pc.parent_path, 'parent_id': pc.parent_id.id, 'product_public_category_id': pc.id} for pc in all_categ]
 
-        for line in query_res:
+        result_count = dict([(categ.id, 0) for categ in all_categ])
+
+        for line in all_categ_data:
             for line2 in query_res:
                 if line.get('parent_id'):
                     path_pattern = '/%s/' % line.get('product_public_category_id')
@@ -204,19 +209,23 @@ class ProductTemplate(models.Model):
         tables = tables.replace('"product_template"', ' ', 1)
         return tables, where_clause, where_clause_params
 
-    def _get_combination_info(self, combination=False, product_id=False, add_qty=1, pricelist=False, parent_combination=False, only_template=False):
-        combination_info = super(ProductTemplate, self)._get_combination_info(
-            combination=combination, product_id=product_id, add_qty=add_qty, pricelist=pricelist,
-            parent_combination=parent_combination, only_template=only_template)
+    def _search_render_results(self, fetch_fields, mapping, icon, limit):
+        current_website = self.env['website'].get_current_website()
+        if not current_website._dr_has_b2b_access():
+            mapping.pop("detail", None)
+        return super()._search_render_results(fetch_fields, mapping, icon, limit)
 
-        if combination_info['product_id']:
-            website = self.env['website'].get_current_website()
-            # [TO-DO] startswith('theme_prime') is not a good way must need to find another way in next version
-            # Note: kig-odoo
-            theme_id = website.sudo().theme_id
-            product_variant = self.env['product.product'].browse(combination_info['product_id'])
-            if website and theme_id and theme_id.name.startswith('theme_prime'):
-                IrUiView = self.env['ir.ui.view']
-                combination_info['dr_extra_fields'] = IrUiView._render_template('theme_prime.product_extra_fields', values={'website': website, 'product_variant': product_variant, 'product': product_variant.product_tmpl_id})
+    # Below block is to support fallback products
+    @api.model
+    def _search_fetch(self, search_detail, search, limit, order):
+        if search_detail.get('dr_search_domain'):
+            search_detail['base_domain'].append(search_detail.get('dr_search_domain'))
+            search = False
+        return super()._search_fetch(search_detail, search, limit, order)
 
-        return combination_info
+    @api.model
+    def _search_get_detail(self, website, order, options):
+        result = super()._search_get_detail(website, order, options)
+        if options.get('dr_search_domain'):
+            result['dr_search_domain'] = options.get('dr_search_domain')
+        return result

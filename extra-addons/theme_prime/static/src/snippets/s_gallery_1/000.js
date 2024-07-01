@@ -1,20 +1,24 @@
-odoo.define('theme_prime.image_gallery', function (require) {
-'use strict';
+/** @odoo-module **/
 
-const { qweb } = require('web.core');
-const publicWidget = require('web.public.widget');
+import publicWidget from "@web/legacy/js/public/public_widget";
+import { uniqueId } from "@web/core/utils/functions";
+import { renderToElement } from "@web/core/utils/render";
 
 publicWidget.registry.TpImageGallery = publicWidget.Widget.extend({
-    selector: '.tp-image-gallery',
-    xmlDependencies: ['/website/static/src/snippets/s_image_gallery/000.xml'],
+    selector: ".tp-image-gallery",
     events: {
-        'click img': '_onClickImg',
+        "click img": "_onClickImg",
     },
     _onClickImg: function (ev) {
         var self = this;
         var $cur = $(ev.currentTarget);
 
-        var $images = $cur.closest('.tp-image-gallery').find('img');
+        // When someone put a link on the gallery image element
+        // Don't open a popup
+        if ($cur.parent() && $cur.parent()[0].tagName == "A") {
+            return;
+        }
+        var $images = $cur.closest(".tp-image-gallery").find("img");
         var size = 0.8;
         var dimensions = {
             min_width: Math.round(window.innerWidth * size * 0.9),
@@ -25,35 +29,29 @@ publicWidget.registry.TpImageGallery = publicWidget.Widget.extend({
             height: Math.round(window.innerHeight * size)
         };
 
-        var $img = ($cur.is('img') === true) ? $cur : $cur.closest('img');
+        var $img = ($cur.is("img") === true) ? $cur : $cur.closest("img");
 
-        const milliseconds = $cur.closest('.tp-image-gallery').data('interval') || false;
-        var $modal = $(qweb.render('website.gallery.slideshow.lightbox', {
+        const milliseconds = $cur.closest(".tp-image-gallery").data("interval") || false;
+        var $modal = $(renderToElement("website.gallery.slideshow.lightbox", {
             images: $images.get(),
             index: $images.index($img),
             dim: dimensions,
             interval: milliseconds || 0,
-            id: _.uniqueId('tp_slideshow_'),
+            id: uniqueId("tp_slideshow_"),
         }));
-        $modal.modal({
-            keyboard: true,
-            backdrop: true,
-        });
-        $modal.on('hidden.bs.modal', function () {
+        $modal.on("hidden.bs.modal", function () {
             $(this).hide();
-            $(this).siblings().filter('.modal-backdrop').remove(); // bootstrap leaves a modal-backdrop
+            $(this).siblings().filter(".modal-backdrop").remove(); // bootstrap leaves a modal-backdrop
             $(this).remove();
         });
-        $modal.find('.modal-content, .modal-body.o_slideshow').css('height', '100%');
-        $modal.appendTo(document.body);
-
-        $modal.one('shown.bs.modal', function () {
-            self.trigger_up('widgets_start_request', {
+        $modal.one("shown.bs.modal", function () {
+            self.trigger_up("widgets_start_request", {
                 editableMode: false,
-                $target: $modal.find('.modal-body.o_slideshow'),
+                $target: $modal.find(".modal-body.o_slideshow"),
             });
         });
+        $modal.appendTo(document.body);
+        const modalBS = new Modal($modal[0], {keyboard: true, backdrop: true});
+        modalBS.show();
     },
-});
-
 });
