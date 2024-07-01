@@ -1,4 +1,4 @@
-FROM erpukraine/custom:odoo-15.0ee-erpu-latest
+FROM erpukraine/odoo-ee-erpu:17.0-latest
 
 
 USER root
