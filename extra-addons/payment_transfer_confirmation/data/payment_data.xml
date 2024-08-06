@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <record id="account_payment_method_wire_transfer" model="account.payment.method">
-        <field name="name">Wire Transfer</field>
-        <field name="code">transfer</field>
-        <field name="payment_type">inbound</field>
-    </record>
-</odoo>
