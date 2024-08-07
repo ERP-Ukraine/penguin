@@ -102,7 +102,7 @@ class NewProductImport(models.TransientModel):
             pt_name = '%s %s' % (row[GENDER_IDX], row[DESCRIPTION_IDX])
             gender = 'male' if row[GENDER_IDX].lower() in ('men', 'male') else 'female'
             seller_info = {
-                'name': self.seller_id.id,
+                'partner_id': self.seller_id.id,
                 'currency_id': currency.id,
                 'price': row[FOB_IDX],
                 'min_qty': 1.0,
