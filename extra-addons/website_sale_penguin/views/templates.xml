@@ -1,33 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <!-- Custom pricelist list in navbar -->
-    <template id="nav_pricelist_list" name="Nav Pricelists Dropdown">
-        <t t-set="website_sale_pricelists" t-value="website.get_pricelist_available(show_visible=True)"/>
-        <li t-attf-class="nav-item dropdown#{'' if website_sale_pricelists and len(website_sale_pricelists)&gt;1 else ' d-none'} #{_classes}">
-            <t t-set="curr_pl" t-value="website.get_current_pricelist()"/>
-            <a role="button" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <b>
-                    <t t-esc="curr_pl.name or ' - '"/>
-                </b>
-            </a>
-            <div class="dropdown-menu" role="menu">
-                <t t-foreach="website_sale_pricelists" t-as="pl">
-                    <a role="menuitem" t-att-href="'/shop/change_pricelist/%s' % pl.id" class="dropdown-item">
-                        <span class="switcher_pricelist" t-att-data-pl_id="pl.id" t-esc="pl.name"/>
-                    </a>
-                </t>
-            </div>
-        </li>
-    </template>
-
-    <!-- Customized website.layout -->
-    <template id="template_header_centered_logo" inherit_id="website.template_header_centered_logo">
-        <!-- top menu pricelist selector -->
-        <xpath expr="//ul[hasclass('navbar-nav')]" position="inside">
-            <li class="nav-item divider"/>
-            <t t-call="website_sale_penguin.nav_pricelist_list"/>
-        </xpath>
-    </template>
 
     <!-- Main Categories -->
     <template id="main_categories">
@@ -376,10 +348,6 @@
             </t>
         </xpath>
 
-        <xpath expr="//a[hasclass('o_product_link')][hasclass('css_editable_mode_hidden')]" position="attributes">
-            <attribute name="class" add="d-none" separator=" "/>
-        </xpath>
-
         <xpath expr="//div[hasclass('oe_product_image')]" position="after">
             <div class="card-body oe_variant_color_selector p-1">
                 <t t-call="website_sale_penguin.color_picker">
@@ -429,38 +397,24 @@
         </xpath>
     </template>
 
-    <!-- Sort -->
-    <template id="penguin_sort" inherit_id="website_sale.sort">
-        <xpath expr="//div[hasclass('dropdown_sorty_by')]" position="attributes">
-            <attribute name="class" remove="ml-md-2 mt-2" separator=" "/>
-            <attribute name="class" add="col-auto py-2" separator=" "/>
-        </xpath>
-    </template>
-
     <!-- Comment -->
     <template id='comment_form' name='Comment form'>
-        <form t-att-action="'/shop/comment%s' % (redirect and '?r=' + redirect or '')"
-            method="post" name="website_comment">
-            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
-            <div class="input-group w-100">
-                <input name="comment" class="form-control" type="text" placeholder="text..." t-att-value="website_sale_order.website_comment or None"/>
-                <div class="input-group-append">
-                    <a href="#" role="button" class="btn btn-secondary a-submit">Apply</a>
-                </div>
+        <form t-attf-action="/shop/comment#{redirect and '?r=' + redirect or ''}" method="post" name="website_comment">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" t-nocache="The csrf token must always be up to date."/>
+            <div class="input-group w-100 my-2">
+                <input name="comment" class="form-control" type="text" placeholder="Add your comment here..." t-att-value="website_sale_order.website_comment or None"/>
+                <a href="#" role="button" class="btn btn-secondary a-submit ps-2">Apply</a>
             </div>
         </form>
     </template>
 
-    <template id="website_comment_template" inherit_id="website_sale.total" customize_show="True" name="Comment">
+    <template id="website_comment_template" inherit_id="website_sale.total" name="Comment">
         <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
             <tr t-if="not hide_comment">
-                <td colspan="3" class="text-center text-xl-right border-0">
-                    <span class=''>
+                <td colspan="3" class="text-end text-xl-end border-0 p-0">
+                    <span>
                         <t t-set='website_comment' t-value="website_sale_order.website_comment"/>
-                        <t t-if="not website_comment">
-                            <a href="#" class="show_comment">Add comment</a>
-                        </t>
-                        <div t-attf-class="comment_form #{not website_comment and 'd-none'}">
+                        <div t-if="not force_coupon" class="coupon_form">
                             <t t-call="website_sale_penguin.comment_form"/>
                         </div>
                     </span>
@@ -469,7 +423,7 @@
         </xpath>
     </template>
 
-    <template id="cart_popover_with_comment" inherit_id="website_sale.cart_popover">
+    <template id="confirmation_with_comment" inherit_id="website_sale.confirmation">
         <xpath expr="//t[@t-set='hide_promotions']" position="after">
             <t t-set="hide_comment" t-value="True"/>
         </xpath>

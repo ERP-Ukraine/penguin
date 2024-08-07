@@ -5,15 +5,15 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='description']" position="after">
+            <xpath expr="//page[@name='sales']//group[@name='description']/parent::group" position="inside">
                 <group string="Website Description" name="website_description">
-                    <field name="website_sale_description" nolabel="1" placeholder="This note is added to website product page."/>
+                    <field colspan="2" name="website_sale_description" nolabel="1" placeholder="This note is added to website product page."/>
                 </group>
                 <group string="Functionality" name="functionality">
-                    <field name="functionality" nolabel="1" placeholder="This note is added to website product page in tab 'Functionality'"/>
+                    <field colspan="2" name="functionality" nolabel="1" placeholder="This note is added to website product page in tab 'Functionality'"/>
                 </group>
                 <group string="Durability" name="durability">
-                    <field name="durability" nolabel="1" placeholder="This note is added to website product page in tab 'Durability'"/>
+                    <field colspan="2" name="durability" nolabel="1" placeholder="This note is added to website product page in tab 'Durability'"/>
                 </group>
             </xpath>
 

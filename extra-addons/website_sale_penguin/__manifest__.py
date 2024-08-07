@@ -19,10 +19,9 @@
     'assets': {
         'web.assets_frontend': [
             '/website_sale_penguin/static/src/scss/website_sale.scss',
-            '/website_sale_penguin/static/src/js/website_sale.js'
         ],
     },
     'auto_install': True,
     'application': True,
-    'installable': False,
+    'installable': True,
 }
