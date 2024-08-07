@@ -10,7 +10,7 @@
     'data': [
         'views/payment_views.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }
