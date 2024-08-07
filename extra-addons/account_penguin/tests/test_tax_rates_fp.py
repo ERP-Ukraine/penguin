@@ -1,4 +1,5 @@
 from odoo import fields
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
 # +───────────────────────────────────────────────────────────+─────────────+────────────────────+─────────+────────+
@@ -13,6 +14,7 @@ from odoo.tests.common import TransactionCase
 # Odoo keeps Base the same. Penguin keeps unit price the same until we have zero vat case.
 
 
+@tagged('post_install', '-at_install')
 class PenguinTaxes(TransactionCase):
 
     def setUp(self):
@@ -66,8 +68,8 @@ class PenguinTaxes(TransactionCase):
             'sale',
             product_price_unit=250.0,
             product_taxes=self.product_a.taxes_id,
-            fiscal_position=self.fpos_77_19)
-        self.assertAlmostEqual(unit_price, 250.00, currency.decimal_places)
+            fiscal_position=self.fpos_77_0)
+        self.assertAlmostEqual(unit_price, 232.13, currency.decimal_places)
         unit_price = self.product_a._get_tax_included_unit_price(
             self.env.company,
             self.env.company.currency_id,
@@ -75,5 +77,5 @@ class PenguinTaxes(TransactionCase):
             'sale',
             product_price_unit=250.0,
             product_taxes=self.product_a.taxes_id,
-            fiscal_position=self.fpos_77_0)
-        self.assertAlmostEqual(unit_price, 232.13, currency.decimal_places)
+            fiscal_position=self.fpos_77_19)
+        self.assertAlmostEqual(unit_price, 250.00, currency.decimal_places)

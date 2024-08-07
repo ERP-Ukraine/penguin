@@ -42,21 +42,6 @@
             </td>
         </xpath>
 
-        <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_subtotal']" position="replace">
-            <th name="th_subtotal" class="text-right">
-                <span groups="account.group_show_line_subtotals_tax_excluded">Total Net</span>
-                <span groups="account.group_show_line_subtotals_tax_included">Total Net</span>
-            </th>
-        </xpath>
-        <xpath expr="//table[hasclass('o_main_table')]//t[@t-set='current_subtotal'][@groups='account.group_show_line_subtotals_tax_included']" position="attributes">
-            <!-- compute in the same way as `group_show_line_subtotals_tax_excluded` -->
-            <attribute name="t-value">current_subtotal + line.price_subtotal</attribute>
-        </xpath>
-        <xpath expr="//table[hasclass('o_main_table')]//td[hasclass('o_price_total')]/span[@groups='account.group_show_line_subtotals_tax_included']" position="attributes">
-            <!-- compute in the same way as `group_show_line_subtotals_tax_excluded` -->
-            <attribute name="t-field">line.price_subtotal</attribute>
-        </xpath>
-
         <xpath expr="//p[@name='payment_communication']" position="replace"/>
     </template>
 </odoo>
