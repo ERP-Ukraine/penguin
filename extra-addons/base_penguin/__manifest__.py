@@ -8,7 +8,7 @@
 
         'views/res_partner_views.xml'
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'license': 'LGPL-3',
 }
