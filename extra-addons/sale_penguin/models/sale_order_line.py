@@ -38,9 +38,14 @@ class SaleOrderLine(models.Model):
         pricelist_id = self.order_id.pricelist_id
         if not pricelist_id or not self.product_id or not self.order_partner_id:
             return Pricelist
-        results = pricelist_id._compute_price_rule([(self.product_id, self.product_uom_qty,
-                                                     self.order_partner_id)],
-                                                   date=self.order_id.date_order)
+        results = pricelist_id._compute_price_rule(
+            self.product_id,
+            self.product_uom_qty,
+            currency=None,
+            uom=self.product_uom,
+            date=self.order_id.date_order,
+            compute_price=True,
+            )
         price, suitable_rule = results[self.product_id.id]
         if suitable_rule:
             item = self.env['product.pricelist.item'].browse(suitable_rule)
@@ -55,7 +60,7 @@ class SaleOrderLine(models.Model):
             if not rrp_pricelist:
                 rrp_pricelist = line._get_fallback_rrp_pricelist()
             rrp_pc = line.product_id.with_context(pricelist=rrp_pricelist.id,
-                                                  date=line.order_id.date_order).price
+                                                  date=line.order_id.date_order).lst_price
             if line.currency_id != rrp_pricelist.currency_id:
                 # convert to Order currency
                 fx_date = line.order_id.date_order or fields.Date.today()

@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="variants" inherit_id="sale.variants">
-        <xpath expr="//ul[1]//t[@t-if][last()]/ul" position="attributes">
+    <template id="variants" inherit_id="website_sale.variants">
+        <xpath expr="//ul[1]//t[@t-elif][last()]/ul" position="attributes">
             <attribute name="t-attf-class" add="custom-color-picker" separator=" "/>
         </xpath>
 
-        <xpath expr="//ul[1]//t[@t-if][last()]/ul//label" position="inside">
-            <span class="custom-color-picker-label ml-1" style="white-space: nowrap;" t-esc="ptav.name"/>
-        </xpath>
     </template>
 </odoo>

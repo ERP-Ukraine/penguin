@@ -28,31 +28,27 @@
             <attribute name="class" add="mt-2" remove="mt32" separator=" "/>
         </xpath>
 
-        <xpath expr="//div[@t-if='doc.client_order_ref']" position="attributes">
-            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        <xpath expr="//div[@name='informations_reference']" position="attributes">
+            <attribute name="class" add="col-2 mw-25" remove="col-auto col-3 mw-100" separator=" "/>
         </xpath>
 
-        <xpath expr="//p[@t-field='doc.date_order'][1]/parent::div" position="attributes">
-            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
-        </xpath>
-
-        <xpath expr="//p[@t-field='doc.date_order'][@t-options='{&quot;widget&quot;: &quot;date&quot;}']/parent::div" position="attributes">
-            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+        <xpath expr="//div[@name='informations_date']" position="attributes">
+            <attribute name="class" add="col-2 mw-25" remove="col-auto col-3 mw-100" separator=" "/>
         </xpath>
 
         <xpath expr="//div[@name='expiration_date']" position="replace"/>
 
         <xpath expr="//div[@t-if='doc.user_id.name']" position="attributes">
-            <attribute name="class" add="col-2 w-100" remove="col-auto col-3 mw-100" separator=" "/>
+            <attribute name="class" add="col-2 mw-25" remove="col-auto col-3 mw-100" separator=" "/>
         </xpath>
 
         <xpath expr="//div[@id='informations']" position="inside">
-            <div t-if="doc.commitment_date" class="col-2 w-100 mb-2">
+            <div t-if="doc.commitment_date" class="col-2 mw-25 mb-2">
                 <strong>Planned Delivery Date:</strong>
                 <p class="m-0" t-field="doc.commitment_date" t-options="{'widget': 'date'}"/>
             </div>
 
-            <div t-if="doc.pricelist_id" class="col-4 w-100 mb-2">
+            <div t-if="doc.pricelist_id" class="col-4 w-50 mb-2">
                 <strong>Pricelist:</strong>
                 <p class="m-0" t-field="doc.pricelist_id"/>
             </div>
@@ -74,15 +70,8 @@
         </xpath> -->
 
         <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_priceunit']" position="replace">
-            <th name="th_list_price" class="text-right">RRP/pc</th>
-            <th name="th_priceunit" class="text-right">Net/pc</th>
-        </xpath>
-
-        <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_subtotal']" position="replace">
-            <th name="th_subtotal" class="text-right">
-                <t groups="account.group_show_line_subtotals_tax_excluded">Total Net</t>
-                <t groups="account.group_show_line_subtotals_tax_included">Total Net</t>
-            </th>
+            <th name="th_list_price" class="text-end">RRP/pc</th>
+            <th name="th_priceunit" class="text-end">Net/pc</th>
         </xpath>
 
         <!-- <xpath expr="//td[@name='td_amount_by_group_label_3']" position="replace">
@@ -92,47 +81,19 @@
         </xpath> -->
 
         <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_priceunit']" position="replace">
-            <td name="td_list_price" class="text-right">
+            <td name="td_list_price" class="text-end">
                 <span t-esc="line.penguin_rrp_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
             </td>
-            <td name="td_priceunit" class="text-right">
+            <td name="td_priceunit" class="text-end">
                 <span t-esc="line.penguin_net_price_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
             </td>
         </xpath>
 
-        <xpath expr="//table[hasclass('o_main_table')]//t[@t-set='current_subtotal'][@groups='account.group_show_line_subtotals_tax_included']" position="attributes">
-            <!-- compute in the same way as `group_show_line_subtotals_tax_excluded` -->
-            <attribute name="t-value">current_subtotal + line.price_subtotal</attribute>
-        </xpath>
-        <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_subtotal']/span[@groups='account.group_show_line_subtotals_tax_included']" position="attributes">
-            <!-- compute in the same way as `group_show_line_subtotals_tax_excluded` -->
-            <attribute name="t-field">line.price_subtotal</attribute>
-        </xpath>
     </template>
 
     <!-- Customize Sale Reports View PEN-55 -->
-    <record id="sale_enterprise.sale_report_action_dashboard" model="ir.actions.act_window">
-        <field name="view_mode">pivot,graph,dashboard</field>
-        <field name="context" eval="{'search_default_Quotations': 1, 'search_default_Sales': 1, 'time_ranges': {'field':'date_order', 'range':'this_year', 'comparisonRange':'previous_period'}}"/>
-    </record>
     <record id="sale.action_order_report_all" model="ir.actions.act_window">
         <field name="context" eval="{'search_default_Sales': 1, 'time_ranges': {'field':'date_order', 'range':'this_year', 'comparisonRange':'previous_period'}}"/>
-    </record>
-    <record id="sale_enterprise.sale_report_action_dashboard_dashboard" model="ir.actions.act_window.view">
-        <field name="sequence" eval="10"/>
-    </record>
-
-    <record id="sale_enterprise.sale_report_view_pivot" model="ir.ui.view">
-        <field name="arch" type="xml">
-            <pivot string="Sales Analysis" disable_linking="True" display_quantity="true">
-                <field name="industry_id" type="row"/>
-                <field name="state" type="row"/>
-                <field name="product_uom_qty" type="measure"/>
-                <field name="price_subtotal" type="measure"/>
-                <field name="untaxed_amount_invoiced" type="measure"/>
-                <field name="untaxed_amount_to_invoice" type="measure"/>
-            </pivot>
-        </field>
     </record>
 
 </odoo>

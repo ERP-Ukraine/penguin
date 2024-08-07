@@ -224,13 +224,9 @@
                     Team Penguin
                 </div>
             </field>
-            <field name="report_template" ref="sale.action_report_saleorder"/>
-            <field name="report_name">{{ (object.name or '').replace('/','_') }}</field>
+            <field name="report_template_ids" eval="[(4, ref('sale.action_report_saleorder'))]"/>
             <field name="lang">{{ object.partner_id.lang }}</field>
             <field name="auto_delete" eval="True"/>
         </record>
     </data>
-    <record id="sale.default_confirmation_template" model="ir.config_parameter">
-        <field name="value" ref="sale_penguin.mail_template_sale_confirmation"/>
-    </record>
 </odoo>
