@@ -7,31 +7,31 @@
     ============================================================================
     -->
     <template id="product" inherit_id="website_sale.product">
-        <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
-            <attribute name="class" add="add_to_cart_wrap d-block" remove="d-inline" separator=" "/>
-            <attribute name="class" remove="my-3" separator=" "/>
+        <xpath expr="//div[@id='o_wsale_cta_wrapper'][1]" position="before">
+            <div name="size_info" class="w-100">
+                <a class="size-guide mb-4" data-bs-toggle="modal" data-bs-target="#size-guide-modal">
+                    <i class="fa fa-expand mr-3"></i> Size Guide
+                </a>
+            </div>
         </xpath>
 
-        <xpath expr="//a[@id='add_to_cart']" position="after">
-            <a class="size-guide mb-4" data-toggle="modal" data-target="#size-guide-modal">
-               <i class="fa fa-expand mr-3"></i> Size Guide
-            </a>
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="replace">
+            <div name="add_to_cart_wrap" class="w-100">
+                <a role="button" id="add_to_cart" class="btn btn-primary btn-lg js_check_product a-submit text-uppercase d-block d-sm-inline-block w-100 flex-grow-1 mt-3" href="#">
+                    ADD TO CARD
+                </a>
+                <a t-if="is_view_active('website_sale.product_buy_now')" role="button" class="btn btn-primary-soft btn-lg o_we_buy_now mt-3 mt-md-0 d-block d-md-inline-block w-md-auto ml-0 ml-md-2" href="#">
+                    <i class="dri dri-bolt"/> Buy Now
+                </a>
+                <t t-set="product_variant" t-value="product_variant or product._create_first_product_variant()"/>
+                <a t-if="product_variant and is_view_active('website_sale_comparison.add_to_compare')" href="#" class="d-none d-md-inline-block btn btn-primary-soft btn-lg mt8 o_add_compare_dyn w-100 text-uppercase" aria-label="Compare" t-att-data-product-product-id="product_variant.id" data-action="o_comparelist">
+                    Compare
+                </a>
 
-            <a role="button" id="add_to_cart" class="btn btn-primary btn-lg js_check_product a-submit text-uppercase d-block d-sm-inline-block w-100 flex-grow-1 mt-3" href="#">
-                ADD TO CARD
-            </a>
-            <a t-if="is_view_active('website_sale.product_buy_now')" role="button" class="btn btn-primary-soft btn-lg o_we_buy_now mt-3 mt-md-0 d-block d-md-inline-block w-md-auto ml-0 ml-md-2" href="#">
-                <i class="dri dri-bolt"/> Buy Now
-            </a>
-            <t t-set="product_variant" t-value="product_variant or product._create_first_product_variant()"/>
-            <a t-if="product_variant and is_view_active('website_sale_comparison.add_to_compare')" href="#" class="d-none d-md-inline-block btn btn-primary-soft btn-lg mt8 o_add_compare_dyn w-100 text-uppercase" aria-label="Compare" t-att-data-product-product-id="product_variant.id" data-action="o_comparelist">
-                Compare
-            </a>
-
-            <a t-if="product_variant" role="button" class="btn btn-secondary btn-lg o_add_wishlist_dyn text-uppercase d-block d-sm-inline-block w-100 flex-grow-1 mt-2" t-att-disabled='in_wish or None' t-att-data-product-template-id="product.id" t-att-data-product-product-id="product_variant.id" data-action="o_wishlist">
-                Like Item
-            </a>
-
+                <a t-if="product_variant" role="button" class="btn btn-secondary btn-lg o_add_wishlist_dyn text-uppercase d-block d-sm-inline-block w-100 flex-grow-1 mt-2" t-att-disabled='in_wish or None' t-att-data-product-template-id="product.id" t-att-data-product-product-id="product_variant.id" data-action="o_wishlist">
+                    Like Item
+                </a>
+            </div>
         </xpath>
 
         <!-- Move sales desription and product price -->
@@ -133,7 +133,7 @@
                                 <div id="accordion" class="accordion" role="tablist" t-if="any((product.material_id, product.feature_ids, not product.hide_size_chart, product.washing_instruction_id))">
                                     <t t-call="website_bloopark_detail.product_tabs"/>
                                     <div t-if="product.functionality" class="card bg-white" data-name="Item">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa11" contenteditable="false">Functionality</a>
+                                        <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-bs-target="#myCollapseTa11" contenteditable="false">Functionality</a>
                                         <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa11" style="">
                                             <div class="card-body">
                                                 <div itemprop="functionality" t-field="product.functionality" class="oe_structure"/>
@@ -141,7 +141,7 @@
                                         </div>
                                     </div>
                                     <div t-if="product.durability" class="card bg-white" data-name="Item">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa12" contenteditable="false">Durability</a>
+                                        <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-bs-target="#myCollapseTa12" contenteditable="false">Durability</a>
                                         <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa12" style="">
                                             <div class="card-body">
                                                 <div itemprop="durability" t-field="product.durability" class="oe_structure"/>
@@ -149,7 +149,7 @@
                                         </div>
                                     </div>
                                     <div t-if="product.material_id" class="card bg-white" data-name="Item">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa15" contenteditable="false">Material</a>
+                                        <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-bs-target="#myCollapseTa15" contenteditable="false">Material</a>
                                         <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa15" style="">
                                             <div class="card-body">
                                                 <p style="white-space: pre-line;" t-esc="product.material_id.description"/>
@@ -158,7 +158,7 @@
                                     </div>
 
                                     <div t-if="product.feature_ids" class="card bg-white" data-name="Item">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa2" contenteditable="false">Features</a>
+                                        <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-bs-target="#myCollapseTa2" contenteditable="false">Features</a>
                                         <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa2" style="">
                                             <div class="card-body">
                                                 <ul>
@@ -171,7 +171,7 @@
                                     </div>
 
                                     <div t-if="not product.hide_size_chart" class="card bg-white" data-name="Item">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa3" contenteditable="false">Size Guide</a>
+                                        <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-bs-target="#myCollapseTa3" contenteditable="false">Size Guide</a>
                                         <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa3">
                                             <div class="card-body">
                                                 <p>To help you select the correct size of garment,we've put together our recommendation below</p>
@@ -305,7 +305,7 @@
                                     </div>
 
                                     <div t-if="product.washing_instruction_id" class="card bg-white" data-name="Item">
-                                        <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa4" contenteditable="false">Washing Instructions</a>
+                                        <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-bs-target="#myCollapseTa4" contenteditable="false">Washing Instructions</a>
                                         <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa4" style="">
                                             <div class="card-body">
                                                 <p style="white-space: pre-line;" t-esc="product.washing_instruction_id.description"/>
@@ -320,14 +320,12 @@
                     </div>
                 </div>
                 <!-- Modal -->
-                <div class="modal fade" id="size-guide-modal" tabindex="-1" role="dialog" aria-labelledby="size-guide-modalLabel" aria-hidden="true">
+                <div class="modal fade" id="size-guide-modal" tabindex="-1" aria-labelledby="size-guide-modalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Size Guide</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <p>To help you select the correct size of garment,we've put together our recommendation below</p>
@@ -458,7 +456,7 @@
                             <a href="/page/faq">FAQ Link</a>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                         </div>
                     </div>
@@ -468,9 +466,7 @@
     </template>
 
     <template id="product_add_to_wishlist" inherit_id="website_sale_wishlist.product_add_to_wishlist" name="Theme Prime: Add to wishlist in product page">
-        <xpath expr="//div[@id='product_option_block']" position="attributes">
-            <attribute name="class" remove="d-inline-block" separator=" "/>
-        </xpath>
+        <xpath expr="//div[@id='product_option_block']" position="replace"></xpath>
     </template>
 
     <template id="shop_product_carousel" inherit_id="website_sale.shop_product_carousel">
@@ -489,7 +485,7 @@
     <template id="product_tabs" name="Bloopark detail: Product Tabs">
         <t t-set="product_documents_ids" t-value="product.sudo().dr_document_ids"/>
         <div t-if="product_documents_ids" class="card bg-white" data-name="Item">
-            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa13" contenteditable="false">Documents</a>
+            <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-bs-target="#myCollapseTa13" contenteditable="false">Documents</a>
             <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa13" style="">
                 <div class="card-body">
                     <div class="container">
@@ -513,7 +509,7 @@
             </div>
         </div>
         <div t-if="is_view_active('website_sale.product_comment')" class="card bg-white" data-name="Item">
-            <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-target="#myCollapseTa14" contenteditable="false">Reviews &amp; Rating</a>
+            <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-bs-target="#myCollapseTa14" contenteditable="false">Reviews &amp; Rating</a>
             <div class="collapse" data-parent="#accordion" role="tabpanel" id="myCollapseTa14" style="">
                 <div class="card-body">
                     <div class="o_shop_discussion_rating container">
@@ -535,7 +531,7 @@
             <ul class="nav nav-tabs justify-content-center" role="tablist">
                 <!-- Dynamic Tabs -->
                 <li t-foreach="product.dr_product_tab_ids" t-as="tab" class="nav-item o_not_editable">
-                    <a class="nav-link" data-toggle="tab" t-attf-href="#tp-product-tab-#{tab.id}" role="tab" aria-selected="false">
+                    <a class="nav-link" data-bs-toggle="tab" t-attf-href="#tp-product-tab-#{tab.id}" role="tab" aria-selected="false">
                         <div class="my-1 tp-tab-title">
                             <span t-attf-class="fa fa-#{tab.icon} mr-1"/>
                             <span t-field="tab.name"/>
