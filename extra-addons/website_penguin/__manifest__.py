@@ -35,7 +35,7 @@
             '/website_penguin/static/src/scss/website.scss'
         ],
     },
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }

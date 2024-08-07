@@ -3,53 +3,24 @@
     <template id="shell">
         <t t-call="website.layout">
             <div id="wrap" class="oe_structure oe_empty">
-                <section class="s_cover parallax s_parallax_is_fixed s_parallax_no_overflow_hidden pt256 pb256 bg-black-25" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
-                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;/web/image/4335/start-page_2176X1216.jpg&quot;); background-position: 72.77% 54.45%;"/>
-                    <div class="container">
-                        <div class="row s_nb_column_fixed">
-                            <div class="col-lg-12 s_title" data-name="Title">
-                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
-                                    <font style="color: rgb(255, 255, 255);">Shell Layer</font>
-                                </h1>
-                            </div>
-                            <div class="col-lg-12 s_text pt16 pb16" data-name="Text">
-                                <p class="lead" style="text-align: center;">
-                                    <font style="color: rgb(255, 255, 255);">Full protection from snow, water and wind combined with high-performance Dermizax membrane for best breathability.&amp;nbsp;</font>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="s_text_block pt32 pb0" data-name="Text block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 pt32 pb32">
-                                <p class="lead">
-                                    <span style="text-align: center;">Protection from elements such as Wind, Water, and Cold is the primary task for our shell Jackets. Penguin collaborates with Dermizax®, &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;a highly functional membrane technology from Japan that uses your excess body heat to generate a higher breathability.</span>
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="s_three_columns bg-200 pt32 pb32" data-name="Columns">
+                <section class="s_three_columns bg-200 pt32 pb32 o_colored_level" data-name="Columns" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip494133">
                     <div class="container">
                         <div class="row d-flex align-items-stretch">
                             <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
                                 <div class="card bg-white">
-                                    <div class="card-body">
+                                    <div class="card-body" data-original-title="" title="" aria-describedby="tooltip342485">
                                         <div class="s_btn pb0 pt16 text-left" data-name="Button">
-                                            <a href="/shop/product/women-3-layer-dermizax-shell-jacket-69#attr=348,551" data-original-title="" title="" aria-describedby="tooltip523692">
-                                                <img class="card-img-top" src="/web/image/4337/shell_jacket_women1.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip246178"/>
+                                            <a href="https://penguin.swiss/de_CH/shop/frauen-3-lagen-dermizax-shell-jacke-323?category=8#attr=1352,1358" data-original-title="" title="">
+                                                <img class="card-img-top" src="/web/image/4337/shell_jacket_women1.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip246178" loading="lazy" data-original-id="4337" data-original-src="/web/image/4337-ad0bbfaa/shell_jacket_women1.jpg" data-mimetype="image/jpeg"/>
                                                 <br/>
                                             </a>
                                             <a href="/shop/product/women-3-layer-dermizax-shell-jacket-69#attr=348,551" data-original-title="" title="" aria-describedby="tooltip523692">
                                                 <br/>
                                             </a>
                                             <b>
-                                                <a href="/shop/product/women-3-layer-dermizax-shell-jacket-69#attr=348,551" data-original-title="" title="" aria-describedby="tooltip523692">
+                                                <a href="/de_CH/shop/frauen-3-lagen-dermizax-shell-jacke-323?category=8#attr=1352,1358" data-original-title="" title="">
                                                     <h3 data-original-title="" title="" aria-describedby="tooltip289311">
-                                                        <font style="color: rgb(0, 0, 0);">Women Shell Jacket</font>
+                                                        <font style="color: rgb(0, 0, 0);" data-original-title="" title="" aria-describedby="tooltip804944">Women Shell Jacket</font>
                                                     </h3>
                                                 </a>
                                             </b>
@@ -59,30 +30,30 @@
                             </div>
                             <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
                                 <div class="card bg-white">
-                                    <div class="card-body">
+                                    <div class="card-body" data-original-title="" title="" aria-describedby="tooltip870046">
                                         <div class="s_btn text-left pb0 pt16" data-name="Button">
-                                            <a href="https://penguin.swiss/shop/product/men-3-layer-dermizax-shell-jacket-60#attr=112,180" data-original-title="" title="" aria-describedby="tooltip219457">
-                                                <img class="card-img-top" src="/web/image/4336/shell_jacket_men1.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip246178"/>
+                                            <a href="https://penguin.swiss/shop/men-3-layer-dermizax-shell-jacket-290#attr=1178,1141" data-original-title="" title="">
+                                                <img class="card-img-top" src="/web/image/4336/shell_jacket_men1.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip246178" loading="lazy" data-original-id="4336" data-original-src="/web/image/4336-d562496d/shell_jacket_men1.jpg" data-mimetype="image/jpeg"/>
                                                 <br/>
                                             </a>
                                             <a href="https://penguin.swiss/shop/product/men-3-layer-dermizax-shell-jacket-60#attr=112,180" data-original-title="" title="" aria-describedby="tooltip219457">
                                                 <br/>
                                             </a>
-                                            <a href="https://penguin.swiss/shop/product/men-3-layer-dermizax-shell-jacket-60#attr=112,180" data-original-title="" title="" aria-describedby="tooltip219457">
+                                            <a href="/shop/men-3-layer-dermizax-shell-jacket-290#attr=1178,1141" data-original-title="" title="">
                                                 <h2 data-original-title="" title="" aria-describedby="tooltip86326">
-                                                    <font style="color: rgb(0, 0, 0);">Men Shell Jacket</font>
+                                                    <font style="color: rgb(0, 0, 0);" data-original-title="" title="" aria-describedby="tooltip231123">Men Shell Jacket</font>
                                                 </h2>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6" data-original-title="" title="" aria-describedby="tooltip945918">
                                 <div class="card bg-white">
                                     <div class="card-body">
                                         <div class="pb0 pt16 s_btn text-left" data-name="Button">
                                             <a href="/shop/product/women-3-layer-dermizax-shell-bib-pant-75?category=2#attr=205,527" data-original-title="" title="" aria-describedby="tooltip662791">
-                                                <img class="card-img-top" src="/web/image/4338/shell_pant_women.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip246178"/>
+                                                <img class="card-img-top" src="/web/image/4338/shell_pant_women.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip246178" loading="lazy"/>
                                                 <br/>
                                             </a>
                                             <a href="/shop/product/women-3-layer-dermizax-shell-bib-pant-75?category=2#attr=205,527" data-original-title="" title="" aria-describedby="tooltip662791">
@@ -98,19 +69,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                            <div class="s_col_no_bgcolor pb16 col-lg-6 pt24">
                                 <div class="card bg-white">
-                                    <div class="card-body">
+                                    <div class="card-body" data-original-title="" title="" aria-describedby="tooltip126472">
                                         <div class="pb0 pt16 s_btn text-left" data-name="Button">
-                                            <a href="/shop/product/men-3-layer-dermizax-shell-bib-pant-73?category=5#attr=1037,170" data-original-title="" title="" aria-describedby="tooltip467885">
-                                                <img class="card-img-top" src="/web/image/4339/shell_pant_men.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip246178"/>
-                                                <h3 data-original-title="" title="" aria-describedby="tooltip544292">
-                                                    <br/>
-                                                </h3>
+                                            <a href="/shop/product/men-3-layer-dermizax-shell-bib-pant-73?category=5#attr=1037,170" data-original-title="" title="">
+                                                <img class="card-img-top" src="/web/image/4339/shell_pant_men.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip246178" loading="lazy" data-original-id="4339" data-original-src="/web/image/4339-c0f6136a/shell_pant_men.jpg" data-mimetype="image/jpeg"/>
+                                                <br/>
+                                                &amp;nbsp;
+                                                <br/>
                                             </a>
-                                            <a href="/shop/product/men-3-layer-dermizax-shell-bib-pant-73?category=5#attr=1037,170" data-original-title="" title="" aria-describedby="tooltip467885">
+                                            <a href="/shop/product/men-3-layer-dermizax-shell-bib-pant-73?category=5#attr=1037,170" data-original-title="" title="">
                                                 <h3 data-original-title="" title="" aria-describedby="tooltip708611">
-                                                    <font style="color: rgb(0, 0, 0);" data-original-title="" title="" aria-describedby="tooltip522208">Men Shell Pants</font>
+                                                    <font data-original-title="" title="" aria-describedby="tooltip522208" style="color: rgb(0, 0, 0);">Men Shell Pants</font>
                                                 </h3>
                                             </a>
                                         </div>

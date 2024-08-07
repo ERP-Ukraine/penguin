@@ -5,7 +5,7 @@
     <div id="wrap" class="oe_structure oe_empty">
       <div id="myCarousel1599237568132" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
         <ol class="carousel-indicators d-none">
-          <li data-target="#myCarousel1599237568132" data-slide-to="0" class="active"/>
+          <li data-bs-target="#myCarousel1599237568132" data-slide-to="0" class="active"/>
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item oe_img_bg pt152 pb152 oe_custom_bg active" style="background-image: url(&quot;/web/image/4408/customer-care_2176X1216.jpg&quot;); background-position: 76.79% 48.46%;" data-name="Slide">
@@ -25,11 +25,11 @@
             </div>
           </div>
         </div>
-        <div class="carousel-control-prev d-none" data-target="#myCarousel1599237568132" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+        <div class="carousel-control-prev d-none" data-bs-target="#myCarousel1599237568132" data-slide="prev" role="img" aria-label="Previous" title="Previous">
           <span class="carousel-control-prev-icon"/>
           <span class="sr-only o_default_snippet_text">Previous</span>
         </div>
-        <div class="carousel-control-next d-none" data-target="#myCarousel1599237568132" data-slide="next" role="img" aria-label="Next" title="Next">
+        <div class="carousel-control-next d-none" data-bs-target="#myCarousel1599237568132" data-slide="next" role="img" aria-label="Next" title="Next">
           <span class="carousel-control-next-icon"/>
           <span class="sr-only o_default_snippet_text">Next</span>
         </div>
@@ -43,10 +43,10 @@
           </div>
         </div>
       </section>
-      <section class="s_faq_collapse pb32 pt0" data-name="Accordion" id="Delivery_and_return" data-anchor="true">
+      <section class="s_faq_collapse pb32 pt0 o_colored_level" data-name="Accordion" id="Delivery_and_return" data-anchor="true" style="background-image: none;">
         <div class="container">
           <div class="row s_nb_column_fixed">
-            <div class="col-lg-12 s_title pt16 pb16">
+            <div class="col-lg-12 s_title pt16 pb16" data-name="Title">
               <div class="s_hr text-left pb32 pt24" data-name="Separator">
                 <hr class="s_hr_1px s_hr_solid border-600 w-100 mx-auto"/>
               </div>
@@ -59,7 +59,7 @@
             <div class="col-lg-12 pt16 pb16">
               <div id="myCollapse" class="accordion" role="tablist">
                 <div class="card bg-white">
-                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="true" class="card-header" data-parent="#myCollapse" data-target="#myCollapseTab1599237704054" data-original-title="" title="" aria-describedby="tooltip824983">Product warranty</a>
+                  <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="true" class="card-header" data-parent="#myCollapse" data-bs-target="#myCollapseTab1599237704054" data-original-title="" title="" aria-describedby="tooltip824983">Product warranty</a>
                   <div class="collapse show" role="tabpanel" id="myCollapseTab1599237704054" style="">
                     <div class="card-body">
                       <p class="card-text">We create high quality products with timeless designs. Always with the aspiration that our products last. In case any production or material issue occur <b>we offer a two-years warranty</b>. In all other cases we support you in finding the best repair solution.&amp;nbsp;&amp;nbsp;<br/></p>
@@ -67,7 +67,7 @@
                   </div>
                 </div>
                 <div class="card bg-white" id="garment_care">
-                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip824983" data-target="#myCollapseTab1599474472523">Garment care</a>
+                  <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip824983" data-bs-target="#myCollapseTab1599474472523">Garment care</a>
                   <div class="collapse" role="tabpanel" style="" id="myCollapseTab1599474472523">
                     <div class="card-body">
                       <p class="card-text">All Penguin products consist of different materials. We put the relevant&amp;nbsp;<b>WASHING INSTRUCTIONS</b>&amp;nbsp;at the bottom of each product.<br/></p>
@@ -75,7 +75,7 @@
                   </div>
                 </div>
                 <div class="card bg-white">
-                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1599237704055" data-original-title="" title="" aria-describedby="tooltip319302">Delivery &amp;amp; return</a>
+                  <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-bs-target="#myCollapseTab1599237704055" data-original-title="" title="" aria-describedby="tooltip319302">Delivery &amp;amp; return</a>
                   <div class="collapse" role="tabpanel" id="myCollapseTab1599237704055" style="">
                     <div class="card-body">
                       <p class="card-text"><b>We offer free shipping within Switzerland and EU.</b> For Shipping outside of those regions we will charge an additional shipping fee depends on country/provider.</p>
@@ -87,7 +87,7 @@
                   </div>
                 </div>
                 <div class="card bg-white">
-                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-target="#myCollapseTab1599237704056" data-original-title="" title="" aria-describedby="tooltip721962">Terms &amp;amp; conditions</a>
+                  <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-bs-target="#myCollapseTab1599237704056" data-original-title="" title="" aria-describedby="tooltip721962">Terms &amp;amp; conditions</a>
                   <div class="collapse" role="tabpanel" id="myCollapseTab1599237704056" style="">
                     <div class="card-body">
                       <p class="card-text">Taxes and duties EU and Switzerland:<b>&amp;nbsp;</b>Your order includes taxes and duties. All prices are in Swiss Francs or Euro depending on your currency selection.&amp;nbsp;</p>
@@ -105,209 +105,334 @@
                   </div>
                 </div>
                 <div class="card bg-white">
-                  <a href="#" role="tab" data-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip721962" data-target="#myCollapseTab1599238048204">Privacy Policy</a>
+                  <a href="#" role="tab" data-bs-toggle="collapse" aria-expanded="false" class="card-header collapsed" data-parent="#myCollapse" data-original-title="" title="" aria-describedby="tooltip721962" data-bs-target="#myCollapseTab1599238048204">Privacy Policy</a>
                   <div class="collapse" role="tabpanel" style="" id="myCollapseTab1599238048204">
                     <div class="card-body">
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">The type of personal information we collect&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>We collect certain personal information about visitors and users of our website.</p>
-                        </li>
-                        <li>
-                          <p>The most common types of information we collect include things like: user-names, member names, email addresses, IP addresses, other contact details, survey responses, blogs, photos, payment information such as payment agent details, transactional details, tax information, support queries, forum comments, content you direct us to make available on our website (such as item descriptions) and web analytics data. We will also collect personal information from job applications (such as, your CV, the application form itself, cover letter and interview notes).</p>
-                        </li>
-                      </ul>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">How we collect personal information&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p class="o_default_snippet_text">We collect personal information directly when you provide it to us, automatically as you navigate through the website.</p>
-                        </li>
-                        <li>
-                          <p>We collect your personal information when you provide it to us when you complete registration and buy or provide items or services on our website, subscribe to a newsletter, email list, submit feedback, enter a contest, fill out a survey, or send us a communication.</p>
-                        </li>
-                      </ul>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">Personal information we collect about you from others&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>Although we generally collect personal information directly from you, on occasion, we also collect certain categories of personal information about you from other sources. In particular: Google and Facebook</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">How we use personal information&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>To fulfil a contract, or take steps linked to a contract: in particular, in facilitating and processing transactions that take place on the website, like where you purchase an item from our marketplace.</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">Where this is necessary for purposes which are in our, or third parties, legitimate interests. These interests include:</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">operating the website;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">providing you with services described on the website;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">verifying your identity when you sign in to any of our website;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">responding to support and helping facilitate the resolution of any disputes;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">updating you with operational news and information about our brand and services i.e. to notify you about changes to our website;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">carrying out technical analysis to determine how to improve the website and services we provide;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">monitoring activity, i.e. to identify potential fraudulent activity and to ensure compliance with the user terms that apply to the website;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">managing our relationship with you, i.e. by responding to your comments or queries submitted to us on the website or asking for your feedback or whether you want to participate in a survey;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">managing our legal and operational affairs (including, managing risks relating to content and fraud matters);</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">training Penguin staff about how to best serve our user community;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">improving our products and services.</p>
-                        </li>
-                        <li>
-                          <p>providing general administrative and performance functions and activities; and processing your job application to us.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">Where we transfer and/or store your personal information&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p class="o_default_snippet_text">We are based in Switzerland so your data will be processed in Switzerland and the EU. In order to protect your information, we take care where possible to work with subcontractors and service providers who we believe maintain an acceptable standard of data security compliance.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
-                        <span id="docs-internal-guid-1137e564-8b8e-b6dc-7839-72fd049a2acc"/>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Wir freuen uns über Ihren Besuch auf unserer Internetseite penguin.swiss und Ihr Interesse an unserem Unternehmen.</span>
                       </p>
-                      <p dir="ltr" style="margin: 0.12pt 0px; line-height: 1.2;">
-                        <span style="font-variant-ligatures: normal; font-variant-east-asian: normal; font-variant-position: normal; vertical-align: baseline;">How we keep your personal information&amp;nbsp;secure</span>
+                      <p>
+                        <span style="font-size: 10pt">Der Schutz Ihrer personenbezogenen Daten, wie z.B. Geburtsdatum, Name, Telefonnummer, Anschrift etc., ist uns ein wichtiges Anliegen.</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Der Zweck dieser Datenschutzerklärung besteht darin, Sie über die Bearbeitung Ihrer personenbezogenen Daten zu informieren, die wir bei einem Seitenbesuch von Ihnen sammeln. Unsere Datenschutzpraxis steht im Einklang mit den gesetzlichen Regelungen des Bundesgesetzes über den Datenschutz (DSG) der Schweiz und der Datenschutzgrundverordnung der EU (DSGVO). Die nachfolgende Datenschutzerklärung dient der Erfüllung der Informationspflichten aus dem DSG und der DSGVO. Diese finden sich z.B. in Art. 8 ff. DSG sowie Art. 13 ff. der DSGVO.</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 16pt;font-weight: 700">Bereitstellung der Website und Erstellung von Logfiles</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Bei jedem Aufruf unserer Internetseite erfasst unser System automatisiert Daten und Informationen des jeweils abrufenden Gerätes (z.B. Computer, Mobiltelefon, Tablet, etc.).</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Welche personenbezogenen Daten werden erhoben und in welchem Umfang werden diese bearbeitet?</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">(1) Informationen über den Browsertyp und die verwendete Version; (2) Das Betriebssystem des Abrufgerätes;<br/>(3) Hostname des zugreifenden Rechners;<br/>(4) Die IP-Adresse des Abrufgerätes;</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">(5) Datum und Uhrzeit des Zugriffs;<br/>(6) Websites und Ressourcen (Bilder, Dateien, weitere Seiteninhalte), die auf unserer Internetseite aufgerufen wurden; (7) Websites, von denen das System des Nutzers auf unsere Internetseite gelangte (Referrer-Tracking);<br/>(8) Meldung, ob der Abruf erfolgreich war;<br/>(9) Übertragene Datenmenge</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Diese Daten werden in den Logfiles unseres Systems gespeichert. Eine Speicherung dieser Daten zusammen mit personenbezogenen Daten eines konkreten Nutzers findet nicht statt, so dass eine Identifizierung einzelner Seitenbesucher nicht erfolgt.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Rechtsgrundlage für die Bearbeitung personenbezogener Daten</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Bearbeitung personenbezogener Daten erfolgt nach dem Prinzip der Rechtmässigkeit (Art. 4 DSG) und nach dem Gebot von Treu und Glauben (Art. 2 ZGB) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Zweck der Datenbearbeitung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die vorübergehende (automatisierte) Speicherung der Daten ist für den Ablauf eines Websitebesuchs erforderlich, um eine Auslieferung der Website zu ermöglichen. Die Speicherung und Bearbeitung der personenbezogenen Daten erfolgt zudem zur Erhaltung der Kompatibilität unserer Internetseite für möglichst alle Besucher und zur Missbrauchsbekämpfung und Störungsbeseitigung. Hierfür ist es notwendig, die technischen Daten des abrufenden Rechners zu loggen, um so frühestmöglich auf Darstellungsfehler, Angriffe auf unsere IT-Systeme und/oder Fehler der Funktionalität unserer Internetseite reagieren zu können. Zudem dienen uns die Daten zur Optimierung der Website und zur generellen Sicherstellung der Sicherheit unserer informationstechnischen Systeme.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Dauer der Speicherung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Löschung der vorgenannten technischen Daten erfolgt, sobald sie nicht mehr benötigt werden, um die Kompatibilität der Internetseite für alle Besucher zu gewährleisten, spätestens aber 3 Monate nach Abruf unserer Internetseite.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Widerspruchs- und Löschungsmöglichkeit</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie können der Bearbeitung jederzeit gem. Art. 21 DSGVO widersprechen und eine Löschung der Daten gem. Art. 17 DSGVO verlangen. Welche Rechte Ihnen zustehen und wie Sie diese geltend machen, finden Sie im unteren Bereich dieser Datenschutzerklärung.</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 16pt;font-weight: 700">Besondere Funktionen der Internetseite</span>
+                        <br/>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Unsere Seite bietet Ihnen verschiedene Funktionen, bei deren Nutzung von uns personenbezogene Daten erhoben, bearbeitet und gespeichert werden. Nachfolgend erklären wir, was mit diesen Daten geschieht:</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Kontaktformular(e)<br/></span>
+                        <span style="font-size: 10pt;font-weight: 700">Welche personenbezogenen Daten werden erhoben und in welchem Umfang werden diese bearbeitet?</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die von Ihnen in unsere Kontaktformulare eingegebenen Daten, die Sie in die Eingabemaske des Kontaktformulares eingetragen haben.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Rechtsgrundlage für die Bearbeitung personenbezogener Daten</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Bearbeitung personenbezogener Daten erfolgt nach dem Prinzip der Rechtmässigkeit (Art. 4 DSG) und nach dem Gebot von Treu und Glauben (Art. 2 ZGB) sowie Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch eindeutige bestätigende Handlung bzw. Verhaltensweise).</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Zweck der Datenbearbeitung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die über unser Kontaktformular bzw. über unsere Kontaktformulare aufgenommenen Daten werden wir nur für die Bearbeitung der konkreten Kontaktanfrage verwenden, die durch das Kontaktformular eingeht. Bitte beachten Sie, dass wir zur Erfüllung ihrer Kontaktanfrage Ihnen unter Umständen auch E-Mails an die angegebene Adresse senden können. Dies hat den Zweck, dass Sie von uns eine Bestätigung erhalten können, dass Ihre Anfrage an uns korrekt weitergeleitet wurde. Der Versand dieser Bestätigungs-E-Mail ist jedoch für uns nicht verpflichtend und dient nur Ihrer Information.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Dauer der Speicherung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Nach Bearbeitung Ihrer Anfrage werden die erhobenen Daten unverzüglich gelöscht, soweit keine gesetzlichen Aufbewahrungsfristen bestehen.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Widerspruchs- und Löschungsmöglichkeit</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie können der Bearbeitung jederzeit gem. Art. 21 DSGVO widersprechen und eine Löschung der Daten gem. Art. 17 DSGVO verlangen. Welche Rechte Ihnen zustehen und wie Sie diese geltend machen, finden Sie im unteren Bereich dieser Datenschutzerklärung.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Erforderlichkeit der Angabe personenbezogener Daten</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Nutzung der Kontaktformulare erfolgt auf freiwilliger Basis. Sie sind nicht verpflichtet mit uns über das Kontaktformular Kontakt aufzunehmen, sondern können auch die weiteren, auf unserer Seite angegebenen Kontaktmöglichkeiten, nutzen. Sofern Sie unser Kontaktformular nutzen möchten, müssen Sie die als Pflichtangaben gekennzeichneten Felder ausfüllen. Sofern Sie die notwendigen Angaben des Kontaktformulares nicht ausfüllen, können Sie entweder die Anfrage nicht absenden oder wir können Ihre Anfrage mangels Angaben nicht bearbeiten.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Login-Bereich / Registrierung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Umfang der Bearbeitung personenbezogener Daten und erhobene personenbezogene Daten</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Die von Ihnen bei uns eingegebenen oder die Ihnen mitgeteilten Registrierungs- und Login-Daten.</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt;font-weight: 700">Rechtsgrundlage für die Bearbeitung personenbezogener Daten</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Bearbeitung personenbezogener Daten erfolgt nach dem Prinzip der Rechtmässigkeit (Art. 4 DSG) und nach dem Gebot von Treu und Glauben (Art. 2 ZGB) sowie Art. 6 Abs. 1 lit. b DSGVO (Durchführung (vor)vertraglicher Massnahmen).</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Zweck der Datenbearbeitung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie haben auf unserer Internetseite die Möglichkeit, einen separaten Login-Bereich zu nutzen. Damit wir Ihre Berechtigung zur Nutzung des geschützten Bereichs bzw. der geschützten Dokumente prüfen können, müssen Sie Ihre Login-Daten (E- Mail bzw. Nutzername und Passwort) in das entsprechende Formular eingeben. Sofern benötigt, können wir Ihnen auf Anfrage Ihre Login-Daten bzw. die Möglichkeit das Passwort zurücksetzen zu lassen per E-Mail zusenden.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Dauer der Speicherung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die erhobenen Daten werden so lange gespeichert, wie Sie ein Benutzerkonto bei uns unterhalten.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Widerspruchs- und Löschungsmöglichkeit</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie können der Bearbeitung jederzeit gem. Art. 21 DSGVO widersprechen und eine Löschung der Daten gem. Art. 17 DSGVO verlangen. Welche Rechte Ihnen zustehen und wie Sie diese geltend machen, finden Sie im unteren Bereich dieser Datenschutzerklärung.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Erforderlichkeit der Angabe personenbezogener Daten</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Bestimmte Seiten und deren Inhalte sind nicht öffentlich zugänglich. Via Login-Bereich auf unserer Seite können bestimmte Anwender Zugang in den geschützten Bereich erhalten. Die Nutzung des durch den Login-Bereich geschützten Inhalts ist ohne die Eingabe der personenbezogenen Daten nicht möglich. Sofern Sie unseren Login-Bereich nutzen möchten, müssen Sie die als Pflichtangaben gekennzeichneten Felder (Benutzername und Passwort) ausfüllen. Die Eingabe der Daten setzt das Bestehen eines Nutzerkontos voraus. Eine Anmeldung ist nicht möglich, wenn die von Ihnen eingegebenen Daten falsch sind. Sofern die Daten von Ihnen falsch oder nicht eingegeben werden, kann der geschützte Bereich nicht genutzt werden. Der Rest der Seite ist jedoch weiterhin ohne Login nutzbar.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Formular zur Newsletter-Anmeldung<br/></span>
+                        <span style="font-size: 10pt;font-weight: 700">Welche personenbezogenen Daten werden erhoben und in welchem Umfang werden diese bearbeitet?</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Durch die Anmeldung zum Newsletter auf unserer Website erhalten wir die im Anmeldefeld durch Sie eingegebene E- Mailadresse und ggf. weitere Kontaktdaten, sofern Sie uns diese über das Newsletter-Anmeldeformular mitteilen.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Rechtsgrundlage für die Bearbeitung personenbezogener Daten</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Bearbeitung personenbezogener Daten erfolgt nach dem Prinzip der Rechtmässigkeit (Art. 4 DSG) und nach dem Gebot von Treu und Glauben (Art. 2 ZGB) sowie Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch eindeutige bestätigende Handlung bzw. Verhaltensweise).</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt;font-weight: 700">Zweck der Datenbearbeitung</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Die in der Anmeldemaske unseres Newsletters aufgenommenen Daten werden von uns ausschliesslich für den Versand unseres Newsletters verwendet, in dem wir über alle unsere Leistungen und unsere Neuigkeiten informieren. Wir werden Ihnen nach der Anmeldung eine Bestätigungs-E-Mail senden, in der ein Link enthalten ist, den Sie anklicken müssen, um die Anmeldung zu unserem Newsletter abzuschliessen (Double-Opt-In).</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Dauer der Speicherung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Unser Newsletter kann jederzeit durch Anklicken des Abmelde-Links, der auch in jedem Newsletter enthalten ist, abbestellt werden. Ihre Daten werden unverzüglich nach der Abmeldung von uns gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen. Ebenso werden Ihre Daten im Falle einer nicht abgeschlossenen Anmeldung unverzüglich von uns gelöscht. Wir behalten uns die Löschung ohne Angaben von Gründen und ohne vorherige oder nachträgliche Information vor.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Widerspruchs- und Löschungsmöglichkeit</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie können der Bearbeitung jederzeit gem. Art. 21 DSGVO widersprechen und eine Löschung der Daten gem. Art. 17 DSGVO verlangen. Welche Rechte Ihnen zustehen und wie Sie diese geltend machen, finden Sie im unteren Bereich dieser Datenschutzerklärung.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt;font-weight: 700">Erforderlichkeit der Angabe personenbezogener Daten</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sofern Sie unseren Newsletter nutzen möchten, müssen Sie die als Pflichtangaben gekennzeichneten Felder ausfüllen und uns die E-Mail-Adresse durch Anklicken des Double-Opt-In Links bestätigen. Die Angaben zur Newsletteranmeldung sind notwendig, um vom Newsletter-Angebot Gebrauch machen zu können. Die Angaben dienen ausschliesslich der Versendung unseres Newsletters. Sofern Sie die Pflichtfelder nicht ausfüllen, können wir Ihnen unseren Newsletterservice nicht zur Verfügung stellen.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 16pt;font-weight: 700">Weitergabe von Angaben an Dritte</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Bearbeitung personenbezogener Daten erfolgt nach dem Prinzip der Rechtmässigkeit (Art. 4 DSG) und nach dem Gebot von Treu und Glauben (Art. 2 ZGB).</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Weitergabe von Angaben an Dritte richtet sich nach dem Umfang nachfolgend beschriebener Tätigkeiten oder Angebote unserer Website bzw. unseres Geschäftsmodells.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Grundsätzlich behalten wir Ihre Angaben nur so lange wie nötig und behandeln diese vertraulich. Ausgenommen davon sind die Übertragung personenbezogener Daten an Inkasso-Dienstleister, an öffentliche Stellen und Behörden sowie an Privatpersonen, die aufgrund gesetzlicher Bestimmungen, gerichtlichen Entscheidungen oder behördlichen Anordnungen einen Anspruch darauf haben sowie die Übertragung an Behörden zum Zwecke der Einleitung rechtlicher Verfahren oder für Strafverfolgungszwecke, falls unsere gesetzlich geschützten Rechte angegriffen werden.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 16pt;font-weight: 700">Statistische Auswertung der Besuche dieser Internetseite - Webtracker</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Wir erheben, bearbeiten und speichern bei dem Aufruf dieser Internetseite oder einzelner Dateien der Internetseite folgende Daten: IP-Adresse, Webseite, von der aus die Datei abgerufen wurde, Name der Datei, Datum und Uhrzeit des Abrufs, übertragene&amp;nbsp;<span style="font-size: 10pt">Datenmenge und Meldung über den Erfolg des Abrufs (sog. Web-Log). Diese Zugriffsdaten verwenden wir ausschliesslich in nicht personalisierter Form für die stetige Verbesserung unseres Internetangebots und zu statistischen Zwecken.</span></span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">
+                          <span style="font-size: 10pt">Die Bearbeitung allfällig personenbezogener Daten erfolgt nach dem Prinzip der Rechtmässigkeit (Art. 4 DSG) und nach dem Gebot von Treu und Glauben (Art. 2 ZGB). Wir setzen zur Auswertung der Besuche dieser Internetseite zudem noch folgende Webtracker ein:</span>
+                        </span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">- Facebook / Meta</p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">- Google Ads, Google Analytics</p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">- Youtube</p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 16pt;font-weight: 700">Informationen zur Verwendung von Cookies&amp;nbsp;</span>
+                        <span style="font-size: 12pt;font-weight: 700">Umfang der Bearbeitung personenbezogener Daten</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Auf verschiedenen Seiten integrieren und verwenden wir Cookies, um bestimmte Funktionen unserer Website zu ermöglichen und externe Webservices zu integrieren. Bei den sogenannten "Cookies" handelt es sich um kleine Textdateien, die Ihr Browser auf Ihrem Zugangsgerät speichern kann. Diese Textdateien enthalten eine charakteristische Zeichenkette, die den Browser eindeutig identifiziert, wenn Sie zu unserer Website zurückkehren. Der Prozess des Speicherns einer Cookie-Datei wird auch als "Setzen eines Cookies" bezeichnet. Cookies können hierbei sowohl von der Website selbst als auch von externen Webservices gesetzt werden.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Rechtsgrundlage für die Bearbeitung personenbezogener Daten</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Relevant sind Art. 4 ff. DSG (Grundsätze) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse) bzw. Art. 6 Abs. 1 lit. a bzw. Art. 9 Abs. 2 lit. a DSGVO (Einwilligung).</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Generell gilt, dass bei Cookies, die aufgrund eines berechtigten Interesses erhoben werden, unser berechtigtes Interesse darin besteht, die Funktionalität unserer Website und der darauf eingebundenen Dienste zu gewährleisten (technisch notwendige Cookies). Zudem kann es sein, dass die Cookies ihre Benutzerfreundlichkeit erhöhen und eine individuellere Ansprache ermöglichen. Hier haben wir eine Abwägung zwischen Ihren Interessen und unseren Interessen vorgenommen.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Mit Hilfe der Cookie-Technologie können wir einzelne Website-Besucher nur dann identifizieren, analysieren und verfolgen, wenn der Website-Besucher in die Nutzung des Cookies gem. Art. 6. Abs. 2 DSG bzw. Art. 6 Abs. 1 lit. a DSGVO eingewilligt hat.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Zweck der Datenbearbeitung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Die Cookies werden von unserer Website bzw. den externen Webservices gesetzt, um die volle Funktionalität unserer Website zu erhalten, die Benutzerfreundlichkeit zu verbessern oder um den mit Ihrer Einwilligung angegebenen Zweck zu verfolgen. Die Cookie-Technologie ermöglicht es uns auch, einzelne Besucher anhand von Pseudonymen, z.B. einer individuellen oder zufälligen IDs, zu erkennen, so dass wir mehr individuelle Dienstleistungen anbieten können. Details sind in der folgenden Tabelle aufgeführt.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Dauer der Speicherung</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Die nachfolgend aufgelisteten Cookies werden in Ihrem Browser gespeichert, bis sie gelöscht werden oder, im Falle eines Session- Cookies, bis die Sitzung abgelaufen ist.</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 12pt;font-weight: 700">Widerspruchsmöglichkeit, Widerruf der Einwilligung und Löschung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie können Ihren Browser nach Ihren Wünschen so einstellen, dass das Setzen von Cookies generell verhindert wird. Sie können dann von Fall zu Fall über die Annahme von Cookies entscheiden oder Cookies grundsätzlich akzeptieren. Cookies können für verschiedene Zwecke verwendet werden, z.B. um zu erkennen, dass Ihr Zugangsgerät bereits mit unserer Website verbunden ist (permanente Cookies) oder um zuletzt angesehene Angebote zu speichern (Session-Cookies). Wenn Sie uns ausdrücklich die Erlaubnis erteilt haben, Ihre personenbezogenen Daten zu bearbeiten können Sie diese Einwilligung jederzeit widerrufen. Bitte beachten Sie, dass die Rechtmässigkeit der auf der Grundlage der Einwilligung bis zum Widerruf vorgenommenen Bearbeitung davon nicht berührt wird.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 16pt;font-weight: 700">Datensicherheit und Datenschutz, Kommunikation per E-Mail</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Ihre personenbezogenen Daten werden durch technische und organisatorische Massnahmen so bei der Erhebung, Speicherung und Bearbeitung geschützt, dass sie für Dritte nicht zugänglich sind. Bei einer unverschlüsselten Kommunikation per E-Mail kann die&amp;nbsp;<span style="font-size: 10pt">vollständige Datensicherheit auf dem Übertragungsweg zu unseren IT-Systemen von uns nicht gewährleistet werden, sodass wir bei Informationen mit hohem Geheimhaltungsbedürfnis eine verschlüsselte Kommunikation oder den Postweg empfehlen.</span></span>
+                      </p>
+                      <p>
+                        <span style="font-size: 16pt;font-weight: 700">Dauer der Speicherung der Daten und Rechte der betroffenen Person&amp;nbsp;</span>
+                        <span style="font-size: 12pt;font-weight: 700">Dauer der Speicherung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Wir speichern die Personendaten nur in dem Umfang und so lange, wie dies für die Erfüllung der Zwecke, für die die Personendaten erhoben wurden, erforderlich ist, wir an der Aufbewahrung ein berechtigtes überwiegendes Interesse haben oder dazu gesetzlich verpflichtet sind.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Auskunftsanspruch</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie haben das Recht, eine Bestätigung darüber zu verlangen, ob wir personenbezogene Daten von Ihnen bearbeiten. Sofern dies der Fall ist, haben Sie ein Recht auf Auskunft über die in 8 ff. DSG oder Art. 15 Abs. 1 DSGVO benannten Informationen, soweit die Auskunft durch den Inhaber der Datensammlung nicht verweigert, eingeschränkt oder aufgeschoben werden kann (vgl. Art. 9 f. DSG oder Art. 15 Abs. 4 DSGVO). Gerne stellen wir Ihnen auch eine Kopie der Daten zur Verfügung.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Berichtigungsanspruch</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie haben gem. Art. 5 Abs. 2 DSG oder Art. 16 DSGVO das Recht, bei uns ggf. falsch hinterlegte personenbezogene Daten (wie z.B. Adresse, Name, etc.) jederzeit korrigieren zu lassen. Auch können Sie jederzeit eine Vervollständigung der bei uns gespeicherten Daten verlangen. Eine entsprechende Anpassung erfolgt unverzüglich.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Recht auf Löschung</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie haben gem. Art. 17 Abs. 1 DSGVO das Recht, dass wir die über Sie erhobenen personenbezogenen Daten löschen, wenn</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">die Daten entweder nicht mehr benötigt werden;<br/>aufgrund des Widerrufs Ihrer Einwilligung die Rechtsgrundlage der Bearbeitung ersatzlos entfallen ist; keine berechtigten Gründe für die Bearbeitung mehr vorliegen;<br/>Ihre Daten unrechtmässig bearbeitet werden;<br/>eine rechtliche Verpflichtung dies erfordert.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Das Recht besteht gem. Art. 17 Abs. 3 DSGVO dann nicht, wenn</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">die Bearbeitung zur Ausübung des Rechtes auf freie Meinungsäusserung und Information erforderlich ist; Ihre Daten auf Grundlage einer rechtlichen Verpflichtung erhoben worden sind;<br/>die Bearbeitung aus Gründen des öffentlichen Interesses erforderlich ist;<br/>die Daten zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich sind.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Recht auf Einschränkung der Bearbeitung</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">
+                          <span style="font-size: 10pt">Gem. Art. 18 Abs. 1 DSGVO haben Sie in einzelnen Fällen das Recht, die Einschränkung der Bearbeitung Ihrer personenbezogenen Daten zu verlangen.</span>
+                        </span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">Dies ist dann der Fall, wenn</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">die Richtigkeit der personenbezogenen Daten von Ihnen bestritten wird;<br/>die Bearbeitung unrechtmässig ist und Sie einer Löschung nicht zustimmen;<br/>die Daten nicht länger für den Bearbeitungszweck benötigt werden, aber die erhobenen Daten der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen dienen;<br/>ein Widerspruch gegen die Bearbeitung gem. Art. 21 Abs. 1 DSGVO eingelegt worden ist und noch unklar ist, welche Interessen überwiegen.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Recht auf Widerruf</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sofern Sie uns eine ausdrückliche Einwilligung in die Bearbeitung Ihrer personenbezogenen Daten erteilt haben (Art. 4 Abs. 5 DSG und Art. 13 Abs. 2 Bst. a DSG; Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO) können Sie diese jederzeit widerrufen. Bitte beachten Sie, dass die Rechtmässigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Bearbeitung hierdurch nicht berührt wird. Angaben, für welche wir gesetzlich zur Aufbewahrung verpflichtet sind, werden nach Fristablauf gelöscht.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Recht auf Widerspruch</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Sie haben gem. Art. 21 DSGVO das Recht, jederzeit gegen die Bearbeitung Sie betreffender personenbezogener Daten, die aufgrund von Art. 6 Abs. 1 lit. f DSGVO (im Rahmen eines berechtigten Interesses) erhoben worden sind, Widerspruch einzulegen. Sofern Sie uns eine ausdrückliche Einwilligung in die Bearbeitung Ihrer personenbezogenen Daten erteilt haben (Art. 4 Abs. 5 DSG und Art. 13 Abs. 2 Bst. a DSG) können Sie diese jederzeit widerrufen. Bitte beachten Sie, dass die Rechtmässigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Bearbeitung hierdurch nicht berührt wird. Das Recht steht Ihnen nur zu, wenn gegen die Speicherung und Bearbeitung besondere Umstände sprechen. Angaben, für welche wir gesetzlich zur Aufbewahrung verpflichtet sind, werden nach Fristablauf gelöscht.</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 12pt;font-weight: 700">Wie nehmen Sie Ihre Rechte wahr?</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Ihre Rechte können Sie jederzeit wahrnehmen, indem Sie sich an die untenstehenden Kontaktdaten wenden:</span>
+                      </p>
+                      <p>
+                        <span style="font-size: 10pt">Kalisti International GmbH Klingenstrasse 9<br/>8005 Zürich<br/>Schweiz</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="font-size: 10pt">E-Mail:&amp;nbsp;</span>
+                        <span style="font-size: 10pt;color: rgb(0, 0, 238)">mail@penguin.swiss&amp;nbsp;</span>
+                        <span style="font-size: 10pt">Tel.: +41 (0) 44 586 63 60</span>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <span style="color: rgb(51, 51, 51); background-color: white; font-size: 12px;">Wir behalten uns ausdrücklich das Recht vor, die vorliegende Datenschutzerklärung jederzeit zu ändern. Werden derartige Anpassungen vorgenommen, veröffentlichen wir diese umgehend auf unserer Webseite. Es liegt in Ihrer Verantwortung, sich über die aktuell geltende Fassung der Datenschutzerklärung auf unserer Webseite zu informieren. </span>
+                        <br/>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <br/>
+                      </p>
+                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">
+                        <br/>
                       </p>
                       <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p class="o_default_snippet_text">We store personal information on secure servers that are managed by us and our service providers, and occasionally hard copy files that are kept in a secure location. Personal information that we store or transmit is protected by security and access controls, including username and password authentication,</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">How you can access your personal information&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p class="o_default_snippet_text">You can access some of the personal information that we collect about you by logging in to your account. You also have the right to make a request to access other personal information we hold about you and to request corrections of any errors in that data. You can also close the account you have with us for any of our website at any time.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">Marketing choices regarding your personal information&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p class="o_default_snippet_text">Where we have your consent to do so (i.e. if you have subscribed to one of our e-mail lists or have indicated that you are interested in receiving offers or information from us), we send you marketing communications by email about products and services that we feel may be of interest to you. You can ‘opt-out’ of such communications if you would prefer not to receive them in the future by using the “unsubscribe” facility provided in the communication itself.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>You also have choices about cookies, as described below. By modifying your browser preferences, you have the choice to accept all cookies, to be notified when a cookie is set, or to reject all cookies. If you choose to reject cookies some parts of our website may not work properly in your case</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">Cookies and web analytics&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>You also have choices about cookies, as described below. By modifying your browser preferences. For more general information on cookies, see http://www.allaboutcookies.org.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>When you visit our website, there’s certain information that’s recorded which is generally anonymous information and does not reveal your identity. If you’re logged into your account some of this information could be associated with your account. We’re talking about the following kinds of details:</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">your IP address or proxy server IP address’;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">the domain name you requested;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">the name of your internet service provider is sometimes captured depending on the configuration of your ISP connection;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">the date and time of your visit to the website;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">the length of your session;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">the pages which you have accessed;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">the number of times you access our site within any month;</p>
-                        </li>
-                        <li>
-                          <p class="o_default_snippet_text">the file URL you look at and information relating to it;</p>
-                        </li>
-                        <li>
-                          <p>the website which referred you to our website; and the operating system which your computer uses.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">Information you make public or give to others&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>If you make your personal information available to other people, we can’t control or accept responsibility for the way they will use or manage that data. There are lots of ways that you can find yourself providing information to other people, like when you post a public message on a forum thread, share information via social media, or make contact with another user (such as a third party Author) whether via our website or directly via email. Before making your information publicly available or giving your information to anyone else, think carefully. If giving information to another user via our website, ask them how they will handle your information. If you’re sharing information via another website, check the privacy policy for that site to understand its information management practices as this privacy policy will not apply.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">How long we keep your personal information&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>We retain your personal information for as long as is necessary to provide the services to you and others, and to comply with our legal obligations. If you no longer want us to use your personal information or to provide you with our services, you can request that we erase your personal information and close your account. Please note that if you request the erasure of your personal information we will retain information from deleted accounts as necessary for our legitimate business interests, to comply with the law, prevent fraud, collect fees, resolve disputes, troubleshoot problems, assist with investigations, enforce the terms of service and take other actions permitted by law. The information we retain will be handled in accordance with this Privacy Policy.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">When we need to update this policy&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>We will need to change this policy from time to time in order to make sure it stays up to date with the latest legal requirements and any changes to our privacy management practices.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>When we do change the policy, we’ll make sure to notify you about such changes, where required. A copy of the latest version of this policy will always be available on this page.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">How you can contact us&amp;nbsp;</p>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <ul style="margin-bottom: 10px;">
-                        <li>
-                          <p>If you have any questions about our privacy practices or the way in which we have been managing your personal information, please contact us via our contact information menu.</p>
-                        </li>
-                      </ul>
-                      <p class="o_default_snippet_text" style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"/>
-                      <p style="margin-right: 0px; margin-bottom: 10px; margin-left: 0px;">Penguin Privacy Policy, effective date 25 May 2018</p>
                     </div>
                   </div>
                 </div>

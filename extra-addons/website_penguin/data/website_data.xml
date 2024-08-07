@@ -82,7 +82,7 @@
 
 <record id="website_page_penguin_customerservice" model="website.page">
     <field name="name">Customer Service</field>
-    <field name="url">/ambassador</field>
+    <field name="url">/customerservice</field>
     <field name="view_id" ref="website_penguin.customerservice"/>
     <field name="is_published">True</field>
 </record>

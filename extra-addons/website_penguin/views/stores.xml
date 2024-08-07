@@ -1,611 +1,749 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="stores">
-        <t t-call="website.layout">
-            <div id="wrap" class="oe_structure oe_empty">
-                <div id="myCarousel1594817806503" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
-                    <ol class="carousel-indicators d-none">
-                        <li data-target="#myCarousel1594817806503" data-slide-to="0" class="active">
-                            <br/>
-                        </li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item pt152 pb152 oe_img_bg oe_custom_bg active" style="background-image: url(&quot;https://penguin.swiss/web/image/4227/stores-page_2176X1216.jpg&quot;); background-position: 55.58% 43.87%;" data-name="Slide">
-                            <div class="container">
-                                <div class="row content">
-                                    <div class="carousel-content col-lg-9">
-                                        <div class="s_title pb8" data-name="Title">
-                                            <h2 class="s_title_thin">
-                                                <font style="color: rgb(255, 255, 255); font-size: 62px;">Where to find your Penguin outfit?</font>
-                                            </h2>
-                                        </div>
-                                        <p class="lead">
-                                            <font style="color: rgb(255, 255, 255);">Choose between our own store in Zurich or one of our retail partner stores near you.</font>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+        <div id="myCarousel1594817806503" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+            <ol class="carousel-indicators d-none">
+            <li data-target="#myCarousel1594817806503" data-slide-to="0" class="active">
+                <br/>
+            </li>
+            </ol>
+            <div class="carousel-inner">
+            <div class="carousel-item pt152 pb152 oe_img_bg oe_custom_bg active" style="background-image: url(&quot;https://penguin.swiss/web/image/4227/stores-page_2176X1216.jpg&quot;); background-position: 55.58% 43.87%;" data-name="Slide">
+                <div class="container">
+                <div class="row content">
+                    <div class="carousel-content col-lg-9">
+                    <div class="s_title pb8" data-name="Title">
+                        <h2 class="s_title_thin">
+                        <font style="color: rgb(255, 255, 255); font-size: 62px;">Where to find your Penguin outfit?</font>
+                        </h2>
                     </div>
-                    <div class="carousel-control-prev d-none" data-target="#myCarousel1594817806503" data-slide="prev" role="img" aria-label="Previous" title="Previous">
-                        <span class="carousel-control-prev-icon"/>
-                        <span class="sr-only o_default_snippet_text">Previous</span>
-                    </div>
-                    <div class="carousel-control-next d-none" data-target="#myCarousel1594817806503" data-slide="next" role="img" aria-label="Next" title="Next">
-                        <span class="carousel-control-next-icon"/>
-                        <span class="sr-only o_default_snippet_text">Next</span>
+                    <p class="lead">
+                        <font style="color: rgb(255, 255, 255);">Choose between our own store in Zurich or one of our retail partner stores near you.</font>
+                    </p>
                     </div>
                 </div>
-                <section class="s_text_block pb0 pt0" data-name="Text block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 pb0 pt0">
-                                <p class="lead">
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="s_text_block pt32 bg-beta pb0" data-name="Text block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 pt0 pb32">
-                                <p class="lead">
-                                    <font style="font-size: 36px;">Penguin home base &amp;amp; retail store, Zurich</font>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="s_text_block pb0 pt0" data-name="Text block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 pb0 pt0">
-                                <p class="lead">
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <div id="myCarousel1594216761028" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
-                    <ol class="carousel-indicators d-none">
-                        <li data-target="#myCarousel1594216761028" data-slide-to="0" class="active">
-                            <br/>
-                        </li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item oe_img_bg pb256 pt256 oe_custom_bg active" style="background-image: url(&quot;https://penguin.swiss/web/image/4228/penguin_store_2176X1216.jpg&quot;); background-position: 13.28% 19.88%;" data-name="Slide">
-                            <div class="container">
-                                <div class="row content">
-                                    <div class="carousel-content col-lg-7">
-                                        <div class="s_title pb8" data-name="Title">
-                                            <h1 class="s_title_default">
-                                                <font style="color: rgb(255, 255, 255);">Stop by for a drink,</font>
-                                            </h1>
-                                            <h1 class="s_title_default">
-                                                <font style="color: rgb(255, 255, 255);">talk or to shop. &amp;nbsp;</font>
-                                            </h1>
-                                        </div>
-                                        <p class="lead">
-                                            <font style="color: rgb(255, 255, 255);">Klingenstrasse 9, 8005 Zurich</font>
-                                        </p>
-                                        <p class="lead">
-                                            <font style="color: rgb(255, 255, 255);">Thu-Fr: 16.00-20.00h</font>
-                                        </p>
-                                        <p class="lead">
-                                            <font style="color: rgb(255, 255, 255);">Sat: 11.00-18.00h</font>
-                                        </p>
-                                        <p class="lead">
-                                            <font style="color: rgb(255, 255, 255);">***Shop remains closed when 30+cm fresh powder falls***</font>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-control-prev d-none" data-target="#myCarousel1594216761028" data-slide="prev" role="img" aria-label="Previous" title="Previous">
-                        <span class="carousel-control-prev-icon"/>
-                        <span class="sr-only o_default_snippet_text">Previous</span>
-                    </div>
-                    <div class="carousel-control-next d-none" data-target="#myCarousel1594216761028" data-slide="next" role="img" aria-label="Next" title="Next">
-                        <span class="carousel-control-next-icon"/>
-                        <span class="sr-only o_default_snippet_text">Next</span>
-                    </div>
                 </div>
-                <section class="s_text_block pb0 pt0" data-name="Text block">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 pb0 pt0">
-                                <p class="lead">
-                                    <br/>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="s_text_block pt32 pb32 bg-beta" data-name="Text block" style="">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 pb0 pt0">
-                                <p class="lead">
-                                    <font style="font-size: 36px;">Penguin retail partner stores</font>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="s_three_columns pb32 pt0" data-name="Columns" style="">
-                    <div class="container">
-                        <div class="row d-flex align-items-stretch">
-                            <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
-                                <div class="card bg-white">
-                                    <img class="card-img-top" src="/web/image/4216/CH-tip-to-tail_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314"/>
-                                    <div class="card-body">
-                                        <h3 class="card-title">Switzerland</h3>
-                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
-                                            <a href="#" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip826990">Find a store near you.<br/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
-                                <div class="card bg-white">
-                                    <img class="card-img-top" src="/web/image/4218/De-heinzel-1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314"/>
-                                    <div class="card-body">
-                                        <h3 class="card-title">Germany</h3>
-                                        <div class="pb0 pt16 s_btn text-left" data-name="Button">
-                                            <a href="#" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip351719">Find a store near you.</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
-                                <div class="card bg-white">
-                                    <img class="card-img-top" src="/web/image/4217/AT-schoenherr-1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314"/>
-                                    <div class="card-body">
-                                        <h3 class="card-title">Austria</h3>
-                                        <div class="s_btn text-left pb0 pt16" data-name="Button">
-                                            <a href="#" class="btn btn-primary btn-sm" data-original-title="" title="" aria-describedby="tooltip344456">Find a store near you.</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="s_features_grid pt48 pb24" data-name="Features Grid">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-6 s_col_no_bgcolor pb24">
-                                <div class="row">
-                                    <div class="col-lg-12 pb24" data-name="Box">
-                                        <h2>Switzerland</h2>
-                                        <h5 class="text-primary">Scroll down to see all shops.</h5>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BE, Bern, Tip to Tail</h4>
-                                            <p>
-                                                <a href="http://www.tiptotail.ch" data-original-title="" title="" target="_blank">www.tiptotail.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BE, Gstaad, Pure Snowboard Shop</h4>
-                                            <p>
-                                                <a href="https://pure-snowboarding.ch" data-original-title="" title="" target="_blank">www.pure-snowboarding.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BE, Adelboden, Diamond Board Shop &amp;amp; Fashion</h4>
-                                            <p>
-                                                <a href="https://www.diamondboardshop.ch" data-original-title="" title="" target="_blank">www.diamondboardshop.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>GE, Carouge, Cactus Sports</h4>
-                                            <p>
-                                                <a href="https://www.cactus-sports.ch" data-original-title="" title="" target="_blank">www.cactus-sports.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>GR, Arosa, Bananas by Gisler Sport</h4>
-                                            <p>
-                                                <a href="https://www.gislersport.ch/shops/bananas-by-gisler-sport/" data-original-title="" title="" aria-describedby="tooltip464086" target="_blank">www.gislersport.ch.</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>GR, Davos, Fullmoons</h4>
-                                            <p>
-                                                <a href="http://fullmoons.ch" data-original-title="" title="" target="_blank">www.fullmoons.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>GR, Lenzerheide, Pesko Rothornbahn</h4>
-                                            <p>
-                                                <a href="https://www.pesko.ch/pesko-rothornbahn/" data-original-title="" title="" aria-describedby="tooltip885420" target="_blank">www.pesko.ch/pesko-rothornbahn/</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>GR, Pontresina &amp;amp; St. Moritz, Go Vertical</h4>
-                                            <p>
-                                                <a href="https://govertical.ch" data-original-title="" title="" target="_blank">www.govertical.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>GR, Trun, Am Berg Freeride</h4>
-                                            <p>
-                                                <a href="http://www.amberg-freeridesport.ch" data-original-title="" title="" aria-describedby="tooltip220736">www.amberg-freeridesport.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 s_col_no_bgcolor pb24">
-                                <div class="row">
-                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>GR, Disentis, AR Clothing</h4>
-                                            <p>
-                                                <a href="https://www.instagram.com/alpine_rider_sportshop" data-original-title="" title="" aria-describedby="tooltip484424" target="_blank">www.instagram.com/alpine_rider_sportshop/</a>
-                                                <br/>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>GR, Flims, Chopp</h4>
-                                            <p>
-                                                <a href="http://chopp.ch" data-original-title="" title="" aria-describedby="tooltip945536" target="_blank">www.chopp.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>NE, La Chaux-de-Fonds, Vertical Passion</h4>
-                                            <p>
-                                                <a href="https://www.vertical-passion.ch" data-original-title="" title="" target="_blank">www.vertical-passion.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>LU, Beromünster, Huwyler Sport</h4>
-                                            <p>
-                                                <a href="https://www.huwylersport.ch" target="_blank" data-original-title="" title="" aria-describedby="tooltip622586">www.huwylersport.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>UR, Andermatt, Snowlimit</h4>
-                                            <p>
-                                                <a href="http://www.snowlimit.ch/de/sommer" data-original-title="" title="" target="_blank">www.snowlimit.ch/de/sommer</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>VS, Bettmeralp, Derby Sport</h4>
-                                            <p>
-                                                <a href="https://www.derby-sport.com/allgemein/home" data-original-title="" title="" target="_blank">www.derby-sport.com</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt0 pb0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>VS, Les Collons, Genolet Sports</h4>
-                                            <p>
-                                                <a href="http://genoletsports.ch" data-original-title="" title="" target="_blank">www.genoletsports.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>ZG, Zug, Berge Pur</h4>
-                                            <p>
-                                                <a href="https://www.bergepur.ch" target="_blank" data-original-title="" title="" aria-describedby="tooltip28726">www.bergepur.ch</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>Samnaun, Peer Sport</h4>
-                                            <p>
-                                                <a href="http://peersport.ch" data-original-title="" title="" aria-describedby="tooltip335471" target="_blank">www.peersport.ch</a>
-                                                <br/>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 s_col_no_bgcolor pb0">
-                                <div class="row">
-                                    <div class="col-lg-12 pb24" data-name="Box">
-                                        <h2>Germany</h2>
-                                        <h5 class="text-primary">Scroll down to see all shops.</h5>
-                                    </div>
-                                    <div class="col-lg-12 pb0 pt0" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BE, Berlin, Der Berg Ruf &amp;amp; Boarderline</h4>
-                                            <p>
-                                                <a href="http://www.bergruft.de" target="_blank" data-original-title="" title="" aria-describedby="tooltip991239">http://www.bergruft.de</a>
-                                                <br/>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BY, Buchenberg, Sport Frey</h4>
-                                            <p>
-                                                <a href="http://www.sportfrey.de" target="_blank">http://www.sportfrey.de</a>
-                                                <br/>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BY, Garmisch-Paternkirchen, WN alpin</h4>
-                                            <p>
-                                                <a href="https://www.wn-alpin.de" target="_blank">https://www.wn-alpin.de</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BY, Aichach, Heimat Sport</h4>
-                                            <p>
-                                                <a href="https://heimat-sport.com" target="_blank">https://heimat-sport.com</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BW, Biberach, Sport Heinzel</h4>
-                                            <p>
-                                                <a href="https://sport-heinzel.de/cms/1-startseite.html" target="_blank" data-original-title="" title="" aria-describedby="tooltip111204">https://sport-heinzel.de</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BW, Hülben, Sport Kächele</h4>
-                                            <p>
-                                                <a href="https://sport-kaechele.de" target="_blank">https://sport-kaechele.de</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>BW, Stuttgart, Bergwerker</h4>
-                                            <p>
-                                                <a href="https://www.bergwerker.de" target="_blank">https://www.bergwerker.de</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>NW, Düsseldorf, The Boarder Shop</h4>
-                                            <p>
-                                                <a href="https://www.the-boardershop.de" target="_blank">https://www.the-boardershop.de</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>SA, Chemnitz, Biker-Boarder</h4>
-                                            <p>
-                                                <a href="https://www.biker-boarder.de" target="_blank">https://www.biker-boarder.de</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>SA, Zwickau, Endless Winter Shop</h4>
-                                            <p>
-                                                <a href="https://endlesswintershop.de" target="_blank">https://endlesswintershop.de</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>SN, Annaberg-B., Sport Shop Weiwa</h4>
-                                            <p>
-                                                <a href="https://www.freiluft-einfachdraussen.de">https://www.freiluft-einfachdraussen.de</a>
-                                                <br/>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 s_col_no_bgcolor pb0">
-                                <div class="row">
-                                    <div class="col-lg-12 pb24" data-name="Box">
-                                        <h2>
-                                            <br/>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 s_col_no_bgcolor pb0">
-                                <div class="row">
-                                    <div class="col-lg-12 pb24" data-name="Box">
-                                        <h2>Austria</h2>
-                                        <h5 class="text-primary">Scroll down to see all shops.</h5>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>Rainbach im Innkreis, Schimalaya</h4>
-                                            <p>
-                                                <a href="https://www.schimalaya.at" target="_blank">https://www.schimalaya.at</a>
-                                                <br/>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>Schladming, Veith Sport</h4>
-                                            <p>
-                                                <a href="https://skiverleih-schladming-veith.at" target="_blank">https://skiverleih-schladming-veith.at</a>
-                                                <br/>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>St. Anton am Arlberg, Jennewein pure sports</h4>
-                                            <p>
-                                                <a href="https://www.sport-jennewein.com" target="_blank">https://www.sport-jennewein.com</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 pt16 pb16" data-name="Box">
-                                        <div class="s_features_grid_content">
-                                            <h4>Stubaital, Schönherr</h4>
-                                            <p>
-                                                <a href="https://www.schoenherr.cc/de/wintersport/" target="_blank" data-original-title="" title="" aria-describedby="tooltip132923">https://www.schoenherr.cc/de/wintersport/</a>
-                                            </p>
-                                            <p>
-                                                <br/>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="s_call_to_action pt48 pb24 bg-beta" data-name="Call to Action">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-9 pb24">
-                                <h3>
-                                    <b>Want to become a retail partner?</b>
-                                </h3>
-                                <p class="lead">We will answer right away except on sweet powder days.</p>
-                            </div>
-                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
-                                <a href="/contact" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip926244"> Contact us <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
-        </t>
+            </div>
+            <div class="carousel-control-prev d-none" data-target="#myCarousel1594817806503" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+            <span class="carousel-control-prev-icon"/>
+            <span class="sr-only o_default_snippet_text">Previous</span>
+            </div>
+            <div class="carousel-control-next d-none" data-target="#myCarousel1594817806503" data-slide="next" role="img" aria-label="Next" title="Next">
+            <span class="carousel-control-next-icon"/>
+            <span class="sr-only o_default_snippet_text">Next</span>
+            </div>
+        </div>
+        <section class="s_title pt40 pb40 o_colored_level" data-vcss="001" data-name="Title" style="background-image: none;">
+            <div class="container s_allow_columns">
+            <h2 style="text-align: center;">Penguin Concept Store, Zurich<br/></h2>
+            </div>
+        </section>
+        <div id="myCarousel1594216761028" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+            <ol class="carousel-indicators d-none">
+            <li data-target="#myCarousel1594216761028" data-slide-to="0" class="active">
+                <br/>
+            </li>
+            </ol>
+            <div class="carousel-inner">
+            <div class="carousel-item pb256 pt256 oe_custom_bg active o_colored_level" style="background-image: url(&quot;/web/image/4228/penguin_store_2176X1216.jpg&quot;); background-position: 13.28% 19.88%;" data-name="Slide">
+                <div class="container">
+                <div class="row content">
+                    <div class="carousel-content col-lg-7">
+                    <div class="s_title pb8" data-name="Title">
+                        <h1 class="s_title_default">
+                        <font style="color: rgb(255, 255, 255);">Stop by for a drink,</font>
+                        </h1>
+                        <h1 class="s_title_default">
+                        <font style="color: rgb(255, 255, 255);">talk or to shop. &amp;nbsp;</font>
+                        </h1>
+                    </div>
+                    <p class="lead">
+                        <font style="color: rgb(255, 255, 255);">Klingenstrasse 9, 8005 Zurich</font>
+                    </p>
+                    <p class="lead">
+                        <font class="text-o-color-4">Opening hours October to March:</font>
+                    </p>
+                    <p class="lead">
+                        <font style="color: rgb(255, 255, 255);">Thu-Fr: 16.00-20.00h</font>
+                    </p>
+                    <p class="lead">
+                        <font style="color: rgb(255, 255, 255);">Sat: 11.00-18.00h</font>
+                    </p>
+                    <p class="lead">
+                        <font style="color: rgb(255, 255, 255);">***Shop remains closed when 30+cm fresh powder falls***</font>
+                    </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="carousel-control-prev d-none" data-target="#myCarousel1594216761028" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+            <span class="carousel-control-prev-icon"/>
+            <span class="sr-only o_default_snippet_text">Previous</span>
+            </div>
+            <div class="carousel-control-next d-none" data-target="#myCarousel1594216761028" data-slide="next" role="img" aria-label="Next" title="Next">
+            <span class="carousel-control-next-icon"/>
+            <span class="sr-only o_default_snippet_text">Next</span>
+            </div>
+        </div>
+        <section class="s_three_columns pb32 pt0 o_colored_level" data-name="Columns" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip702483">
+            <div class="container">
+            <div class="row d-flex align-items-stretch">
+                <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
+                <div class="card bg-white">
+                    <img class="card-img-top" src="/web/image/4216/CH-tip-to-tail_1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314" loading="lazy"/>
+                    <div class="card-body">
+                    <h3 class="card-title">Switzerland</h3>
+                    <div class="s_btn text-left pb0 pt16" data-name="Button">
+                        <a href="#" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip826990">Find a store near you.<br/></a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
+                <div class="card bg-white">
+                    <img class="card-img-top" src="/web/image/4218/De-heinzel-1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314" loading="lazy"/>
+                    <div class="card-body">
+                    <h3 class="card-title">Germany</h3>
+                    <div class="pb0 pt16 s_btn text-left" data-name="Button">
+                        <a href="#" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip351719">Find a store near you.</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 s_col_no_bgcolor pb16 pt80">
+                <div class="card bg-white">
+                    <img class="card-img-top" src="/web/image/4217/AT-schoenherr-1600x1068.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip520314" loading="lazy"/>
+                    <div class="card-body">
+                    <h3 class="card-title">Austria</h3>
+                    <div class="s_btn text-left pb0 pt16" data-name="Button">
+                        <a href="#" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip344456">Find a store near you.</a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_heading_5 pt16 pb16 o_colored_level" data-name="Heading - 5" style="background-image: none;">
+            <div class="container">
+            <div class="row justify-content-center s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-12 col-lg-8 text-center">
+                <h2>
+                    <font class="text-900">Switzerland</font>
+                    <br/>
+                </h2>
+                <p class="lead">Find our products at a partner store near you<br/></p>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38051-dedc1731/tttimage.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip303952" data-original-id="38048" data-original-src="/web/image/38048-63c7ebf1/tttimage.jpg" data-mimetype="image/jpeg" data-resize-width="194"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">BE |&amp;nbsp;Bern | Tip To Tail<br/></h5>
+                        <div class="text-o-color-1">Speichergasse 35<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@tiptotail.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 31 351 89 89<br/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38052-57185ab9/Team-Pure.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip633336" data-original-id="38049" data-original-src="/web/image/38049-d2ec0e61/Team-Pure.jpg" data-mimetype="image/jpeg" data-resize-width="320"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">BE | Gstaad | Pure Shop<br/></h5>
+                        <div class="text-o-color-1">Umfahrungsstrasse 11<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> pure@bluewin.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 33 744 75 70<br/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/39594-ed60a859/team_ingold.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip439216" data-original-id="39588" data-original-src="/web/image/39588-31b3a851/team_ingold.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">BE | Herzogenbuchsee | Ingold Sport<br/></h5>
+                        <div class="text-o-color-1">
+                                            Kirchgasse 6</div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> info@ingold-sport.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 62 961 12 45<br/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2 o_we_force_no_transition">
+                <div class="card h-100 tp-editor-bg-color-n-shadow o_we_force_no_transition">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38062-87bb3f03/team-cactus.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip402314" data-original-id="38055" data-original-src="/web/image/38055-ad921f35/team-cactus.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">GE | Carouge | Cactus Sports<br/></h5>
+                        <div class="text-o-color-1">
+                                            Rue du Pont-Neuf 6
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> info@cactus-sports.ch</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/> +41 22 300 30 01</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38060-d3f23772/team_Bananas-Arosa-Ski-Snowboard-Center-Tschuggen-Ost-Gisler-Sport-Arosa.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip361031"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0 o_default_snippet_text">GR | Arosa | Bananas by Gisler Sport<br/></h5>
+                        <div class="text-o-color-1">Talstation Tschuggen Ost<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> info@gislersport.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 81 377 61 51<br/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38061-a130174e/team-fullmoons.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip32554"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">GR | Davos | Fullmoons<br/></h5>
+                        <div class="text-o-color-1">
+                                            Promenade 127
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@fullmoons.ch</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/> +41 <a>81 420 14 77</a><br/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/50697-182fd0dd/team-raetikon.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip476639" data-original-id="50696" data-original-src="/web/image/50696-90bf0559/team-raetikon.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">GR | Küblis&amp;nbsp;| Rätikon Sport<br/></h5>
+                        <div class="text-o-color-1">Industriestrasse 1</div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@raetikonsport.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 81 332&amp;nbsp;36&amp;nbsp;36</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38160-44179516/team_gv_pontresina.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip300655" data-original-id="38158" data-original-src="/web/image/38158-ccc1ad12/team_gv_pontresina.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">GR | Pontresina | Go Vertical<br/></h5>
+                        <div class="text-o-color-1">
+                                            Via Maistra 163 &amp;amp; 167<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> info@govertical.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 81 834 57 58<strong/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38161-1d043541/Bildschirmfoto%202022-11-14%20um%2018.15.59.png" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip870243" data-original-id="38159" data-original-src="/web/image/38159-9e865291/Bildschirmfoto%202022-11-14%20um%2018.15.59.png" data-mimetype="image/png" data-resize-width="690"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">GR | St. Moritz | Go Vertical<br/></h5>
+                        <div class="text-o-color-1 o_default_snippet_text">
+                                            Plazza da Scoula 6</div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@govertical.ch</li>
+                        <li class="list-item" data-original-title="" title="" aria-describedby="tooltip363295"><i class="fa fa-phone mr-1"/> +41 81 833 94 89</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38166-9bbc9101/team_chopp.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip448665" data-original-id="38162" data-original-src="/web/image/38162-8792bd7c/team_chopp.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">GR | Flims Dorf | Chopp<br/></h5>
+                        <div class="text-o-color-1">Via Nova 70<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> info@chopp.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 81 911 20 11</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38163-75922707/Bildschirmfoto%202022-11-14%20um%2018.35.53.png" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip149407" data-original-id="38163" data-original-src="/web/image/38163-75922707/Bildschirmfoto%202022-11-14%20um%2018.35.53.png" data-mimetype="image/png"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">GR | Disentis | Alpine Rider<br/></h5>
+                        <div class="text-o-color-1">
+                                            Via Sursilvana 18</div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/>pirmin@avalanche-rider.com</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 79 685 90 28</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38165-581a121e/team-peer.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip912414" data-original-id="38164" data-original-src="/web/image/38164-776e312f/team-peer.jpg" data-mimetype="image/jpeg" data-resize-width="520"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">GR | Samnaun | Peer Sport<br/></h5>
+                        <div class="text-o-color-1">
+                                            Talstrasse 62
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@peersport.ch</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/> +41 81 868 52 60</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38171-5286f8c7/team-vertical-passion.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip587618" data-original-id="38167" data-original-src="/web/image/38167-05ddf8f8/team-vertical-passion.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">NE | La Chaux-de-F., Vertical Passion<br/></h5>
+                        <div class="text-o-color-1">
+                                            Rue des Crêtets 99
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@vertical-passion.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +81 <span style="color: #666666">32 913 00 40</span></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38168-bf6f4cdb/team-huwyler.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip669330"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">LU | Beromünster | Huwyler Sport<br/></h5>
+                        <div class="text-o-color-1">
+                                            Fläcke 29
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@huwylersport.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 41 930 31 39<a href="https://www.google.com/search?q=huwyler+sport&amp;source=lmns&amp;bih=929&amp;biw=1710&amp;client=firefox-b-d&amp;hl=de&amp;sa=X&amp;ved=2ahUKEwjsmsv2oK77AhVEyaQKHXP-DH4Q_AUoAHoECAEQAA#"/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38170-76ab703d/team-snowlimit_Icon_schwarz.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip356916" data-original-id="38169" data-original-src="/web/image/38169-d33a373c/team-snowlimit_Icon_schwarz.jpg" data-mimetype="image/jpeg" data-resize-width="434"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0 o_default_snippet_text">UR | Andermatt | Snowlimit<br/></h5>
+                        <div class="text-o-color-1">Gotthardstrasse 21<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@snowlimit.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 41 887 06 14<a href="https://www.google.com/search?client=firefox-b-d&amp;q=snowlimit#"/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level o_we_force_no_transition" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2 o_we_force_no_transition">
+                <div class="card h-100 tp-editor-bg-color-n-shadow o_we_force_no_transition">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38177-9d8f77dc/team_derby.jpg" alt="" loading="lazy" data-original-id="38172" data-original-src="/web/image/38172-5813be77/team_derby.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0 o_default_snippet_text">VS | Bettmeralp | Derby Sport</h5>
+                        <div class="text-o-color-1">
+                                            Hauptstrasse 93
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> derby-sport@rhone.ch</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/> +41 27 927 11 40<br/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38176-7ef6cf2a/team-genolet.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip164043" data-original-id="38173" data-original-src="/web/image/38173-0485ff59/team-genolet.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">VS | Les Collons | Genolet Sports<br/></h5>
+                        <div class="text-o-color-1">Rue de la Mura 33<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> shop@genoletsports.ch</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/> +41 27 281 50 41</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38175-c5722fe1/team-berge-pur.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip587336" data-original-id="38174" data-original-src="/web/image/38174-fff2f85f/team-berge-pur.jpg" data-mimetype="image/jpeg" data-resize-width="301"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">ZG | Zug | Berge Pur<br/></h5>
+                        <div class="text-o-color-1">Baarerstrasse 49<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> info@bergepur.ch</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/> +41 41 710 22 61</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/39595-bf15ca06/team_360_store.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip93634" data-original-id="39589" data-original-src="/web/image/39589-860bb7c4/team_360_store.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">NW | Stans | 3Sixty<br/></h5>
+                        <div class="text-o-color-1">Dorfplatz 6<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@3sixty.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 41 612 00 77</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/39593-b5c141a6/team_transa.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip279315" data-original-id="39592" data-original-src="/web/image/39592-6100a24b/team_transa.jpg" data-mimetype="image/jpeg" data-resize-width="225"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">BE | Bern | Transa<br/></h5>
+                        <div class="text-o-color-1">Markthalle Bubenbergpl. 6<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@transa.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 848 084 811</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/39592-6100a24b/team_transa.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip453480"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">LU | Luzern | Transa<br/></h5>
+                        <div class="text-o-color-1">
+                                            Pfistergasse 23
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@transa.ch</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/>+41 848 084 811</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/39596-d906bbde/team_penguin_ZH.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip827688" data-original-id="39591" data-original-src="/web/image/39591-93ee923e/team_penguin_ZH.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">ZH | Zürich | Penguin Shop<br/></h5>
+                        <div class="text-o-color-1">Klingenstrasse 9<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> mail@penguin.swiss</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 44 586 63 60<br/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/39597-ef66e71e/team_transa_zh.JPG" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip528997" data-original-id="39590" data-original-src="/web/image/39590-3c0a40a7/team_transa_zh.JPG" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">ZH | Zürich | Transa<br/></h5>
+                        <div class="text-o-color-1">Europaallee, Lagerstrasse 4<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@transa.ch</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +41 848 084 811<br/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_heading_5 pt16 pb16 o_colored_level" data-name="Heading - 5" style="background-image: none;">
+            <div class="container">
+            <div class="row justify-content-center s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-12 col-lg-8 text-center">
+                <h2>
+                    <font class="text-o-color-5">Germany</font>
+                    <font class="text-gradient" style="background-image: linear-gradient(135deg, rgb(255, 204, 51) 0%, rgb(226, 51, 255) 100%);"/>
+                    <br/>
+                </h2>
+                <p class="lead">Find our products at a partner store near you</p>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38263-172403c5/team_dbr.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip321059" data-original-id="38258" data-original-src="/web/image/38258-80605fc1/team_dbr.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">BE | Berlin | Der Berg Ruft + Boarderline<br/></h5>
+                        <div class="text-o-color-1">Schlesische Str. 26<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> berlin@boarderline.de</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +49 30 611 64 84</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38262-9b752496/team_sport-frey.jpg" alt="" loading="lazy" data-original-id="38259" data-original-src="/web/image/38259-1663b538/team_sport-frey.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">BY | Buchenberg | Sport Frey</h5>
+                        <div class="text-o-color-1 o_default_snippet_text">
+                                            Rathaussteige 1
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@sportfrey.de</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +49 8378 7888</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38261-d8cb6f04/team-wn-alpin.jpg" alt="" loading="lazy" data-original-id="38260" data-original-src="/web/image/38260-2ddecfec/team-wn-alpin.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">BY | Garmisch-P. | WN alpin<br/></h5>
+                        <div class="text-o-color-1">Zugspitzstrasse 20<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/>wn-alpin@t-online.de</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +49 8821 50340</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38405-6452837a/team_Heimatsport.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip904723" data-original-id="38402" data-original-src="/web/image/38402-803ec999/team_Heimatsport.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">BY | Aichach | Heimat Sport<br/></h5>
+                        <div class="text-o-color-1 o_default_snippet_text">Streubstrasse 7<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> info@heimat-sport.com</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/> +49 8251 872 24 55<a href="tel:+49 8251 8722455"/></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38429-66f8eb94/team_boardershop.jpg" alt="" loading="lazy" data-original-id="38428" data-original-src="/web/image/38428-abb6e6ee/team_boardershop.jpg" data-mimetype="image/jpeg" data-resize-width="477"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">NRW | Düsseldorf | Boardershop<br/></h5>
+                        <div class="text-o-color-1">Gladbacher Str. 60<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> information@mail.com</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +49 211 305155</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38432-c8ae10a7/team_guter-griff.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip993430" data-original-id="38427" data-original-src="/web/image/38427-5a5059a1/team_guter-griff.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">SA | Leipzig | Guter Griff<br/></h5>
+                        <div class="text-o-color-1">Angerstrasse 53<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-envelope mr-1"/> info@gutergriff.de</li>
+                        <li class="list-item o_default_snippet_text"><i class="fa fa-phone mr-1"/> +49 341 477 31 30</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38430-90ef428f/team_steinkopf.jpg" alt="" loading="lazy" data-original-id="38426" data-original-src="/web/image/38426-8984a159/team_steinkopf.jpg" data-mimetype="image/jpeg" data-resize-width="500"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0">TH | Gera | Ski Service Steinkopf<br/></h5>
+                        <div class="text-o-color-1">
+                                            Goethestrasse 12
+                                        </div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> joerg@schneebrett-gera.de</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +49 365 8 31 05 61</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_heading_5 pt16 pb16 o_colored_level" data-name="Heading - 5" style="background-image: none;">
+            <div class="container">
+            <div class="row justify-content-center s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-12 col-lg-8 text-center">
+                <h2>
+                    <font class="text-o-color-5">Austria</font>
+                    <font class="text-gradient" style="background-image: linear-gradient(135deg, rgb(255, 204, 51) 0%, rgb(226, 51, 255) 100%);"/>
+                    <br/>
+                </h2>
+                <p class="lead">Find our products at a partner store near you<br/></p>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_team_3 pb16 pt16 o_colored_level" data-name="Team - 3" style="background-image: none;">
+            <div class="container">
+            <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                <div class="col-lg-4 py-2">
+                <div class="card h-100 tp-editor-bg-color-n-shadow">
+                    <div class="media p-2">
+                    <img class="img img-fluid tp-image-100-max mr-3" src="/web/image/38271-51cc9d8f/team-jennewein.jpg" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip584119"/>
+                    <div class="media-body">
+                        <h5 class="card-title mb-0 o_default_snippet_text">T | St. Anton | Jennewein Pure Sports<br/></h5>
+                        <div class="text-o-color-1">Dorfstrasse 2<br/></div>
+                        <ul class="list-unstyled mt-2 mb-0">
+                        <li class="list-item"><i class="fa fa-envelope mr-1"/> office@sport-jennewein.com</li>
+                        <li class="list-item"><i class="fa fa-phone mr-1"/> +43 5446 28 300</li>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="s_call_to_action pt48 pb24 bg-beta" data-name="Call to Action">
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-9 pb24">
+                <h3>
+                    <b>Want to become a retail partner?</b>
+                </h3>
+                <p class="lead">We will answer right away except on sweet powder days.</p>
+                </div>
+                <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                <a href="/contact" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip926244"> Contact us <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/> </a>
+                </div>
+            </div>
+            </div>
+        </section>
+        </div>
+    </t>
     </template>
 </odoo>
