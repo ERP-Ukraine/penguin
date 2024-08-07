@@ -6,18 +6,16 @@ from odoo.tools import float_compare
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-    def _update_reserved_quantity(self, need, available_quantity,
-                                  location_id, lot_id=None, package_id=None,
+    def _update_reserved_quantity(self, need, location_id, quant_ids=None,
+                                  lot_id=None, package_id=None,
                                   owner_id=None, strict=True):
         rounding = self.product_id.uom_id.rounding
         if not strict:
             taken_quantity = super()._update_reserved_quantity(
-                need=need, available_quantity=available_quantity,
-                location_id=location_id, lot_id=lot_id,
+                need=need, location_id=location_id, quant_ids=quant_ids, lot_id=lot_id,
                 package_id=package_id, owner_id=owner_id, strict=True)
             if float_compare(taken_quantity, need, precision_digits=rounding) == 0:
                 return taken_quantity
         return super()._update_reserved_quantity(
-                need=need, available_quantity=available_quantity,
-                location_id=location_id, lot_id=lot_id,
+                need=need, location_id=location_id, quant_ids=quant_ids, lot_id=lot_id,
                 package_id=package_id, owner_id=owner_id, strict=strict)

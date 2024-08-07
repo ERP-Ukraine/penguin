@@ -61,11 +61,11 @@
     </xpath>
 
     <xpath expr="//div[@name='div_origin']" position="attributes">
-        <attribute name="class" add="col-2 w-100" remove="col-auto" separator=" "/>
+        <attribute name="class" add="col-2" remove="col-auto" separator=" "/>
     </xpath>
 
     <xpath expr="//div[@name='div_sched_date']" position="attributes">
-        <attribute name="class" add="col-2 w-100" remove="col-auto" separator=" "/>
+        <attribute name="class" add="col-2" remove="col-auto" separator=" "/>
     </xpath>
 
     <xpath expr="//div[@name='div_origin']/parent::div" position="attributes">
@@ -88,18 +88,18 @@
         <attribute name="class" add="d-none" separator=" "/>
     </xpath>
 
-    <xpath expr="//tr[@t-foreach='lines']/td[last()]/span[@t-field='move.product_uom']" position="attributes">
+    <xpath expr="//tr[@t-foreach='lines']/td[3]/span[@t-field='move.product_uom']" position="attributes">
         <attribute name="class" add="d-none" separator=" "/>
     </xpath>
 
-    <xpath expr="//t[@t-if='o.backorder_ids and backorders']" position="after">
-        <t t-if="o.backorder_ids and backorders">
+    <xpath expr="//div[hasclass('page')]/div[@t-else='']" position="after">
+        <div t-if="o.backorder_ids and backorders" name="as_soon_available">
             <p>All items could not be shipped, the rest will be shipped as soon as they become available</p>
-        </t>
+        </div>
     </xpath>
 
-    <xpath expr="//t[@t-if='o.backorder_ids and backorders']" position="attributes">
-        <attribute name="t-if">False</attribute>
+    <xpath expr="//div[hasclass('page')]/div[@t-else='']" position="attributes">
+        <attribute name="class" add="d-none" separator=" "/>
     </xpath>
 </template>
 
@@ -113,7 +113,10 @@
     <xpath expr="//td[@name='move_line_aggregated_qty_ordered']" position="attributes">
         <attribute name="class" add="d-none" separator=" "/>
     </xpath>
-    <xpath expr="//td[@name='move_line_aggregated_qty_done']/t/span[last()]" position="attributes">
+    <xpath expr="//td[@name='move_line_aggregated_quantity']/t/span[2]" position="attributes">
+        <attribute name="class" add="d-none" separator=" "/>
+    </xpath>
+    <xpath expr="//td[@name='move_line_aggregated_quantity']/t/span[3]" position="attributes">
         <attribute name="class" add="d-none" separator=" "/>
     </xpath>
 </template>
