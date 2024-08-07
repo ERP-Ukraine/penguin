@@ -6,10 +6,10 @@
     'license': 'LGPL-3',
     'category': 'Accounting/Payment',
     'version': '1.0',
-    'depends': ['payment_transfer', 'sale'],
+    'depends': ['payment_custom', 'sale'],
     'data': [],
 
     'auto_install': False,
-    'installable': False,
+    'installable': True,
     'application': False,
 }
