@@ -29,17 +29,17 @@
     </template>
 
     <template id="stock_report_delivery_has_serial_move_line" inherit_id="stock.stock_report_delivery_has_serial_move_line">
-        <xpath expr="//span[@t-field='move_line.qty_done']" position="replace">
-            <span t-if="move_line.qty_done.is_integer()" t-esc="int(move_line.qty_done)"/>
-            <span t-else="" t-field="move_line.qty_done" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
+        <xpath expr="//span[@t-field='move_line.quantity']" position="replace">
+            <span t-if="move_line.quantity.is_integer()" t-esc="int(move_line.quantity)"/>
+            <span t-else="" t-field="move_line.quantity" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
         </xpath>
     </template>
 
     <template id="stock_report_delivery_aggregated_move_lines" inherit_id="stock.stock_report_delivery_aggregated_move_lines">
-        <xpath expr="//td[@name='move_line_aggregated_qty_done']/t/span[1]" position="replace">
-            <span t-if="aggregated_lines[line]['qty_done'].is_integer()" t-esc="int(aggregated_lines[line]['qty_done'])"
+        <xpath expr="//td[@name='move_line_aggregated_quantity']/t/span[1]" position="replace">
+            <span t-if="aggregated_lines[line]['quantity'].is_integer()" t-esc="int(aggregated_lines[line]['quantity'])"
                         t-options="{'widget': 'float', 'decimal_precision': 'Product Unit of Measure'}"/>
-            <span t-else="" t-esc="aggregated_lines[line]['qty_done']" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
+            <span t-else="" t-esc="aggregated_lines[line]['quantity']" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
         </xpath>
     </template>
 
@@ -60,16 +60,9 @@
             <attribute name="class">col-4 offset-2</attribute>
         </xpath>
 
-        <xpath expr="//span[@t-field='ml.product_uom_qty']/parent::td" position="replace">
-            <td t-if="o.state != 'done'">
-                <span t-if="ml.product_uom_qty.is_integer()" t-esc="int(ml.product_uom_qty)"/>
-                <span t-else="" t-field="ml.product_uom_qty" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
-            </td>
-            <td t-else="">
-                <span t-if="ml.qty_done.is_integer()" t-esc="int(ml.qty_done)"/>
-                <span t-else="" t-field="ml.qty_done" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
-            </td>
-            <span t-field="ml.product_uom_id" groups="uom.group_uom"/>
+        <xpath expr="//span[@t-field='ml.quantity']" position="replace">
+            <span t-if="ml.quantity.is_integer()" t-esc="int(ml.quantity)"/>
+            <span t-else="" t-field="ml.quantity" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
         </xpath>
     </template>
 

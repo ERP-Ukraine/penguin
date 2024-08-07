@@ -36,7 +36,7 @@ This module adds warehouse address to account, sale and other reports
             '/report_tmpl_penguin/static/src/scss/report_tmpl_penguin.scss',
         ],
     },
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
