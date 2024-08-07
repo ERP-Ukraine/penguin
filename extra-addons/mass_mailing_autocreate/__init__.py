@@ -5,8 +5,7 @@ from odoo import api, SUPERUSER_ID
 
 _logger = logging.getLogger(__name__)
 
-def add_contacts_to_mailing_list(cr, version):
-    env = api.Environment(cr, SUPERUSER_ID, {})
+def add_contacts_to_mailing_list(env):
     _logger.info('Post init hook: add all contacts to mailing list')
     partner_fields = env['res.partner'].search_read([('email', '!=', False)], ['name', 'email'])
     emails_list = env['mailing.contact'].search_read([], ['email'])
