@@ -18,13 +18,7 @@
         'views/product_views.xml',
         'views/stock_warehouse_views.xml',
     ],
-    'assets': {
-        'web.assets_frontend': [
-            'website_sale_stock_penguin/static/src/js/variant_mixin.js',
-            'website_sale_stock_penguin/static/src/scss/website_sale_stock_penguin.scss',
-        ],
-    },
     'auto_install': True,
-    'installable': False,
+    'installable': True,
     'post_init_hook': 'set_inventory_availability_on_product_templates'
 }
