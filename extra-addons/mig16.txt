@@ -1,0 +1,28 @@
+odoo -i sale_product_configurator -d odoo --stop-after-init
+
+psql
+
+
+delete from ir_asset;
+update payment_provider set redirect_form_view_id = NULL where redirect_form_view_id = 3053;
+delete from theme_ir_ui_view where key = 'theme_prime.component_account_info';
+delete from ir_ui_view where key = 'theme_prime.component_account_info';
+
+delete from theme_ir_ui_view where key = 'theme_prime.product';
+delete from ir_ui_view where key = 'theme_prime.product';
+
+
+
+# shell
+self.env['ir.module.module'].update_list()
+to_remove = ['arnoldsports_multi_warehouse',
+'google_products_category_gcs',
+'google_shopping_feed_gcs',
+'payment_wallee',
+'sale_arnoldsports',
+'theme_penguin_default',
+'website_cookiebot',
+'website_sale_coupon_penguin']
+addons = self.env['ir.module.module'].search([('name', 'in', to_remove), ('state', 'in', ['installed', 'to remove', 'to upgrade'])])
+addons.button_immediate_uninstall()
+self.env.cr.commit()
