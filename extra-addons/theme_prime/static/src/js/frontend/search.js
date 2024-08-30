@@ -1,11 +1,11 @@
 /** @odoo-module **/
 
-import searchExports from '@website/snippets/s_searchbar/000';
+import searchBar from '@website/snippets/s_searchbar/000';
 import { B2bMixin } from '@theme_prime/js/core/mixins';
 import { isMobileOS } from "@web/core/browser/feature_detection";
 import { markup } from "@odoo/owl";
 
-let {searchBar} = searchExports;
+// let {searchBar} = searchExports;
 
 
 searchBar.include(Object.assign({}, B2bMixin, {

@@ -7,7 +7,7 @@
     'summary': 'Powerful multipurpose eCommerce theme suitable for all kind of businesses like Electronics, Fashion, Sports, Beauty, Furniture and many more.',
     'category': 'Theme/eCommerce',
     'version': '17.0.0.17',
-    'depends': ['droggol_theme_common'],
+    'depends': ['droggol_theme_common', 'website'],
 
     'license': 'OPL-1',
     'author': 'Droggol Infotech Private Limited',
@@ -134,9 +134,7 @@
             # Editor
             ('replace', 'web_editor/static/src/scss/web_editor.frontend.scss', 'theme_prime/static/src/scss/web_editor.frontend.scss'),
 
-            # Search
-            'theme_prime/static/src/js/frontend/search.js',
-            'theme_prime/static/src/xml/frontend/search_autocomplete.xml',
+
         ],
         'web._assets_primary_variables': [
             'theme_prime/static/src/scss/primary_variables.scss',
@@ -150,13 +148,17 @@
             'theme_prime/static/src/js/editor/snippets.editor.js',
             'theme_prime/static/src/scss/editor/editor.scss',
 
-            # 'theme_prime/static/src/scss/editor/dialogs/dialog_snippet_configurator.scss',
+            'theme_prime/static/src/scss/editor/dialogs/dialog_snippet_configurator.scss',
             'theme_prime/static/src/xml/editor/dialogs/snippet_configurator_dialog.xml',
             'theme_prime/static/src/xml/frontend/image_hotspot.xml',
 
             'theme_prime/static/src/js/editor/snippets/snippets.options.js',
             'theme_prime/static/src/xml/frontend/documents.xml',
-            'theme_prime/static/src/components/*'
+            'theme_prime/static/src/components/*',
+
+             # Search
+            'theme_prime/static/src/js/frontend/search.js',
+            'theme_prime/static/src/xml/frontend/search_autocomplete.xml',
         ],
 
     },

@@ -41,7 +41,7 @@
     Optional Product Dialog
     ============================================================================
     -->
-    <!-- <template id="configure_optional_products" inherit_id="website_sale_product_configurator.configure_optional_products">
+    <template id="configure_optional_products" inherit_id="website_sale_product_configurator.configure_optional_products">
         <xpath expr="//table" position="attributes">
             <attribute name="class" add="border" remove="table-striped table-sm" separator=" "/>
         </xpath>
@@ -51,9 +51,9 @@
         <xpath expr="//table//tr[hasclass('o_select_options')]/td" position="replace">
             <td colspan="4" class="bg-200"><h5 class="mb-0">Available Options</h5></td>
         </xpath>
-    </template> -->
+    </template>
 
-    <!-- <template id="optional_product_items" inherit_id="website_sale_product_configurator.optional_product_items">
+    <template id="optional_product_items" inherit_id="website_sale_product_configurator.optional_product_items">
         <xpath expr="//a[hasclass('js_add')]" position="replace">
             <a role="button" href="#" class="js_add btn btn-primary-soft mt-2" title="Add to cart">
                 <i class="dri dri-cart add-optionnal-item"></i>
@@ -64,7 +64,7 @@
                 <i class="fa fa-trash-o remove-optionnal-item"></i>
             </a>
         </xpath>
-    </template> -->
+    </template>
 
     <!--
     ============================================================================
