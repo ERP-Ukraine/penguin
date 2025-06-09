@@ -11,7 +11,7 @@
     'data': [
         'views/res_company_views.xml',
         ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

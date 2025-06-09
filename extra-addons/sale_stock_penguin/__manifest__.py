@@ -16,7 +16,7 @@
         'views/stock_move_line_views.xml',
         'report/stock_report_deliveryslip.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }
