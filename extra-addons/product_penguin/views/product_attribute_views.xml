@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="product_template_attribute_value_penguin_view_tree" model="ir.ui.view">
-        <field name="name">product.template.attribute.value.penguin.view.tree</field>
+        <field name="name">product.template.attribute.value.penguin.view.list</field>
         <field name="model">product.template.attribute.value</field>
         <field name="inherit_id" ref="product.product_template_attribute_value_view_tree"/>
-        <field name="type">tree</field>
+        <field name="type">list</field>
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="website_published"/>

@@ -14,7 +14,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Sizes" name="product_sizes">
                     <field name="size_ids" nolabel="1">
-                        <tree>
+                        <list>
                             <field name="name"/>
                             <field name="small"/>
                             <field name="medium"/>
@@ -23,7 +23,7 @@
                             <field name="x_large"/>
                             <field name="xx_large"/>
                             <field name="xxx_large"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
                 <page string="Features" name="product_features">
