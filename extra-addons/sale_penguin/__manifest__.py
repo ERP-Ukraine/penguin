@@ -22,7 +22,7 @@
         'views/sale_views.xml',
         'views/variant_templates.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }

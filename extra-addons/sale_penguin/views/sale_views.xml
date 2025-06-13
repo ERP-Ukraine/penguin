@@ -29,7 +29,7 @@
             <xpath expr="//button[@name='action_cancel']" position="attributes">
                 <attribute name="invisible">state not in ['draft', 'sent', 'sale', 'future_sale', 'future_sale_confirmation'] or not id or locked</attribute>
             </xpath>
-            <xpath expr="//tree/field[@name='price_unit']" position="before">
+            <xpath expr="//list/field[@name='price_unit']" position="before">
                 <field name="penguin_rrp_pc"/>
             </xpath>
             <xpath expr="//page[@name='other_information']//field[@name='user_id']" position="attributes">

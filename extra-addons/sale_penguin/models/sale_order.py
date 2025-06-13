@@ -55,11 +55,11 @@ class SaleOrder(models.Model):
         # Dein Penguin Powderwear Einkauf
         return _('Your Penguin Powderwear purchase – %s') % self.name or ''
 
-    def _can_be_confirmed(self):
+    def _confirmation_error_message(self):
         self.ensure_one()
         if self.state in {'future_sale_confirmation'}:
-            return True
-        return super()._can_be_confirmed()
+            return False
+        return super()._confirmation_error_message()
 
     def _find_mail_template(self):
         self.ensure_one()
