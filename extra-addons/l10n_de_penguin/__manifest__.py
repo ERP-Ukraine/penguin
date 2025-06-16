@@ -8,6 +8,6 @@
         'report/din5008_report.xml',
     ],
     'auto_install': True,
-    'installable': False,
+    'installable': True,
     'license': 'LGPL-3',
 }
