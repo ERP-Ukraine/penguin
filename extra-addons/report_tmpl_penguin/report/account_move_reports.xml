@@ -22,7 +22,7 @@
     </template>
 
     <template id="document_tax_totals" inherit_id="account.document_tax_totals">
-        <xpath expr="//tr[hasclass('o_subtotal')]/td/strong" position="attributes">
+        <xpath expr="//tr[hasclass('o_subtotal')]/td/span" position="attributes">
             <attribute name="class" add="skip-text-bolder" separator=" "/>
         </xpath>
     </template>
