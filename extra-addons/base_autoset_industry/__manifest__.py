@@ -14,7 +14,7 @@
         'contacts'
     ],
     'data': [],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
     'post_init_hook': 'set_default_industry_field',
