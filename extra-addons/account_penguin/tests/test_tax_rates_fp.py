@@ -28,17 +28,17 @@ class PenguinTaxes(TransactionCase):
             'name': "Include 7.7%",
             'amount': 7.70,
             'amount_type': 'percent',
-            'price_include': True})
+            'price_include_override': 'tax_included'})
         self.tax_include_19 = self.tax_model.create({
             'name': "Include 19%",
             'amount': 19.0,
             'amount_type': 'percent',
-            'price_include': True})
+            'price_include_override': 'tax_included'})
         self.tax_include_0 = self.tax_model.create({
             'name': "Include 0%",
             'amount': 0.0,
             'amount_type': 'percent',
-            'price_include': True})
+            'price_include_override': 'tax_included'})
         self.product_tmpl_a = self.product_tmpl_model.create({
             'name': "Jacket",
             'list_price': 250,
