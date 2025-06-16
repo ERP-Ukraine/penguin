@@ -24,6 +24,6 @@ This module add wizard for importing new products
         'wizard/new_product_import.xml'
     ],
     'auto_install': False,
-    'installable': False,
+    'installable': True,
     'application': False,
 }

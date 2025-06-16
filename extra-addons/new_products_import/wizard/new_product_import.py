@@ -179,9 +179,9 @@ class NewProductImport(models.TransientModel):
         return {
             'name': _('Imported Products'),
             'type': 'ir.actions.act_window',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'res_model': 'product.template',
             'domain': [('id', 'in', product_templates.ids)],
-            'views': [(self.env.ref('product.product_template_tree_view').id, 'tree'),
+            'views': [(self.env.ref('product.product_template_tree_view').id, 'list'),
                       (self.env.ref('product.product_template_only_form_view').id, 'form')],
         }
