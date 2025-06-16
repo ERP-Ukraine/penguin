@@ -2,7 +2,7 @@
 <odoo>
     <template id="report_purchasequotation_document" inherit_id="purchase.report_purchasequotation_document">
 
-        <xpath expr="//h2" position="attributes">
+        <xpath expr="//t[@t-set='layout_document_title']/span" position="attributes">
             <attribute name="class" add="mb-2" separator=" "/>
         </xpath>
 
