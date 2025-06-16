@@ -29,7 +29,7 @@
         <attribute name="class" add="d-none" separator=" "/>
     </xpath>
 
-    <xpath expr="//div[@name='div_outgoing_address']/div[last()]/span" position="attributes">
+    <xpath expr="//div[@name='div_outgoing_address']/div[last()]/strong" position="attributes">
         <attribute name="class" add="d-none" separator=" "/>
     </xpath>
 
