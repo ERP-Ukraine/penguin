@@ -17,6 +17,6 @@
         'wizard/preorder_import.xml',
     ],
     'auto_install': True,
-    'installable': False,
+    'installable': True,
     'application': False,
 }

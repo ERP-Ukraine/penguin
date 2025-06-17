@@ -3,7 +3,6 @@ import base64
 
 from odoo import _, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form
 
 ARTICLE_IDX = 1
 QTY_IDX = 6
@@ -41,12 +40,15 @@ class PreOrderImport(models.TransientModel):
         """Import file, create pre-Order."""
         data = self._parse_file()
         products_by_code = self._get_product_articles()
-        so_form = Form(self.env['sale.order'])
-        so_form.partner_id = self.partner_id
-        so_form.pricelist_id = self.pricelist_id
+        SaleOrder = self.env['sale.order']
+        SaleOrderLine = self.env['sale.order.line']
+        so_temp = {}
+        so_lines_temp = []
+        so_temp['partner_id'] = self.partner_id.id
+        so_temp['pricelist_id'] = self.pricelist_id.id
         if self.commitment_date:
-            so_form.commitment_date = self.commitment_date
-            so_form.date_order = self.commitment_date
+            so_temp['commitment_date'] = self.commitment_date
+            so_temp['date_order'] = self.commitment_date
         for row in data:
             if all(not col for col in row[:3]):
                 # End of table
@@ -57,17 +59,23 @@ class PreOrderImport(models.TransientModel):
             if not product_id:
                 raise ValidationError(
                     _('Unable to find product for article "%s"') % (row[ARTICLE_IDX],))
-            with so_form.order_line.new() as line_form:
-                qty = float(row[QTY_IDX].strip())
-                line_form.product_id = self.env['product.product'].browse(product_id)
-                line_form.product_uom_qty = float(qty)
-        if so_form.order_line:
-            so_form.save()
+            line_temp = {}
+            qty = float(row[QTY_IDX].strip())
+            line_temp['product_id'] = self.env['product.product'].browse(product_id).id
+            line_temp['product_uom_qty'] = float(qty)
+            so_lines_temp.append(line_temp)
+        if so_lines_temp:
+            sale_order = SaleOrder.create(so_temp)
+            for line_temp in so_lines_temp:
+                line_temp['order_id'] = sale_order.id
+                SaleOrderLine.create(line_temp)
+
             return {
                 'name': _('pre-Order'),
                 'type': 'ir.actions.act_window',
                 'view_mode': 'form',
                 'res_model': 'sale.order',
-                'res_id': so_form.id,
+                'res_id': sale_order.id,
                 'view_id': self.env.ref('sale.view_order_form').id,
             }
+

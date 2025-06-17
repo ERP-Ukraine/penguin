@@ -107,13 +107,17 @@ class NewProductImport(models.TransientModel):
                 'price': row[FOB_IDX],
                 'min_qty': 1.0,
             }
-            if row[COLOR_IDX] in colors:
+            if row[COLOR_IDX] == "":
+                color = None
+            elif row[COLOR_IDX] in colors:
                 color = PAV.browse(colors[row[COLOR_IDX]])
             else:
                 raise ValidationError(_('You need to create color "%s" '
                                          'before importing new products') % row[COLOR_IDX])
 
-            if row[SIZE_IDX] in sizes:
+            if row[SIZE_IDX] == "":
+                size = None
+            elif row[SIZE_IDX] in sizes:
                 size = PAV.browse(sizes[row[SIZE_IDX]])
             else:
                 raise ValidationError(_('You need to create size "%s" '
@@ -136,21 +140,32 @@ class NewProductImport(models.TransientModel):
                                           ('attribute_id', '=', color_id)])
                 size_ptal = PTAL.search([('product_tmpl_id', '=', product_template.id),
                                          ('attribute_id', '=', size_id)])
-                if color_ptal:
-                    color_ptal.write({'attribute_id': color_id,
-                                      'value_ids': [(4, color.id)]})
-                else:
-                    PTAL.create({'product_tmpl_id': product_template.id,
-                                 'attribute_id': color_id,
-                                 'value_ids': [(4, color.id)]})
-                if size_ptal:
-                    size_ptal.write({'attribute_id': size_id,
-                                     'value_ids': [(4, size.id)]})
-                else:
-                    PTAL.create({'product_tmpl_id': product_template.id,
-                                 'attribute_id': size_id,
-                                 'value_ids': [(4, size.id)]})
+                if color:
+                    if color_ptal:
+                        color_ptal.write({'attribute_id': color_id,
+                                        'value_ids': [(4, color.id)]})
+                    else:
+                        PTAL.create({'product_tmpl_id': product_template.id,
+                                    'attribute_id': color_id,
+                                    'value_ids': [(4, color.id)]})
+                if size:
+                    if size_ptal:
+                        size_ptal.write({'attribute_id': size_id,
+                                        'value_ids': [(4, size.id)]})
+                    else:
+                        PTAL.create({'product_tmpl_id': product_template.id,
+                                    'attribute_id': size_id,
+                                    'value_ids': [(4, size.id)]})
             else:
+                attribute_line_ids = []
+                if size:
+                    attribute_line_ids.append((0, 0, {
+                            'attribute_id': size_id,
+                            'value_ids': [(6, 0, [size.id])]}))
+                if color:
+                    attribute_line_ids.append((0, 0, {
+                            'attribute_id': color_id,
+                            'value_ids': [(6, 0, [color.id])]}))
                 product_template = ProductTemplate.create({
                     'name': pt_name,
                     'categ_id': self.product_category_id.id,
@@ -158,22 +173,18 @@ class NewProductImport(models.TransientModel):
                     'material_id': self.material_id.id,
                     'gender': gender,
                     'seller_ids': [(0, 0, seller_info)],
-                    'attribute_line_ids': [
-                        (0, 0, {
-                            'attribute_id': size_id,
-                            'value_ids': [(6, 0, [size.id])]}),
-                        (0, 0, {
-                            'attribute_id': color_id,
-                            'value_ids': [(6, 0, [color.id])]})
-                    ]})
-            color_attr = self._get_product_template_attribute_value(color, product_template)
-            size_attr = self._get_product_template_attribute_value(size, product_template)
-            product_product = product_template._get_variant_for_combination(color_attr + size_attr)
-            product_product.write({
-                'barcode': row[BARCODE_IDX],
-                'default_code': row[DEFAULT_CODE_IDX],
-                'standard_price': row[FOB_IDX] if currency == self.env.company.currency_id else 0.0,
-            })
+                    'attribute_line_ids': attribute_line_ids
+                })
+            color_attr = self._get_product_template_attribute_value(color, product_template) if color else None
+            size_attr = self._get_product_template_attribute_value(size, product_template) if size else None
+            combination = (color_attr + size_attr) if (color_attr and size_attr) else (color_attr if color_attr else (size_attr if size_attr else None))
+            if combination:
+                product_product = product_template._get_variant_for_combination(combination)
+                product_product.write({
+                    'barcode': row[BARCODE_IDX],
+                    'default_code': row[DEFAULT_CODE_IDX],
+                    'standard_price': row[FOB_IDX] if currency == self.env.company.currency_id else 0.0,
+                })
             product_templates |= product_template
 
         return {
