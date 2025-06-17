@@ -11,6 +11,6 @@
         'report/report_deliveryslip.xml',
     ],
     'application': False,
-    'installable': False,
+    'installable': True,
     'auto_install': False,
 }
