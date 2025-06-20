@@ -19,6 +19,6 @@
         'views/stock_warehouse_views.xml',
     ],
     'auto_install': True,
-    'installable': False,
+    'installable': True,
     'post_init_hook': 'set_inventory_availability_on_product_templates'
 }
