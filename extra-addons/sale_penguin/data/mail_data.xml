@@ -175,7 +175,7 @@
                                         <td>
                                             <strong>Payment Method:</strong>
                                             <t t-if="transaction.token_id">
-                                                <t t-out="transaction.token_id.name or ''"/>
+                                                <t t-out="transaction.token_id.display_name or ''"/>
                                             </t>
                                             <t t-else="">
                                                 <t t-out="transaction.acquirer_id.sudo().name or ''"></t>

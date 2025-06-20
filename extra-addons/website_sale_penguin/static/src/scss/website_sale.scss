@@ -10,7 +10,7 @@
         flex-wrap: wrap;
 
         .category-link {
-            font-size: (16 / 14) * $o-theme-font-size-base;
+            // font-size: (16 / 14) * $o-theme-font-size-base;
             font-weight: $font-weight-bold;
             color: gray('900');
             padding: map-get($spacers, 2);
@@ -124,7 +124,7 @@
     }
 
     &-label {
-        font-size: $o-theme-font-size-base;
+        // font-size: $o-theme-font-size-base;
         position: absolute;
         left: 30px;
     }
