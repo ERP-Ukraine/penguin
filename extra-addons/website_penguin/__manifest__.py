@@ -27,15 +27,7 @@
         'views/toursandevents.xml',
         'data/website_data.xml',
     ],
-    'assets': {
-        'web._assets_frontend_helpers': [
-            '/website_penguin/static/src/scss/bootstrap_variables.scss',
-        ],
-        'web.assets_frontend': [
-            '/website_penguin/static/src/scss/website.scss'
-        ],
-    },
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }

@@ -132,8 +132,8 @@
     <template id="header_language_selector" inherit_id="website.header_language_selector" name="Penguin Header Language Selector" customize_show="True">
         <xpath expr="//t[@id='header_language_selector_call']" position="replace">
             <t id="header_language_selector_call" t-call="website_penguin.language_selector">
-                <t t-set="_div_classes" t-value="(_div_classes or '') + ' dropdown text-right font-weight-bold penguin-lang-div'"/>
-                <t t-set="_dropdown_menu_class" t-value="(_dropdown_menu_class or '') + ' penguin-lang-dropdown'"/>
+                <t t-set="_div_classes" t-value="(_div_classes or '') + ' dropdown text-right font-weight-bold'"/>
+                <t t-set="_dropdown_menu_class" t-value="(_dropdown_menu_class or '')"/>
             </t>
         </xpath>
     </template>
