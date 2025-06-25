@@ -5,7 +5,7 @@ GRN='\033[0;32m'
 PRP='\033[0;35m'
 NC='\033[0m'
 
-DBNAME="penguin17-tests"
+DBNAME="penguin18.0-tests"
 
 if [[ $1 == "rm" ]]; then
     if psql -lqt | cut -d \| -f 1 | grep -qw "${DBNAME}"; then
