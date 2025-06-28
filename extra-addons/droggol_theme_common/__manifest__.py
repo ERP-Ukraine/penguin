@@ -8,7 +8,7 @@
     'version': '17.0.0.17',
     'installable': False,
     'depends': [
-        'sale_product_configurator',
+        # 'sale_product_configurator',
         'website_sale_comparison',
         'website_sale_wishlist',
         'website_sale_stock',
