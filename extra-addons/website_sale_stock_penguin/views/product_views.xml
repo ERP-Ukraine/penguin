@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="website_sale_pricelist_warehouse_form_view" model="ir.ui.view">
+        <field name="name">website_sale.pricelist.warehouse.form</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='pricelist_rules']" position="after">
+                <page name="pricelist_config" string="Configuration">
+                    <group name="inventory_website" string="Inventory">
+                        <field name="warehouse_id" options="{'no_create': True}"/>
+                    </group>
+                    <group name="salesperson_id" string="Assigned Salesperson">
+                        <field name="salesperson_id" options="{'no_create': True}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

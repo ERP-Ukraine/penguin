@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="penguin_product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.penguin.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="washing_instruction_id"/>
+                <field name="material_id"/>
+                <field name="gender"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Sizes" name="product_sizes">
+                    <field name="size_ids" nolabel="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="small"/>
+                            <field name="medium"/>
+                            <field name="large"/>
+                            <field name="x_small"/>
+                            <field name="x_large"/>
+                            <field name="xx_large"/>
+                            <field name="xxx_large"/>
+                        </list>
+                    </field>
+                </page>
+                <page string="Features" name="product_features">
+                    <field name="feature_ids" nolabel="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+	<data>
+
+		<!-- Search View Section -->
+		<record id="google_shopping_product_variants_search_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.product.variants.search</field>
+			<field name="model">google.shopping.product.variants</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name" />
+					<field name="google_product_id" />
+					<field name="offer_id" />
+					<field name="gs_instance_id" />
+					<field name="gs_account_id" />
+
+					<filter name="exported_in_gs_filter"
+						string="Exported In Google Shopping"
+						domain="[('exported_in_google_shopping','=',True)]" />
+					<filter name="not_exported_in_gs_filter"
+						string="Not Exported In Google Shopping"
+						domain="[('exported_in_google_shopping','=',False)]" />
+					<separator/>
+					
+					<filter name="active_in_gs_filter"
+						string="Active In Google Shopping"
+						domain="[('active_product_in_google_shopping','=',True)]" />
+					<filter name="not_active_in_gs_filter"
+						string="Not Active In Google Shopping"
+						domain="[('active_product_in_google_shopping','=',False)]" />
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                    
+					<group expand="0" string="Group By...">
+						<filter name="gs_instance_id" string="Shopping Instance"
+							icon="terp-personal" context="{'group_by':'gs_instance_id'}" />
+						<filter name="gs_account_id" string="Shopping Account"
+							icon="terp-personal" context="{'group_by':'gs_account_id'}" />
+						<filter name="exported_in_google_shopping"
+							string="Exported in Google Shopping" icon="terp-personal"
+							context="{'group_by':'exported_in_google_shopping'}" />
+						<filter name="active_product_in_google_shopping"
+							string="Active in Google Shopping" icon="terp-personal"
+							context="{'group_by':'active_product_in_google_shopping'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Tree View Section -->
+		<record id="google_shopping_product_variants_tree_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.product.variants.tree</field>
+			<field name="model">google.shopping.product.variants</field>
+			<field name="arch" type="xml">
+				<tree create="0">
+					<field name="name" />
+					<field name="google_product_id" />
+					<field name="offer_id" />
+					<field name="product_expiration_date" />
+					<field name="gs_instance_id" />
+					<field name="gs_account_id" />
+					<field name="brand" optional="hide" />
+					<field name="availability" optional="hide" />
+					<field name="exported_in_google_shopping" />
+					<field name="active_product_in_google_shopping" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View Section -->
+		<record id="google_shopping_product_variants_form_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.product.variants.form</field>
+			<field name="model">google.shopping.product.variants</field>
+			<field name="arch" type="xml">
+				<form create="0">
+					<sheet>
+					    <widget name="web_ribbon" title="Archived" bg_color="bg-danger" 
+					       attrs="{'invisible': [('active', '=', True)]}"/>
+						<div class="oe_title pr-0">
+							<label class="oe_edit_only" for="name"
+								string="Product Name" />
+							<h1 class="d-flex flex-row justify-content-between">
+								<field name="name" class="text-truncate"
+									placeholder="Product Name..." />
+							</h1>
+						</div>
+
+						<group string="Google Product Status">
+							<group>
+							    <field name="active" invisible="1"/>
+								<field name="product_status" readonly="1" />
+								<field name="product_expiration_date" readonly="1" />
+							</group>
+							<group>
+								<field name="exported_in_google_shopping" readonly="1" />
+								<field name="active_product_in_google_shopping"
+									readonly="1" />
+							</group>
+						</group>
+
+						<notebook>
+							<page string="General Informations">
+								<group>
+									<group string="Google Shopping Informations">
+										<field name="gs_instance_id" readonly="1" />
+										<field name="gs_account_id" readonly="1" />
+										<field name="gs_website_id" readonly="1" />
+									</group>
+									<group>
+									</group>
+								</group>
+							</page>
+							<page string="Product Informations">
+								<group string="Odoo Product Informations">
+									<group>
+										<field name="odoo_product_id" readonly="1" />
+										<field name="odoo_product_tmpl_id" readonly="1" />
+									</group>
+									<group>
+									</group>
+								</group>
+								<group string="Shopping Product Informations">
+									<group>
+										<field name="google_product_id" readonly="1" />
+										<field name="offer_id" readonly="1" required="1" />
+										<field name="product_shop_link" required="1" />
+										<field name="availability" required="1" />
+										<field name="product_condition" required="1" />
+										<field name="brand" />
+										<field name="gtin" />
+										<field name="mpn" />
+										<field name="channel" required="1" />
+										<field name="shipping_weight" />
+										<field name="shipping_height" />
+										<field name="shipping_width" />
+										<field name="shipping_length" />
+									</group>
+									<group>
+										<field name="stock_type" />
+										<field name="stock_value" />
+									</group>
+								</group>
+								<group string="Product Description">
+									<field name="description" nolabel="1" required="1" />
+								</group>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Action View Section -->
+		<record id="google_shopping_product_variants_action"
+			model="ir.actions.act_window">
+			<field name="name">Google Shopping Product Variants</field>
+			<field name="res_model">google.shopping.product.variants</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id"
+				ref="google_shopping_product_variants_tree_view" />
+			<field name="help" type="html">
+				<div>
+					<br />
+					<p>
+						<b>There is no any Google Shopping Product Variants created yet.
+						</b>
+					</p>
+
+				</div>
+			</field>
+		</record>
+
+		<!-- Parent/Top Menu Section -->
+		<menuitem id="google_shopping_product_menu" name="Products"
+			parent="google_shopping_feed_gcs.google_shopping_feed_main_menu"
+			sequence="1" />
+
+		<!-- Instance Menu Section -->
+		<menuitem id="google_shopping_product_variants_menu"
+			name="Product Variants" parent="google_shopping_product_menu"
+			sequence="1" action="google_shopping_product_variants_action" />
+
+	</data>
+</odoo>

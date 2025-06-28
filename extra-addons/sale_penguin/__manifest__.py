@@ -1,0 +1,28 @@
+{
+    'name': 'Sale Penguin',
+    'summary': 'Sales internal machinery',
+    'author': 'ERP Ukraine',
+    'website': 'https://erp.co.ua',
+    'support': 'support@erp.co.ua',
+    'license': 'LGPL-3',
+    'category': 'Sales/Sales',
+    'version': '2.9',
+    'depends': [
+        'product_penguin',
+        'sale',
+        'website_sale',
+        'stock',
+    ],
+    'data': [
+        'data/mail_data.xml',
+        'report/sale_report_templates.xml',
+        'views/res_partner_views.xml',
+        'views/res_users_view.xml',
+        'views/sale_order_templates.xml',
+        'views/sale_views.xml',
+        'views/variant_templates.xml',
+    ],
+    'installable': True,
+    'auto_install': True,
+    'application': False,
+}

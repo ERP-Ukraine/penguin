@@ -1,0 +1,43 @@
+version: '3.2'
+
+volumes:
+
+  pg13penguin18:
+    driver: local
+
+  odoo18penguin-container-data:
+    driver: local
+
+  odoo18penguin-data:
+    driver: local
+
+  vscode-data:
+    driver: local
+
+services:
+
+  db-penguin18:
+    image: postgres:13.5
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - pg13penguin18:/var/lib/postgresql/data
+
+  web-penguin18:
+    links:
+      - db-penguin18
+    tty: true
+    image: erpukraine/odoo-ee-erpu:18.0-latest
+    depends_on:
+      - db-penguin18
+    environment:
+      - HOST=db-penguin18
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./:/mnt/extra-addons:cached
+      - odoo18penguin-container-data:/home/vscode/.local/share/Odoo
+      - odoo18penguin-data:/var/lib/odoo
+      - ./odoo.conf:/etc/odoo/odoo.conf
+      - vscode-data:/home/vscode/.vscode-server

@@ -1,0 +1,244 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_penguin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200903\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-29 11:07+0000\n"
+"PO-Revision-Date: 2020-09-29 11:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__xx_large
+msgid "2X-Large"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__xxx_large
+msgid "3X-Large"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_attribute_value
+msgid "Attribute Value"
+msgstr "Attributwert"
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature__create_uid
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__create_uid
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__create_uid
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature__create_date
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__create_date
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__create_date
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__description
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__description
+msgid "Description"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature__display_name
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__display_name
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__display_name
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_attribute__external_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_attribute_value__external_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature__external_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__external_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__external_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_template__external_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__external_id
+msgid "External ID"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_product__feature_ids
+#: model:ir.model.fields,field_description:product_penguin.field_product_template__feature_ids
+#: model_terms:ir.ui.view,arch_db:product_penguin.penguin_product_template_form_view
+msgid "Features"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields.selection,name:product_penguin.selection__product_template__gender__female
+msgid "Female"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_product__gender
+#: model:ir.model.fields,field_description:product_penguin.field_product_template__gender
+msgid "Gender"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature__id
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__id
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__id
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__id
+msgid "ID"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_category__external_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_product__external_id
+msgid "Integer ID"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__large
+msgid "Large"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature____last_update
+#: model:ir.model.fields,field_description:product_penguin.field_product_material____last_update
+#: model:ir.model.fields,field_description:product_penguin.field_product_size____last_update
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature__write_uid
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__write_uid
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__write_uid
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature__write_date
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__write_date
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__write_date
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields.selection,name:product_penguin.selection__product_template__gender__male
+msgid "Male"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_product__material_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_template__material_id
+msgid "Material"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__medium
+msgid "Medium"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_feature__name
+#: model:ir.model.fields,field_description:product_penguin.field_product_material__name
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__name
+#: model:ir.model.fields,field_description:product_penguin.field_product_washing_instruction__name
+msgid "Name"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_attribute
+msgid "Product Attribute"
+msgstr "Produktattribut"
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_category
+msgid "Product Category"
+msgstr "Produktkategorie"
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_feature
+msgid "Product Feature"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_material
+msgid "Product Material"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_size
+msgid "Product Size"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_template
+msgid "Product Template"
+msgstr "Produktvorlage"
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_template_attribute_value
+msgid "Product Template Attribute Value"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model,name:product_penguin.model_product_washing_instruction
+msgid "Product Washing Instruction"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_product__size_ids
+#: model:ir.model.fields,field_description:product_penguin.field_product_template__size_ids
+msgid "Size"
+msgstr ""
+
+#. module: product_penguin
+#: model_terms:ir.ui.view,arch_db:product_penguin.penguin_product_template_form_view
+msgid "Sizes"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__small
+msgid "Small"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_product__washing_instruction_id
+#: model:ir.model.fields,field_description:product_penguin.field_product_template__washing_instruction_id
+msgid "Washing Instruction"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_template_attribute_value__website_published
+msgid "Website Published"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__x_large
+msgid "X-Large"
+msgstr ""
+
+#. module: product_penguin
+#: model:ir.model.fields,field_description:product_penguin.field_product_size__x_small
+msgid "X-Small"
+msgstr ""

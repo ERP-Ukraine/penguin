@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="variants" inherit_id="website_sale.variants">
+        <xpath expr="//ul[1]//t[@t-elif][last()]/ul" position="attributes">
+            <attribute name="t-attf-class" add="custom-color-picker" separator=" "/>
+        </xpath>
+
+    </template>
+</odoo>

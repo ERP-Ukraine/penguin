@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.website.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']//group[@name='description']/parent::group" position="inside">
+                <group string="Website Description" name="website_description">
+                    <field colspan="2" name="website_sale_description" nolabel="1" placeholder="This note is added to website product page."/>
+                </group>
+                <group string="Functionality" name="functionality">
+                    <field colspan="2" name="functionality" nolabel="1" placeholder="This note is added to website product page in tab 'Functionality'"/>
+                </group>
+                <group string="Durability" name="durability">
+                    <field colspan="2" name="durability" nolabel="1" placeholder="This note is added to website product page in tab 'Durability'"/>
+                </group>
+            </xpath>
+
+            <xpath expr="//page[@name='sales']/group/group" position="inside">
+                <field name="hide_size_chart"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

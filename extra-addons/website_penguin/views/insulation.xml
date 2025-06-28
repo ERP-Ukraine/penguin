@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="insulation">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover parallax s_parallax_is_fixed bg-black-50 s_parallax_no_overflow_hidden pb144 pt208" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none;">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(&quot;/web/image/4366/iso_lp2_title2176x1216.jpg&quot;); background-position: 70.54% 30.66%;"/>
+                    <div class="o_we_bg_filter bg-black-50"/>
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title" data-name="Title">
+                                <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">Insulation Mid Layer</h1>
+                            </div>
+                            <div class="col-lg-12 s_text pt16 pb16" data-name="Text">
+                                <p class="lead" style="text-align: center;">Keep you warm at lowest temperatures on windy peaks or freezing chairlifts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pt32 pb32" data-name="Text block">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pt32 pb32">
+                                <p class="lead">The Pinneco® Mantle insulation technology, developped by Pinneco Research, is used for all our insulation jacket. We have worked with the flexible "Super Stretch" version to give the wearer optimum freedom of movement. The jacket can be worn as an intermediate layer underneath, or on a dry day also as an outer jacket. Through the excellent loft recovery, the jacket is keeping the body warmth of the wearer nicely stored and provides a continuos comfort on a cold day.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_three_columns bg-200 pt32 pb32" data-name="Columns">
+                    <div class="container">
+                        <div class="row d-flex align-items-stretch">
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+                                <div class="bg-white card">
+                                    <img class="card-img-top" src="/web/image/13092/penguin_w22_lookbook_4648-resize.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip894859"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Women Insulation Jacket<br/>
+                                        </h3>
+                                        <div class="pb0 pt16 s_btn text-left" data-name="Button">
+                                            <a href="/shop/product/women-pinneco-insulation-jacket-with-hood-41?category=11#attr=340,172" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip488363">&amp;nbsp;Shop Now </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+                                <div class="bg-white card">
+                                    <img class="card-img-top" src="/web/image/13093/penguin_w22_lookbook_2364-Bearbeitet-resize.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip894859"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Men Insulation Jacket<br/>
+                                        </h3>
+                                        <div class="pb0 pt16 s_btn text-left" data-name="Button">
+                                            <a href="/shop/product/men-pinneco-insulation-jacket-with-hood-50#attr=254,381" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip488363">&amp;nbsp;Shop Now </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 s_col_no_bgcolor pt16 pb16">
+                                <div class="bg-white card">
+                                    <img class="card-img-top" src="/web/image/4365/iso_short_unisex.jpg" alt="Odoo - Sample 3 for three columns" data-original-title="" title="" aria-describedby="tooltip894859"/>
+                                    <div class="card-body">
+                                        <h3 class="card-title">Unisex Insulation Short<br/>
+                                        </h3>
+                                        <div class="pb0 pt16 s_btn text-left" data-name="Button">
+                                            <a href="/shop/product/unisex-pinneco-insulation-short-79#attr=581,444" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip488363">&amp;nbsp;Shop Now </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<data>
+
+			<template id="checkout_wallee" name="Wallee Checkout" inherit_id="payment.checkout">
+				<xpath
+					expr="//form//t[@t-set='acquirer_count']"
+					position="before">
+					<t t-set="wallee_acquirers" t-value="request.env['payment.acquirer'].get_wallee_acquirers(acquirers)" />
+					<t t-set="acquirers" t-value="request.env['payment.acquirer'].get_non_wallee_acquirers(acquirers)" />
+				</xpath>
+				<xpath
+					expr="//t[@t-set='acquirer_count']"
+					position="attributes">
+					<attribute name="t-value">len(acquirers) + len(wallee_acquirers) if acquirers or wallee_acquirers else 0</attribute>
+				</xpath>
+				<!--
+					fix default t-set="default_payment_option_id" so that if 'acquirers'
+					list is empty, do not check it with 'acquirers_count'
+					because upper code makes so that length of 'acquirers_count'
+					may be 1 or more, but 'acquirers' list may be empty
+
+					“Evil cannot create anything new, they can only corrupt and ruin good forces have invented or made”
+					― JRR Tolkien
+				-->
+				<xpath expr="//t[@t-set='default_payment_option_id']" position="attributes">
+					<attribute name="t-value">default_token_id if default_token_id and token_count > 0 else acquirers[0].id if len(acquirers) == 1 and token_count == 0 else None</attribute>
+				</xpath>
+				<xpath
+					expr="//t[@t-foreach='tokens']"
+					position="before">
+					<t t-set="currency_name" t-value="currency_name or ''"/>
+					<t t-set="amount" t-value="amount or 0.0"/>
+					<t t-set="billing_partner_id" t-value="partner_id or ''"/>
+					<t t-set="origin" t-value="origin or ''"/>
+						<t t-foreach="wallee_acquirers" t-as="acquirer">
+							<t t-foreach="acquirer.get_available_wallee_trans_payment_methods(acquirer.id, currency_name, amount, origin, billing_partner_id)" t-as="w_pay_meth">
+								<div name="o_payment_option_card" class="card-body o_payment_option_card">
+									<label>
+										<!-- === Radio button === -->
+										<!-- Only shown if linked to the only payment option -->
+										<input name="o_payment_radio"
+											   type="radio"
+											   t-att-checked="acquirer.id == default_payment_option_id"
+											   t-att-class="'' if acquirer_count + token_count > 1 else 'd-none'"
+											   t-att-data-payment-option-id="acquirer.id"
+											   t-att-data-wallee-trans-id="w_pay_meth.get('trans_id', 0)"
+											   t-att-data-wallee-method-id="w_pay_meth['method_id']"
+											   t-att-data-wallee-space-id="w_pay_meth['space_id']"
+											   t-att-data-wallee-trans_interface="w_pay_meth['transaction_interface']"
+											   t-att-data-wallee-one_click_mode="w_pay_meth.get('one_click_mode', 0)"
+											   t-att-data-provider="acquirer.provider"
+											   data-payment-option-type="acquirer"/>
+										<!-- === Acquirer name === -->
+										<span class="payment_option_name">
+											<b t-esc="acquirer.display_as or w_pay_meth['name']"/>
+										</span>
+										<!-- === Icon === -->
+										<span style="position:absolute;right:1.64em;text-align: right;">
+											<img t-att-src="w_pay_meth['image_url']" t-att-title="w_pay_meth['name']"
+												 data-toggle="tooltip" style="float:right;width:45px;"
+											/>
+										</span>
+										<!-- === "Test Mode" badge === -->
+										<span t-if="acquirer.state == 'test'"
+											  class="badge-pill badge-warning ml-1">
+											Test Mode
+										</span>
+										<!-- === Extra fees badge === -->
+										<t t-if="fees_by_acquirer.get(acquirer)">
+											<span class="badge-pill badge-secondary ml-1">
+												+ <t t-esc="fees_by_acquirer.get(acquirer)"
+													 t-options="{'widget': 'monetary', 'display_currency': currency}"/>
+												Fees
+											</span>
+										</t>
+									</label>
+									<!-- === Help message === -->
+									<div t-if="acquirer.pre_msg"
+										 t-out="acquirer.pre_msg"
+										 class="text-muted ml-3"/>
+								</div>
+							</t>
+						</t>
+				</xpath>
+				<xpath expr="//t[@t-set='acquirer_count']" position="before">
+						<t t-if="website_sale_order">
+								<t t-set="amount" t-value="website_sale_order.amount_total"/>
+								<t t-set="currency_name" t-value="website_sale_order.pricelist_id.currency_id.name"/>
+								<t t-set="origin" t-value="website_sale_order.name"/>
+						</t>
+						<t t-if="sale_order">
+								<t t-set="amount" t-value="sale_order.amount_total"/>
+								<t t-set="currency_name" t-value="sale_order.pricelist_id.currency_id.name"/>
+								<t t-set="origin" t-value="sale_order.name"/>
+						</t>
+						<t t-if="invoice">
+								<t t-set="amount" t-value="invoice.amount_total"/>
+								<t t-set="currency_name" t-value="invoice.currency_id.name"/>
+								<t t-set="origin" t-value="invoice.name"/>
+						</t>
+				</xpath>
+			</template>
+
+			<template id="redirect_form">
+				<form t-att-action="api_url" method="post">
+					<input type="hidden" name='merchant' t-att-value='merchant'/>
+					<input type="hidden" name='amountIncludingTax' t-att-value="amount"/>
+
+					<input type="hidden" name='merchantReference' t-att-value='reference'/>
+					<input type="hidden" name='currency' t-att-value='currency_name'/>
+
+					<input type="hidden" name='customerId' t-att-value='partner_id'/>
+					<input type="hidden" name='givenName' t-att-value='givenName'/>
+					<input type="hidden" name='familyName' t-att-value='familyName'/>
+					<input type="hidden" name='street' t-att-value='billing_address'/>
+					<input type="hidden" name='city' t-att-value='city'/>
+					<input type="hidden" name='postcode' t-att-value='postcode'/>
+					<input type="hidden" name='postalState' t-att-value='postalState'/>
+					<input type="hidden" name='country' t-att-value='country'/>
+					<input type="hidden" name='phoneNumber' t-att-value='phoneNumber'/>
+					<input type="hidden" name='emailAddress' t-att-value='emailAddress'/>
+
+					<input type="hidden" name='successUrl' t-att-value='successUrl'/>
+					<input type="hidden" name='failedUrl' t-att-value='failedUrl'/>
+					<input type="hidden" name='wallee_tx_url' t-att-value='wallee_tx_url'/>
+					<input type="hidden" name='wallee_javascript_url' t-att-value='wallee_javascript_url'/>
+					<input type="hidden" name='wallee_payment_method' t-att-value='wallee_payment_method'/>
+					<input type="hidden" name="version" value="1"/>
+					<input id="acquirer_wallee" type="hidden" name="acquirer" t-att-value="acquirer_wallee"/>
+					<div t-if="wallee_javascript_url" class="container">
+						 <div class="o_wallee_interface">
+								 <div class="row">
+										<div class="o_wallee_interface_content col-sm-6 col-sm-offset-3">
+											</div>
+											<ul id="o_wallee_payment_errors"></ul>
+											<div id="o_wallee_payment_form"></div>
+								 </div>
+						 </div>
+				 	</div>
+					<script t-if="wallee_javascript_url" type="text/javascript">
+							odoo.define('payment_wallee.transaction_interface', function(require) {
+									var WalleeInterface = require('payment_wallee.wallee_interface');
+									var walleeInterfaceWidget = new WalleeInterface(null, {});
+									walleeInterfaceWidget.attachTo($('.o_wallee_interface'));
+							});
+					</script>
+				</form>
+			</template>
+
+			<template id="wallee_payment_payment" name="Wallee Payment Payment" inherit_id="payment.pay">
+				<xpath
+					expr="//t[@t-call='payment.checkout']"
+					position="inside">
+					<t t-set="currency_name" t-value="currency.name"/>
+					<t t-set="origin" t-value="reference"/>
+				</xpath>
+			</template>
+
+
+			<template id="wallee_payment_unexpected_error" name="Wallee Unexpected Error">
+				<t t-call="website.layout">
+					<t t-set="additional_title">Unexpected Error</t>
+					<div id="wrap" style="background:#e5e5e5;padding:20px 0;margin-top:5%;">
+						<div class="container oe_website_sale" align="center" style="">
+							<i class="fa fa-exclamation-circle" aria-hidden="true" style="color:#B22222;font-size:80px;"></i>
+							<h1 class="mb32">Something went wrong </h1>
+							<h4 class="mb32">An error was encountered while processing your transaction. The transaction has been or has not been processed.</h4>
+							<h5 class="mb32">If problem persist please contact us</h5>
+							<div class="row">
+								<div class="col-lg-8 col-sm-9">
+								</div>
+								<div class="col-lg-8 col-sm-9 oe_cart">
+									<div class="clearfix"/>
+									<div class="oe_structure"/>
+								</div>
+								<div class="col-lg-3 col-lg-offset-1 col-sm-3 text-muted" id="right_column">
+								</div>
+							</div>
+						</div>
+						<div class="oe_structure" />
+					</div>
+				</t>
+        	</template>
+
+		</data>
+</odoo>

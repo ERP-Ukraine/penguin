@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="philosophy">
+		<t t-call="website.layout">
+			<div id="wrap" class="oe_structure oe_empty">
+				<div id="myCarousel1594817623423" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+					<ol class="carousel-indicators d-none">
+						<li data-target="#myCarousel1594817623423" data-slide-to="0" class="active"/>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item oe_custom_bg active oe_img_bg o_bg_img_center o_colored_level o_background_video pt256 pb256" style="background-image: url(&quot;/web/image/4229/behind_the_scenes.jpg&quot;); background-position: 46.93% 47.66%;" data-name="Slide" data-bg-video-src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1">
+							<div class="container">
+							</div>
+						</div>
+					</div>
+					<div class="carousel-control-prev d-none" data-target="#myCarousel1594817623423" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+						<span class="carousel-control-prev-icon"/>
+						<span class="sr-only o_default_snippet_text">Previous</span>
+					</div>
+					<div class="carousel-control-next d-none" data-target="#myCarousel1594817623423" data-slide="next" role="img" aria-label="Next" title="Next">
+						<span class="carousel-control-next-icon"/>
+						<span class="sr-only o_default_snippet_text">Next</span>
+					</div>
+				</div>
+				<section class="s_text_image pt32 pb32 o_colored_level" data-name="Text - Image" style="background-image: none;">
+					<div class="container">
+						<div class="row align-items-center">
+							<div class="col-lg-6 pt16 pb16 o_colored_level">
+								<h2>It is all about powder.</h2>
+								<p class="lead">
+									<span style="font-size: 18px;">We are producing outerwear without frills. Functional, stylish and above all so durable to survive our way of free riding.&amp;nbsp;We want products we do not need to worry about. Is there anything better than enjoying a powder day with friends without having to worry about your gear?!&amp;nbsp;</span>
+									<br/>
+								</p>
+								<p class="lead">
+									<span style="font-size: 18px;">Thank you to all the many lovely people who contributed their part to the penguin brand. And thank you to all riders enjoying our products.</span>
+								</p>
+							</div>
+							<div class="col-lg-6 pt16 pb16">
+								<img src="/web/image/4224/banger_2176x1216.jpg" class="img img-fluid mx-auto" alt="Odoo • Text and Image" data-original-title="" title="" aria-describedby="tooltip53158" loading="lazy"/>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="s_text_image pt32 pb32 o_colored_level" data-name="Image - Text" style="background-image: none;">
+					<div class="container">
+						<div class="row align-items-center">
+							<div class="col-lg-6 pt16 pb16">
+								<img src="/web/image/4208/quality2_800x450.jpg" class="img img-fluid mx-auto" alt="Odoo • Image and Text" loading="lazy"/>
+							</div>
+							<div class="col-lg-6 pt16 pb16 o_colored_level">
+								<h2>Durability for now and tomorrow.</h2>
+								<p>
+									<span style="font-size: 18px;">Durability is in our eyes the best guarantee for quality and sustainability. We are creating products as durable as possible without giving up performance and style. We are maintaining a concisous approach to our environment​al impact through diligent textile research and long-term design strategies. In collaboration with trusted suppliers we&amp;nbsp;create high quality and long-lasting products.</span>
+									<br/>
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="s_text_image pt32 pb32 o_colored_level" data-name="Text - Image" style="background-image: none;">
+					<div class="container">
+						<div class="row align-items-center">
+							<div class="col-lg-6 pt16 pb16 o_colored_level">
+								<h2>Functionality is a must.</h2>
+								<p class="lead">
+									<span style="font-size: 18px;">No fuss - we are fully dedicated to layering. Three layers is all you need to have for maximum flexibility and comfort on every playground. We truly believe in simplicity and create only one product per layer to avoid confusion and overconsumption. The function of every layer varies. The promise for quality remains the same.&amp;nbsp;</span>
+								</p>
+								<p class="lead">
+									<span style="font-size: 18px;">We want to encourage you to use your products for as many activities as possible to minimize consumption. Especially base and mid layers a very practical for an "all season, all activity" use.</span>
+								</p>
+							</div>
+							<div class="col-lg-6 pt16 pb16">
+								<img src="/web/image/4220/functionality_2176x1216.jpg" class="img img-fluid mx-auto" alt="Odoo • Text and Image" data-original-title="" title="" aria-describedby="tooltip130234" loading="lazy"/>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="s_text_image pt32 pb32 o_colored_level" data-name="Image - Text" style="background-image: none;">
+					<div class="container">
+						<div class="row align-items-center">
+							<div class="col-lg-6 pt16 pb16">
+								<img src="/web/image/4404/style-anne_2176x1216.jpg" class="img img-fluid mx-auto" alt="Odoo • Image and Text" data-original-title="" title="" aria-describedby="tooltip670180" loading="lazy"/>
+							</div>
+							<div class="col-lg-6 pt16 pb16 o_colored_level">
+								<h2>Style is our goal.</h2>
+								<p>
+									<span style="font-size: 18px;">Loose fit combined with timeless designs are our mission. We care about most possible color combination to give best flexibility to assort your preferred outfit even if you like to add our replace certain layers years later.</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="s_call_to_action pt48 pb24 bg-beta" data-name="Call to Action">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-9 pb24">
+								<h3>
+									<b>Meet our ambassadors.</b>
+								</h3>
+								<p class="lead">
+									<font style="font-size: 18px;">A diverse group of like-minded people with a great passion for powder.</font>
+								</p>
+							</div>
+							<div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+								<a href="/ambassador" class="btn btn-primary btn-lg" data-original-title="" title="" aria-describedby="tooltip210937">Meet the team&amp;nbsp;<i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1" contenteditable="false">​</i>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</t>
+	</template>
+</odoo>

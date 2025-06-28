@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="homepage" name="Penguin Homepage">
+        <t t-call="website.layout">
+            <meta http-equiv="Content-Security-Policy" content="frame-src https://www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1;"/>
+            <t t-set="pageName" t-value="'homepage'"/>
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_cover_1 o_colored_level" data-snippet="s_cover_1" data-name="Cover - 1" style="background-image: none;">
+                    <div class="s_carousel tp-custom-carousel s_carousel_rounded carousel slide" data-interval="10000" id="myCarousel1659427403379" style="background-color: var(--o-color-1)  !important; background-image: none;">
+                        <ol class="carousel-indicators o_we_no_overlay d-none">
+                            <li data-slide-to="0" class="active" data-target="#myCarousel1659427403379"/>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item o_colored_level pb184 pt176 oe_img_bg o_bg_img_center active" data-name="Slide" style="background-image: url(&quot;/website_penguin/static/src/img/homepage/penguin_start_1.jpeg&quot;); background-position: 50% 0px; text-align: right;" data-original-title="" title="" aria-describedby="tooltip238776">
+                                <div class="o_we_bg_filter bg-black-25"/>
+                                <div class="px-0 container-fluid">
+                                    <div class="row content no-gutters align-items-center s_col_no_bgcolor s_nb_column_fixed" data-original-title="" title="" aria-describedby="tooltip60213">
+                                        <div class="tp-editor-bg-color-n-shadow order-2 order-lg-1 jumbotron rounded px-4 offset-lg-1 pt24 pb24 o_colored_level o_visible col-lg-5 o_animate o_anim_fade_in" data-name="Box" data-original-title="" title="" aria-describedby="tooltip333400" style="">
+                                            <h2 class="mt-2">
+                                                <font class="text-o-color-4">Powderwear for Powderpeople</font>
+                                            </h2>
+                                            <h5 data-original-title="" title="" aria-describedby="tooltip570386">
+                                                <span style="color: rgb(33, 37, 41); font-size: 18px; font-weight: 300">
+                                                    <font class="text-o-color-3">We are producing outerwear without frills. Functional, stylish and above all so durable to survive our way of free riding.&amp;nbsp;We want</font>
+                                                    <font style="color: rgb(148, 189, 123);">​</font>
+                                                    <font class="text-o-color-3">products we do not need to worry about.</font>
+                                                </span>
+                                            </h5>
+                                            <p data-original-title="" title="" aria-describedby="tooltip570386">
+                                                <br/>
+                                            </p>
+                                            <a href="/shop" class="mt-2 btn btn-secondary flat btn-lg" data-original-title="" title="">Shop Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev o_not_editable o_we_no_overlay d-none" data-slide="prev" role="img" aria-label="Previous" title="Previous" href="#myCarousel1659427403379">
+                            <span class="fa fa-chevron-left"/>
+                            <span class="sr-only o_default_snippet_text">Previous</span>
+                        </a>
+                        <a class="carousel-control-next o_not_editable o_we_no_overlay d-none" data-slide="next" role="img" aria-label="Next" title="Next" href="#myCarousel1659427403379">
+                            <span class="fa fa-chevron-right"/>
+                            <span class="sr-only o_default_snippet_text">Next</span>
+                        </a>
+                    </div>
+                </section>
+                <section class="s_heading_5 o_colored_level pb0 pt40" data-snippet="s_heading_5" data-name="Heading - 5" style="background-color: rgb(245, 241, 238) !important; background-image: none;">
+                </section>
+                <section class="s_icon_block_1 o_colored_level pt32 pb4" data-snippet="s_icon_block_1" data-name="Icon Block - 1" style="background-image: none;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-lg-4 py-3 o_colored_level">
+                                <div class="media">
+                                    <i class="fa rounded-circle mr-4 bg-o-color-1 text-o-color-3 fa-group rounded-circle mr-4 bg-o-color-1 text-o-color-3" data-original-title="" title="" aria-describedby="tooltip728816"/>
+                                    <div class="media-body">
+                                        <h5>From Powderpeople for Powderpeople<br/>
+                                        </h5>
+                                        <p>Penguin is an independent rider owned business</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 py-3 o_colored_level pb0">
+                                <div class="media">
+                                    <i class="fa rounded-circle mr-4 bg-o-color-1 text-o-color-3 fa-heart" data-original-title="" title="" aria-describedby="tooltip138276"/>
+                                    <div class="media-body">
+                                        <h5>20 Yeah's of powder love<br/>
+                                        </h5>
+                                        <p>Dedicated to freeriding since the beginning in 2002<br/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 py-3 o_colored_level">
+                                <div class="media">
+                                    <i class="fa rounded-circle mr-4 bg-o-color-1 text-o-color-3 fa-magic" data-original-title="" title="" aria-describedby="tooltip598330"/>
+                                    <div class="media-body">
+                                        <h5>Designed in Switzerland<br/>
+                                        </h5>
+                                        <p>Developed and tested for the use in the mountains.<br/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_banner_13 o_colored_level pb0 pt48" data-snippet="s_banner_13" data-name="Banner - 13" style="background-color: rgb(245, 241, 238) !important; background-image: none;" data-original-title="" title="" aria-describedby="tooltip227660">
+                    <div class="container">
+                        <div class="row s_col_no_bgcolor no-gutters s_nb_column_fixed" data-original-title="" title="" aria-describedby="tooltip436599">
+                            <div class="col-12 p-1 o_animate o_anim_fade_in o_visible col-lg-6 pb0 pt0" style="">
+                                <div class="position-relative tp-animation-scale">
+                                    <img src="/website_penguin/static/src/img/homepage/penguin_women_shell_jacket.jpeg" class="w-100 o_we_image_cropped" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip602351" data-original-id="25177" data-mimetype="image/jpeg" data-resize-width="690"/>
+                                    <div class="tp-banner-content tp-editor-bg-color-n-shadow text-center w-50 o_colored_level tp-gradient-animation rounded o_cc o_cc1 bg-black-25" data-original-title="" title="" aria-describedby="tooltip562938" style="border-radius: 3px !important;">
+                                        <h5 data-original-title="" title="" aria-describedby="tooltip956014">
+                                            <font class="text-o-color-4">Women Shell Jackets</font>
+                                        </h5>
+                                        <div>
+                                            <font class="text-o-color-4">New colours availble. Classics back in stock.</font>
+                                        </div>
+                                        <a href="/shop/category/women-shell-jackets-8" class="mt-3 o_animate o_anim_fade_in o_visible btn btn-primary" data-original-title="" title="" style="">
+                            Discover Now</a>
+                                        <a/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <div class="row s_col_no_bgcolor no-gutters s_nb_column_fixed">
+                                    <div class="col-lg-12 p-1 o_animate o_anim_fade_in o_visible pb0" style="">
+                                        <div class="position-relative tp-animation-scale">
+                                            <img src="/website_penguin/static/src/img/homepage/penguin_men_shell_jacket_new.jpeg" class="w-100 o_we_image_cropped" alt="" loading="lazy" style="width: 100% !important;" data-original-title="" title="" aria-describedby="tooltip53185" data-original-id="25178" data-mimetype="image/jpeg" data-resize-width="690"/>
+                                            <div class="tp-banner-content tp-editor-bg-color-n-shadow text-center w-50 o_colored_level rounded o_cc o_cc1 bg-black-25" style="border-radius: 3px !important;" data-original-title="" title="" aria-describedby="tooltip940443">
+                                                <h5 data-original-title="" title="" aria-describedby="tooltip259034">
+                                                    <font class="text-o-color-4">Men Shell Jackets</font>
+                                                </h5>
+                                                <div>
+                                                    <font class="text-o-color-4">Find new colours for this winter.</font>
+                                                </div>
+                                                <a href="/shop/category/men-shell-jackets-14" class="mt-3 o_animate o_anim_fade_in o_visible btn btn-primary" data-original-title="" title="" style="">
+                                                    <font data-original-title="" title="" aria-describedby="tooltip768926" style="">Discover Now</font>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="row s_col_no_bgcolor no-gutters s_nb_column_fixed">
+                                            <div class="col-lg-6 p-1 pb0">
+                                                <div class="position-relative tp-animation-scale">
+                                                    <img src="/website_penguin/static/src/img/homepage/penguin_women_insulation_jacket.jpeg" class="w-100 o_we_image_cropped" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip878806" data-original-id="25179" data-mimetype="image/jpeg" data-resize-width="690"/>
+                                                    <div class="tp-banner-content tp-editor-bg-color-n-shadow text-center rounded w-50 w-lg-75 o_colored_level o_cc o_cc1 bg-black-25" style="" data-original-title="" title="" aria-describedby="tooltip786329">
+                                                        <h5 class="o_default_snippet_text">
+                                                            <font class="text-o-color-4">Women Insulation Jackets</font>
+                                                            <br/>
+                                                        </h5>
+                                                        <div>
+                                                            <font class="text-o-color-4">Find the warmth you need</font>.                                                            <br/>
+                                                        </div>
+                                                        <a href="/shop/category/women-insulation-layer-11" class="mt-3 btn btn-primary" data-original-title="" title="" style="">Shop Now</a>
+                                                        <a/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 p-1">
+                                                <div class="position-relative tp-animation-scale">
+                                                    <img src="/website_penguin/static/src/img/homepage/penguin_men_insulation_jacket.jpeg" class="w-100 o_we_image_cropped" alt="" loading="lazy" data-original-title="" title="" aria-describedby="tooltip534360" style="" data-original-id="25180" data-mimetype="image/jpeg" data-resize-width="690"/>
+                                                    <div class="tp-banner-content tp-editor-bg-color-n-shadow text-center rounded w-50 w-lg-75 o_colored_level o_cc o_cc1" data-original-title="" title="" aria-describedby="tooltip245903" style="background-color: rgba(0, 0, 0, 0.35) !important;">
+                                                        <h5 class="o_default_snippet_text">
+                                                            <font class="text-o-color-4">Men Insulation Jackets</font>
+                                                            <br/>
+                                                        </h5>
+                                                        <div>
+                                                            <font class="text-o-color-4">Choose your colour</font>
+                                                            <br/>
+                                                        </div>
+                                                        <a href="/shop/category/men-insulation-layer-18" class="mt-3 btn btn-primary" data-original-title="" title="" style="">Shop Now</a>
+                                                        <a/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_heading_5 o_colored_level pt32 pb32" data-snippet="s_heading_5" data-name="Heading - 5" style="background-color: rgb(245, 241, 238) !important; background-image: none;" data-original-title="" title="" aria-describedby="tooltip744219">
+                    <div class="container">
+                        <div class="row justify-content-center s_col_no_bgcolor s_nb_column_fixed" data-original-title="" title="" aria-describedby="tooltip589716">
+                            <div class="col-12 col-lg-8 text-center pb0" data-original-title="" title="" aria-describedby="tooltip946427">
+                                <h2 data-original-title="" title="" aria-describedby="tooltip122205">
+                                    <font class="text-o-color-1" style="">​</font>
+                                    <a href="/all-categories" class="btn btn-secondary flat btn-lg" data-original-title="" title="">View All Categories</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_banner_14 pt16 pb16 o_colored_level" data-snippet="s_banner_14" data-name="Banner - 14" style="background-image: none;">
+                    <div class="container">
+                        <div class="row s_col_no_bgcolor s_nb_column_fixed">
+                            <div class="col-12 col-lg-8" data-original-title="" title="" aria-describedby="tooltip62257">
+                                <div class="parallax s_parallax_is_fixed s_parallax_no_overflow_hidden px-4 o_colored_level pt256 pb256 oe_img_bg o_bg_img_center" data-scroll-background-ratio="0" style="background-image: url(&quot;/website_penguin/static/src/img/homepage/penguin-shop-hats.jpeg&quot;); background-position: 50% 0px; text-align: right;" data-original-title="" title="" aria-describedby="tooltip238776">
+                                    <h5 style="text-align: right;">
+                                        <font class="text-o-color-4">Meet the penguins</font>
+                                        <br/>
+                                    </h5>
+                                    <h3 class="mb-4" style="text-align: right;">
+                                        <font class="text-o-color-4">Visit our home base in Zurich</font>
+                                        <br/>
+                                    </h3>
+                                    <a class="btn btn-primary" href="/stores" data-original-title="" title="" style="">
+                                        <font class="text-o-color-4" data-original-title="" title="" aria-describedby="tooltip696034">Directions</font>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 o_visible pt0 o_animated o_animating" style="animation-play-state: running; visibility: visible;">
+                                <div class="d-flex flex-column h-100 justify-content-center oe_custom_bg tp-editor-bg-both o_colored_level oe_img_bg o_bg_img_center" style="background-image: url(&quot;/website_penguin/static/src/img/homepage/penguin_start_s30.jpeg&quot;); background-position: 50% 50%;" data-original-title="" title="" aria-describedby="tooltip824006" data-original-id="25188" data-mimetype="image/jpeg" data-resize-width="429">
+                                    <div class="my-2 p-4 text-center" data-original-title="" title="" aria-describedby="tooltip604404">
+                                        <h4>
+                                            <font class="text-o-color-4">The shop remains closed</font>
+                                        </h4>
+                                        <h4>
+                                            <font class="text-o-color-4">when 30cm of fresh snow falls</font>
+                                        </h4>
+                                        <p data-original-title="" title="" aria-describedby="tooltip706811">
+                                            <font class="text-o-color-4">Winter is short, set your priorities right</font>
+                                            <br/>
+                                        </p>
+                                        <a class="btn btn-primary" href="/contact" data-original-title="" title="" style="">Leave a message</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_heading_5 o_colored_level pb0 pt40" data-snippet="s_heading_5" data-name="Heading - 5" style="background-image: none;">
+                    <div class="container">
+                        <div class="row justify-content-center s_col_no_bgcolor s_nb_column_fixed">
+                            <div class="col-12 col-lg-8 text-center pb32">
+                                <h2>
+                                    <font class="text-o-color-1" style="">New season, new colors</font>
+                                    <br/>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="tp-dynamic-snippet dr_not_editable s_d_products_snippet_wrapper text-center o_colored_level pb96" data-tp-snippet-id="d_products_snippet" data-snippet="s_d_products_snippet" data-name="Products Cards" style="background-image: none;" data-selection-info="{&quot;selectionType&quot;:&quot;manual&quot;,&quot;recordsIDs&quot;:[69,60,225,222,223]}" data-ui-config-info="{&quot;style&quot;:&quot;s_card_style_1&quot;,&quot;mode&quot;:&quot;slider&quot;,&quot;ppr&quot;:4,&quot;activeActions&quot;:[&quot;rating&quot;,&quot;quick_view&quot;,&quot;add_to_cart&quot;,&quot;comparison&quot;,&quot;wishlist&quot;,&quot;category_info&quot;,&quot;label&quot;],&quot;model&quot;:&quot;product.template&quot;}">
+                    <div class="s_d_products_snippet container o_not_editable"/>
+                </section>
+                <section class="s_info_block_3 tp-editor-snippet-valign o_colored_level pt128 pb120" data-snippet="s_info_block_3" data-name="Info Block - 3" style="background-color: rgb(245, 241, 238) !important; background-image: none;">
+                    <div class="container-fluid">
+                        <div class="row s_nb_column_fixed align-items-center" data-original-title="" title="" aria-describedby="tooltip852247">
+                            <div class="col-6 mb-4 mb-lg-0 o_colored_level pb0 col-lg-3">
+                                <div class="tp-animation-scale">
+                                    <img src="/website_penguin/static/src/img/homepage/care1_dwr_renew.jpeg" class="img img-fluid o_we_image_cropped" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip729027" data-original-id="22834" data-mimetype="image/jpeg" data-x="85.5" data-width="341" data-height="341" data-scale-x="1" data-scale-y="1" data-aspect-ratio="1/1"/>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-4 mb-lg-0 o_colored_level col-lg-3">
+                                <div class="tp-animation-scale">
+                                    <img src="/website_penguin/static/src/img/homepage/care2_repair_your_gear.jpeg" class="img img-fluid o_we_image_cropped" alt="" loading="lazy" style="" data-original-title="" title="" aria-describedby="tooltip239344" data-original-id="22835" data-mimetype="image/jpeg" data-y="85.5" data-width="341" data-height="341" data-scale-x="1" data-scale-y="1" data-aspect-ratio="1/1"/>
+                                </div>
+                            </div>
+                            <div class="col-12 o_colored_level col-lg-4 offset-lg-1">
+                                <h5>What we do</h5>
+                                <h2>Penguin care program</h2>
+                                <p>
+                                    <span style="color: rgb(40, 39, 39); font-size: 14px; font-weight: 300; background-color: rgb(245, 241, 238)">We believe in durability as a key driver for sustainability. Take care of your products to maximize your life cycle and reduce consumption.</span>
+                                    <br/>
+                                </p>
+                                <a href="/penguincare" class="mt-2 btn btn-primary flat" data-original-title="" title="">view care program</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_cover o_colored_level s_parallax_no_overflow_hidden o_background_video o_cc o_cc4 bg-black-50 pt256 pb248" data-scroll-background-ratio="0" data-snippet="s_cover" data-name="Cover" style="background-image: none;" data-original-title="" title="" aria-describedby="tooltip820220" data-bg-video-src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1">
+                    <div class="o_we_bg_filter bg-black-50"/>
+                    <div class="s_allow_columns container">
+                        <h1 style="text-align: center;">Our philosophy​</h1>
+                        <p style="text-align: center;">
+                            <br/>
+                        </p>
+                        <h2 style="text-align: center;" data-original-title="" title="" aria-describedby="tooltip59297">
+                            <a class="mb-2 btn btn-secondary flat" href="/philosophy" data-original-title="" title="">Learn More</a>
+                            <br/>
+                        </h2>
+                    </div>
+                </section>
+                <section class="s_cover o_colored_level bg-600 pt256 pb256 s_parallax_no_overflow_hidden oe_img_bg o_bg_img_center" data-scroll-background-ratio="0" data-snippet="s_cover" data-name="Cover" style="background-image: url(&quot;/website_penguin/static/src/img/homepage/tours-and-events24.jpeg&quot;);" data-original-title="" title="" aria-describedby="tooltip820220" data-bg-video-src="//www.youtube.com/embed/DuUmhpO6oQI?autoplay=1&amp;mute=1&amp;enablejsapi=1&amp;rel=0&amp;loop=1&amp;playlist=DuUmhpO6oQI&amp;controls=0&amp;fs=0&amp;modestbranding=1" data-original-id="13100" data-mimetype="image/jpeg" data-resize-width="1500">
+                    <div class="s_allow_columns container">
+                        <div class="row">
+                            <div class="o_colored_level col-lg-12">
+                                <h1 style="text-align: center;">Tours and Events
+                                </h1>
+                                <h2 style="text-align: center;" data-original-title="" title="" aria-describedby="tooltip59297">
+                                    <a class="mb-2 btn btn-primary flat" href="/toursandevents" data-original-title="" title="" style="" aria-describedby="popover757383">
+                                        <font style="font-weight: bolder;" data-original-title="" title="" aria-describedby="tooltip473326">Sign up with us</font>
+                                    </a>
+                                    <br/>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_icon_block_10 o_colored_level pt32 pb32" data-name="Icon Block - 10" style="background-color: rgb(245, 241, 238) !important; background-image: none;">
+                    <div class="container">
+                        <div class="row justify-content-center border s_nb_column_fixed">
+                            <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1 o_colored_level">
+                                <div class="media align-items-center tp-icon-block-icon">
+                                    <span class="fa fa-truck fa-2x text-o-color-1 mr-3"/>
+                                    <div class="media-body">
+                                        <h6 class="mb-1 o_default_snippet_text">Free Delivery</h6>
+                                        <p class="mb-0">within CH and EU<br/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1 o_colored_level">
+                                <div class="media align-items-center tp-icon-block-icon">
+                                    <span class="fa fa-credit-card fa-2x text-o-color-1 mr-3"/>
+                                    <div class="media-body">
+                                        <h6 class="mb-1 o_default_snippet_text">Safe Payment</h6>
+                                        <p class="mb-0">100% secure payment</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1 o_colored_level">
+                                <div class="media align-items-center tp-icon-block-icon">
+                                    <span class="fa fa-phone fa-2x text-o-color-1 mr-3"/>
+                                    <div class="media-body">
+                                        <h6 class="mb-1">Personal Support</h6>
+                                        <p class="mb-0">+41 (0)44 586 63 60 <br/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1 o_colored_level">
+                                <div class="media align-items-center tp-icon-block-icon">
+                                    <span class="fa fa-undo fa-2x text-o-color-1 mr-3"/>
+                                    <div class="media-body">
+                                        <h6 class="mb-1">Easy Returns</h6>
+                                        <p class="mb-0">and replacements</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1 o_colored_level">
+                                <div class="media align-items-center tp-icon-block-icon">
+                                    <span class="fa fa-rocket fa-2x text-o-color-1 mr-3"/>
+                                    <div class="media-body">
+                                        <h6 class="mb-1 o_default_snippet_text">Fast Shipping</h6>
+                                        <p class="mb-0">In 2-3 Days</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-xl-2 p-3 tp-icon-block o_cc o_cc1 o_colored_level">
+                                <div class="media align-items-center tp-icon-block-icon">
+                                    <span class="fa fa-smile-o fa-2x text-o-color-1 mr-3"/>
+                                    <div class="media-body">
+                                        <h6 class="mb-1">Happy Customers<br/>
+                                        </h6>
+                                        <p class="mb-0">25k+</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

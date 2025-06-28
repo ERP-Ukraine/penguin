@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="sale_order_portal_content" inherit_id="sale.sale_order_portal_content">
+    <xpath expr="(//table[@id='sales_order_table']/thead/tr/th)[3]" position="replace">
+        <th name="th_list_price" t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">RRP/pc</th>
+        <th name="th_priceunit" t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">Net Price/pc</th>
+    </xpath>
+    <xpath expr="(//table[@id='sales_order_table']/tbody//tr//td)[3]" position="replace">
+        <td t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">
+            <div t-esc="line.penguin_rrp_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
+        </td>
+        <td t-attf-class="text-right {{ 'd-none d-sm-table-cell' if report_type == 'html' else '' }}">
+            <div t-esc="line.penguin_net_price_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
+        </td>
+    </xpath>
+</template>
+
+</odoo>

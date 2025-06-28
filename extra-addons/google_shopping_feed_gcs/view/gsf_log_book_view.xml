@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data>
+		<!-- Search View Section -->
+		<record id="google_shopping_feed_log_tracker_search_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.feed.log.tracker.search</field>
+			<field name="model">google.shopping.feed.log.tracker</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name" />
+					<field name="gs_instance_id" />
+					<field name="gs_account_id" />
+					<field name="log_message" />
+
+					<group expand="0" string="Group By...">
+						<filter name="gs_account_id" string="Shopping Account"
+							icon="terp-personal" context="{'group_by':'gs_account_id'}" />
+						<filter name="gs_instance_id" string="Shopping Instance"
+							icon="terp-personal" context="{'group_by':'gs_instance_id'}" />
+						<filter name="operation_type" string="Operation Type"
+							icon="terp-personal" context="{'group_by':'operation_type'}" />
+						<filter name="operation_sub_type"
+							string="Operation Sub Type" icon="terp-personal"
+							context="{'group_by':'operation_sub_type'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<!-- Tree View Section -->
+		<record id="google_shopping_feed_log_tracker_tree_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.feed.log.tracker.tree</field>
+			<field name="model">google.shopping.feed.log.tracker</field>
+			<field name="arch" type="xml">
+				<tree create="false">
+					<field name="name" />
+					<field name="gs_account_id" />
+					<field name="gs_instance_id" />
+					<field name="operation_type" />
+					<field name="log_message" />
+					<field name="is_skip_process" />
+				</tree>
+			</field>
+		</record>
+
+		<!-- Form View Section -->
+		<record id="google_shopping_feed_log_tracker_form_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.feed.log.tracker.form</field>
+			<field name="model">google.shopping.feed.log.tracker</field>
+			<field name="arch" type="xml">
+				<form create="false" edit="false">
+					<sheet>
+						<div class="oe_title pr-0">
+							<label class="oe_edit_only" for="name" string="Log Name" />
+							<h1 class="d-flex flex-row justify-content-between">
+								<field name="name" class="text-truncate" />
+							</h1>
+						</div>
+
+						<group>
+							<group>
+								<field name="gs_instance_id" readonly="1" />
+								<field name="gs_account_id" readonly="1" />
+							</group>
+							<group>
+								<field name="create_uid" string="Create By" readonly="1" />
+								<field name="operation_type" readonly="1" />
+								<field name="operation_sub_type" readonly="1" />
+								<field name="is_skip_process" readonly="1" />
+							</group>
+						</group>
+
+						<group string="Log Message" colspan="4">
+							<field name="log_message" readonly="1" nolabel="1" />
+						</group>
+
+						<group string="Log Lines" colspan="4">
+							<field name="gsf_log_line_tracker_ids" nolabel="1"
+								readonly="1">
+								<form>
+									<group>
+										<group>
+											<field name="gsf_log_tracker_id" />
+											<field name="operation_type" />
+											<field name="action_type" />
+											<field name="log_type" />
+										</group>
+										<group>
+											<field name="record_reference" />
+										</group>
+										<group string="Log Message" colspan="4">
+											<field name="message" readonly="1" nolabel="1" />
+										</group>
+									</group>
+								</form>
+								<tree>
+									<field name="record_reference" />
+									<field name="action_type" />
+									<field name="message" />
+								</tree>
+							</field>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Action Section -->
+		<record id="google_shopping_feed_log_tracker_action"
+			model="ir.actions.act_window">
+			<field name="name">Google Shopping Feed Log Tracker</field>
+			<field name="res_model">google.shopping.feed.log.tracker</field>
+			<field name="view_id" ref="google_shopping_feed_log_tracker_tree_view" />
+			<field name="search_view_id"
+				ref="google_shopping_feed_log_tracker_search_view" />
+		</record>
+
+		<!-- Parent Menu Section -->
+		<menuitem id="google_shopping_feed_log_tracker_menu" name="Log Tracker"
+			parent="google_shopping_feed_gcs.google_shopping_feed_log_tracker_parent_menu" sequence="1"
+			action="google_shopping_feed_log_tracker_action" />
+						
+		<!-- Feed Log Lines Tracker Section -->
+		<!-- Tree View Section -->
+		<record id="google_shopping_feed_log_line_tracker_tree_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.feed.log.line.tracker.tree</field>
+			<field name="model">google.shopping.feed.log.line.tracker</field>
+			<field name="arch" type="xml">
+				<tree create="false">
+					<field name="gsf_log_tracker_id" />
+					<field name="record_reference" />
+					<field name="operation_type" />
+					<field name="action_type" />
+					<field name="log_type" />					
+				</tree>
+			</field>
+		</record>
+		
+		<!-- Form View Section -->
+		<record id="google_shopping_feed_log_line_tracker_form_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.feed.log.line.tracker.form</field>
+			<field name="model">google.shopping.feed.log.line.tracker</field>
+			<field name="arch" type="xml">
+				<form create="false" edit="false">
+					<sheet>
+						<div class="oe_title pr-0">
+							<label class="oe_edit_only" for="gsf_log_tracker_id" string="Log ID" />
+							<h1 class="d-flex flex-row justify-content-between">
+								<field name="gsf_log_tracker_id" class="text-truncate" />
+							</h1>
+						</div>
+
+						<group>
+							<group>
+								<field name="operation_type" readonly="1" />
+								<field name="action_type" readonly="1" />
+								<field name="log_type" readonly="1" />
+							</group>
+							<group>
+								<field name="record_reference" readonly="1" />
+							</group>
+						</group>
+
+						<group string="Log Message" colspan="4">
+							<field name="message" readonly="1" nolabel="1" />
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+			
+		<!-- Action Section -->
+		<record id="google_shopping_feed_log_lines_tracker_action"
+			model="ir.actions.act_window">
+			<field name="name">Google Shopping Feed Log Lines Tracker</field>
+			<field name="res_model">google.shopping.feed.log.line.tracker</field>
+			<field name="view_id" ref="google_shopping_feed_log_line_tracker_tree_view" />
+		</record>
+
+		<!-- Parent Menu Section -->
+		<menuitem id="google_shopping_feed_log_lines_tracker_menu" name="Log Tracker Lines"
+			parent="google_shopping_feed_gcs.google_shopping_feed_log_tracker_parent_menu" sequence="1"
+			action="google_shopping_feed_log_lines_tracker_action" />
+	</data>
+</odoo>

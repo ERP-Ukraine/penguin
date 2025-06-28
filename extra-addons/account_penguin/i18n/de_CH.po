@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_penguin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200928\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-06 13:18+0000\n"
+"PO-Revision-Date: 2020-10-07 17:36+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: de\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#. module: account
+#: model_terms:account.payment.term,note:account.account_payment_term_immediate
+msgid "Payment terms: Immediate Payment"
+msgstr "Zahlungsbedingungen: Sofortige Zahlung"
+
+#. module: account_penguin
+#: model_terms:ir.ui.view,arch_db:account_penguin.penguin_report_invoice_document
+msgid ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Total Net</span>\n"
+"                <span groups=\"account.group_show_line_subtotals_tax_included\">Total Net</span>"
+msgstr ""
+"<span groups=\"account.group_show_line_subtotals_tax_excluded\">Total Netto</span>\n"
+"                <span groups=\"account.group_show_line_subtotals_tax_included\">Total Netto</span>"
+
+#. module: account_penguin
+#: model_terms:ir.ui.view,arch_db:account_penguin.penguin_report_invoice_document
+msgid "<span>Net/pc</span>"
+msgstr "<span>Netto/Stk.</span>"
+
+#. module: account_penguin
+#: model_terms:ir.ui.view,arch_db:account_penguin.penguin_report_invoice_document
+msgid "<span>RRP/pc</span>"
+msgstr "<span>VK/Stk.</span>"
+
+#. module: account_penguin
+#: model_terms:ir.ui.view,arch_db:account_penguin.penguin_report_invoice_document
+msgid "<strong>Bank Account:</strong>"
+msgstr "<strong>Bankverbindung:</strong>"
+
+#. module: account_penguin
+#: model:ir.model.fields,field_description:account_penguin.field_account_fiscal_position__external_id
+msgid "External ID"
+msgstr "Externe ID"
+
+#. module: account_penguin
+#: model:ir.model,name:account_penguin.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Steuerzuordnung"
+
+#. module: account_penguin
+#: model:ir.model,name:account_penguin.model_account_move_line
+msgid "Journal Item"
+msgstr "Buchungszeile"
+
+#. module: account_penguin
+#: model:ir.model.fields,field_description:account_penguin.field_account_move_line__penguin_net_price_pc
+msgid "Net Price/pc"
+msgstr "Netto-Preis/Stk."

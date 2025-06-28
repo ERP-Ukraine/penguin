@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!-- Main Categories -->
+    <template id="main_categories" active="False">
+        <div t-attf-class="oe_category_group #{_classes}">
+            <div class="arrow-wrapper oe_category_move_left">
+                <i class="fa fa-chevron-left"/>
+            </div>
+            <div class="category-group py-2 px-0">
+                <a t-att-href="keep('/shop', category=0)" t-attf-class="category-link #{'' if category else 'active'} o_not_editable">All Products</a>
+                <t t-foreach="categories" t-as="c">
+                    <a t-att-href="keep('/shop/category/' + slug(c), category=0)" t-attf-class="category-link #{'active' if category in c + c.child_id  else ''} o_not_editable">
+                        <span t-field="c.name"/>
+                    </a>
+                </t>
+            </div>
+            <div class="arrow-wrapper oe_category_move_right">
+                <i class="fa fa-chevron-right"/>
+            </div>
+        </div>
+    </template>
+
+    <!-- Sub Categories -->
+    <template id="sub_categories" active="False">
+        <t t-set="sub_categories" t-value="category.parent_id or category"/>
+        <div t-attf-class="oe_category_group #{_classes} #{'d-none' if not sub_categories.child_id else None}">
+            <div class="arrow-wrapper oe_category_move_left">
+                <i class="fa fa-chevron-left"/>
+            </div>
+            <div class="category-group py-2 px-0">
+                <t t-foreach="sub_categories.child_id" t-as="c">
+                    <a t-att-href="keep('/shop/category/' + slug(c), category=0)" t-attf-class="category-link #{'active' if c.id == category.id else ''} o_not_editable">
+                        <span t-field="c.name"/>
+                    </a>
+                </t>
+            </div>
+            <div class="arrow-wrapper oe_category_move_right">
+                <i class="fa fa-chevron-right"/>
+            </div>
+        </div>
+    </template>
+
+    <!-- Product -->
+    <template id="penguin_product" inherit_id="website_sale.product" name="Penguin Product" customize_show="True" active="False">
+        <xpath expr="//t[@t-set='additional_title']" position="before">
+            <t t-set="penguin" t-value="True"/>
+        </xpath>
+
+        <xpath expr="//section/div[hasclass('row')][1]" position="attributes">
+            <attribute name="t-if">not penguin</attribute>
+        </xpath>
+
+        <xpath expr="//section/div[hasclass('row')][1]" position="before">
+            <div class="row">
+                <div class="col col-md-5 col-lg-4 offset-lg-2 py-2">
+                    <t t-call="website_sale.search">
+                        <t t-set="search" t-value="False"/>
+                        <t t-set="_classes" t-valuef="w-100 w-md-auto mr-auto mb-2"/>
+                    </t>
+                </div>
+                <t t-call="website_sale_penguin.main_categories">
+                    <!-- select root or first one eCommerce category -->
+                    <t t-set="category" t-value="product.public_categ_ids.filtered(lambda c: not c.parent_id)[:1] or product.public_categ_ids[:1]"/>
+                    <t t-set="_classes" t-valuef="col-md-7 col-lg-6 order-md-first"/>
+                </t>
+            </div>
+            <div class="row mb-5">
+                <t t-call="website_sale_penguin.sub_categories">
+                    <t t-set="category" t-value="product.public_categ_ids.filtered(lambda c: not c.parent_id)[:1] or product.public_categ_ids[:1]"/>
+                    <t t-set="_classes" t-valuef="col-12"/>
+                </t>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='add_to_cart_wrap']" position="attributes">
+            <attribute name="class" remove="d-inline" separator=" "/>
+        </xpath>
+
+        <xpath expr="//section[@id='product_detail']" position="inside">
+            <div class="row">
+                <div class="col-12">
+                    <section class="s_tabs oe_product_details" data-name="Tabs">
+                        <div class="container">
+                            <div class="row">
+                                <t t-set="first_active_tab" t-value="product.material_id"/>
+                                <t t-set="second_active_tab" t-value="product.feature_ids and not first_active_tab"/>
+                                <t t-set="third_active_tab" t-value="not (first_active_tab or first_active_tab)"/>
+                                <div t-if="any((product.material_id, product.feature_ids, not product.hide_size_chart, product.washing_instruction_id))" class="col-lg-8 pt48 pb48">
+                                    <ul class="nav nav-tabs mb-3" role="tablist">
+                                        <li t-if="product.material_id" class="nav-item">
+                                            <a class="nav-link active" id="nav_material" data-toggle="tab" href="#nav_material_content" role="tab" aria-controls="nav_material_content" aria-selected="true" data-original-title="Material" title="Material">Material</a>
+                                        </li>
+                                        <li t-if="product.feature_ids" class="nav-item">
+                                            <a t-attf-class="nav-link #{'active' if second_active_tab else None}" id="nav_features" data-toggle="tab" href="#nav_features_content" role="tab" aria-controls="nav_features_content" t-att-aria-selected="'true' if second_active_tab else 'false'" data-original-title="Features" title="Features">Features</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a t-if="not product.hide_size_chart" t-attf-class="nav-link #{'active' if third_active_tab else None}" id="nav_size_chart" data-toggle="tab" href="#nav_size_chart_content" role="tab" aria-controls="nav_size_chart_content" t-att-aria-selected="'true' if third_active_tab else 'false'" data-original-title="Size Chart" title="Size Chart">Size Chart</a>
+                                        </li>
+                                        <li t-if="product.washing_instruction_id" class="nav-item">
+                                            <a class="nav-link" id="nav_instruction" data-toggle="tab" href="#nav_instruction_content" role="tab" aria-controls="nav_instruction_content" aria-selected="false" data-original-title="Washing Instructions" title="Washing Instructions">Washing Instructions</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div t-if="product.material_id" id="nav_material_content" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="nav_material">
+                                            <div class="card-header" role="tab" id="nav_material_heading">
+                                                <h5 class="mb-0">
+                                                    <a class="nav-link" data-toggle="collapse" href="#nav_material_collapse" aria-expanded="true" aria-controls="nav_material_collapse">Material</a>
+                                                </h5>
+                                            </div>
+
+                                            <div id="nav_material_collapse" class="collapse show" role="tabpanel" aria-labelledby="nav_material_heading">
+                                                <div class="card-body">
+                                                    <p style="white-space: pre-line;" t-esc="product.material_id.description"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div t-if="product.feature_ids" id="nav_features_content" t-attf-class="card tab-pane fade #{'show active' if second_active_tab else None}" role="tabpanel" aria-labelledby="nav_features">
+                                            <div class="card-header" role="tab" id="nav_features_heading">
+                                                <h5 class="mb-0">
+                                                    <a class="nav-link" data-toggle="collapse" href="#nav_features_collapse" t-att-aria-expanded="'true' if second_active_tab else 'false'" aria-controls="nav_features_collapse">Features</a>
+                                                </h5>
+                                            </div>
+
+                                            <div id="nav_features_collapse" t-attf-class="collapse #{'show' if second_active_tab else None}" role="tabpanel" aria-labelledby="nav_features_heading">
+                                                <div class="card-body">
+                                                    <ul>
+                                                        <li t-foreach="product.feature_ids" t-as="feature">
+                                                            <t t-esc="feature.name"/>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div t-if="not product.hide_size_chart" id="nav_size_chart_content" t-attf-class="card tab-pane fade #{'show active' if third_active_tab else None}" role="tabpanel" aria-labelledby="nav_size_chart">
+                                            <div class="card-header" role="tab" id="nav_size_chart_heading">
+                                                <h5 class="mb-0">
+                                                    <a class="nav-link" data-toggle="collapse" href="#nav_size_chart_collapse" t-att-aria-expanded="'true' if third_active_tab else 'false'" aria-controls="nav_size_chart_collapse">Size Chart</a>
+                                                </h5>
+                                            </div>
+
+                                            <div id="nav_size_chart_collapse" t-attf-class="collapse #{'show' if third_active_tab else None}" role="tabpanel" aria-labelledby="nav_size_chart_heading">
+                                                <div class="card-body">
+                                                    <p>To help you select the correct size of garment,we've put together our recommendation below</p>
+                                                    <h4 t-if="product.gender == 'female'">Size Guide Women</h4>
+                                                    <h4 t-if="product.gender == 'male'">Size Guide Men</h4>
+
+                                                    <div class="text-center">
+                                                        <t t-set="img_name" t-value="'Size-%s_%s.png' % ('Women' if product.gender == 'female' else 'Men', lang)"/>
+                                                        <img class="img img-fluid" t-attf-src="/website_sale_penguin/static/src/img/size_chart/#{img_name}"/>
+                                                    </div>
+
+                                                    <div class="overflow-table">
+                                                        <table class="table table-condensed">
+                                                            <thead>
+                                                                <t t-if="product.gender == 'female'">
+                                                                    <tr>
+                                                                        <th class="measurement">Size</th>
+                                                                        <th class="medium text-center">Chest, cm</th>
+                                                                        <th class="size_list text-center">Waist, cm</th>
+                                                                        <th class="medium text-center">Hip, cm</th>
+                                                                        <th class="size_list text-center">Inseam leg, cm</th>
+                                                                        <th class="size_list text-center">Height, cm</th>
+                                                                    </tr>
+                                                                </t>
+                                                                <t t-if="product.gender == 'male'">
+                                                                    <tr>
+                                                                        <th class="measurement">Size</th>
+                                                                        <th class="medium text-center">Chest, cm</th>
+                                                                        <th class="medium text-center">Hip, cm</th>
+                                                                        <th class="size_list text-center">Inseam leg, cm</th>
+                                                                        <th class="size_list text-center">Height, cm</th>
+                                                                    </tr>
+                                                                </t>
+                                                            </thead>
+                                                            <tbody>
+                                                                <t t-if="product.gender == 'female'">
+                                                                    <tr id="size-chart">
+                                                                        <td><span>XS</span></td>
+                                                                        <td class="text-center"><span>80</span></td>
+                                                                        <td class="text-center"><span>66</span></td>
+                                                                        <td class="text-center"><span>88</span></td>
+                                                                        <td class="text-center"><span>75,5</span></td>
+                                                                        <td class="text-center"><span>156&#8211;164</span></td>
+                                                                    </tr>
+                                                                    <tr id="size-chart">
+                                                                        <td><span>S</span></td>
+                                                                        <td class="text-center"><span>86</span></td>
+                                                                        <td class="text-center"><span>71</span></td>
+                                                                        <td class="text-center"><span>94</span></td>
+                                                                        <td class="text-center"><span>76,5</span></td>
+                                                                        <td class="text-center"><span>160&#8211;168</span></td>
+                                                                    </tr>
+                                                                    <tr id="size-chart">
+                                                                        <td><span>M</span></td>
+                                                                        <td class="text-center"><span>92</span></td>
+                                                                        <td class="text-center"><span>76</span></td>
+                                                                        <td class="text-center"><span>100</span></td>
+                                                                        <td class="text-center"><span>77,5</span></td>
+                                                                        <td class="text-center"><span>164&#8211;174</span></td>
+                                                                    </tr>
+                                                                    <tr id="size-chart">
+                                                                        <td><span>L</span></td>
+                                                                        <td class="text-center"><span>98</span></td>
+                                                                        <td class="text-center"><span>82</span></td>
+                                                                        <td class="text-center"><span>106</span></td>
+                                                                        <td class="text-center"><span>78,5</span></td>
+                                                                        <td class="text-center"><span>168&#8211;178</span></td>
+                                                                    </tr>
+                                                                    <tr id="size-chart">
+                                                                        <td><span>XL</span></td>
+                                                                        <td class="text-center"><span>104</span></td>
+                                                                        <td class="text-center"><span>88</span></td>
+                                                                        <td class="text-center"><span>112</span></td>
+                                                                        <td class="text-center"><span>78,5</span></td>
+                                                                        <td class="text-center"><span>168&#8211;178</span></td>
+                                                                    </tr>
+                                                                </t>
+
+                                                                <t t-if="product.gender == 'male'">
+                                                                    <tr id="size-chart">
+                                                                        <td><span>S</span></td>
+                                                                        <td class="text-center"><span>90</span></td>
+                                                                        <td class="text-center"><span>93</span></td>
+                                                                        <td class="text-center"><span>78</span></td>
+                                                                        <td class="text-center"><span>170&#8211;178</span></td>
+                                                                    </tr>
+                                                                    <tr id="size-chart">
+                                                                        <td><span>M</span></td>
+                                                                        <td class="text-center"><span>96</span></td>
+                                                                        <td class="text-center"><span>100</span></td>
+                                                                        <td class="text-center"><span>80</span></td>
+                                                                        <td class="text-center"><span>175&#8211;183</span></td>
+                                                                    </tr>
+                                                                    <tr id="size-chart">
+                                                                        <td><span>L</span></td>
+                                                                        <td class="text-center"><span>103</span></td>
+                                                                        <td class="text-center"><span>107</span></td>
+                                                                        <td class="text-center"><span>82</span></td>
+                                                                        <td class="text-center"><span>180&#8211;188</span></td>
+                                                                    </tr>
+                                                                    <tr id="size-chart">
+                                                                        <td><span>XL</span></td>
+                                                                        <td class="text-center"><span>110</span></td>
+                                                                        <td class="text-center"><span>114</span></td>
+                                                                        <td class="text-center"><span>84</span></td>
+                                                                        <td class="text-center"><span>185&#8211;193</span></td>
+                                                                    </tr>
+                                                                    <tr id="size-chart">
+                                                                        <td><span>XXL</span></td>
+                                                                        <td class="text-center"><span>117</span></td>
+                                                                        <td class="text-center"><span>121</span></td>
+                                                                        <td class="text-center"><span>86</span></td>
+                                                                        <td class="text-center"><span>190&#8211;198</span></td>
+                                                                    </tr>
+                                                                </t>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+                                                    <h4>How to Measure</h4>
+                                                    <p class="mb-0"><b>Chest contour.</b> Measure around the widest point of the chest,keeping the tape horizontal.</p>
+                                                    <p class="mb-0"><b>Waist contour.</b> Measure around the narrowest point of the waist, keeping the tape horizontal.</p>
+                                                    <p><b>Hip contour.</b> Keeping the feet together, measure around the widest point of the hip, keeping the tape horizontal.</p>
+
+                                                    <h4>How to choose the Right Size</h4>
+                                                    <p>Measures are expressed in centimetres. If the taken measures are between two sizes, choose the smallest if you prefer a tighter fitting or the largest if you prefer a baggier fitting.</p>
+
+                                                    <a href="/page/faq">FAQ Link</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div t-if="product.washing_instruction_id" id="nav_instruction_content" class="card tab-pane fade " role="tabpanel" aria-labelledby="nav_instruction">
+                                            <div class="card-header" role="tab" id="nav_instruction_heading">
+                                                <h5 class="mb-0">
+                                                    <a class="nav-link" data-toggle="collapse" href="#nav_instruction_collapse" aria-expanded="false" aria-controls="nav_instruction_collapse">Washing Instruction</a>
+                                                </h5>
+                                            </div>
+                                            <div id="nav_instruction_collapse" class="collapse" role="tabpanel" aria-labelledby="nav_instruction_heading">
+                                                <div class="card-body">
+                                                    <p style="white-space: pre-line;" t-esc="product.washing_instruction_id.description"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="product_price" inherit_id="website_sale.product_price" customize_show="True" name="Penguin Product Price" active="False">
+        <xpath expr="//div[1]" position="attributes">
+            <attribute name="class" remove="mb-3" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="shop_product_carousel" inherit_id="website_sale.shop_product_carousel" name="Penguin Shop Product Carousel" customize_show="True" active="False">
+        <xpath expr="//div[@id='o-carousel-product']" position="inside">
+            <p class="mt-4" t-esc="product.website_sale_description"/>
+        </xpath>
+    </template>
+
+    <!-- Color picker -->
+    <template id="color_picker" active="False">
+        <t t-set="combination" t-value="product._get_first_possible_combination()"/>
+        <t t-foreach="product.valid_product_template_attribute_line_ids" t-as="ptal">
+            <t t-if="ptal.attribute_id.display_type == 'color'">
+
+                <t t-set="single_and_custom" t-value="len(ptal.product_template_value_ids._only_active()) == 1 and ptal.product_template_value_ids._only_active()[0].is_custom"/>
+                <ul t-att-data-attribute_id="ptal.attribute_id.id" t-attf-class="list-inline custom-color-picker custom-color-picker-line#{'d-none' if single_and_custom else ''}">
+                    <li t-foreach="ptal.product_template_value_ids._only_active()" t-as="ptav" class="list-inline-item">
+                        <t t-set="variant" t-value="product._get_first_product_variant(ptav)"/>
+                        <label t-attf-style="background-color:#{ptav.html_color or ptav.product_attribute_value_id.name if not ptav.is_custom else ''}"
+                                t-attf-class="css_attribute_color #{'active' if ptav in combination else ''} #{'custom_value' if ptav.is_custom else ''}">
+                            <input type="radio"
+                                    t-att-checked="ptav in combination"
+                                    t-att-value="ptav.id"
+                                    t-att-title="ptav.name"
+                                    t-att-data-value_id="ptav.id"
+                                    t-att-data-product_id="variant.id"
+                                    t-att-data-unique="variant.get_unique()"
+                            />
+                        </label>
+                    </li>
+                </ul>
+            </t>
+        </t>
+    </template>
+
+    <!-- Product item -->
+    <template id="penguin_products_item" inherit_id="website_sale.products_item" active="False">
+        <xpath expr="//span[@t-field='image_holder.image_1920']" position="replace">
+            <t t-set="product_ptav" t-value="product._get_first_possible_combination()"/>
+            <t t-set="product_product" t-value="product._get_variant_for_combination(product_ptav)"/>
+            <t t-if="product_product.image_1920">
+                <span t-field="product_product.image_1920"
+                        t-options="{'widget': 'image', 'preview_image': 'image_1024' if product_image_big else 'image_256'}"
+                        class="d-flex h-100 justify-content-center align-items-center"/>
+            </t>
+            <t t-else="">
+                <span t-field="product.image_1920"
+                        t-options="{'widget': 'image', 'preview_image': 'image_1024' if product_image_big else 'image_256'}"
+                        class="d-flex h-100 justify-content-center align-items-center"/>
+            </t>
+        </xpath>
+
+        <xpath expr="//div[hasclass('oe_product_image')]" position="after">
+            <div class="card-body oe_variant_color_selector p-1">
+                <t t-call="website_sale_penguin.color_picker">
+                    <t t-set="no_label" t-value="True"/>
+                </t>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[hasclass('o_wsale_product_information')]" position="attributes">
+            <attribute name="class" add="text-center" separator=" "/>
+        </xpath>
+    </template>
+
+    <!-- Products (Shop) -->
+    <template id="penguin_products" inherit_id="website_sale.products"
+              customize_show="True" name="Penguin Products" active="False">
+
+        <xpath expr="//t[@t-set='additional_title']" position="before">
+            <t t-set="penguin" t-value="True"/>
+        </xpath>
+
+        <xpath expr="//div[hasclass('products_header')]" position="attributes">
+            <attribute name="t-if">not penguin</attribute>
+        </xpath>
+
+        <xpath expr="//t[@t-call='website_sale.products_breadcrumb']" position="attributes">
+            <attribute name="t-if">not penguin</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('products_header')]" position="before">
+            <div class="row">
+                <t t-call="website_sale_penguin.main_categories">
+                    <t t-set="_classes" t-valuef="col-xl-7 col-7 col-md-7 col-lg-7 order-md-first"/>
+                </t>
+                <div class="col-5 col-xl-5 col-md-5 col-lg-5 py-2">
+                    <t t-call="website_sale.search">
+                        <t t-set="_classes" t-valuef="w-100 w-md-auto mr-auto mb-2"/>
+                        <t t-set="search" t-value="original_search or search"/>
+                    </t>
+                </div>
+            </div>
+            <div class="row">
+                <t t-call="website_sale_penguin.sub_categories">
+                    <t t-set="_classes" t-valuef="col-xl-12 col-12"/>
+                </t>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- Comment -->
+    <template id='comment_form' name='Comment form'  active="False">
+        <form t-attf-action="/shop/comment#{redirect and '?r=' + redirect or ''}" method="post" name="website_comment">
+            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" t-nocache="The csrf token must always be up to date."/>
+            <div class="input-group w-100 my-2">
+                <input name="comment" class="form-control" type="text" placeholder="Add your comment here..." t-att-value="website_sale_order.website_comment or None"/>
+                <a href="#" role="button" class="btn btn-secondary a-submit ps-2">Apply</a>
+            </div>
+        </form>
+    </template>
+
+    <template id="website_comment_template" inherit_id="website_sale.total" name="Comment" active="False">
+        <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
+            <tr t-if="not hide_comment">
+                <td colspan="3" class="text-end text-xl-end border-0 p-0">
+                    <span>
+                        <t t-set='website_comment' t-value="website_sale_order.website_comment"/>
+                        <div t-if="not force_coupon" class="coupon_form">
+                            <t t-call="website_sale_penguin.comment_form"/>
+                        </div>
+                    </span>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="confirmation_with_comment" inherit_id="website_sale.confirmation" active="False">
+        <xpath expr="//t[@t-set='hide_promotions']" position="after">
+            <t t-set="hide_comment" t-value="True"/>
+        </xpath>
+    </template>
+
+    <template id="pricelist_list" inherit_id="website_sale.pricelist_list" name="Penguin Pricelists Dropdown" customize_show="True" active="False">
+        <xpath expr="//a[@role='button']" position="attributes">
+            <attribute name="class" remove="btn btn-light" add="penguin-pricelist-link" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="template_header_default_website" inherit_id="website.template_header_default" name="Penguin Template Header Default (with pricelist)" customize_show="True" active="False">
+        <xpath expr="//div[@id='top_menu_collapse']" position="after">
+            <t t-call='website_sale.pricelist_list'>
+                <t t-set="_classes" t-valuef="mx-2 text-bold font-weight-bold"/>
+            </t>
+        </xpath>
+
+        <xpath expr="//t[@t-call='portal.placeholder_user_sign_in']" position="before">
+            <li class="nav-item divider"></li>
+        </xpath>
+
+        <xpath expr="//t[@t-call='portal.user_dropdown']" position="after">
+            <li class="nav-item divider"></li>
+        </xpath>
+    </template>
+
+    <template id="template_header_default_website_sale" inherit_id="website_sale.template_header_default" active="False">
+        <xpath expr="//t[@t-set='_item_class']" position="attributes">
+            <attribute name="t-value">'nav-item'</attribute>
+        </xpath>
+
+        <xpath expr="//t[@t-set='_icon']" position="after">
+            <t t-set="_text" t-value="True"/>
+        </xpath>
+    </template>
+</odoo>

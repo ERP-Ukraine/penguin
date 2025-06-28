@@ -1,0 +1,24 @@
+- hosts: all
+  remote_user: bohdan
+  become: false
+
+  tasks:
+    - name: Change image tag
+      command: sed -i "s/18.0-.*$/18.0-{{ BITBUCKET_BUILD_NUMBER }}/" docker-compose.yml
+      args:
+        chdir: /opt/odoo15
+
+    - name: Pull image
+      command: docker-compose pull
+      args:
+        chdir: /opt/odoo15
+
+    - name: Stop container
+      command: docker-compose down
+      args:
+        chdir: /opt/odoo15
+
+    - name: Start container
+      command: docker-compose up -d
+      args:
+        chdir: /opt/odoo15

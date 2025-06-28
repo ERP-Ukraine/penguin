@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="penguin_frontend_layout" inherit_id="portal.frontend_layout">
+
+        <xpath expr="//div[@id='wrapwrap']" position="after">
+            <t t-if="website and not editable">
+                <script async="true">
+                    <![CDATA[
+                    !function(f,b,e,v,n,t,s)
+                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                    n.queue=[];t=b.createElement(e);t.async=!0;
+                    t.src=v;s=b.getElementsByTagName(e)[0];
+                    s.parentNode.insertBefore(t,s)}(window, document,'script',
+                    'https://connect.facebook.net/en_US/fbevents.js');
+                    fbq('init', '286863399344034');
+                    fbq('track', 'PageView');
+                    ]]>
+                </script>
+                <noscript>
+                    <![CDATA[
+                    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=286863399344034&ev=PageView&noscript=1"/>
+                    ]]>
+                </noscript>
+            </t>
+        </xpath>
+    </template>
+
+    <!--
+        I'm leaving this code here because I don't understand what it should do.
+        It hides Next button in pager, but why? And for medium size screens it's inline...
+        There is also strange variable page_index, which may be always None
+    -->
+    <template id="penguin_pager" inherit_id="website.pager">
+        <xpath expr="//li[last()]" position="attributes">
+            <attribute name="t-attf-class" add="#{'d-none d-md-inline' if page_index > 4 else None}" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="penguin_footer" inherit_id="website.layout" name="Footer">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                    <section class="s_text_block pb8 pt56" data-name="Text block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5>Connect with us</h5>
+                                    <ul class="list-unstyled">
+                                        <li>
+                                            <a href="/contactus">Contact us</a>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-phone"/>
+                                            <a class="o_force_ltr" t-field="res_company.phone" t-attf-href="tel:{{res_company.phone}}" />
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-envelope"/>
+                                            <a t-field="res_company.email" t-attf-href="mailto:{{res_company.email}}"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>Customer Service</h5>
+                                    <ul class="list-unstyled">
+                                        <li><a href="/penguincare">Penguin Care, warranty</a></li>
+                                        <li><a href="/customerservice">Shipping &amp;amp; delivery</a></li>
+                                        <li><a href="/customerservice">FAQ</a></li>
+                                        <li><a href="/customerservice">Terms &amp;amp; conditions</a></li>
+                                        <li><a href="/customerservice">Privacy Policy</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5>Penguin Powderwear. Designed in Switzerland.</h5>
+                                    <p>We are an independent Swiss clothing brand, creating highly technical and stylish outerwear for powder enthusiasts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="s_text_block pt16 pb8" data-name="Text block">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="share-icons-block mb-4">
+                                                <a href="https://www.facebook.com/penguin.swiss/" class="d-inline-block" target="_blank">
+                                                    <i class="fa fa-3x fa-facebook text-white"/>
+                                                </a>
+                                                <a href="https://www.instagram.com/penguinpowderwear/" class="d-inline-block pl-5" target="_blank">
+                                                    <i class="fa fa-3x fa-instagram text-white"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <ul class="list-unstyled">
+                                                <li class="mb16">Subscribe to our newsletter.</li>
+                                                <li><a role="button" href="/newsletter" class="btn btn-success">Subscribe</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-md-right text-center">
+                                    <img class="img img-fluid" src="/website_penguin/static/src/img/footer/logo.svg" style="max-height:150px"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="template_header_default" inherit_id="website.template_header_default" customize_show="True" active="True"
+            name="Penguin Template Header Default">
+        <xpath expr="//t[@t-set='_nav_class']" position="attributes">
+            <attribute name="t-valuef">text-right ml-auto</attribute>
+        </xpath>
+    </template>
+
+    <template id="placeholder_header_call_to_action" inherit_id="website.placeholder_header_call_to_action" customize_show="True" active="True"
+            name="Penguin Placeholder Header Call to Action">
+        <xpath expr="//div[1]" position="attributes">
+            <attribute name="t-attf-class" add="d-none" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="header_language_selector" inherit_id="website.header_language_selector" name="Penguin Header Language Selector" customize_show="True">
+        <xpath expr="//t[@id='header_language_selector_call']" position="replace">
+            <t id="header_language_selector_call" t-call="website_penguin.language_selector">
+                <t t-set="_div_classes" t-value="(_div_classes or '') + ' dropdown text-right font-weight-bold'"/>
+                <t t-set="_dropdown_menu_class" t-value="(_dropdown_menu_class or '')"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="language_selector" inherit_id="portal.language_selector" name="Language Selector" primary="True">
+        <xpath expr="//button" position="replace">
+            <a t-attf-class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span t-if="not no_text"
+                        class="align-middle penguin-language"
+                        t-esc="active_lang[2].split('/').pop().split()[0]"/>
+            </a>
+        </xpath>
+        <xpath expr="//div[@role='menu']//span" position="attributes">
+            <attribute name="t-esc">lg[2].split('/').pop().split()[0]</attribute>
+        </xpath>
+    </template>
+
+    <!-- <template id="footer_copyright_company_name" inherit_id="website.footer_copyright_company_name">
+        <xpath expr="//footer//span[hasclass('o_footer_copyright_name')]" position="replace">
+            <span class="o_footer_copyright_name mr-2">&amp;copy; Penguin c/o Kalisti International GmbH</span>
+        </xpath>
+    </template> -->
+</odoo>

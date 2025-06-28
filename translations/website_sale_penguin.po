@@ -1,0 +1,422 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_sale_penguin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200903\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-29 11:01+0000\n"
+"PO-Revision-Date: 2020-09-29 11:01+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid ""
+"<b>Chest contour.</b> Measure around the widest point of the chest,keeping "
+"the tape horizontal."
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid ""
+"<b>Hip contour.</b> Keeping the feet together, measure around the widest "
+"point of the hip, keeping the tape horizontal."
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid ""
+"<b>Waist contour.</b> Measure around the narrowest point of the waist, "
+"keeping the tape horizontal."
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>100-104</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>100-105</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>101-106</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>105-110</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>107-112</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>111-116</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>113-118</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>117-122</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>160-163</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>163-166</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>166-170</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>170-174</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>174-178</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>178-182</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>182-186</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>186-190</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>61-65</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>66-70</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>71-75</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>75-76</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>76-77</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>76-81</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>77-79</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>78-82</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>79-81</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>81-83</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>82-84</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>82-87</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>83-87</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>84-86</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>86-88</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>86-90</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>88-90</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>88-92</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>88-93</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>90-92</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>91-95</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>93-98</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>94-99</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>95-99</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>96-100</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>99-104</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>XL</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>XS</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "<span>XXL</span>"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model:ir.model.fields,help:website_sale_penguin.field_product_product__website_sale_description
+#: model:ir.model.fields,help:website_sale_penguin.field_product_template__website_sale_description
+msgid "A description of the Product that you want to show on your website"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.main_categories
+msgid "All Products"
+msgstr "Alle Produkte"
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Chest, cm"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model:ir.model.fields,field_description:website_sale_penguin.field_product_public_category__external_id
+msgid "External ID"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "FAQ Link"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Features"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Height, cm"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Hip, cm"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "How to Measure"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "How to choose the Right Size"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Inseam leg, cm"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Material"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid ""
+"Measures are expressed in centimetres. If the taken measures are between two"
+" sizes, choose the smallest if you prefer a tighter fitting or the largest "
+"if you prefer a baggier fitting."
+msgstr ""
+
+#. module: website_sale_penguin
+#: model:ir.model,name:website_sale_penguin.model_product_product
+msgid "Product"
+msgstr "Produkt"
+
+#. module: website_sale_penguin
+#: model:ir.model,name:website_sale_penguin.model_product_template
+msgid "Product Template"
+msgstr "Produktvorlage"
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Size"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Size Chart"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Size Guide Men"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Size Guide Women"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.website_product_template_form_view
+msgid "This note is added to website product page."
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid ""
+"To help you select the correct size of garment,we've put together our "
+"recommendation below"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Waist, cm"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Washing Instruction"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "Washing Instructions"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model:ir.model.fields,field_description:website_sale_penguin.field_product_product__website_sale_description
+#: model:ir.model.fields,field_description:website_sale_penguin.field_product_template__website_sale_description
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.website_product_template_form_view
+msgid "Website Description"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model:ir.model,name:website_sale_penguin.model_product_public_category
+msgid "Website Product Category"
+msgstr "Website Produktkategorien"
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_products
+msgid "col col-md-5 col-lg-4 offset-lg-2 py-2"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_products
+msgid "col-12"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_products
+msgid "col-md-7 col-lg-6 order-md-first"
+msgstr ""
+
+#. module: website_sale_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_penguin.penguin_product
+msgid "py-2"
+msgstr ""

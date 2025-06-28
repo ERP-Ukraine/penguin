@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+	<data>
+
+		<!-- Form View Section -->
+		<record id="google_shopping_product_images_form_view"
+			model="ir.ui.view">
+			<field name="name">google.shopping.product.images.form.view</field>
+			<field name="model">google.shopping.product.images</field>
+			<field name="arch" type="xml">
+				<form string="Product Images">
+					<field name="product_image" class="oe_avatar" required="1" widget="image" filename="product_image_full_name" />
+					
+					<div class="oe_title">
+						<label class="oe_edit_only" for="name" string="Product Name" />
+						<h1>
+							<field name="name" placeholder="Product Name" required="1" />
+						</h1>
+						<div name="options">
+                            <div>
+                                <field name="is_main_image" />
+                                <label for="is_main_image"/>
+                            </div>
+                        </div>
+					</div>
+
+					<group>
+						<field name="image_url" widget="url" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="google_shopping_product_images_kanban_view" model="ir.ui.view">
+			<field name="name">google.shopping.product.images.kanban</field>
+			<field name="model">google.shopping.product.images</field>
+			<field name="arch" type="xml">
+				<kanban>
+					 <field name="id"/>
+					<field name="name" />
+					<field name="product_image" />
+					<templates>
+						<t t-name="kanban-box">
+							<div class="card oe_kanban_global_click p-0" style="max-width: 100px !important;">
+								<div class="o_squared_image">
+									<img class="card-img-top"
+										t-att-src="kanban_image('google.shopping.product.images', 'product_image', record.id.raw_value)"
+										t-att-alt="record.name.value" />
+								</div>
+								<div class="card-body p-0">
+									<h4 class="card-title p-2 m-0 bg-200">
+										<small>
+											<field name="name" />
+										</small>
+									</h4>
+								</div>
+							</div>
+						</t>
+					</templates>
+				</kanban>
+			</field>
+		</record>
+
+
+	</data>
+</odoo>

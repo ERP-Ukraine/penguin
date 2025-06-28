@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <!-- Wizard Form Views -->
+    <record id="import_google_product_categories_form_view"
+            model="ir.ui.view">
+        <field name="name">import.google.product.categories.form</field>
+        <field name="model">import.google.product.categories.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="import_file_url"/>
+                    </group>
+
+                    <group>
+                        <p>
+                            <h3>Please note that:</h3>
+                            <ul>
+                                <li>Only TEXT(.txt) file URL allowed.</li>
+                                <li>
+                                    You can import google category by using following URL Link,
+                                    <br/>
+                                    <a href="https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt">
+                                        https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt
+                                    </a>
+                                </li>
+                                <li>
+                                    For more information about google category you can visit,
+                                    <br/>
+                                    <a href="https://support.google.com/merchants/answer/6324436?hl=en">
+                                        https://support.google.com/merchants/answer/6324436?hl=en
+                                    </a>
+                                </li>
+                            </ul>
+                        </p>
+                    </group>
+
+                    <footer>
+                        <button string="Import/Update" class="oe_highlight"
+                                type="object" name="import_google_categories"/>
+                        <button string="Cancel" class="oe_highlight"
+                                special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Wizard Actions -->
+    <record id="import_google_product_categories_action"
+            model="ir.actions.act_window">
+        <field name="name">Import Google Product Categories</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">form</field>
+        <field name="res_model">import.google.product.categories.wizard</field>
+        <field name="target">new</field>
+        <field name="context">{
+            'default_import_file_url':
+            'https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt',
+            }
+        </field>
+    </record>
+
+
+    <!-- Menu Sections -->
+    <menuitem id="import_google_product_categories_menu"
+              parent="sale.prod_config_main"
+              action="import_google_product_categories_action"/>
+
+</odoo>

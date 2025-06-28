@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* report_tmpl_penguin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200928\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-06 13:20+0000\n"
+"PO-Revision-Date: 2020-10-06 13:20+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.view_warehouse
+msgid "Acc. Nr."
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model:ir.model.fields,field_description:report_tmpl_penguin.field_stock_warehouse__penguin_report_tmpl_acc_nr
+msgid "Acc. Nr., Penguin Template"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model:ir.model.fields,field_description:report_tmpl_penguin.field_res_company__penguin_report_tmpl_calm
+msgid "Calm, Report Tmpl"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model:ir.model,name:report_tmpl_penguin.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Delivery address:"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "EUR Acc. Nr.:"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Email:"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.view_warehouse
+msgid "IBAN"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model:ir.model.fields,field_description:report_tmpl_penguin.field_stock_warehouse__penguin_report_tmpl_iban
+msgid "IBAN, Penguin Template"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "IBAN:"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Invoice address:"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Logo"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Page: <span class=\"page\"/> of <span class=\"topage\"/>"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.view_warehouse
+msgid "Report Template"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.view_warehouse
+msgid "Swift"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model:ir.model.fields,field_description:report_tmpl_penguin.field_stock_warehouse__penguin_report_tmpl_swift
+msgid "Swift, Penguin Template"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Swift:"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "Tel.:"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model_terms:ir.ui.view,arch_db:report_tmpl_penguin.external_layout_penguin
+msgid "UID:"
+msgstr ""
+
+#. module: report_tmpl_penguin
+#: model:ir.model,name:report_tmpl_penguin.model_stock_warehouse
+msgid "Warehouse"
+msgstr "Lager"

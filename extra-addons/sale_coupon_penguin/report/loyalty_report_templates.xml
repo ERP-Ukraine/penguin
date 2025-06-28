@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="loyalty_report" inherit_id="loyalty.loyalty_report">
+        <xpath expr="//t[1]" position="replace">
+            <t t-call="web.basic_layout">
+                <div class="coupon">
+                    <div class="coupon-body o_report_coupon_background">
+                        <div class="page o_report_coupon_background-inside">
+                            <div class="row text-center flexbox-centering">
+                                <div class="o_offer col-lg-12">
+                                    <t t-if="o.program_id.reward_ids[0].reward_type == 'discount'">
+                                        <h1 t-if="o.program_id.reward_ids[0].discount_mode in ['per_point', 'per_order']" class="">
+                                            <strong>
+                                                <span t-field="o.program_id.reward_ids[0].discount" t-options='{"widget": "monetary", "display_currency": o.program_id.currency_id}' />
+                                            </strong>
+                                        </h1>
+                                        <h1 t-if="o.program_id.reward_ids[0].discount_mode == 'percent'" class="">
+                                            <strong>
+                                                <span t-field="o.program_id.reward_ids[0].discount" />
+                                                %
+                                            </strong>
+                                        </h1>
+                                        <t t-if="o.program_id.reward_ids[0].discount_applicability == 'specific'">
+                                            <t t-if="len(o.program_id.reward_ids[0].discount_product_ids) > 1">
+                                                <span>OFF ON SOME PRODUCTS*</span>
+                                                <t t-set="display_specific_products" t-value="True" />
+                                            </t>
+                                            <t t-else="">
+                                                <span>OFF ON <span t-esc="o.program_id.reward_ids[0].discount_product_ids.name.upper()" /> </span>
+                                            </t>
+                                        </t>
+                                        <t t-if="o.program_id.reward_ids[0].discount_applicability == 'cheapest'">
+                                            OFF ON THE CHEAPEST PRODUCT
+                                        </t>
+                                    </t>
+                                    <t t-if="o.program_id.reward_ids[0].reward_type == 'product'">
+                                        <span>
+                                            GET <span t-esc="o.program_id.reward_ids[0].reward_product_qty" /> FREE <span t-esc="o.program_id.reward_ids[0].reward_product_id.name.upper()" /> ON YOUR NEXT ORDER!
+                                        </span>
+                                    </t>
+                                    <t t-if="o.program_id.reward_ids[0].reward_type == 'shipping'">
+                                        <span>GET FREE SHIPPING ON YOUR NEXT ORDER!</span>
+                                    </t>
+                                    <h3>Gutschein Code:</h3>
+                                    <h3>
+                                        <span class="" t-esc="o.code"></span>
+                                    </h3>
+                                    <t t-if="o.program_id.rule_ids">
+                                        <h4 t-if="o.program_id.rule_ids[0].minimum_qty > 1">
+                                            Minimum purchase of
+                                            <strong t-esc="o.program_id.rule_ids[0].minimum_qty" />
+                                            products
+                                        </h4>
+                                        <h4 t-if="o.program_id.rule_ids[0].minimum_amount">
+                                            Valid for purchase above
+                                            <strong t-esc="o.program_id.rule_ids[0].minimum_amount" t-options="{'widget': 'monetary', 'display_currency': o.program_id.currency_id}" />
+                                        </h4>
+                                    </t>
+                                    <p t-if="display_specific_products">
+                                        <small>
+                                            *Valid for following products:
+                                            <t t-esc="', '.join(o.program_id.reward_ids[0].discount_product_ids.mapped('name')).upper()" />
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt32 container">
+                        <hr class=""/>
+                        <div class="row">
+                            <div class="col-6">
+                                <t t-if="o.program_id.reward_ids[0].reward_type == 'discount' and o.program_id.reward_ids[0].discount_mode in ['per_point', 'per_order']">
+                                    <p>Gutschein im Wert von
+                                    <span
+                                        t-field="o.program_id.reward_ids[0].discount"
+                                        t-options='{"widget": "monetary", "display_currency": o.program_id.currency_id}'
+                                    />
+                                    <br/>
+                                    Gültig bis <span t-field="o.expiration_date" t-options='{"format": "dd.MM.YYYY"}'/> </p>
+                                </t>
+                            </div>
+                            <div class="col-6">
+                                <p>Einlösen online: www.penguin.swiss<br/>
+                                oder direkt bei uns im Shop in Zürich</p>
+                            </div>
+                        </div>
+                        <p class="mt32">
+                            <img alt="Logo" t-att-src="'/logo?company=%d' % (o.program_id.company_id)" t-att-alt="'%s' % (o.program_id.company_id.name)" style="border:0px solid transparent; height: 150px;" height="150px" />
+                        </p>
+                        <p class="mt32">
+                            <span t-field="o.program_id.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "email"], "no_marker": True}' />
+                        </p>
+                         <p class="mt32">
+                                Öffnungszeiten Oktober bis Ostern:<br/>
+                                Donnerstag &amp; Freitag | 16.00 – 20.00<br/>
+                                Samstag | 11.00 – 18.00
+                        </p>
+                        <p class="mt16"><small>*** Bei Neuschneemengen ab 30cm bleibt der Shop geschlossen ***</small></p>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <template id="gift_card_report" inherit_id="loyalty.gift_card_report">
+        <xpath expr="//t[1]" position="replace">
+            <t t-call="web.basic_layout">
+                <div class="coupon">
+                    <div class="coupon-body o_report_coupon_background">
+                        <div class="page o_report_coupon_background-inside">
+                            <div class="row text-center flexbox-centering">
+                                <div class="o_offer col-lg-12">
+                                    <h1 class="">
+                                        <strong>
+                                            <span t-field="o.points" t-options='{"widget": "monetary", "display_currency": o.program_id.currency_id}' />
+                                        </strong>
+                                    </h1>
+                                    <h3>Gutschein Code:</h3>
+                                    <h3>
+                                        <span class="" t-esc="o.code"></span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt32 container">
+                        <hr class=""/>
+                        <div class="row">
+                            <div class="col-6">
+                                <p>Gutschein im Wert von
+                                <span
+                                    t-field="o.points"
+                                    t-options='{"widget": "monetary", "display_currency": o.program_id.currency_id}'
+                                />
+                                <br/>
+                                Gültig bis <span t-field="o.expiration_date" t-options='{"format": "dd.MM.YYYY"}'/> </p>
+                            </div>
+                            <div class="col-6">
+                                <p>Einlösen online: www.penguin.swiss<br/>
+                                oder direkt bei uns im Shop in Zürich</p>
+                            </div>
+                        </div>
+                        <p class="mt32">
+                            <img alt="Logo" t-att-src="'/logo?company=%d' % (o.program_id.company_id)" t-att-alt="'%s' % (o.program_id.company_id.name)" style="border:0px solid transparent; height: 150px;" height="150px" />
+                        </p>
+                        <p class="mt32">
+                            <span t-field="o.program_id.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address", "email"], "no_marker": True}' />
+                        </p>
+                         <p class="mt32">
+                                Öffnungszeiten Oktober bis Ostern:<br/>
+                                Donnerstag &amp; Freitag | 16.00 – 20.00<br/>
+                                Samstag | 11.00 – 18.00
+                        </p>
+                        <p class="mt16"><small>*** Bei Neuschneemengen ab 30cm bleibt der Shop geschlossen ***</small></p>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

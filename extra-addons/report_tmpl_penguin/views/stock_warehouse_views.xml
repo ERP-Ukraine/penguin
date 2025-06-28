@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_warehouse" model="ir.ui.view">
+        <field name="name">stock.warehouse</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <group name="report_tmpl_penguin" string="Report Template">
+                    <field name="penguin_report_tmpl_iban" string="IBAN"/>
+                    <field name="penguin_report_tmpl_acc_nr" string="Acc. Nr."/>
+                    <field name="penguin_report_tmpl_swift" string="Swift"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

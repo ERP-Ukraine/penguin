@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Form View Section -->
+    <!-- Moved to Complete: Update Product-->
+    <record id="moved_to_completed_product_queue_process_wizard_gcs_form_view" model="ir.ui.view">
+        <field name="name">Move To Completed</field>
+        <field name="model">google.shopping.queue.process.wizard.gcs</field>
+        <field name="arch" type="xml">
+            <form string="Move To Completed">
+                <sheet>
+                    <group>
+                        <div style="color:#000000">
+                            <p class="alert alert-warning" role="alert">
+                                <u>
+                                    <h3 style="font-weight:bold;color:#7d5a29">Note :</h3>
+                                </u>
+                                <li>
+                                    It will cancel all queue lines which are in draft and failed state.
+                                </li>
+                            </p>
+                        </div>
+                    </group>
+                    <footer>
+                        <button string="Move To Completed Manually"
+                                class="oe_highlight" type="object" name="move_to_completed_queue"/>
+                        <button string="Cancel" class="oe_highlight"
+                                special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Action Section -->
+    <!-- Moved to Complete: Update Product-->
+    <record id="moved_to_completed_product_queue_process_wizard_gcs_action" model="ir.actions.act_window">
+        <field name="name">Move To Completed</field>
+        <field name="res_model">google.shopping.queue.process.wizard.gcs</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="moved_to_completed_product_queue_process_wizard_gcs_form_view"/>
+        <field name="context">{'queue_process_action':'move_to_completed_product_queue'}</field>
+    </record>  
+    
+    <!-- Moved to Complete: Update Product-->
+    <record id="moved_to_completed_product_inventory_info_process_wizard_gcs_action" model="ir.actions.act_window">
+        <field name="name">Move To Completed</field>
+        <field name="res_model">google.shopping.queue.process.wizard.gcs</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="moved_to_completed_product_queue_process_wizard_gcs_form_view"/>
+        <field name="context">{'queue_process_action':'move_to_completed_product_inventory_info_queue'}</field>
+    </record> 
+    
+    <!-- Moved to Complete: Get Product Status -->
+    <record id="moved_to_completed_get_product_status_process_wizard_gcs_action" model="ir.actions.act_window">
+        <field name="name">Move To Completed</field>
+        <field name="res_model">google.shopping.queue.process.wizard.gcs</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="moved_to_completed_product_queue_process_wizard_gcs_form_view"/>
+        <field name="context">{'queue_process_action':'move_to_completed_get_product_status_queue'}</field>
+    </record> 
+    
+    <!-- Moved to Complete: Get Product Status -->
+    <record id="moved_to_completed_import_product_info_process_wizard_gcs_action" model="ir.actions.act_window">
+        <field name="name">Move To Completed</field>
+        <field name="res_model">google.shopping.queue.process.wizard.gcs</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="moved_to_completed_product_queue_process_wizard_gcs_form_view"/>
+        <field name="context">{'queue_process_action':'move_to_completed_import_product_info_queue'}</field>
+    </record> 
+    
+</odoo>

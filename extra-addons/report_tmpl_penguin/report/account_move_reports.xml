@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account.account_invoices" model="ir.actions.report">
+        <field name="paperformat_id" ref="report_tmpl_penguin.paperformat_penguin"/>
+    </record>
+
+    <record id="account.account_invoices_without_payment" model="ir.actions.report">
+        <field name="paperformat_id" ref="report_tmpl_penguin.paperformat_penguin"/>
+    </record>
+
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-set='o']" position="after">
+            <t t-set="warehouse" t-value="o.mapped('invoice_line_ids.sale_line_ids.order_id.warehouse_id')[:1] or o.env['stock.warehouse'].search([], limit=1)"/>
+        </xpath>
+
+        <xpath expr="//table[hasclass('o_main_table')]//span[@t-field='line.quantity']" position="replace">
+            <span t-if="line.quantity.is_integer()" t-esc="int(line.quantity)"/>
+            <span t-else="" t-field="line.quantity" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
+        </xpath>
+
+    </template>
+
+    <template id="document_tax_totals" inherit_id="account.document_tax_totals">
+        <xpath expr="//tr[hasclass('o_subtotal')]/td/span" position="attributes">
+            <attribute name="class" add="skip-text-bolder" separator=" "/>
+        </xpath>
+    </template>
+
+    <template id="l10n_ch_swissqr_template" inherit_id="l10n_ch.l10n_ch_swissqr_template">
+        <xpath expr="//t[@t-set='o']" position="after">
+            <t t-set="warehouse" t-value="o.mapped('invoice_line_ids.sale_line_ids.order_id.warehouse_id')[:1] or o.env['stock.warehouse'].search([], limit=1)"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+
+        <xpath expr="//div[hasclass('page')]/t[@t-set='layout_document_title']" position="replace">
+            <h2 class="mt16">
+                <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                    <span>Pro-Forma Invoice # </span>
+                </t>
+                <t t-elif="doc.state in ['draft','sent']">
+                    <span>Quotation # </span>
+                </t>
+                <t t-elif="doc.state == 'future_sale'">
+                    <span>Acknowledgement of order # </span>
+                </t>
+                <t t-elif="doc.state == 'future_sale_confirmation'">
+                    <span>Final order confirmation # </span>
+                </t>
+                <t t-else="">
+                    <span>Order confirmation # </span>
+                </t>
+                <span t-field="doc.name"/>
+            </h2>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']" position="attributes">
+            <attribute name="class" add="mt-2" remove="mt32" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@name='informations_reference']" position="attributes">
+            <attribute name="class" add="col-2 mw-25" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@name='informations_date']" position="attributes">
+            <attribute name="class" add="col-2 mw-25" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@name='expiration_date']" position="replace"/>
+
+        <xpath expr="//div[@t-if='doc.user_id.name']" position="attributes">
+            <attribute name="class" add="col-2 mw-25" remove="col-auto col-3 mw-100" separator=" "/>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div t-if="doc.commitment_date" class="col-2 mw-25 mb-2">
+                <strong>Planned Delivery Date:</strong>
+                <p class="m-0" t-field="doc.commitment_date" t-options="{'widget': 'date'}"/>
+            </div>
+
+            <div t-if="doc.pricelist_id" class="col-4 w-50 mb-2">
+                <strong>Pricelist:</strong>
+                <p class="m-0" t-field="doc.pricelist_id"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']" position="after">
+            <div id="penguin_informations" class="row mb32">
+                <div t-if="doc.validity_date and doc.state in ['draft', 'sent']" class="col-2 w-100 mb-2" name="expiration_date">
+                    <strong>Expiration:</strong>
+                    <p class="m-0" t-field="doc.validity_date"/>
+                </div>
+            </div>
+        </xpath>
+
+        <!-- PEN-64 Show discount % on PDF -->
+        <!-- <xpath expr="//th[@name='th_discount']" position="replace">
+        </xpath>
+        <xpath expr="//td[@t-if='display_discount']" position="replace">
+        </xpath> -->
+
+        <xpath expr="//table[hasclass('o_main_table')]//th[@name='th_priceunit']" position="replace">
+            <th name="th_list_price" class="text-end">RRP/pc</th>
+            <th name="th_priceunit" class="text-end">Net/pc</th>
+        </xpath>
+
+        <!-- <xpath expr="//td[@name='td_amount_by_group_label_3']" position="replace">
+            <td name="td_amount_by_group_label_3">
+                <span t-esc="amount_by_group[0]"/>
+            </td>
+        </xpath> -->
+
+        <xpath expr="//table[hasclass('o_main_table')]//td[@name='td_priceunit']" position="replace">
+            <td name="td_list_price" class="text-end">
+                <span t-esc="line.penguin_rrp_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
+            </td>
+            <td name="td_priceunit" class="text-end">
+                <span t-esc="line.penguin_net_price_pc" t-options="{'widget': 'float', 'decimal_precision': 'Product Price'}"/>
+            </td>
+        </xpath>
+
+    </template>
+
+    <!-- Customize Sale Reports View PEN-55 -->
+    <record id="sale.action_order_report_all" model="ir.actions.act_window">
+        <field name="context" eval="{'search_default_Sales': 1, 'time_ranges': {'field':'date_order', 'range':'this_year', 'comparisonRange':'previous_period'}}"/>
+    </record>
+
+</odoo>

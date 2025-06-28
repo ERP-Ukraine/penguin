@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="ambassador">
+  <t t-call="website.layout">
+    <div id="wrap" class="oe_structure oe_empty">
+      <div id="myCarousel1594817896004" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+        <ol class="carousel-indicators d-none">
+          <li data-target="#myCarousel1594817896004" data-slide-to="0" class="active">
+            <br/>
+          </li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item pb256 pt256 oe_custom_bg active oe_img_bg o_bg_img_center o_colored_level" style="background-image: url(&quot;/web/image/4232/ambassors_title2176x1216.jpg&quot;); background-position: 67.75% 51.04%;" data-name="Slide">
+            <div class="container">
+              <div class="row content">
+                <div class="carousel-content col-lg-8 pb0 pt120">
+                  <div class="s_title pb8" data-name="Title">
+                    <h2 class="s_title_thin">
+                      <font style="color: rgb(255, 255, 255); font-size: 48px;">Meet our&amp;nbsp;family.</font>
+                    </h2>
+                  </div>
+                  <p class="lead">
+                    <font style="color: rgb(255, 255, 255);">Our team puts all products through their paces and supports us to optimize constantly.</font>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-control-prev d-none" data-target="#myCarousel1594817896004" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+          <span class="carousel-control-prev-icon"/>
+          <span class="sr-only o_default_snippet_text">Previous</span>
+        </div>
+        <div class="carousel-control-next d-none" data-target="#myCarousel1594817896004" data-slide="next" role="img" aria-label="Next" title="Next">
+          <span class="carousel-control-next-icon"/>
+          <span class="sr-only o_default_snippet_text">Next</span>
+        </div>
+      </div>
+      <section class="s_company_team pb0" data-name="Company Team">
+        <div class="container">
+          <h1 style="text-align: center;">&amp;nbsp;</h1>
+          <div class="row s_nb_column_fixed">
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4234/profile_niklas_500x500.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Niklas Meindl<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Kirchdorf, Switzerland.<br/>Loves to snowboard in Griementz, CH<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/niklas.meindl" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook shadow-sm rounded rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text=%20ambassador%20%7C%20penguin.swiss%20&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador" target="_blank" class="s_share_twitter" data-original-title="" title="" aria-describedby="tooltip880262">
+                      </a>
+                    <a href="https://www.instagram.com/niklasmeindl/">
+                      <span class="fa fa-instagram text-alpha rounded rounded-circle" data-original-title="" title="" aria-describedby="tooltip887477" style="background-color: rgb(247, 247, 247);" contenteditable="false">​</span>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text=%20ambassador%20%7C%20penguin.swiss%20&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador" target="_blank" class="s_share_twitter">
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4236/profile_laura_bovier_436x424.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Laura Bovier<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Hermanence, Switzerland.<br/>Loves to ski in 4 Vallees, CH<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/laura.bovier.7" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://www.instagram.com/laura_bovier/" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x fa-instagram rounded-circle text-alpha" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4239/profile_andi_vigl_436x424.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Andi Vigl<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Innsbruck, Austria.<br/>Loves to ski in Montafon, AT<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/andreasviglphotographer" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://www.instagram.com/andreas_vigl_photographer/" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x fa-instagram rounded-circle text-alpha" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4240/profile_hitsch_500x500.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Hitsch Rogantini<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Klosters, Switzerland.<br/>Loves to ski in Klosters-Davos, CH<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/ZioHitsch" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://www.instagram.com/hitschphotography/" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x fa-instagram rounded-circle text-alpha" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4241/profile_Brini.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Brini Vogg<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Davos-Wiesen, Switzerland.<br/>Loves to ski in Davos, CH<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/Brinilu" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://www.instagram.com/brinilotta/" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x fa-instagram rounded-circle text-alpha" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4242/profile_victor_heim_436x424.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Victor Heim<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Innsbruck, Austria.<br/>Loves to snowboard&amp;nbsp;in Zillertal, AT<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/victor.heim.31/" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://www.instagram.com/heim_victor/" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x fa-instagram rounded-circle text-alpha" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4243/profile_witsch_nieberle_436x424.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Witsch Nieberle<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Munich, Germany.<br/>Loves to ski in Hochfügen, AT<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/stefan.nieberle.1" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://www.instagram.com/witsch_nie/" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x fa-instagram text-alpha rounded-circle" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4246/portrait_luca_500x500.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Luca Fischer<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Pontresina, Switzerland.<br/>Loves to snowboard at Corvatsch, CH<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/fischer.luca" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://www.instagram.com/fixelfixel/" target="_blank" class="s_share_twitter" data-original-title="" title="" aria-describedby="tooltip393753">
+                      <i class="fa fa-1x fa-instagram rounded-circle text-alpha" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4466/profile_Chris.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Christian Vogg<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Seeg, Germany.<br/>Loves to ski in Allgäu, DE<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/christian.vogg.1" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text=%20ambassador%20%7C%20penguin.swiss%20&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador" target="_blank" class="s_share_twitter" data-original-title="" title="" aria-describedby="tooltip962922">
+
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/4327/profile_sara_andresen_500x500.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Sara Andresen<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Zurich, Switzerland.<br/>Loves to snowboard&amp;nbsp;in Montafon, AT<br/></font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp;<br/></font>
+                    </h4>
+                    <a href="https://www.facebook.com/profile.php?id=100000076560328" target="_blank" class="s_share_facebook">
+                      <i class="fa fa-1x fa-facebook rounded shadow-sm rounded-circle" data-original-title="" title="" aria-describedby="tooltip544462" contenteditable="false">​</i>
+                    </a>
+                    <a href="https://www.instagram.com/sara__andresen/" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x fa-instagram rounded-circle text-alpha" data-original-title="" title="" aria-describedby="tooltip220749" style="" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin" data-original-title="" title="" aria-describedby="tooltip858519"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/11288/AManda-portrait.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Amanda Krüttli</h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Laax, Switzerland.<br/>Loves to ski in Laax.</font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</font>
+                    </h4>
+                    <a href="https://www.instagram.com/amandakruettli/?hl=de" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x fa-instagram rounded-circle text-alpha" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin" data-original-title="" title="" aria-describedby="tooltip858519"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 ">
+                  <img alt="Company team" src="/web/image/16170/portriat_raphie_bullet.jpg" class="img-fluid rounded-circle d-block mx-auto shadow" data-original-title="" title="" aria-describedby="tooltip115982" loading="lazy"/>
+                </div>
+                <div class="col-lg-8 pb0 pt32">
+                  <h4>Raphael Bullet<br/></h4>
+                  <div class="s_share" data-name="Share">
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">Lives in Christchurch, New Zealand.<br/>Loves to take missions into NZ backcourntry</font>
+                    </h4>
+                    <h4 class="s_share_title">
+                      <font style="font-size: 12px;">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;</font>
+                    </h4>
+                    <a href="https://www.instagram.com//PurePowderAdventures" target="_blank" class="s_share_twitter">
+                      <i class="fa fa-1x rounded-circle text-alpha fa-facebook-square" data-original-title="" title="" aria-describedby="tooltip220749" contenteditable="false">​</i>
+                    </a>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fpenguin.swiss%2Fambassador&amp;title=%20ambassador%20%7C%20penguin.swiss%20&amp;" target="_blank" class="s_share_linkedin" data-original-title="" title="" aria-describedby="tooltip858519"> </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4 "/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_company_team" data-name="Company Team">
+        <div class="container">
+          <div class="row s_nb_column_fixed">
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4"> &amp;nbsp;</div>
+              </div>
+            </div>
+            <div class="col-lg-6 pt16 pb16">
+              <div class="row s_col_no_resize s_col_no_bgcolor">
+                <div class="col-lg-4"> &amp;nbsp;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </t>
+</template>
+</odoo>

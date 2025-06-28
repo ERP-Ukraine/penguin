@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="care">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <div id="myCarousel1594818437920" class="s_carousel carousel slide s_carousel_default" data-interval="10000" data-name="Carousel">
+                    <ol class="carousel-indicators d-none">
+                        <li data-target="#myCarousel1594818437920" data-slide-to="0" class="active"/>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item oe_img_bg pt152 pb152 oe_custom_bg active" style="background-image: url(&quot;https://penguin.swiss/web/image/8222/penguin_care_2176X1216.jpg&quot;); background-position: 49.33% 34.27%;" data-name="Slide">
+                            <div class="container">
+                                <div class="row content">
+                                    <div class="carousel-content col-lg-7 pb48">
+                                        <div class="s_title pb8" data-name="Title">
+                                            <h2 class="s_title_thin">
+                                                <font style="color: rgb(255, 255, 255); font-size: 48px;">Make your product last.</font>
+                                            </h2>
+                                        </div>
+                                        <p class="lead">
+                                            <font style="color: rgb(255, 255, 255);">Take care of your products to maximize life cycle and reduce consumption.</font>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-control-prev d-none" data-target="#myCarousel1594818437920" data-slide="prev" role="img" aria-label="Previous" title="Previous">
+                        <span class="carousel-control-prev-icon"/>
+                        <span class="sr-only o_default_snippet_text">Previous</span>
+                    </div>
+                    <div class="carousel-control-next d-none" data-target="#myCarousel1594818437920" data-slide="next" role="img" aria-label="Next" title="Next">
+                        <span class="carousel-control-next-icon"/>
+                        <span class="sr-only o_default_snippet_text">Next</span>
+                    </div>
+                </div>
+                <section class="s_features bg-beta pb0 pt0" data-name="Features">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 pt32 pb32 text-center">
+                                <span class="fa fa-3x rounded-circle bg-gamma m-3 fa-retweet"/>
+                                <h3>
+                                    <font style="font-size: 18px;">2-years warranty</font>
+                                </h3>
+                            </div>
+                            <div class="col-lg-4 pt32 pb32 text-center">
+                                <span class="fa fa-3x rounded bg-epsilon m-3 fa-handshake-o" data-original-title="" title="" aria-describedby="tooltip184762"/>
+                                <h3>
+                                    <font style="font-size: 18px;">Product care support</font>
+                                </h3>
+                            </div>
+                            <div class="col-lg-4 pt32 pb32 text-center">
+                                <span class="fa fa-3x rounded-leaf bg-primary m-3 fa-wrench" data-original-title="" title="" aria-describedby="tooltip404951"/>
+                                <h3>
+                                    <font style="font-size: 18px;">Unlimited repair option </font>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_block pb0 pt0 o_colored_level" data-name="Text block" style="background-image: none;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 pt32 pb0 o_colored_level">
+                                <p class="lead">
+                                    <font style="font-size: 62px;">Penguin Care</font>
+                                </p>
+                                <p class="lead">
+                        Riding Powder is our passion. To keep doing what we love we have to take care of our environment. We believe in a pragmatic approach and do not use our initiatives as marketing instrument. In the short-term perspective we focus on durability of our products and using natural or recycled components if reasonable. Keeping products longer in use means lower consumption of resources. In parallel we pursue circular economy as a longterm vision. Step by step are we improving our products and processes. </p>
+                                <p class="lead" style="margin-right: 0cm; margin-left: 0cm; margin-top: 0cm;">
+                                    <span lang="EN-US">We take our social responsibility seriously. We value longterm partnerships with our partner factories in Vietnam. We know all our producer personally and spend every summer in Vietnam to supervise production and develop new materials. Vietnam has one of the highest quality standards and remarkable knowhow in producing technical outerwear. We constantly strive to source best materials to create best products. </span>
+                                </p>
+                                <p class="lead">Check out below how you can contribute...<b>
+                                    </b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pb0 pt24 o_colored_level" data-name="Image - Text" style="background-image: none;" id="wash" data-anchor="true">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="pt0 col-lg-6 pb32">
+                                <img src="/web/image/4198/dwr_800x600.jpg" class="img img-fluid mx-auto" alt="Odoo • Image and Text" data-original-title="" title="" aria-describedby="tooltip659699" loading="lazy"/>
+                            </div>
+                            <div class="col-lg-6 pb0 pt24 o_colored_level">
+                                <h2>Wash regularly</h2>
+                                <p>
+                        Wash your products regularly to maintain functionality and extend life-cycle. Check out our wash instructions for detailed information. The instructions may varies depends on material.&amp;nbsp;Use every time a washing bag to minimize micro plastic in waste water. &amp;nbsp;</p>
+                                <div class="s_btn text-left pb16 pt0" data-name="Button">
+                                    <a href="/de_CH/shop/product/guppyfriend-waschbeutel-220?category=6#attr=" class="btn btn-outline-primary" data-original-title="" title="" aria-describedby="tooltip217500" target="_blank">Guppyfriend</a>
+                                </div>
+                                <h2>Re-impregnate if needed</h2>
+                                <p>
+                        For all shell products you have to pay attention additionally to the water repellency. Tristan shows you in the video below some tips and tricks.
+                                </p>
+                                <div class="s_btn pb16 pt0 text-left" data-name="Button">
+                                    <a href="https://www.youtube.com/watch?v=JWGoNEqPWG8" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip523233" target="_blank">Watch Video</a>
+                                </div>
+                                <div class="s_btn text-left pt0 pb72" data-name="Button">
+                                    <a href="/shop/category/services-21" class="btn btn-primary" data-original-title="" title="" aria-describedby="tooltip523233">Request professional service&amp;nbsp;</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pb32 pt0 o_colored_level" data-name="Image - Text" id="repair" data-anchor="true" style="background-image: none;">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 pt16 pb16">
+                                <img src="/web/image/13684/L1050841.jpg" class="img img-fluid mx-auto" alt="Odoo • Image and Text" data-original-title="" title="" aria-describedby="tooltip349132" loading="lazy"/>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16 o_colored_level">
+                                <h2>Repair your product first</h2>
+                                <p>
+                        Our partner repair center can rescue nearly every product and extend life time for some more powder turns. Send us a photo of your product and name place and year of&amp;nbsp;purchase&amp;nbsp; We will check your warranty claim and get back to you.
+                                </p>
+                                <div class="s_btn pb16 pt0 text-left" data-name="Button" data-original-title="" title="" aria-describedby="tooltip398609">
+                                    <a href="mailto:mail@penguin.swiss" class="btn btn-primary" data-original-title="" title="" target="_blank">Request repair support</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pb32 pt0 o_colored_level" data-name="Image - Text" style="background-image: none;">
+                    <div class="container">
+                        <div class="row align-items-center">
+
+
+                        </div>
+                    </div>
+                </section>
+                <section class="s_text_image pb32 pt0 o_colored_level" data-name="Image - Text" id="second" data-anchor="true" style="background-image: none;">
+                    <div class="container">
+                        <div class="row align-items-center" data-original-title="" title="" aria-describedby="tooltip918420">
+                            <div class="col-lg-6 pt0 pb32 o_colored_level">
+                                <img src="/web/image/4193/style_800x450.jpg" class="img img-fluid mx-auto" alt="Odoo • Image and Text" data-original-title="" title="" aria-describedby="tooltip30359" loading="lazy"/>
+                            </div>
+                            <div class="col-lg-6 pt16 pb16 o_colored_level" data-original-title="" title="" aria-describedby="tooltip133586">
+                                <h2>Second life</h2>
+                                <p>
+                                    <span style="color: rgb(108, 117, 125);font-size: 14px;font-style: normal;font-weight: 300;background-color: rgb(255, 255, 255);text-decoration: none">There will be a time you can't or don't want to use your product any longer for the original purpose. As part of our circular ambition, we want to motivate you to return the Penguin product for a second life. Depending on the condition, we will try to find a new owner or to recycle the product.</span>
+                                    <br/>
+                                </p>
+                                <div class="s_btn pb16 pt0 text-left" data-name="Button" data-original-title="" title="" aria-describedby="tooltip398609">
+                                    <a href="mailto:mail@penguin.swiss" class="btn btn-primary" data-original-title="" title="" target="_blank">E-Mail us!</a>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="s_call_to_action pt48 pb24 bg-beta" data-name="Call to Action">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9 pb24">
+                                <h3>
+                                    <b>The Penguin care&amp;nbsp;Programm&amp;nbsp;is an important element of our philosophy.</b>
+                                </h3>
+                                <p class="lead">Explore our values we care about.</p>
+                            </div>
+                            <div class="col-lg-3 s_btn text-right pt8 pb24" data-name="Button">
+                                <a href="/philisophy" class="btn btn-primary btn-lg"> Philosophy <i class="fa fa-1x fa-fw fa-arrow-circle-right ml-1"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

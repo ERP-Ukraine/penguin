@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="penguin_external_layout_din5008" inherit_id="l10n_din5008.external_layout_din5008">
+        <xpath expr="//div[hasclass('address')]" position="replace">
+            <div id="din5008_report_main_address"/>
+            <t t-if="custom_company_address">
+                <div class="address">
+                    <t t-if="custom_company_address.name">
+                        <span t-field="custom_company_address.name"/>
+                    </t>
+                    <t t-if="custom_company_address.street">
+                        <span>|</span> <span t-field="custom_company_address.street"/>
+                    </t>
+                    <t t-if="custom_company_address.street2">
+                        <span>|</span> <span t-field="custom_company_address.street2"/>
+                    </t>
+                    <t t-if="custom_company_address.zip">
+                        <span>|</span> <span t-field="custom_company_address.zip"/>
+                    </t>
+                    <t t-if="custom_company_address.city">
+                        <span t-if="not custom_company_address.zip">|</span> <span t-field="custom_company_address.city"/>
+                    </t>
+                    <t t-if="custom_company_address.country_id">
+                        <span>|</span> <span t-field="custom_company_address.country_id.name"/>
+                    </t>
+                    <hr class="company_invoice_line" />
+                    <span t-if="address">
+                        <t t-out="address"/>
+                    </span>
+                    <span t-else="fallback_address">
+                        <t t-out="fallback_address"
+                            t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                    </span>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="address">
+                    <t t-if="company.name">
+                        <span t-field="company.name"/>
+                    </t>
+                    <t t-if="company.street">
+                        <span>|</span> <span t-field="company.street"/>
+                    </t>
+                    <t t-if="company.street2">
+                        <span>|</span> <span t-field="company.street2"/>
+                    </t>
+                    <t t-if="company.zip">
+                        <span>|</span> <span t-field="company.zip"/>
+                    </t>
+                    <t t-if="company.city">
+                        <span t-if="not company.zip">|</span> <span t-field="company.city"/>
+                    </t>
+                    <t t-if="company.country_id">
+                        <span>|</span> <span t-field="company.country_id.name"/>
+                    </t>
+                    <hr class="company_invoice_line" />
+                    <span t-if="address">
+                        <t t-out="address"/>
+                    </span>
+                    <span t-else="fallback_address">
+                        <t t-out="fallback_address"
+                            t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                    </span>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
