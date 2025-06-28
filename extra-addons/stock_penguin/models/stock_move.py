@@ -14,7 +14,7 @@ class StockMove(models.Model):
             taken_quantity = super()._update_reserved_quantity(
                 need=need, location_id=location_id, lot_id=lot_id,
                 package_id=package_id, owner_id=owner_id, strict=True)
-            if float_compare(taken_quantity, need, precision_digits=rounding) == 0:
+            if float_compare(taken_quantity, need, precision_rounding=rounding) == 0:
                 return taken_quantity
         return super()._update_reserved_quantity(
                 need=need, location_id=location_id, lot_id=lot_id,
