@@ -1,1 +1,0 @@
-The documentation is available at https://prime-docs-v17-24052022.droggol.com/
