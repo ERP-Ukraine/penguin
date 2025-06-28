@@ -8,7 +8,6 @@
                 <sheet>
                     <h3>Main and extra images will be copied to sibling products with same attribute value</h3>
                     <group name="base">
-                        <field name='product_id' invisible="1"/>
                         <field name='attribute_id' options="{'no_create_edit': True}"/>
                     </group>
                 </sheet>
