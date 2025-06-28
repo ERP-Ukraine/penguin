@@ -32,7 +32,7 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     def get_unique(self):
-        return hashlib.sha1(str(getattr(self, '__last_update')).encode('utf-8')).hexdigest()[0:7]
+        return hashlib.sha1(str(getattr(self, 'write_date')).encode('utf-8')).hexdigest()[0:7]
 
 
 class ProductPublicCategory(models.Model):

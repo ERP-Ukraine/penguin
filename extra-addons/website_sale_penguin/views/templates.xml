@@ -2,7 +2,7 @@
 <odoo>
 
     <!-- Main Categories -->
-    <template id="main_categories">
+    <template id="main_categories" active="False">
         <div t-attf-class="oe_category_group #{_classes}">
             <div class="arrow-wrapper oe_category_move_left">
                 <i class="fa fa-chevron-left"/>
@@ -22,7 +22,7 @@
     </template>
 
     <!-- Sub Categories -->
-    <template id="sub_categories">
+    <template id="sub_categories" active="False">
         <t t-set="sub_categories" t-value="category.parent_id or category"/>
         <div t-attf-class="oe_category_group #{_classes} #{'d-none' if not sub_categories.child_id else None}">
             <div class="arrow-wrapper oe_category_move_left">
@@ -305,7 +305,7 @@
     </template>
 
     <!-- Color picker -->
-    <template id="color_picker">
+    <template id="color_picker" active="False">
         <t t-set="combination" t-value="product._get_first_possible_combination()"/>
         <t t-foreach="product.valid_product_template_attribute_line_ids" t-as="ptal">
             <t t-if="ptal.attribute_id.display_type == 'color'">
@@ -332,7 +332,7 @@
     </template>
 
     <!-- Product item -->
-    <template id="penguin_products_item" inherit_id="website_sale.products_item">
+    <template id="penguin_products_item" inherit_id="website_sale.products_item" active="False">
         <xpath expr="//span[@t-field='image_holder.image_1920']" position="replace">
             <t t-set="product_ptav" t-value="product._get_first_possible_combination()"/>
             <t t-set="product_product" t-value="product._get_variant_for_combination(product_ptav)"/>
@@ -398,7 +398,7 @@
     </template>
 
     <!-- Comment -->
-    <template id='comment_form' name='Comment form'>
+    <template id='comment_form' name='Comment form'  active="False">
         <form t-attf-action="/shop/comment#{redirect and '?r=' + redirect or ''}" method="post" name="website_comment">
             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" t-nocache="The csrf token must always be up to date."/>
             <div class="input-group w-100 my-2">
@@ -408,7 +408,7 @@
         </form>
     </template>
 
-    <template id="website_comment_template" inherit_id="website_sale.total" name="Comment">
+    <template id="website_comment_template" inherit_id="website_sale.total" name="Comment" active="False">
         <xpath expr="//div[@id='cart_total']//table/tr[last()]" position="after">
             <tr t-if="not hide_comment">
                 <td colspan="3" class="text-end text-xl-end border-0 p-0">
@@ -423,13 +423,13 @@
         </xpath>
     </template>
 
-    <template id="confirmation_with_comment" inherit_id="website_sale.confirmation">
+    <template id="confirmation_with_comment" inherit_id="website_sale.confirmation" active="False">
         <xpath expr="//t[@t-set='hide_promotions']" position="after">
             <t t-set="hide_comment" t-value="True"/>
         </xpath>
     </template>
 
-    <template id="pricelist_list" inherit_id="website_sale.pricelist_list" name="Penguin Pricelists Dropdown" customize_show="True" active="True">
+    <template id="pricelist_list" inherit_id="website_sale.pricelist_list" name="Penguin Pricelists Dropdown" customize_show="True" active="False">
         <xpath expr="//a[@role='button']" position="attributes">
             <attribute name="class" remove="btn btn-light" add="penguin-pricelist-link" separator=" "/>
         </xpath>
@@ -451,7 +451,7 @@
         </xpath>
     </template>
 
-    <template id="template_header_default_website_sale" inherit_id="website_sale.template_header_default">
+    <template id="template_header_default_website_sale" inherit_id="website_sale.template_header_default" active="False">
         <xpath expr="//t[@t-set='_item_class']" position="attributes">
             <attribute name="t-value">'nav-item'</attribute>
         </xpath>

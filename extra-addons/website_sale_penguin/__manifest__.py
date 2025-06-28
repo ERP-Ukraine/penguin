@@ -16,11 +16,11 @@
         'views/templates.xml',
         'views/res_config_settings_views.xml',
     ],
-    'assets': {
-        'web.assets_frontend': [
-            '/website_sale_penguin/static/src/scss/website_sale.scss',
-        ],
-    },
+    # 'assets': {
+    #     'web.assets_frontend': [
+    #         '/website_sale_penguin/static/src/scss/website_sale.scss',
+    #     ],
+    # },
     'auto_install': True,
     'application': True,
     'installable': True,
