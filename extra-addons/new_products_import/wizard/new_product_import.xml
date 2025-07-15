@@ -20,7 +20,8 @@
                         <field name="material_id"/>
                     </group>
                 </group>
-                <field name="xls_file"/>
+                <field name="xls_file" filename="xls_file_name" />
+                <field name="xls_file_name" invisible="1" /> <!-- Get xls_file name --> 
                 <footer>
                     <div>
                         <button name="import_new_products" string="Import" type="object" class="btn-primary"/>

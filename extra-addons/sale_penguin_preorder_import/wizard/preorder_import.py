@@ -16,12 +16,18 @@ class PreOrderImport(models.TransientModel):
     pricelist_id = fields.Many2one('product.pricelist', string='Pricelist', required=True)
     commitment_date = fields.Date(string='Planned Delivery Date')
     xls_file = fields.Binary(string='XLS File', required=True, attachment=False)
+    xls_file_name = fields.Char()
 
     def _parse_file(self):
         """Returns generator of xls row as list of columns."""
         file_data = base64.b64decode(self.xls_file)
         base_import = self.env['base_import.import'].create({'file': file_data})
-        _rows_number, rows = base_import._read_xls(options={})
+
+        if self.xls_file_name.split('.')[-1] == 'xlsx':
+            _rows_number, rows = base_import._read_xlsx(options={})
+        else:
+            _rows_number, rows = base_import._read_xls(options={})
+
         headers = rows[0]
         if headers[ARTICLE_IDX] != 'Nr.' or headers[QTY_IDX] != 'Stk.':
             raise ValidationError(

@@ -25,6 +25,7 @@ class NewProductImport(models.TransientModel):
     washing_instruction_id = fields.Many2one('product.washing.instruction', string='Washing Instruction')
     material_id = fields.Many2one('product.material', string='Material')
     xls_file = fields.Binary(string='XLS File', required=True, attachment=False)
+    xls_file_name = fields.Char()
 
     @api.constrains('washing_instruction_id', 'material_id',
                     'product_category_id', 'seller_id')
@@ -39,7 +40,12 @@ class NewProductImport(models.TransientModel):
         """Returns generator of xls row as list of columns."""
         file_data = base64.b64decode(self.xls_file)
         base_import = self.env['base_import.import'].create({'file': file_data})
-        _rows_number, rows = base_import._read_xls(options={})
+
+        if self.xls_file_name.split('.')[-1] == 'xlsx':
+            _rows_number, rows = base_import._read_xlsx(options={})
+        else:
+            _rows_number, rows = base_import._read_xls(options={})
+
         headers = rows[0]
         try:
             while headers[DEFAULT_CODE_IDX] != 'Nr.' and headers[TOTAL_FOB_IDX] != 'Total FOB':
