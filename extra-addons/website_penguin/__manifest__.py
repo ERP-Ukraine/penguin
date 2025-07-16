@@ -6,11 +6,10 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '2.1.3',
+    'version': '3.0',
     'sequence': 7,
     'depends': ['website'],
     'data': [
-        'views/website_templates.xml',
         'views/aboutus.xml',
         'views/accessoires.xml',
         'views/ambassador.xml',
