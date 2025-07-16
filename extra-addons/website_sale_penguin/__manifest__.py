@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '2.9.1',
+    'version': '3.0',
     'depends': ['website_penguin', 'website_sale'],
     'data': [
         'report/sale_report_templates.xml',
@@ -16,11 +16,6 @@
         'views/templates.xml',
         'views/res_config_settings_views.xml',
     ],
-    # 'assets': {
-    #     'web.assets_frontend': [
-    #         '/website_sale_penguin/static/src/scss/website_sale.scss',
-    #     ],
-    # },
     'auto_install': True,
     'application': True,
     'installable': True,
