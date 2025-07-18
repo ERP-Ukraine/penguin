@@ -18,7 +18,8 @@
                         <field name="commitment_date" />
                     </group>
                 </group>
-                 <field name="xls_file" />
+                <field name="xls_file" filename="xls_file_name" />
+                <field name="xls_file_name" invisible="1" /> <!-- Get xls_file name --> 
                 <footer>
                     <div>
                         <button name="import_preorder" string="Import" type="object" class="btn-primary"/>
