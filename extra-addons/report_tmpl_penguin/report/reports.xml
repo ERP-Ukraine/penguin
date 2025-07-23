@@ -22,12 +22,12 @@
                 <div t-if="report_type == 'pdf'" class="pager col-6">
                     Page <span class="page"/> of <span class="topage"/>
                 </div>
-                <div t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y')" class="col-6 text-right" />
+                <div t-esc="context_timestamp(datetime.datetime.now()).strftime('%d.%m.%Y')" class="col-6 text-end" />
             </div>
 
             <hr class="mt-1 mb-1"/>
 
-            <div class="row">
+            <div class="row border-top border-bottom">
                 <div class="col-4 pr-50px">
                     <t t-if="company.partner_id">
                         <div t-if="warehouse.partner_id and warehouse.partner_id != company.partner_id" >Invoice address:</div>
@@ -37,18 +37,18 @@
                 </div>
                 <div class="col-4">
                     <br/>
-                    <table style="position: relative; left: -48px;">
+                    <table class="table-borderless" style="position: relative; left: -48px;">
                         <tr>
                             <td t-if="warehouse.partner_id.phone">Tel.:</td>
-                            <td t-if="warehouse.partner_id.phone" t-esc="warehouse.partner_id.phone" class="text-right"/>
+                            <td t-if="warehouse.partner_id.phone" t-esc="warehouse.partner_id.phone" class="text-end"/>
                         </tr>
                         <tr>
                             <td t-if="warehouse.partner_id.email">Email:</td>
-                            <td t-if="warehouse.partner_id.email" t-esc="warehouse.partner_id.email" class="text-right"/>
+                            <td t-if="warehouse.partner_id.email" t-esc="warehouse.partner_id.email" class="text-end"/>
                         </tr>
                         <tr>
                             <td t-if="warehouse.partner_id.vat">UID:</td>
-                            <td t-if="warehouse.partner_id.vat" t-esc="warehouse.partner_id.vat" class="text-right"/>
+                            <td t-if="warehouse.partner_id.vat" t-esc="warehouse.partner_id.vat" class="text-end"/>
                         </tr>
                     </table>
                 </div>
@@ -77,24 +77,24 @@
             <t t-if="warehouse">
                 <hr class="mb-3"/>
 
-                <table class="w-100"><tbody><tr>
+                <table class="w-100 table-borderless"><tbody><tr>
                     <td class="va-bottom">
-                        <table>
+                        <table class="table-borderless">
                             <tr t-if="warehouse.penguin_report_tmpl_iban">
                                 <td>IBAN:</td>
-                                <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_iban"/></td>
+                                <td class="text-end"><span t-field="warehouse.penguin_report_tmpl_iban"/></td>
                             </tr>
                             <tr t-if="warehouse.penguin_report_tmpl_acc_nr">
                                 <td>Acc. Nr.:</td>
-                                <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_acc_nr"/></td>
+                                <td class="text-end"><span t-field="warehouse.penguin_report_tmpl_acc_nr"/></td>
                             </tr>
                             <tr t-if="warehouse.penguin_report_tmpl_swift">
                                 <td>Swift:</td>
-                                <td class="text-right"><span t-field="warehouse.penguin_report_tmpl_swift"/></td>
+                                <td class="text-end"><span t-field="warehouse.penguin_report_tmpl_swift"/></td>
                             </tr>
                         </table>
                     </td>
-                    <td class="text-right va-bottom">
+                    <td class="text-end va-bottom">
                         <div class="logo-container">
                             <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 70px;" alt="Logo"/>
                             <div class="logo-calm text-bolder" t-if="company.penguin_report_tmpl_calm" t-esc="company.penguin_report_tmpl_calm"/>
@@ -107,7 +107,7 @@
 
     <template id="external_layout" inherit_id="web.external_layout">
         <t t-if="company.external_report_layout_id" position="replace">
-            <t t-if="xmlid in ('l10n_ch.qr_report_main', 'sale.report_saleorder', 'account.report_invoice_with_payments', 'account.report_invoice', 'stock.report_deliveryslip', 'stock.report_picking', 'purchase.report_purchasequotation', 'purchase.report_purchaseorder')"
+            <t t-if="xmlid in ('l10n_ch.qr_report_main', 'sale.report_saleorder', 'account.report_invoice_with_payments', 'account.report_invoice', 'stock.report_deliveryslip', 'stock.report_picking', 'purchase.report_purchasequotation', 'purchase.report_purchaseorder', 'sale.report_saleorder_raw')"
                 t-call="report_tmpl_penguin.external_layout_penguin">
                 <t t-out="0"/>
             </t>

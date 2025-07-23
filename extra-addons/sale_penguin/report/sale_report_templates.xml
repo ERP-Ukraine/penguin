@@ -91,6 +91,15 @@
 
     </template>
 
+    <template id="document_tax_totals" inherit_id="sale.document_tax_totals">
+        <xpath expr="//tr[hasclass('o_subtotal')]" position="attributes">
+            <attribute name="class" add="border-top" separator=" "/>
+        </xpath>
+        <xpath expr="//tr[hasclass('o_total')]" position="attributes">
+            <attribute name="class" add="border-top" separator=" "/>
+        </xpath>
+    </template>
+
     <!-- Customize Sale Reports View PEN-55 -->
     <record id="sale.action_order_report_all" model="ir.actions.act_window">
         <field name="context" eval="{'search_default_Sales': 1, 'time_ranges': {'field':'date_order', 'range':'this_year', 'comparisonRange':'previous_period'}}"/>
