@@ -101,6 +101,9 @@
     <xpath expr="//div[hasclass('page')]/div[@t-else='']" position="attributes">
         <attribute name="class" add="d-none" separator=" "/>
     </xpath>
+    <xpath expr="//table[@name='stock_move_table']" position="attributes">
+        <attribute name="class" add="table-sm" separator=" "/>
+    </xpath>
 </template>
 
 <template id="stock_report_delivery_has_serial_move_line" inherit_id="stock.stock_report_delivery_has_serial_move_line">
