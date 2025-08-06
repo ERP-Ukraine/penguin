@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Hidden',
-    'version': '3.1',
+    'version': '3.2',
     'description': """
 Penguin Report Templates
 =========================
