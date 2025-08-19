@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ffn_view_company_form" model="ir.ui.view">
+            <field name="name">ffn_view_company_form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="jtl_ffn" string="JTL FFN">
+                        <group>
+                            <field name="enable_ffn"/>
+                            <field name="ffn_env_type" invisible="not enable_ffn" required="enable_ffn"/>
+                            <field name="ffn_client_id" invisible="not enable_ffn" required="enable_ffn"/>
+                            <field name="ffn_client_secret" invisible="not enable_ffn" required="enable_ffn"/>
+                            <field name="ffn_application_id" invisible="not enable_ffn" required="enable_ffn"/>
+                            <field name="ffn_application_version" invisible="not enable_ffn" required="enable_ffn"/>
+                            <field name="ffn_token" invisible="not enable_ffn" required="enable_ffn"/>
+                            <field name="ffn_refresh_token" invisible="not enable_ffn"/>
+                        </group>
+                        <button name="get_ffn_refresh_token" type="object" string="Refresh Token"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

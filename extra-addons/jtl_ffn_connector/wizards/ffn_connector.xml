@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ffn_connector_view_form" model="ir.ui.view">
+            <field name="name">ffn_connector_view_form</field>
+            <field name="model">ffn.connector</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="fulfillers"/>
+                            <field name="products"/>
+                            <field name="shipping_methods"/>
+                            <field name="warehouses"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="button_connect" type="object" string="Connect" class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="ffn_connector_action" model="ir.actions.act_window">
+            <field name="name">FFN Connector</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ffn.connector</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem id="ffn_connector_menu" name="FFN Connector" action="ffn_connector_action" sequence="22"/>
+    </data>
+</odoo>

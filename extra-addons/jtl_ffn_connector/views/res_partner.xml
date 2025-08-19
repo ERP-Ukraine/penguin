@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ffn_view_partner_form" model="ir.ui.view">
+            <field name="name">ffn_view_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="jtl_ffn" string="JTL FFN">
+                        <group>
+                            <field name="ffn_id"/>
+                            <field name="ffn_is_active"/>
+                            <button name="authorize_ffn_product" type="object" string="FFN Authorize" invisible="not ffn_id"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

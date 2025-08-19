@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ffn_authorize_view_form" model="ir.ui.view">
+            <field name="name">ffn_authorize_view_form</field>
+            <field name="model">ffn.authorize</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="show_grant_all" invisible="1"/>
+                            <field name="grant_all" invisible="not show_grant_all"/>
+                            <field name="product_id" readonly="not show_grant_all" force_save="1" invisible="grant_all"/>
+                            <field name="sku" invisible="grant_all"/>
+                            <field name="partner_id" readonly="show_grant_all"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="button_grant_authorize" type="object" string="Grant" class="oe_highlight"/>
+                        <button name="button_delete_authorize" type="object" string="Delete" class="btn btn-danger" invisible="grant_all"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

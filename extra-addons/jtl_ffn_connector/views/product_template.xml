@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ffn_product_template_form_view" model="ir.ui.view">
+            <field name="name">ffn_product_template_form_view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="sync_ffn_product" type="object" string="FFN Sync"/>
+                    <button name="delete_ffn_product" type="object" string="FFN Delete"/>
+                    <button name="authorize_ffn_product" type="object" string="FFN Authorize"/>
+                    <button name="get_ffn_stock" type="object" string="FFN Stock"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="jtl_ffn" string="JTL FFN">
+                        <group>
+                            <group>
+                                <separator string="General"/>
+                                <field name="jfsku"/>
+                                <field name="merchant_sku"/>
+                                <field name="authorized_partner_ids" widget="many2many_tags" readonly="1" force_save="1"/>
+                                <field name="origin_country_id"/>
+                                <field name="manufacturer"/>
+                                <field name="net_weight"/>
+                                <separator string="Identifier"/>
+                                <field name="mpn"/>
+                                <field name="ean"/>
+                                <field name="isbn"/>
+                                <field name="upc"/>
+                                <field name="asin"/>
+                            </group>
+                            <group>
+                                <separator string="Specifications"/>
+                                <field name="un_number"/>
+                                <field name="hazard_identifier"/>
+                                <field name="taric"/>
+                                <field name="fnsku"/>
+                                <field name="is_batch"/>
+                                <field name="is_divisible"/>
+                                <field name="is_best_before"/>
+                                <separator string="Dimensions"/>
+                                <field name="width"/>
+                                <field name="length"/>
+                                <field name="height"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

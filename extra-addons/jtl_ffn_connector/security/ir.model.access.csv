@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ffn_connector,ffn_connector,model_ffn_connector,base.group_user,1,1,1,1
+access_ffn_authorize,ffn_authorize,model_ffn_authorize,base.group_user,1,1,1,1
+access_sale_order_package,sale_order_package,model_sale_order_package,base.group_user,1,1,1,1

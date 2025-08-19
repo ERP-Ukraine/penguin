@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ffn_view_order_form" model="ir.ui.view">
+            <field name="name">ffn_view_order_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="sync_ffn_outbound" type="object" string="FFN Sync" invisible="ffn_id"/>
+                    <button name="get_ffn_outbound_state" type="object" string="FFN Status" invisible="not ffn_id"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="jtl_ffn" string="JTL FFN">
+                        <group>
+                            <field name="ffn_id" readonly="1" force_save="1"/>
+                            <field name="fulfiller_state" readonly="1" force_save="1"/>
+                            <field name="fsnn" readonly="1" force_save="1"/>
+                            <field name="osni" readonly="1" force_save="1"/>
+                        </group>
+                        <field name="package_ids">
+                            <list editable="bottom">
+                                <field name="freight_option"/>
+                                <field name="tracking_url"/>
+                                <field name="tracking_id"/>
+<!--                                <field name="shipping_date"/>-->
+                                <field name="shipping_method_id"/>
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/list" position="inside">
+                    <field name="osnii" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

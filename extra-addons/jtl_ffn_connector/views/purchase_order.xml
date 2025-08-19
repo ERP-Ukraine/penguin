@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ffn_purchase_order_form" model="ir.ui.view">
+            <field name="name">ffn_purchase_order_form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="sync_ffn_inbound" type="object" string="FFN Sync"/>
+                    <button name="get_ffn_inbound_state" type="object" string="Change FFN Status" invisible="not ffn_id"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="jtl_ffn" string="JTL FFN">
+                        <group>
+                            <field name="ffn_warehouse_id"/>
+                            <field name="ffn_id"/>
+                            <field name="fulfiller_state"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/list" position="inside">
+                    <field name="ffn_note" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
