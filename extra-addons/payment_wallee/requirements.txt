@@ -1,0 +1,2 @@
+cairosvg==2.7.0
+wallee==5.1.0

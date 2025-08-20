@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 - Present PIT Solutions AG. (<https://www.pitsolutions.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://www.webshopextension.com/en/licence-agreement/ -->
+<odoo>
+    <record id="transaction_form_inherit_payment_wallee" model="ir.ui.view">
+        <field name="name">payment.transaction.form.inherit</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form"/>
+        <field name="arch" type="xml">
+            <field name="provider_code" position="after">
+                <field name="wallee_state" invisible="provider_code != 'wallee'"/>
+                <field name="is_wallee_refund" invisible="1"/>
+            </field>
+            <button name="action_void" position="after">
+                <button type="object" name="wallee_refund_form_validate" invisible="not is_wallee_refund or state not in ('draft', 'pending', 'authorized')" string="Update Refund Status" class="oe_highlight"/>
+            </button>
+        </field>
+    </record>
+    <record id="view_account_payment_invoice_form_wallee_refund" model="ir.ui.view">
+        <field name="name">account.payment.invoice.form</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="before">
+                <group>
+                    <field name="is_wallee_refund" readonly="1" force_save="1"
+                           invisible="payment_type != 'outbound' or is_wallee_refund != True"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

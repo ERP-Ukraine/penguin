@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 - Present PIT Solutions AG. (<https://www.pitsolutions.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://www.webshopextension.com/en/licence-agreement/ -->
+<odoo noupdate="1">
+    <record id="payment_wallee.payment_acquirer_walleee" model="payment.provider">
+        <field name="name">Wallee Payment Providers</field>
+        <field name="image_128" type="base64" file="payment_wallee/static/src/img/wallee_icon.png"/>
+        <field name="code">wallee</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+        <field name="state">disabled</field>
+        <field name="module_id" ref="base.module_payment_wallee"/>
+        <field name="wallee_api_userid">1234</field>
+        <field name="wallee_api_spaceid">1234</field>
+        <field name="wallee_api_application_key">dummy</field>
+    </record>
+</odoo>

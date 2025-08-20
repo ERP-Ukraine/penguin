@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 - Present PIT Solutions AG. (<https://www.pitsolutions.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://www.webshopextension.com/en/licence-agreement/ -->
+<odoo noupdate="1">
+    <template id="wallee_transaction_details_table" name="Wallee Transaction Table Details">
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr>
+                <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Transaction Reference:</strong></td>
+                <td style="padding: 8px; border: 1px solid #ddd;"><t t-esc="object.reference"/></td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Amount Paid:</strong></td>
+                <td style="padding: 8px; border: 1px solid #ddd;">
+                    <t t-esc="object.currency_id.symbol"/><t t-esc="abs(object.amount)"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Date:</strong></td>
+                <td style="padding: 8px; border: 1px solid #ddd;">
+                    <t t-esc="object.create_date.strftime('%d %B %Y')"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 8px; border: 1px solid #ddd; background-color: #f9f9f9;"><strong>Payment Method:</strong></td>
+                <td style="padding: 8px; border: 1px solid #ddd;">
+                    <t t-esc="object.payment_method_id.name"/>
+                </td>
+            </tr>
+        </table>
+        <p style="margin-top: 20px;">
+            If you have any questions, feel free to contact us at <a t-att-href="'mailto:' + object.company_id.email" style="color: #4CAF50;"><t t-esc="object.company_id.email"/></a>.
+        </p>
+        <p>Thank you for choosing <strong><t t-esc="object.company_id.name"/></strong>.</p>
+    </template>
+    <record id="wallee_email_template_payment_transaction_confirmed" model="mail.template">
+        <field name="name">Wallee: Payment Confirmation Email To Customer</field>
+        <field name="model_id" ref="payment.model_payment_transaction"/>
+        <field name="email_from">{{ object.provider_id.company_id.email }}</field>
+        <field name="email_to">{{ (object.partner_id.email_formatted or object.partner_email) }}</field>
+        <field name="subject">Confirmed: Payment Transaction - Ref.: {{object.reference}}</field>
+        <field name="lang">{{ object.partner_id.lang }}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="body_html" type="html">
+            <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                <!-- Header -->
+                <div style="background-color: #4CAF50; padding: 20px; text-align: center; color: white;">
+                    <h1 style="margin: 0;">
+                        <t t-if="object.is_wallee_refund">
+                            <span>Refund </span>
+                        </t>
+                        Transaction Confirmation
+                    </h1>
+                </div>
+                <!-- Body -->
+                <div style="padding: 20px;">
+                    <p>Dear <strong><t t-esc="object.partner_id.name"/></strong>,</p>
+                    <p>
+                        We are pleased to inform you that your
+                        <t t-if="object.is_wallee_refund">
+                            <span>refund </span>
+                        </t>
+                        transaction has been successfully confirmed.
+                        Please find the transaction details below:
+                    </p>
+                    <!-- Transaction Details Table -->
+                    <t t-call="payment_wallee.wallee_transaction_details_table"/>
+                </div>
+                <!-- Footer -->
+                <div style="background-color: #f9f9f9; text-align: center; padding: 10px; font-size: 12px; color: #666;">
+                    <t t-esc="object.company_id.name"/> - All Rights Reserved.
+                </div>
+            </div>
+        </field>
+    </record>
+    <record id="wallee_email_template_payment_transaction_cancelled" model="mail.template">
+        <field name="name">Wallee: Payment Cancelled Email To Customer</field>
+        <field name="model_id" ref="payment.model_payment_transaction"/>
+        <field name="email_from">{{ object.provider_id.company_id.email }}</field>
+        <field name="email_to">{{ (object.partner_id.email_formatted or object.partner_email) }}</field>
+        <field name="subject">Cancelled: Payment Transaction - Ref.: {{object.reference}}</field>
+        <field name="lang">{{ object.partner_id.lang }}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="body_html" type="html">
+            <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                <!-- Header -->
+                <div style="background-color: #DF3638; padding: 20px; text-align: center; color: white;">
+                    <h1 style="margin: 0; color: white;">
+                        <t t-if="object.is_wallee_refund">
+                            <span>Refund </span>
+                        </t>
+                        Transaction Cancelled
+                    </h1>
+                </div>
+                <!-- Body -->
+                <div style="padding: 20px;">
+                    <p>Dear <strong><t t-esc="object.partner_id.name"/></strong>,</p>
+                    <p>
+                        We regret to inform you that your
+                        <t t-if="object.is_wallee_refund">
+                            <span>refund </span>
+                        </t>
+                        transaction has been cancelled.
+                        Please find the transaction details below:
+                    </p>
+                    <!-- Transaction Details Table -->
+                    <t t-call="payment_wallee.wallee_transaction_details_table"/>
+                </div>
+                <!-- Footer -->
+                <div style="background-color: #f9f9f9; text-align: center; padding: 10px; font-size: 12px; color: #666;">
+                    <t t-esc="object.company_id.name"/> - All Rights Reserved.
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>

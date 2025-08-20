@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 - Present PIT Solutions AG. (<https://www.pitsolutions.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://www.webshopextension.com/en/licence-agreement/ -->
+<odoo>
+    <data>
+        <template id="wallee_method_form" name="Payment Method Form">
+            <!-- Parameters description:
+                - pm_sudo: The payment method to display, as a sudoed `payment.method` recordset.
+                - is_selected: Whether the radio button of the payment method should be checked.
+            -->
+            <t t-set="is_test" t-value="provider_sudo.state == 'test'"/>
+            <t t-set="is_unpublished" t-value="not provider_sudo.is_published"/>
+            <t t-set="pms_to_display_sudo" t-value="pm_sudo.brand_ids or pm_sudo"/>
+            <t t-set="inline_form_xml_id" t-value="provider_sudo.inline_form_view_id.xml_id"/>
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-0 p-0"
+                 for="o_payment_radio">
+                <div class="form-check d-flex flex-grow-1 flex-wrap mb-0">
+                    <div class="d-flex justify-content-between align-items-start gap-2 flex-wrap w-100">
+                        <input t-attf-id="o_payment_method_{{pm_sudo.id}}"
+                               name="o_payment_radio"
+                               type="radio"
+                               t-att-checked="is_selected"
+                               class="form-check-input position-absolute"
+                               data-payment-option-type="payment_method"
+                               t-att-data-payment-option-id="pm_sudo.id"
+                               t-att-data-wallee-trans-id="trans_id"
+                               t-att-data-wallee-method-code="method_id"
+                               t-att-data-wallee-space-id="space_id"
+                               t-att-data-wallee-trans_interface="trans_interface"
+                               t-att-data-wallee-one_click_mode="one_click_mode"
+                               t-att-data-provider-id="provider_sudo.id"
+                               t-att-data-provider-code="provider_sudo._get_code()"
+                               t-att-data-provider-state="provider_sudo.state"
+                        />
+                        <div class="d-flex gap-2 flex-grow-1 me-auto">
+                            <!-- === Method label === -->
+                            <label t-out="pm_sudo.name"
+                                   class="o_payment_option_label mb-0 text-break"
+                                   t-attf-for="o_payment_method_{{pm_sudo.id}}"
+                            />
+                            <div class="d-flex flex-nowrap gap-2 mt-1">
+                                <!-- === "Unpublished" icon === -->
+                                <t t-if="is_unpublished" t-call="payment.form_icon">
+                                    <t t-set="icon_name" t-value="'eye-slash'"/>
+                                    <t t-set="color_name" t-value="'danger'"/>
+                                    <t t-set="title" t-value="'Unpublished'"/>
+                                </t>
+                                <!-- === "Test mode" icon === -->
+                                <t t-if="is_test" t-call="payment.form_icon">
+                                    <t t-set="icon_name" t-value="'exclamation-triangle'"/>
+                                    <t t-set="color_name" t-value="'warning'"/>
+                                    <t t-set="title" t-value="'Test mode'"/>
+                                </t>
+                            </div>
+                        </div>
+                        <div class="gap-1 flex-wrap d-flex">
+                            <!-- === Payment method logos === -->
+                            <t t-set="pm_index" t-value="0"/>
+                            <t t-foreach="pms_to_display_sudo" t-as="pm_to_display_sudo">
+                                <t t-if="pm_index &lt; 4" t-call="payment.form_logo">
+                                    <t t-set="logo" t-value="pm_to_display_sudo.image_payment_form"/>
+                                    <t t-set="logo_pm_sudo" t-value="pm_to_display_sudo"/>
+                                    <t t-set="title" t-value="pm_to_display_sudo.name"/>
+                                </t>
+                                <t t-set="pm_index" t-value="pm_index + 1"/>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <!-- === Help message === -->
+                <div t-if="not is_html_empty(provider_sudo.pre_msg)" class="w-100 mb-0 ms-4 small text-600">
+                    <t t-out="provider_sudo.pre_msg"/>
+                </div>
+            </div>
+            <!-- === Inline form === -->
+            <div name="o_payment_inline_form" class="position-relative d-none">
+                <t t-if="inline_form_xml_id and provider_sudo._should_build_inline_form(
+                         is_validation=mode == 'validation')"
+                   t-call="{{inline_form_xml_id}}">
+                    <t t-set="provider_id" t-value="provider_sudo.id"/>
+                </t>
+                <div class="d-flex flex-column flex-md-row align-md-items-center justify-content-between
+                        gap-2 mt-2">
+                    <!-- === Tokenization checkbox === -->
+                    <div t-if="mode == 'payment'
+                           and pm_sudo.support_tokenization
+                           and show_tokenize_input_mapping[provider_sudo.id]"
+                         name="o_payment_tokenize_container"
+                         class="o-checkbox form-check m-0">
+                        <label>
+                            <input name="o_payment_tokenize_checkbox"
+                                   type="checkbox"
+                                   class="form-check-input"
+                            />
+                            <small class="text-600">Save my payment details</small>
+                        </label>
+                    </div>
+                    <!-- === Provider name === -->
+                    <p name="o_payment_secured_by" class="align-self-end mb-0 ms-auto small text-600">
+                        <span>
+                            <i class="fa fa-lock"/>
+                            Secured by
+                        </span>
+                        <span t-out="dict(provider_sudo._fields['code']._description_selection(
+                                     provider_sudo.env))[provider_sudo.code]"
+                              class="text-break"/>
+                    </p>
+                </div>
+            </div>
+        </template>
+        <template id="payment_wallee.form" inherit_id="payment.form">
+            <xpath expr="//t[@t-set='selected_token_id']" position="after">
+                <t t-set="wallee_providers_sudo"
+                   t-value="request.env['payment.provider'].get_wallee_acquirers(providers_sudo, website)"/>
+                <t t-set="providers_sudo"
+                   t-value="request.env['payment.provider'].get_non_wallee_acquirers(providers_sudo, website)"/>
+                <t t-set="wallee_payment_methods_sudo"
+                   t-value="request.env['payment.method'].get_wallee_payment_methods(payment_methods_sudo)"/>
+                <t t-set="payment_methods_sudo"
+                   t-value="request.env['payment.method'].get_non_wallee_payment_methods(payment_methods_sudo)"/>
+                <t t-set="selected_wallee_method_id" t-value="not selected_token_id
+                    and len(wallee_payment_methods_sudo) == 1
+                    and wallee_payment_methods_sudo[:1].id"/>
+            </xpath>
+            <xpath expr="//form[@id='o_payment_form']" position="attributes">
+                <attribute name="t-if" add="wallee_payment_methods_sudo" separator=" or "/>
+            </xpath>
+            <xpath expr="//t[@t-set='selected_token_id']" position="before">
+                <t t-set="amount" t-value="0.0"/>
+                <t t-if="website_sale_order">
+                    <t t-set="amount" t-value="website_sale_order.amount_total"/>
+                    <t t-set="currency_name" t-value="website_sale_order.pricelist_id.currency_id.name"/>
+                    <t t-set="origin" t-value="website_sale_order.name"/>
+                    <t t-set="transaction_source" t-value="website_sale_order"/>
+                </t>
+                <t t-if="sale_order">
+                    <t t-set="amount" t-value="sale_order.amount_total"/>
+                    <t t-set="currency_name" t-value="sale_order.pricelist_id.currency_id.name"/>
+                    <t t-set="origin" t-value="sale_order.name"/>
+                    <t t-set="transaction_source" t-value="sale_order"/>
+                </t>
+                <t t-if="invoice">
+                    <t t-set="amount" t-value="invoice.amount_total"/>
+                    <t t-set="currency_name" t-value="invoice.currency_id.name"/>
+                    <t t-set="origin" t-value="invoice.name"/>
+                    <t t-set="transaction_source" t-value="invoice"/>
+                </t>
+            </xpath>
+            <xpath expr="//div[@id='o_payment_methods']" position="attributes">
+                <attribute name="t-if" add="wallee_payment_methods_sudo" separator=" or "/>
+            </xpath>
+            <xpath expr="//div[@id='o_payment_methods']//ul[hasclass('list-group')]/t" position="after">
+                <t t-set="amount" t-value="amount or 0.0"/>
+                <t t-set="billing_partner_id" t-value="partner_id or ''"/>
+                <t t-set="access_token" t-value="access_token"/>
+                <t t-if="not origin">
+                    <t t-if="sale_order">
+                        <t t-set="origin" t-value="sale_order.name"/>
+                    </t>
+                    <t t-if="website_sale_order">
+                        <t t-set="origin" t-value="website_sale_order.name"/>
+                    </t>
+                    <t t-if="invoice">
+                        <t t-set="origin" t-value="invoice.name"/>
+                    </t>
+                </t>
+                <t t-foreach="wallee_providers_sudo" t-as="provider">
+                    <t t-set="provider_sudo" t-value="provider"/>
+                    <t t-foreach="provider.get_available_wallee_trans_payment_methods(currency_name, amount, origin, billing_partner_id, access_token, transaction_source)"
+                       t-as="w_pay_meth">
+                        <t t-set="pm_sudo"
+                           t-value="request.env['payment.method'].sudo().search([('code', '=', w_pay_meth['method_id'])], limit=1)"/>
+                        <t t-if="pm_sudo">
+                            <li name="o_payment_option" class="list-group-item d-flex flex-column gap-2 py-3 o_outline">
+                                <t t-call="payment_wallee.wallee_method_form">
+                                    <t t-set="is_selected" t-value="pm_sudo.id == selected_wallee_method_id"/>
+                                    <t t-set="trans_id" t-value="w_pay_meth.get('trans_id', 0)"/>
+                                    <t t-set="method_id" t-value="w_pay_meth.get('method_id', 0)"/>
+                                    <t t-set="space_id" t-value="w_pay_meth.get('space_id', 0)"/>
+                                    <t t-set="trans_interface" t-value="w_pay_meth.get('transaction_interface', 0)"/>
+                                    <t t-set="one_click_mode" t-value="w_pay_meth.get('one_click_mode', 0)"/>
+                                </t>
+                            </li>
+                        </t>
+                    </t>
+                </t>
+            </xpath>
+        </template>
+        <template id="redirect_form">
+            <form t-att-action="api_url" method="post">
+                <input type="hidden" name='merchant' t-att-value='merchant'/>
+                <input type="hidden" name='amountIncludingTax' t-att-value="amount"/>
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <input type="hidden" name='merchantReference' t-att-value='reference'/>
+                <input type="hidden" name='currency' t-att-value='currency_name'/>
+                <input type="hidden" name='customerId' t-att-value='partner_id'/>
+                <input type="hidden" name='givenName' t-att-value='givenName'/>
+                <input type="hidden" name='familyName' t-att-value='familyName'/>
+                <input type="hidden" name='street' t-att-value='billing_address'/>
+                <input type="hidden" name='city' t-att-value='city'/>
+                <input type="hidden" name='postcode' t-att-value='postcode'/>
+                <input type="hidden" name='postalState' t-att-value='postalState'/>
+                <input type="hidden" name='country' t-att-value='country'/>
+                <input type="hidden" name='phoneNumber' t-att-value='phoneNumber'/>
+                <input type="hidden" name='emailAddress' t-att-value='emailAddress'/>
+                <input type="hidden" name='successUrl' t-att-value='successUrl'/>
+                <input type="hidden" name='failedUrl' t-att-value='failedUrl'/>
+                <input type="hidden" name='wallee_tx_url' t-att-value='wallee_tx_url'/>
+                <input type="hidden" name='wallee_javascript_url' t-att-value='wallee_javascript_url'/>
+                <input type="hidden" name='wallee_payment_method' t-att-value='wallee_payment_method'/>
+                <input type="hidden" name="version" value="1"/>
+                <input id="acquirer_wallee" type="hidden" name="acquirer" t-att-value="acquirer_wallee"/>
+                <div t-if="wallee_javascript_url" class="container">
+                    <div class="o_wallee_interface">
+                        <div class="row">
+                            <div class="o_wallee_interface_content col-sm-6 col-sm-offset-3">
+                            </div>
+                            <ul id="o_wallee_payment_errors"></ul>
+                            <div id="o_wallee_payment_form"></div>
+                        </div>
+                    </div>
+                </div>
+                <script t-if="wallee_javascript_url" type="text/javascript">
+                    import paymentForm from '@payment/js/payment_form';
+                    publicWidget.registry.PaymentForm.extend({
+                    var WalleeInterface = require('payment_wallee.wallee_interface');
+                    var walleeInterfaceWidget = new WalleeInterface(null, {});
+                    walleeInterfaceWidget.attachTo($('.o_wallee_interface'));
+                    });
+                </script>
+            </form>
+        </template>
+        <template id="wallee_payment_payment" name="Wallee Payment Payment" inherit_id="payment.pay">
+            <xpath
+                    expr="//t[@t-call='payment.form']"
+                    position="inside">
+                <t t-set="currency_name" t-value="currency.name"/>
+                <t t-set="origin" t-value="reference"/>
+            </xpath>
+        </template>
+        <template id="wallee_payment_unexpected_error" name="Wallee Unexpected Error">
+            <t t-call="website.layout">
+                <t t-set="additional_title">Unexpected Error</t>
+                <div id="wrap" style="background:#e5e5e5;padding:20px 0;margin-top:5%;">
+                    <div class="container oe_website_sale" align="center" style="">
+                        <i class="fa fa-exclamation-circle" aria-hidden="true" style="color:#B22222;font-size:80px;"/>
+                        <h1 class="mb32">Something went wrong</h1>
+                        <h4 class="mb32">An error was encountered while processing your transaction. The transaction has
+                            been or has not been processed.
+                        </h4>
+                        <h5 class="mb32">If problem persist please contact us</h5>
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-9">
+                            </div>
+                            <div class="col-lg-8 col-sm-9 oe_cart">
+                                <div class="clearfix"/>
+                                <div class="oe_structure"/>
+                            </div>
+                            <div class="col-lg-3 col-lg-offset-1 col-sm-3 text-muted" id="right_column">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

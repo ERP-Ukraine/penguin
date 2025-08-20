@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 - Present PIT Solutions AG. (<https://www.pitsolutions.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://www.webshopextension.com/en/licence-agreement/ -->
+<odoo>
+    <record id="view_wallee_payment_method_form" model="ir.ui.view">
+        <field name="name">wallee.payment.method.form</field>
+        <field name="model">wallee.payment.method</field>
+        <field name="arch" type="xml">
+            <form string="Wallee Payment Gateways" create="false" delete="false" edit="false">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name='acquirer_id' readonly="1"/>
+                        <field name='one_click'/>
+                        <field name='payment_method_ref' readonly="1"/>
+                        <field name='transaction_interface'/>
+                        <field name='version' readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="space_id" readonly="1"/>
+                        <field name='method_id' readonly="1"/>
+                        <field name='image_url' readonly="1"/>
+                        <field name='sequence'/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_wallee_payment_method_tree">
+        <field name="name">wallee.payment.method.tree</field>
+        <field name="model">wallee.payment.method</field>
+        <field name="arch" type="xml">
+            <list string="Wallee Payment Gateways" create="false" delete="false" edit="false">
+                <field name="sequence" widget="handle"/>
+                <field name="name" readonly="1"/>
+                <field name='payment_method_ref' readonly="1"/>
+                <field name='transaction_interface'/>
+                <field name='one_click'/>
+                <field name='image_url'/>
+            </list>
+        </field>
+    </record>
+    <record id="action_wallee_payment_method" model="ir.actions.act_window">
+        <field name="name">Wallee Payment Gateways</field>
+        <field name="res_model">wallee.payment.method</field>
+        <field name='view_mode'>list,form</field>
+        <field name="view_id" ref="view_wallee_payment_method_tree"/>
+    </record>
+</odoo>

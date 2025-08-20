@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 - Present PIT Solutions AG. (<https://www.pitsolutions.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://www.webshopextension.com/en/licence-agreement/ -->
+<odoo>
+    <record id="provider_form_wallee" model="ir.ui.view">
+        <field name="name">payment.provider.form.inherit</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[1]" position='inside'>
+                <button class="oe_stat_button" type="object"
+                        name="action_view_wallee_payment_methods"
+                        groups="base.group_system"
+                        invisible="code != 'wallee'"
+                        icon="fa-credit-card">
+                    <div class="o_stat_info o_field_widget">
+                        <span class="o_stat_text">Wallee Gateways</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" type="action"
+                        name="%(pits_payment_provider_base.action_payment_provider_log)d"
+                        groups="base.group_system"
+                        invisible="code != 'wallee'"
+                        icon="fa-history">
+                    <div class="o_stat_info o_field_widget">
+                        <span class="o_stat_text">Wallee Logging</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr='//page[@name="credentials"]' position='inside'>
+                <group invisible="code != 'wallee'">
+                    <field name="wallee_api_userid"/>
+                    <field name="wallee_api_spaceid"/>
+                    <field name="wallee_api_application_key" password="True"/>
+                    <field name='payment_page' required="code == 'wallee'"/>
+                </group>
+                <group>
+                    <field name="hide_registration_templ" invisible="1"/>
+                    <field name="hide_specific_countries" invisible="1"/>
+                    <field name="hide_payment_method_ids" invisible="1"/>
+                    <field name="hide_env_button" invisible="1"/>
+                </group>
+            </xpath>
+            <field name="available_country_ids" position="after">
+                <field name="send_status_email"/>
+            </field>
+            <xpath
+                    expr="//group[@name='availability']"
+                    position="attributes">
+                <attribute name="invisible">hide_specific_countries</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- inherited to add Wallee payment provider create button -->
+    <record id="payment_provider_form_inherit_wallee" model="ir.ui.view">
+        <field name="name">payment.provider.form.inherit.wallee</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="website_payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position='before'>
+                <header>
+                    <button class="btn-primary" name="action_create_wallee_payment_provider" type="object"
+                            groups="website.group_multi_website"
+                            invisible="code != 'wallee' or not website_id"
+                            string="Create Wallee Provider"
+                    />
+                </header>
+            </xpath>
+        </field>
+    </record>
+</odoo>

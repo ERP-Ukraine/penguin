@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 - Present PIT Solutions AG. (<https://www.pitsolutions.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://www.webshopextension.com/en/licence-agreement/ -->
+<odoo>
+    <data>
+        <record id="view_payment_register_form_wallee_inherited" model="ir.ui.view">
+            <field name="name">account.payment.register.form.inherited.wallee.refund</field>
+            <field name="model">account.payment.register</field>
+            <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]" position="before">
+                    <group>
+                        <field name="is_wallee_refund" readonly="1" force_save="1" invisible="payment_type != 'outbound' or not is_wallee_refund"/>
+                    </group>
+                </xpath>
+                <xpath expr="//group/group[@name='group1']" position="attributes">
+                    <attribute name="invisible">is_wallee_refund</attribute>
+                </xpath>
+                <xpath expr="//group/group[2]/div[@name='amount_div']/field[@name='amount']" position="attributes">
+                    <attribute name="readonly">not can_edit_wizard or is_wallee_refund or can_group_payments and not group_payment</attribute>
+                </xpath>
+                <xpath expr="//group/group[2]/div[@name='amount_div']/field[@name='currency_id']" position="attributes">
+                    <attribute name="readonly">not can_edit_wizard or is_wallee_refund or can_group_payments and not group_payment</attribute>
+                </xpath>
+                <xpath expr="//group/group[2]/field[@name='installments_switch_html']" position="attributes">
+                    <attribute name="invisible">is_wallee_refund or not installments_switch_html</attribute>
+                </xpath>
+                <xpath expr="//group/group[2]/field[@name='payment_date']" position="attributes">
+                    <attribute name="invisible">is_wallee_refund</attribute>
+                </xpath>
+                <xpath expr="//group/group[2]/field[@name='communication']" position="attributes">
+                    <attribute name="invisible">is_wallee_refund or not can_edit_wizard or (can_group_payments and not group_payment)</attribute>
+                </xpath>
+                <xpath expr="//form/group/div[hasclass('text-center')]" position="attributes">
+                    <attribute name="invisible">is_wallee_refund or not qr_code</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

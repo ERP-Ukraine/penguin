@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2019 - Present PIT Solutions AG. (<https://www.pitsolutions.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- License URL : https://www.webshopextension.com/en/licence-agreement/ -->
+<odoo>
+    <record id="view_move_form_wallee_refund" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <button name="action_register_payment" position="attributes">
+                <attribute name="context">{'dont_redirect_to_payments': True, 'is_wallee_refund': True}</attribute>
+            </button>
+            <field name="invoice_origin" position="after">
+                <field name="is_wallee_refund" invisible="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

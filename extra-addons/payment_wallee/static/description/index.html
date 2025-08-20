@@ -1,0 +1,545 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<div>
+    <img style="width:100%;" src="intro.png" alt="wallee Payment Intergration for Online Store">
+    <div class="row" style="margin-top: -50%;padding: 5% 10% 5% 10%;text-align: center;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <h1 style="font-size:38px;font-family:'Poppins',poppins-semibold;letter-spacing: 0px;color:#BA2429;font-weight: bold;">
+                Wallee Payment Integration
+            </h1>
+            <h1 style="font-size:38px;font-family:'Poppins',poppins-semibold;letter-spacing: 0px;color:#BA2429;font-weight: bold;">
+                for Online Store
+            </h1>
+            <h2 style="font-size:26px;letter-spacing: 0px;color: #101010;">
+                Payment Page.
+            </h2>
+            <p style="font: 14px/22px 'poppins-regular';color: #5E5E5E;">
+                The Wallee extension from PIT Solutions serves as a connector between Wallee and the Odoo Web Shop.
+            </p>
+            <p style="font: 14px/22px 'poppins-regular';color: #5E5E5E;">
+                Wallee is a standardized platform for accepting payments through a wide range of payment providers worldwide. It supports payment gateways such
+                as Credit/Debit Cards, PostFinance E-Finance, PostFinance Card, PostFinance Pay and TWINT. In addition to payment processing, Wallee offers a
+                variety of
+                features, including reconciliation. More information can be found under <a href="https://app-wallee.com/en-us/doc/api/payment-method/list"
+                    target="_blank">Wallee Payment Methods</a>.
+            </p>
+            <p style="font:14px/22px 'poppins-regular'; color: #5E5E5E; margin-bottom: 0;">
+                Our extension seamlessly connects Odoo shop users to a centralized payment hub that supports integration with over 50 payment gateways and processors.
+                Powered by the <strong>official Wallee SDK</strong>, it ensures a secure, reliable, and well-maintained connection to multiple payment service provider APIs. This integration helps reduce cart abandonment by offering more payment options and lowers transaction costs through optimized payment routing.
+            </p>
+        </div>
+    </div>
+    <div style="margin-top: 10px;font-weight: bold;padding: 30px 114px;border: 1px solid #E3E5EF;font: 14px/22px 'poppins-medium';letter-spacing: 0px;">
+        <div>
+            <img src="info.png" class="logo" style="margin-left: -40px;margin-top: 5px">
+        </div>
+        <p style="margin-bottom: 10px;margin-top: -22px;font-weight: bold;">
+            <em style="font-weight: bold;font-style: normal;">
+            For assistance with installation, please reach out to us at <a href="mailto:support@webshopextension.com">support@webshopextension.com</a>.
+            We're here to help!
+            </em>
+        </p>
+    </div>
+    <div style="margin-top: 10px;color: #5E5E5E">
+        <img style="width: 100%;height: auto;" src="walleebanner.png" alt="wallee banner">
+        <div style="margin-left: 115px;">
+            <img class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" src="logo.png" alt=""
+                style="margin-top:-650px;max-width: 225px;height: auto;margin-bottom: 35px">
+            <h3 class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+                style="font-size: 16px;margin-top:-300px;letter-spacing: 0px;color: #FFFFFF;">
+                The Wallee extension from PIT Solutions acts as a connector between Wallee and the Odoo Web Shop. It provides a standardized way to accept
+                payments through a variety of payment providers worldwide. It also supports payment gateways such as Credit/Debit Cards, PostFinance E-Finance,
+                PostFinance Card, PostFinance Pay, and TWINT. In addition to payment processing, Wallee offers a wide range of additional features, such as
+                reconciliation.
+            </h3>
+        </div>
+    </div>
+    <div style="font-size:14px;padding: 0 114px 22px 114px;margin-top: 29px;">
+        <p style="text-align: justify;">
+            The Wallee back-end provides a configuration where payment methods can be enabled for users. Additionally, the admin has the flexibility to specify
+            whether the payment completion process should redirect users to the service provider's site or be handled within the shop site as an I-frame.
+            Whether the gateway supports redirection, I-frame, or both depends on the payment service provider.
+        </p>
+        <p style="text-align: justify;">
+            The admin can modify the notification content in the back-end for cases where the payment is pending, completed, canceled, or an error occurs. Other
+            system notifications include a help message and a thank-you message upon order completion. Similarly, order emails, invoices, reminders, packing
+            slips,
+            and more can be edited to match the desired format.
+        </p>
+    </div>
+    <div style="background-color: #0D0001;padding: 51px 114px 63px 114px;background: #0D0001 0% 0% no-repeat padding-box;color: #fff;">
+        <div class="payment-methods-wrap">
+            <h2 style="color: #fff;font-size: 22px;padding-left: 57px;line-height: 50px;margin-bottom: 17px;font: 22px/48px 'poppins-medium';letter-spacing: 0px;">
+                <img src="payment_methods.png"
+                    style="margin-left:-60px;width: 34px;height: 34px;background-repeat: no-repeat !important;background-size: contain !important;">
+                <span style="margin-left:12px">Payment Methods:</span>
+            </h2>
+            <p style="font: 14px/22px 'poppins-regular';">
+                Supported Payment Processors and Gateways: A few of the payment gateways available in Wallee are listed below:
+            </p>
+            <div class="row" style="margin: -8px;">
+                <div class="col-sm-6 col-md-6 col-lg-2 col-xl-2"
+                    style="background-color: #E14249;width: 18%;height: 125px;background-image: linear-gradient(59deg, #BA2429 0%, #E14249 100%);padding: 24px 20px 52px 24px;border-radius: 7px;color: #fff;margin: 5px;min-height: 117px;overflow: hidden;">
+                    <h5 class="payment-method-card-name"
+                        style="color: #fff;font-size: 14px;margin-bottom: 5px;font: 14px/22px 'poppins-medium';letter-spacing: 0px;">
+                        Credit/Debit Card
+                    </h5>
+                    <img src="chip.png" alt="" style="width: 30px;height: 18px;">
+                    <div style="background-image: url(strip.png);margin-top:20px;height: 7px;opacity: 0.2;background-repeat: repeat-x;">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 col-xl-2"
+                    style="background-color: #E14249;width: 18%;height: 125px;background-image: linear-gradient(59deg, #BA2429 0%, #E14249 100%);padding: 24px 20px 52px 24px;border-radius: 7px;color: #fff;margin: 5px;min-height: 117px;overflow: hidden;">
+                    <h5 class="payment-method-card-name"
+                        style="color: #fff;font-size: 14px;margin-bottom: 5px;font: 14px/22px 'poppins-medium';letter-spacing: 0px;">
+                        PostFinance E-Finance
+                    </h5>
+                    <img src="chip.png" alt="" style="width: 30px;height: 18px;">
+                    <div style="background-image: url(strip.png);margin-top:20px;height: 7px;opacity: 0.2;background-repeat: repeat-x;">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 col-xl-2"
+                    style="background-color: #E14249;width: 18%;height: 125px;background-image: linear-gradient(59deg, #BA2429 0%, #E14249 100%);padding: 24px 20px 52px 24px;border-radius: 7px;color: #fff;margin: 5px;min-height: 117px;overflow: hidden;">
+                    <h5 class="payment-method-card-name"
+                        style="color: #fff;font-size: 14px;margin-bottom: 5px;font: 14px/22px 'poppins-medium';letter-spacing: 0px;">
+                        PostFinance Card
+                    </h5>
+                    <img src="chip.png" alt="" style="width: 30px;height: 18px;">
+                    <div style="background-image: url(strip.png);margin-top:20px;height: 7px;opacity: 0.2;background-repeat: repeat-x;">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 col-xl-2"
+                    style="background-color: #E14249;width: 18%;height: 125px;background-image: linear-gradient(59deg, #BA2429 0%, #E14249 100%);padding: 24px 20px 52px 24px;border-radius: 7px;color: #fff;margin: 5px;min-height: 117px;overflow: hidden;">
+                    <h5 class="payment-method-card-name"
+                        style="color: #fff;font-size: 14px;margin-bottom: 5px;font: 14px/22px 'poppins-medium';letter-spacing: 0px;">
+                        PostFinance Pay
+                    </h5>
+                    <img src="chip.png" alt="" style="width: 30px;height: 18px;">
+                    <div style="background-image: url(strip.png);margin-top:20px;height: 7px;opacity: 0.2;background-repeat: repeat-x;">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4 col-lg-2 col-xl-2"
+                    style="background-color: #E14249;width: 18%;height: 125px;background-image: linear-gradient(59deg, #BA2429 0%, #E14249 100%);padding: 24px 20px 52px 24px;border-radius: 7px;color: #fff;margin: 5px;min-height: 117px;overflow: hidden;">
+                    <h5 class="payment-method-card-name"
+                        style="color: #fff;font-size: 14px;margin-bottom: 5px;font: 14px/22px 'poppins-medium';letter-spacing: 0px;">
+                        TWINT
+                    </h5>
+                    <img src="chip.png" alt="" style="width: 30px;height: 18px;">
+                    <div style="background-image: url(strip.png);margin-top:20px;height: 7px;opacity: 0.2;background-repeat: repeat-x;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="configurations-wrap" style="margin-top: 41px;">
+            <h2 style="color: #fff;font-size: 22px;padding-left: 57px;line-height: 50px;margin-bottom: 17px;font: 22px/48px 'poppins-medium';letter-spacing: 0px;">
+                <img src="configurations.png"
+                    style="margin-left:-60px;width: 34px;height: 34px;background-repeat: no-repeat !important;background-size: contain !important;">
+                <span style="margin-left:12px">
+                Configurations
+                </span>
+            </h2>
+            <p style="font: 14px/22px 'poppins-regular';">
+                Once the configurations are complete, all the user needs to do is:
+            </p>
+            <div class="detail-list-group">
+                <div class="row" style="margin-left: 0;margin-right: 0;">
+                    <div class="col-md-6 col-sm-12 col-12 detail-list-item" style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Add items to the cart and create an order.
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12 detail-list-item" style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Select the payment method.
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12 detail-list-item" style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Complete the payment transaction.
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-12 detail-list-item" style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            The order is placed upon successful payment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="compatibility-wrap" style="margin-top: 41px;">
+            <h2 style="color: #fff;font-size: 22px;padding-left: 57px;line-height: 50px;margin-bottom: 17px;font: 22px/48px 'poppins-medium';letter-spacing: 0px;">
+                <img src="compatibility.png"
+                    style="margin-left:-60px;width: 34px;height: 34px;background-repeat: no-repeat !important;background-size: contain !important;">
+                <span style="margin-left:12px">
+                Compatibility
+                </span>
+            </h2>
+            <p style="font: 14px/22px 'poppins-regular';">
+                The extension is compatible with Odoo version 18.0, supporting both Community and Enterprise editions.
+            </p>
+            <p style="font: 14px/22px 'poppins-regular';">
+                Please note that for some payment methods, you are required to create a payment service provider contract with the payment service provider.
+            </p>
+            <p style="font: 14px/22px 'poppins-regular';">
+                Wallee Provider payment methods support only the complete settlement of the bill amount and do not allow partial payments. Similarly, for
+                refunds, only the full refund of the transaction amount is supported, and partial refunds are not permitted. If a partially paid bill is being
+                completed, Wallee payment methods will not be available as a payment option on the payment page.
+            </p>
+        </div>
+        <div class="features-wrap" style="margin-top: 41px;">
+            <h2 style="color: #fff;font-size: 22px;padding-left: 57px;line-height: 50px;margin-bottom: 17px;font: 22px/48px 'poppins-medium';letter-spacing: 0px;">
+                <img src="features.png"
+                    style="margin-left:-60px;width: 34px;height: 34px;background-repeat: no-repeat !important;background-size: contain !important;">
+                <span style="margin-left:12px">
+                Features
+                </span>
+            </h2>
+            <div class="detail-list-group">
+                <div class="row" style="margin-left: 0;margin-right: 0;">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 detail-list-item"
+                        style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Easy to install
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 detail-list-item"
+                        style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            User-friendly and configurable to meet specific requirements.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 detail-list-item"
+                        style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Multiple payment methods
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 detail-list-item"
+                        style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Additional security level: 3D Secure feature.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 detail-list-item"
+                        style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Customizable system notifications
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 detail-list-item"
+                        style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Supports both I-frame and Lightbox modes for the payment page.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 detail-list-item"
+                        style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Easy and convenient Refund option.
+                        </p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 detail-list-item"
+                        style="width: 30%;padding: 10px 35px;">
+                        <img src="tick.png" class="logo"
+                            style="margin-left:-30px;background-repeat: no-repeat;background-size: contain;width: 15px;height: 15px;top: 13px;left: 0;">
+                        <p style="margin-right: 30px;margin-top:-18px;">
+                            Dedicated automated scheduled actions to update the status of payment transactions to ensure that the latest information is
+                            reflected in your system
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section style="background-color: #b91a20;text-align: center;color: #fff;padding-bottom: 90px;">
+        <img style="width: 100%;" src="Screenshot_banner.png" alt="screenshot banner">
+        <h1 class="screenshot-heading" style="font-size: 30px;color: #fff;margin-top: -180px;margin-left:-800px;">
+            Screenshots
+        </h1>
+        <div style="margin-top:20px;position:relative;margin-left:62px;width: 25px;height: 7px;background: #FFFFFF 0% 0% no-repeat padding-box;"></div>
+        <h2 style="font-size:28px;color: #fff;margin-top: 160px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Payment Providers Listing in the Backend
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Backend Payment Provider Listing.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Odoo Backend Configuration for Wallee Credentials
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Backend Credentials Configuration.png" alt="">
+        <ul class="requirements"
+            style="display: inline-block;list-style: none;margin-bottom: 0;padding: 29px 18px 0 18px;text-align: left;width: auto;max-width: 60%;margin: auto;font: 14px/22px 'poppins-regular';">
+            The Wallee extension can be configured by specifying the required details:
+            <li style="font-size:14px;margin-top: 22px;margin-bottom: 18px;padding-left: 37px;font: 14px/22px 'poppins-medium';">
+                <div>
+                    <img src="redtick.png" class="logo"
+                        style="margin-left:-40px;content: '';width: 22px;height: 22px;background-size: contain;background-repeat: no-repeat;left: 0;">
+                </div>
+                <p style="margin-top:-20px;">REST API User ID: Application User ID created at app-wallee.com</p>
+            </li>
+            <li style="font-size:14px;margin-bottom: 18px;padding-left: 37px;font: 14px/22px 'poppins-medium';">
+                <div>
+                    <img src="redtick.png" class="logo"
+                        style="margin-left:-40px;content: '';width: 22px;height: 22px;background-size: contain;background-repeat: no-repeat;left: 0;">
+                </div>
+                <p style="margin-top:-20px;">REST API Space ID: Space ID created at app-wallee.com</p>
+            </li>
+            <li style="font-size:14px;padding-left: 37px;font: 14px/22px 'poppins-medium';">
+                <div>
+                    <img src="redtick.png" class="logo"
+                        style="margin-left:-40px;content: '';width: 22px;height: 22px;background-size: contain;background-repeat: no-repeat;left: 0;">
+                </div>
+                <p style="margin-top:-20px;">Application Key: Key generated at app-wallee.com</p>
+            </li>
+        </ul>
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Odoo Backend Configuration
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Backend Configuration.png" alt="">
+        <ul class="requirements"
+            style="display: inline-block;list-style: none;margin-bottom: 0;padding: 29px 18px 0 18px;text-align: left;width: auto;max-width: 60%;margin: auto;font: 14px/22px 'poppins-regular';">
+            After successful configuration, you can view the payment methods and logs related to the Wallee Payment Provider as follows:
+            <li style="font-size:14px;margin-top: 22px;margin-bottom: 18px;padding-left: 37px;font: 14px/22px 'poppins-medium';">
+                <div>
+                    <img src="redtick.png" class="logo"
+                        style="margin-left:-40px;content: '';width: 22px;height: 22px;background-size: contain;background-repeat: no-repeat;left: 0;">
+                </div>
+                <p style="margin-top:-20px;">
+                    Payment Methods: Click the 'Wallee Gateways' button to view and manage the available payment methods.
+                </p>
+            </li>
+            <li style="font-size:14px;margin-bottom: 18px;padding-left: 37px;font: 14px/22px 'poppins-medium';">
+                <div>
+                    <img src="redtick.png" class="logo"
+                        style="margin-left:-40px;content: '';width: 22px;height: 22px;background-size: contain;background-repeat: no-repeat;left: 0;">
+                </div>
+                <p style="margin-top:-20px;">
+                    Logs: Click the 'Wallee Logging' button to access and review logs related to the Wallee payment provider.
+                </p>
+            </li>
+        </ul>
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Wallee Payment Methods
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Wallee Payment Methods.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Wallee Payment Provider Logs
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Wallee Payment Logs.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Payment Methods Listed on the Website
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Website Payment Methods.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Payment Processing: Wallee Payment Interface - IFrame
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Iframe Interface.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Payment Processing: Wallee Payment Interface - Lightbox
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Lightbox Interface.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Order Status - Success
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Order Status Success.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Order Status - Failed/Cancelled
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Order Status Failed.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Multi-Website and Multi-Space Backend Configuration
+        </h2>
+        <p style="display: inline-block;list-style: none;margin-bottom: 0;padding: 29px 18px 0 18px;text-align: left;width: auto;max-width: 60%;margin: auto;font: 14px/22px 'poppins-regular';">
+            For multi-website configuration, you need to create multiple Wallee payment providers using the 'Create Wallee Provider' button.
+        </p>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Multi-Website Create Provider.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Configuration of Website Mapping and Wallee Credentials.
+        </h2>
+        <p style="display: inline-block;list-style: none;margin-bottom: 0;padding: 29px 18px 0 18px;text-align: left;width: auto;max-width: 60%;margin: auto;font: 14px/22px 'poppins-regular';">
+            After creating the Wallee payment provider, map the corresponding website and add the Wallee credentials.
+        </p>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Multi-Website Configuration.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Message displayed when not mapped to a website.
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Multi-Website Error without Website.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Message displayed when the website is already mapped to a Wallee Provider.
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Multi-Website Error Already Mapped.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Website Domain Configuration
+        </h2>
+        <p style="display: inline-block;list-style: none;margin-bottom: 0;padding: 29px 18px 0 18px;text-align: left;width: auto;max-width: 60%;margin: auto;font: 14px/22px 'poppins-regular';">
+            For multi-website functionality, it is necessary to set the domain for each website.
+        </p>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Multi-Website Domain Configuration.png" alt="">
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Multi-Website Domain Configuration Form.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Invoice Payment Process from the Portal User Dashboard
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Portal User Dashboard Menu.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Portal Dashboard: My Account
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Portal My Account Dashboard.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Portal Dashboard: Invoices List
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Portal Dashboard Invoices List.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Invoice Payment Process
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Portal Invoices Payment Process.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Payment Methods Listing
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Portal Payment Methods Listing.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Wallee Payment Interface
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Portal Wallee Payment Interface.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Payment Success Page
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Portal Payment Success Page.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Payment Failed/Cancelled Page
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Portal Payment Failed or Cancelled Page.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Invoice Payment Process from the Odoo Backend
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Backend Payment Process.png" alt="">
+        <h2 style="font-size:28px;color: #fff;margin-top: 32px;margin-bottom: 0;font: 28px/48px 'poppins-medium';padding: 0 20px;">
+            Invoice Payment Process on the Portal Page
+        </h2>
+        <img style="width: 100%;margin-top: 31px;width: 80%;-webkit-box-shadow: 0px 3px 36px #1032652E;box-shadow: 0px 3px 36px #1032652E;"
+            src="Screenshot Payment Process Portal Page.png" alt="">
+    </section>
+    <section class="odoo-services"
+        style="background-color: #0D0001;background: #0D0001 0% 0% no-repeat padding-box;color: #fff;padding: 50px 114px 100px 114px;">
+        <h1 style="font-size:36px;color: #fff;text-align: center;margin-bottom: 25px;font: 36px/48px 'poppins-semibold';">
+            PITS Odoo Services
+        </h1>
+        <div class="row" style="margin-left: -10px;margin-right: -10px;">
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" style="padding: 0;">
+                <div class="services-card" style="padding: 10px;">
+                    <div class="services-card-content"
+                        style="background-color: #200304;padding: 47px 28px;background: #200304 0% 0% no-repeat padding-box;-webkit-box-shadow: 0px 3px 16px #00000038;box-shadow: 0px 3px 16px #00000038;max-height: 202px;">
+                        <img class="services-card-icon" style="margin-bottom: 30px;" src="implementation.png" alt="">
+                        <h6 style="font-size:16px;color: #fff;margin-bottom: 0;font: 16px/22px 'poppins-medium';"
+                            class="services-card-text">Odoo Implementation</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" style="padding: 0;">
+                <div class="services-card" style="padding: 10px;">
+                    <div class="services-card-content"
+                        style="background-color: #200304;padding: 47px 28px;background: #200304 0% 0% no-repeat padding-box;-webkit-box-shadow: 0px 3px 16px #00000038;box-shadow: 0px 3px 16px #00000038;max-height: 202px;">
+                        <img class="services-card-icon" style="margin-bottom: 30px;" src="apps.png" alt="">
+                        <h6 style="font-size:16px;color: #fff;margin-bottom: 0;font: 16px/22px 'poppins-medium';"
+                            class="services-card-text">Odoo Community Apps</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" style="padding: 0;">
+                <div class="services-card" style="padding: 10px;">
+                    <div class="services-card-content"
+                        style="background-color: #200304;padding: 47px 28px;background: #200304 0% 0% no-repeat padding-box;-webkit-box-shadow: 0px 3px 16px #00000038;box-shadow: 0px 3px 16px #00000038;max-height: 202px;">
+                        <img class="services-card-icon" style="margin-bottom: 30px;" src="maintanence.png" alt="">
+                        <h6 style="font-size:16px;color: #fff;margin-bottom: 0;font: 16px/22px 'poppins-medium';"
+                            class="services-card-text">Odoo Support & Maintenance</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" style="padding: 0;">
+                <div class="services-card" style="padding: 10px;">
+                    <div class="services-card-content"
+                        style="background-color: #200304;padding: 47px 28px;background: #200304 0% 0% no-repeat padding-box;-webkit-box-shadow: 0px 3px 16px #00000038;box-shadow: 0px 3px 16px #00000038;max-height: 202px;">
+                        <img class="services-card-icon" style="margin-bottom: 30px;" src="customisation.png" alt="">
+                        <h6 style="font-size:16px;color: #fff;margin-bottom: 0;font: 16px/22px 'poppins-medium';"
+                            class="services-card-text">Odoo Customization</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" style="padding: 0;">
+                <div class="services-card" style="padding: 10px;">
+                    <div class="services-card-content"
+                        style="background-color: #200304;padding: 47px 28px;background: #200304 0% 0% no-repeat padding-box;-webkit-box-shadow: 0px 3px 16px #00000038;box-shadow: 0px 3px 16px #00000038;max-height: 202px;">
+                        <img class="services-card-icon" style="margin-bottom: 30px;" src="integration.png" alt="">
+                        <h6 style="font-size:16px;color: #fff;margin-bottom: 0;font: 16px/22px 'poppins-medium';"
+                            class="services-card-text">Odoo Integration Services</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" style="padding: 0;">
+                <div class="services-card" style="padding: 10px;">
+                    <div class="services-card-content"
+                        style="background-color: #200304;padding: 47px 28px;background: #200304 0% 0% no-repeat padding-box;-webkit-box-shadow: 0px 3px 16px #00000038;box-shadow: 0px 3px 16px #00000038;max-height: 202px;">
+                        <img class="services-card-icon" style="margin-bottom: 30px;" src="developer.png" alt="">
+                        <h6 style="font-size:16px;color: #fff;margin-bottom: 0;font: 16px/22px 'poppins-medium';"
+                            class="services-card-text">Odoo Developer Outsourcing</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 services-card-content" style="padding: 0;">
+                <div class="services-card" style="padding: 10px;">
+                    <div class="services-card-content"
+                        style="background-color: #200304;padding: 47px 28px;background: #200304 0% 0% no-repeat padding-box;-webkit-box-shadow: 0px 3px 16px #00000038;box-shadow: 0px 3px 16px #00000038;max-height: 202px;">
+                        <img class="services-card-icon" style="margin-bottom: 30px;" src="migration.png" alt="">
+                        <h6 style="font-size: 16px;color: #fff;margin-bottom: 0;font: 16px/22px 'poppins-medium';"
+                            class="services-card-text">Odoo Database Migration</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
