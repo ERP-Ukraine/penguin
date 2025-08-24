@@ -4,12 +4,12 @@
         Thank you for your virtual visit.
         <br/><br/>
         % set transaction = object.get_portal_last_transaction()
-        Your 
+        Your
         % if object.state == 'future_sale' :
             pre-order
         % else :
             order
-        % endif 
+        % endif
         <strong>${object.name}</strong> amounting in <strong>${format_amount(object.amount_total, object.currency_id)}</strong>
         % if object.state == 'sale' or (transaction and transaction.state in ('done', 'authorized')) :
             has been confirmed.<br/>
@@ -104,7 +104,7 @@
                     % if transaction.payment_token_id:
                         ${transaction.payment_token_id.name}
                     % else:
-                        ${transaction.acquirer_id.name}
+                        ${transaction.provider_id.name}
                     % endif
                      (${format_amount(transaction.amount, object.currency_id)})
                 </td>

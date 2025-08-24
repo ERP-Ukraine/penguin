@@ -108,7 +108,7 @@
                     % if transaction.payment_token_id:
                         ${transaction.payment_token_id.name}
                     % else:
-                        ${transaction.acquirer_id.name or ''}
+                        ${transaction.provider_id.name or ''}
                     % endif
                      (${format_amount(transaction.amount, object.currency_id)})
                 </td>
