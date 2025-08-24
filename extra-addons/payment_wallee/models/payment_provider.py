@@ -19,6 +19,7 @@ import base64
 import logging
 from io import BytesIO
 from datetime import datetime, date
+from dateutil import relativedelta
 
 import cairosvg
 import requests
@@ -124,7 +125,7 @@ class PaymentProvider(models.Model):
         self.filtered(lambda p: p.code == 'wallee').update({
             'support_refund': 'full_only',
         })
-        
+
     def _check_and_update_payment_methods(self, vals):
         keys_to_check = ['wallee_api_userid', 'wallee_api_spaceid', 'wallee_api_application_key']
         if any(key in vals for key in keys_to_check):
@@ -217,10 +218,10 @@ class PaymentProvider(models.Model):
 
             # Serialize response for logging
             serialized_response = self._serialize_wallee_response(response)
-            
+
             # Get user-friendly operation name
             operation_name = self.OPERATION_DESCRIPTIONS.get(operation_type, operation_type)
-            
+
             # Log successful response
             provider_log._post_log({
                 'name': '200',
@@ -238,10 +239,10 @@ class PaymentProvider(models.Model):
         except Exception as e:
             error_message = str(e)
             _logger.error("Unexpected error in Wallee request: %s", error_message)
-            
+
             # Get user-friendly operation name
             operation_name = self.OPERATION_DESCRIPTIONS.get(operation_type, operation_type)
-            
+
             # Log error response
             provider_log._post_log({
                 'name': '500',
@@ -254,7 +255,7 @@ class PaymentProvider(models.Model):
                 'provider_id': self.id,
                 'source': 'ecommerce'
             })
-            
+
             return {
                 'status': 500,
                 'error': error_message
@@ -669,7 +670,12 @@ class PaymentProvider(models.Model):
             }
 
     def cron_update_wallee_state(self):
+        # Don't try forever to post-process a transaction that doesn't go through. Set the limit
+        # to 4 days because some providers (PayPal) need that much for the payment verification.
+        retry_limit_date = datetime.now() - relativedelta.relativedelta(days=4)
+        # Retrieve all transactions matching the criteria for post-processing
         wallee_transactions = self.env['payment.transaction'].search([
+            ('last_state_change', '>=', retry_limit_date),
             ('provider_id.code', '=', 'wallee'),
             ('provider_reference', '!=', False),
             '|',
@@ -684,6 +690,9 @@ class PaymentProvider(models.Model):
             except Exception as e:
                 self.env.cr.rollback()
                 _logger.exception("Error while processing transaction(s): %s: \nException %s", tx_to_process.ids, e)
+            if len(wallee_transactions) > 1:
+                self.env.ref('payment_wallee.cron_update_lastest_wallee_state')._trigger()
+                return
 
     def cron_update_wallee_refund_state(self):
         wallee_refunds = self.env['payment.transaction'].search(
@@ -694,7 +703,7 @@ class PaymentProvider(models.Model):
             tx.wallee_refund_form_validate()
 
     def cron_synchronize_payment_method_values(self):
-        for acquirer in self.search([('code', '=', 'wallee')]):
+        for acquirer in self.search([('code', '=', 'wallee'), ('state', '=', 'enabled')]):
             acquirer.update_wallee_payment_methods()
 
     def _get_origin_from_access_token(self, origin, access_token):
@@ -821,7 +830,7 @@ class PaymentProvider(models.Model):
 
             # Fetch payment methods
             methods = transaction_service.fetch_payment_methods(space_id, trans_id, self.payment_page)
-            
+
             # Log successful fetch
             provider_log._post_log({
                 'name': '200',
@@ -867,7 +876,7 @@ class PaymentProvider(models.Model):
         except Exception as e:
             error_message = str(e)
             _logger.error('Failed to fetch Wallee payment methods: %s', error_message)
-            
+
             # Log error
             provider_log._post_log({
                 'name': '500',
@@ -992,7 +1001,7 @@ class PaymentProvider(models.Model):
         except requests.exceptions.RequestException as e:
             error_message = str(e)
             _logger.error("Error fetching image: %s", error_message)
-            
+
             # Log error
             provider_log._post_log({
                 'name': str(response.status_code if 'response' in locals() else '500'),
