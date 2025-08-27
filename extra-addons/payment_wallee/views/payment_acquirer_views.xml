@@ -45,11 +45,6 @@
             <field name="available_country_ids" position="after">
                 <field name="send_status_email"/>
             </field>
-            <xpath
-                    expr="//group[@name='availability']"
-                    position="attributes">
-                <attribute name="invisible">hide_specific_countries</attribute>
-            </xpath>
         </field>
     </record>
     <!-- inherited to add Wallee payment provider create button -->
