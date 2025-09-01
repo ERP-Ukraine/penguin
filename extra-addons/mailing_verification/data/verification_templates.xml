@@ -1,0 +1,47 @@
+<odoo>
+    <template id="verification_success" name="Success verification">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h1 class="text-center">Success verification</h1>
+            </div>
+        </t>
+    </template>
+    <template id="verification_failed" name="Success failed">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h1 class="text-center">Verification Link Invalid or Expired</h1>
+            </div>
+        </t>
+    </template>
+    <record id="mail_verification_email" model="mail.template">
+        <field name="name">Mailing verification: Confirmation Email To Customer</field>
+        <field name="model_id" ref="mailing_verification.model_contact_verification"/>
+        <field name="email_from">{{ object.company_id.email }}</field>
+        <field name="email_to">{{ (object.email) }}</field>
+        <field name="subject">Email Confirmation</field>
+        <field name="lang">{{ object.partner_id.lang }}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="body_html" type="html">
+            <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6; max-width: 600px; margin: auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                <!-- Header -->
+                <div style="background-color: #4CAF50; padding: 20px; text-align: center; color: white;">
+                    <h1 style="margin: 0;">
+                        Email Confirmation
+                    </h1>
+                </div>
+                <!-- Body -->
+                <div style="padding: 20px;">
+                    <p t-if="object.name">Dear <strong><t t-esc="object.name"/></strong>,</p>
+                    <p>Please confirm your email address by clicking the link below: <a t-attf-href="{{object.confirmation_link}}"><t t-esc="object.confirmation_link"/></a></p>
+                    <p>
+                        This step is required to complete your registration and ensure continued access to our services. If you do not confirm your email within 7 days from the date of this message, your data will be automatically deleted from our servers in accordance with our privacy policy.
+                    </p>
+                </div>
+                <!-- Footer -->
+                <div style="background-color: #f9f9f9; text-align: center; padding: 10px; font-size: 12px; color: #666;">
+                    <t t-esc="object.company_id.name"/> - All Rights Reserved.
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>
