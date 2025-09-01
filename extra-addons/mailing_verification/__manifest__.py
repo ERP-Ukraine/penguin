@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Mass Mailing Autocreate',
-    'version': '1.1',
-    'summary': 'Mass mailing autocreate',
+    'name': 'Mailing Verification',
+    'version': '1.0',
+    'summary': 'Mailing verification',
     'category': 'Marketing/Email Marketing',
     'author': 'ERP Ukraine',
     'website': 'https://erp.co.ua',
     'support': 'support@erp.co.ua',
     'license': 'AGPL-3',
     'depends': [
-        'contacts',
-        'mass_mailing',
         'mass_mailing_res_partner_link',
+        'website_mass_mailing',
+        'mass_mailing_autocreate',
     ],
     'data': [
-        'views/res_config_settings_views.xml',
+        'security/ir.model.access.csv',
+        'data/ir_cron_data.xml',
+        'data/verification_templates.xml',
     ],
     'installable': True,
     'auto_install': False,
     'application': False,
-    'post_init_hook': 'add_contacts_to_mailing_list',
 }

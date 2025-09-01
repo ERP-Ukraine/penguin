@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+mailing_verification.contact_verification_admin,contact_verification_admin,mailing_verification.model_contact_verification,base.group_system,1,1,1,1

@@ -127,7 +127,6 @@
                 <attribute name="t-if" add="wallee_payment_methods_sudo" separator=" or "/>
             </xpath>
             <xpath expr="//t[@t-set='selected_token_id']" position="before">
-                <t t-set="amount" t-value="0.0"/>
                 <t t-if="website_sale_order">
                     <t t-set="amount" t-value="website_sale_order.amount_total"/>
                     <t t-set="currency_name" t-value="website_sale_order.pricelist_id.currency_id.name"/>
