@@ -14,7 +14,8 @@ class Partner(models.Model):
         mailing_contacts = [{
             'name': el.name,
             'email': el.email,
-            'list_ids': [(4, list_id)]} for el in res]
+            'list_ids': [(4, list_id)],
+            'partner_id': el.id} for el in res]
         with self.env.cr.savepoint():
             self.env['mailing.contact'].create(mailing_contacts)
         return res

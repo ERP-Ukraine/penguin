@@ -12,8 +12,16 @@ class PaymenProvider(models.Model):
         self, company_id, partner_id, amount, currency_id=None, force_tokenization=False,
         is_express_checkout=False, is_validation=False, **kwargs
     ):
-        result = super()._get_compatible_providers(company_id, partner_id, amount, currency_id=None, force_tokenization=False,
-        is_express_checkout=False, is_validation=False, **kwargs)
+        result = super()._get_compatible_providers(
+            company_id,
+            partner_id,
+            amount,
+            currency_id=currency_id,
+            force_tokenization=force_tokenization,
+            is_express_checkout=is_express_checkout,
+            is_validation=is_validation,
+            **kwargs,
+        )
 
         filtered_providers = self.env['payment.provider']
         for payment in result:

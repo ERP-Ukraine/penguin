@@ -128,7 +128,7 @@ class PaymentProvider(models.Model):
 
     def _check_and_update_payment_methods(self, vals):
         keys_to_check = ['wallee_api_userid', 'wallee_api_spaceid', 'wallee_api_application_key']
-        if any(key in vals for key in keys_to_check):
+        if any(key in vals for key in keys_to_check if vals.get(key)):
             self.update_wallee_payment_methods()
 
     @api.model_create_multi
@@ -368,7 +368,7 @@ class PaymentProvider(models.Model):
             _logger.error("Failed to get Wallee payment methods: %s", str(e))
             return {}
 
-    def update_wallee_payment_methods(self):
+    def update_wallee_payment_methods(self): # there problem
         """Update Wallee payment methods for the current acquirer.
 
         Fetches available payment methods from Wallee API, creates/updates
