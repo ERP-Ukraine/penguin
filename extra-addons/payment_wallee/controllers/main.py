@@ -107,7 +107,7 @@ class WalleeController(http.Controller):
     _failed_url = '/payment/wallee/failed'
     _wallee_redirect_url = '/payment/wallee/redirect'
 
-    @http.route(['/payment/wallee/redirect'], type='http', auth='public', website=True)
+    @http.route(['/payment/wallee/redirect'], type='http', auth='public')
     def wallee_form_redirect(self, **post):
         """Handle redirection after payment."""
         # Check if we have a transaction ID
@@ -126,7 +126,7 @@ class WalleeController(http.Controller):
         # Redirect to payment status page
         return request.redirect('/payment/status')
 
-    @http.route(['/payment/wallee/success', '/payment/wallee/failed'], type='http', auth='public', csrf=False, website=True)
+    @http.route(['/payment/wallee/success', '/payment/wallee/failed'], type='http', auth='public', csrf=False)
     def wallee_form_feedback(self, **post):
         """Handle the feedback from Wallee."""
         # Get transaction ID from post data or query parameters
@@ -167,7 +167,7 @@ class WalleeController(http.Controller):
 
         return request.redirect('/payment/status')
 
-    @http.route(['/payment/wallee/unexpected'], type='http', auth='public', csrf=False, website=True)
+    @http.route(['/payment/wallee/unexpected'], type='http', auth='public', csrf=False)
     def wallee_unexpected_form_feedback(self, **post):
         """Handle unexpected payment outcomes."""
         _logger.warning("Wallee: received unexpected payment feedback: %s", post)
