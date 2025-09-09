@@ -8,7 +8,9 @@ class SaleOrderLine(models.Model):
     def _create_procurements(self, product_qty, procurement_uom, origin, values):
         self.ensure_one()
         # override by ERPUkraine to get all warehouses from order website
-        warehouse_ids = self.sudo().company_id.warehouse_ids
+        warehouse_ids = self.sudo().company_id.warehouse_ids.sorted(
+            key=lambda warehouse: 0 if warehouse == self.order_id.warehouse_id else 1
+        )
         precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
 
         if not warehouse_ids:
