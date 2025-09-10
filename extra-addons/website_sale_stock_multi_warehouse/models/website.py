@@ -7,7 +7,7 @@ class Website(models.Model):
     def sale_get_order(self, *args, **kwargs):
         return super(Website, self.with_context(warehouse=self.sudo().company_id.warehouse_ids.ids)).sale_get_order(*args, **kwargs)
 
-    def _get_product_available_qty(self, product):
+    def _get_product_available_qty(self, product, **kwargs):
         # override
         free_qty = 0
         warehouse_ids =  self.sudo().company_id.warehouse_ids
