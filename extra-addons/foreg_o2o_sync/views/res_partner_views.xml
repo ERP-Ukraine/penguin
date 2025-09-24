@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+
+    <record id="customer_saas_action" model="ir.actions.act_window">
+        <field name="name">Customers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="context">{"search_default_customer":1}</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter" />
+        <field name="domain">[('saas_id', 'not in', [0, False])]</field>
+    </record>
+
+    <menuitem
+        id="saas_customers_menu"
+        name="Customers"
+        action="customer_saas_action"
+        parent="saas_sales_menu"
+        sequence="20"
+    />
+
+</odoo>

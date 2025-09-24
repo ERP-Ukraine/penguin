@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <!-- Wizard View -->
+    <record id="wizard_foreg_saas_operation" model="ir.ui.view">
+        <field name="name">wizard.foreg.saas.operation.view</field>
+        <field name="model">foreg.saas.operation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Saas Operations">
+                <sheet>
+                <group>
+                    <field name="saas_instance_id" />
+                    <field
+                            name="saas_request_id"
+                            domain="[('instance_id', '=', saas_instance_id)]"
+                        />
+                    <field name="method" invisible="1" />
+                    <field name="model" invisible="1" />
+                </group>
+                <notebook>
+                    <page string="Filter" invisible="method != 'read'">
+                        <field
+                                name="read_filter"
+                                widget="domain"
+                                options="{'model': 'model'}"
+                            />
+                    </page>
+                </notebook>
+                </sheet>
+                <footer>
+                    <button
+                        string="Execute"
+                        type="object"
+                        name="execute_saas_operations"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_foreg_saas_operations" model="ir.actions.act_window">
+        <field name="name">Saas Operations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">foreg.saas.operation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="menu_foreg_saas_operations"
+        name="Saas Operations"
+        action="action_foreg_saas_operations"
+        parent="foreg_o2o_sync.saas_shops_menu"
+        sequence="75"
+    />
+
+</odoo>

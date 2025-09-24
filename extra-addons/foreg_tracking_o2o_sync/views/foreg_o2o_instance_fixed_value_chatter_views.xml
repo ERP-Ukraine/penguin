@@ -1,0 +1,61 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+
+    <!-- Create form view for O2O Instance Fixed Value with chatter -->
+    <record id="foreg_o2o_instance_fixed_value_form_chatter" model="ir.ui.view">
+        <field name="name">foreg.o2o.instance.fixed.value.form.chatter</field>
+        <field name="model">foreg.o2o.instance.fixed.value</field>
+        <field name="arch" type="xml">
+            <form string="4EG O2O Instance Fixed Value">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="instance_id" />
+                            <field name="model_id" />
+                            <field
+                                name="field_id"
+                                domain="[('model_id', '=', model_id)]"
+                            />
+                        </group>
+                        <group>
+                            <field name="value" />
+                            <field name="active" />
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Create tree view for O2O Instance Fixed Value -->
+    <record id="foreg_o2o_instance_fixed_value_tree_chatter" model="ir.ui.view">
+        <field name="name">foreg.o2o.instance.fixed.value.tree.chatter</field>
+        <field name="model">foreg.o2o.instance.fixed.value</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="instance_id" />
+                <field name="model_id" />
+                <field name="field_id" />
+                <field name="value" />
+                <field name="active" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>

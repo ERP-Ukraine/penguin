@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <!-- Form View -->
+    <record id="foreg_data_import_export_view_form_inherit" model="ir.ui.view">
+        <field name="name">foreg.data.import.export.view.form.inherit</field>
+        <field name="model">foreg.data.import.export</field>
+        <field
+            name="inherit_id"
+            ref="foreg_data_import_export.foreg_data_import_export_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="model" position="after">
+                <field name="o2o_instance_id" />
+            </field>
+        </field>
+    </record>
+
+    <!-- Menu (hidden as per requirements, but defined for reference) -->
+    <menuitem
+        id="foreg_data_import_export_menu"
+        name="Import/Export Data"
+        action="foreg_data_import_export.foreg_data_import_export_action"
+        parent="foreg_o2o_sync.foreg_o2o_menu_root"
+        groups="base.group_system"
+        sequence="10"
+    />
+</odoo>

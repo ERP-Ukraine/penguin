@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+
+    <record id="view_saas_order_tree" model="ir.ui.view">
+        <field name="name">view.saas.order.list</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="priority">100</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="saas_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_saas_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.saas.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+            </xpath>
+        </field>
+    </record>
+
+    <record id="saas_quotation_action" model="ir.actions.act_window">
+        <field name="name">Quotations</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="view_id" ref="view_saas_order_tree" />
+        <field name="domain">[('saas_id', 'not in', [0, False])]</field>
+        <field
+            name="search_view_id"
+            ref="sale.sale_order_view_search_inherit_quotation"
+        />
+        <field name="context">{'search_default_draft': 1}</field>
+    </record>
+
+    <record id="saas_sale_order_action" model="ir.actions.act_window">
+        <field name="name">Sale Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">list,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="view_id" ref="view_saas_order_tree" />
+        <field name="domain">[('saas_id', 'not in', [0, False])]</field>
+        <field
+            name="search_view_id"
+            ref="sale.sale_order_view_search_inherit_quotation"
+        />
+        <field name="context">{'search_default_sales': 1}</field>
+    </record>
+
+    <menuitem
+        id="saas_quotation_menu"
+        name="Quotations"
+        action="saas_quotation_action"
+        parent="saas_sales_menu"
+        sequence="1"
+    />
+
+    <menuitem
+        id="saas_sale_orders_menu"
+        name="Sale Orders"
+        action="saas_sale_order_action"
+        parent="saas_sales_menu"
+        sequence="2"
+    />
+
+</odoo>

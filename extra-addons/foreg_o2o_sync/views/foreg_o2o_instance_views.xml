@@ -1,0 +1,176 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <!-- List View -->
+    <record id="foreg_o2o_instance_view_tree" model="ir.ui.view">
+        <field name="name">foreg.o2o.instance.list</field>
+        <field name="model">foreg.o2o.instance</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="host" />
+                <field name="username" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="foreg_o2o_instance_view_form" model="ir.ui.view">
+        <field name="name">foreg.o2o.instance.form</field>
+        <field name="model">foreg.o2o.instance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_authenticate"
+                        string="Authenticate"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_refresh_token"
+                        string="Refresh Token"
+                        type="object"
+                        class="btn-secondary"
+                    />
+                    <button
+                        name="action_import_request"
+                        string="Import Request"
+                        type="object"
+                        class="btn-secondary"
+                        confirm="Are you sure to execute Importing Request?"
+                    />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                            name="action_view_cron"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-calendar"
+                            help="Scheduled Actions"
+                        >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="active_cron_count" />/<field
+                                        name="total_cron_count"
+                                    />
+                                </span>
+                                <span class="o_stat_text">
+                                    Scheduled Actions
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group string="Instance">
+                            <field name="host" />
+                            <field name="username" required="True" />
+                            <field name="password" password="True" required="True" />
+                            <field
+                                name="openapi_json_file"
+                                filename="openapi_filename"
+                            />
+                            <field name="openapi_filename" invisible="1" />
+                        </group>
+                        <group string="Token">
+                            <field name="access_token" />
+                            <field name="expires_in" />
+                            <field name="refresh_token" />
+                            <field name="refresh_expires_in" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Requests">
+                            <field name="request_ids" />
+                        </page>
+                        <page string="SAAS => Odoo" invisible="1">
+                            <group>
+                                <group string="Sales Orders">
+                                    <field name="is_import_order" />
+                                    <field
+                                        name="order_ids"
+                                        invisible="not is_import_order"
+                                    />
+                                    <field
+                                        name="orders_from_date"
+                                        style="width:50%"
+                                        invisible="not is_import_order"
+                                        required="is_import_order"
+                                    />
+                                    <field
+                                        name="orders_to_date"
+                                        style="width:50%"
+                                        invisible="not is_import_order"
+                                    />
+                                </group>
+                                <group string="Catalogs">
+                                    <field name="is_import_template" />
+                                    <field name="is_import_catalogs" />
+                                </group>
+                            </group>
+                            <group>
+                                <group string="Products">
+                                    <field name="is_import_product" />
+                                    <field name="is_import_attributes" />
+                                    <field name="is_import_property" />
+                                    <field name="is_import_product_brand" />
+                                    <field name="is_import_product_img" />
+                                    <field
+                                        name="product_tmpl_ids"
+                                        string="Products"
+                                        widget="many2many_tags"
+                                        invisible="not is_import_product_img"
+                                    />
+                                    <field name="is_import_price_items" />
+                                </group>
+                            </group>
+                        </page>
+                        <page name="fixed_value" string="Fixed Values">
+                            <field name="fixed_value_ids">
+                                <list editable="bottom">
+                                    <field name="instance_id" optional="hide" />
+                                    <field name="company_id" optional="hide" />
+                                    <field name="team_id" optional="hide" />
+                                    <field name="model_id" />
+                                    <field name="field_id" />
+                                    <field name="value" />
+                                    <field name="active" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="foreg_o2o_instance_view_search" model="ir.ui.view">
+        <field name="name">foreg.o2o.instance.search</field>
+        <field name="model">foreg.o2o.instance</field>
+        <field name="arch" type="xml">
+            <search string="4EG O2O Instance Search">
+                <field name="host" />
+                <field name="username" />
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="foreg_o2o_instance_action" model="ir.actions.act_window">
+        <field name="name">4EG O2O Instances</field>
+        <field name="res_model">foreg.o2o.instance</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="foreg_o2o_instance_view_search" />
+    </record>
+</odoo>

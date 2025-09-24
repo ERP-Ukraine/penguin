@@ -1,0 +1,52 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <record id="foreg_webhook_code_template_o2o" model="foreg.webhook.code.template">
+        <field name="name">Calling O2O Requests</field>
+        <field name="description">Note: need to set request_id in the dict</field>
+        <field name="code">
+<![CDATA[
+request_id_by_model = {
+    "res.partner": 0,
+    "res.partner.title": 0,
+    "res.partner.category": 0,
+    "sale.order": 0,
+    "sale.order.line": 0,
+    "product.template": 0,
+    "product.product": 0,
+    "product.pricelist": 0,
+}
+raise_if_request_fail = False
+for item in payload:
+    model = item.get("model")
+    method = item.get("method")
+    ids = item.get("ids")
+    if method in ("create", "write"):
+        domain = [("id", "in", ids)]
+        if "active" in env[model]._fields:
+            domain += ["|", ("active", "=", True), ("active", "=", False)]
+        request_id = request_id_by_model.get(model)
+        if not request_id:
+            continue
+        env["foreg.o2o.request"].browse(request_id).action_send_request(
+            read_filter=domain,
+            read_offset=0,
+            read_limit=9999,
+            raise_if_fail=raise_if_request_fail
+        )
+    if method == "unlink":
+        pass # TODO: handle unlink action
+ ]]>
+        </field>
+    </record>
+</odoo>

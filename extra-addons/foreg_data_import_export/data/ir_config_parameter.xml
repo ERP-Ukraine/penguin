@@ -1,0 +1,24 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <record id="4egrowth_data_import_export" model="ir.config_parameter">
+        <field name="key">4egrowth_data_import_export_default_model</field>
+        <field name="value">{
+    "ir.model": ["name", "model", "order"],
+    "ir.model.fields": ["name", "field_description", "ttype", "model", "model_id", "relation", "relation_table", "column1", "column2", "relation_field", "group_expand", "on_delete", "domain", "related", "required", "store", "readonly", "index", "copied", "help", "translate", "depends", "compute"],
+    "ir.mode.fields.selection": ["name", "value"],
+    "ir.cron": ["name", "model", "model_id", "function", "args", "interval_number", "interval_type", "numbercall", "doall", "active", "o2o_request_id", "o2o_workflow_id", "code"],
+    "ir.actions.server": ["name", "model_id", "state", "code", "context", "sequence", "active", "o2o_request_id"]
+}</field>
+    </record>
+</odoo>

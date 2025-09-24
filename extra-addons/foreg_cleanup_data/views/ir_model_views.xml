@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+###############################################################################
+#
+#    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+#    All Rights Reserved.
+#
+#    This software is proprietary and confidential. Unauthorized copying,
+#    modification, distribution, or use of this software, via any medium,
+#    is strictly prohibited without the express written permission of
+#    4E Growth GmbH.
+#
+#    This software is provided under a license agreement and may be used
+#    only in accordance with the terms of said agreement.
+#
+###############################################################################
+-->
+<odoo>
+    <record id="ir_model_view_form" model="ir.ui.view">
+        <field name="name">ir.model.view.form.autocleanup</field>
+        <field name="model">ir.model</field>
+        <field name="inherit_id" ref="base.view_model_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Autocleanup" name="autocleanup">
+                    <div
+                        class="alert alert-warning text-center"
+                        role="alert"
+                        invisible="not enable_cleanup"
+                    >
+                        <strong
+                        >Warning!</strong> Be careful when choosing between the two cleanup domain types: Fixed and Code.
+                        <br />
+                        Leaving the value empty for either Fixed Domain or Code Domain may result in deleting all records in this model.
+                        <br />
+                        Enable or disable the Enable Autocleanup checkbox to prevent automatic deletion of records based on the domain below.
+                    </div>
+                    <group>
+                        <field name="enable_cleanup" />
+                    </group>
+                    <group invisible="not enable_cleanup">
+                        <group>
+                            <field
+                                name="cleanup_domain_type"
+                                string="Domain Type"
+                                widget="radio"
+                            />
+                        </group>
+                        <group>
+                            <field name="cleanup_batch_size" string="Batch Size" />
+                            <field name="cleanup_batch_count" string="Batch Count" />
+                            <field
+                                name="cleanup_order"
+                                string="Cleanup Order"
+                                widget="radio"
+                            />
+                        </group>
+                        <div class="d-flex mb-1">
+                            <button
+                                name="action_preview_cleanup_domain"
+                                string="Preview Domain"
+                                type="object"
+                                class="btn-primary me-1"
+                                icon="fa-eye"
+                                invisible="cleanup_domain_type != 'code'"
+                            />
+                            <button
+                                name="action_view_cron"
+                                string="View Scheduled Actions"
+                                type="object"
+                                class="btn-secondary"
+                                icon="fa-clock-o"
+                            />
+                        </div>
+                        <group colspan="2">
+                            <field
+                                name="cleanup_fixed_domain"
+                                string="Fixed Domain"
+                                widget="domain"
+                                options="{'model': 'model'}"
+                                invisible="cleanup_domain_type != 'fixed'"
+                            />
+                            <field
+                                name="cleanup_code_domain"
+                                string="Python Code Domain"
+                                widget="ace"
+                                invisible="cleanup_domain_type != 'code'"
+                                options="{'mode': 'python'}"
+                            />
+                            <div
+                                invisible="cleanup_domain_type != 'code'"
+                                colspan="2"
+                                class="mt-3"
+                            >
+                                <p><strong>Available Variables:</strong></p>
+                                <ul class="pl-3">
+                                    <li><code
+                                        >env</code>: environment on which the action is triggered</li>
+                                    <li><code
+                                        >model</code>: model of the record on which the action is triggered; is a void recordset</li>
+                                    <li><code>time</code>, <code>datetime</code>, <code
+                                        >dateutil</code>, <code
+                                        >timezone</code>: useful Python libraries</li>
+                                    <li><code
+                                        >float_compare()</code>: utility function to compare floats based on a specific precision</li>
+                                    <li><code
+                                        >log(message, level='info')</code>: logging function to record debug information in <code
+                                        >ir.logging</code> table</li>
+                                    <li><code
+                                        >_logger.info(message)</code>: logger to emit messages in server logs</li>
+                                    <li><code>user</code>: current user</li>
+                                    <li><code>uid</code>: current user id</li>
+                                    <li><code>b64decode</code>, <code
+                                        >b64encode</code>: useful libraries</li>
+                                    <li><code
+                                        >UserError</code>: exception class for raising user-facing warning messages</li>
+                                    <li><code
+                                        >Command</code>: x2many commands namespace</li>
+                                    <li>To return a domain, assign: <code
+                                        >domain = [...]</code></li>
+                                </ul>
+                                <div class="mt-3">
+                                    <p><strong>Example Code:</strong></p>
+                                    <pre
+                                        class="bg-light p-2 border rounded"
+                                        style="white-space: pre-wrap"
+                                    >
+<![CDATA[
+# Delete records older than 30 days
+now = datetime.datetime.now()
+minus_30 = now - dateutil.relativedelta.relativedelta(days=30)
+domain = [('create_date', '<=', minus_30)]
+]]>
+                                    </pre>
+                                </div>
+                            </div>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_foreg_o2o_workflow_settings,foreg.o2o.workflow settings,model_foreg_o2o_workflow,base.group_system,1,1,1,1
+access_foreg_o2o_job_settings,foreg.o2o.job settings,model_foreg_o2o_workflow_job,base.group_system,1,1,1,1

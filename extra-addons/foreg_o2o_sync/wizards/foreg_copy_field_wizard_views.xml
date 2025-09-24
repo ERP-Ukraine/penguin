@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <!-- Wizard View -->
+    <record id="foreg_copy_field_wizard_view_form" model="ir.ui.view">
+        <field name="name">foreg.copy.field.wizard.view.form</field>
+        <field name="model">foreg.copy.field.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="field_id" readonly="1" force_save="1" />
+                        <field name="field_type" />
+                        <field name="model_id" />
+                        <field name="apply_model_ids" widget="many2many_tags" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        string="Apply"
+                        type="object"
+                        name="action_apply"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_foreg_copy_field_wizard" model="ir.actions.act_window">
+        <field name="name">Copy Field Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">foreg.copy.field.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
