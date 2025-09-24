@@ -1,0 +1,95 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <record id="foreg_o2o_request_record_view_form" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.record.view.form</field>
+        <field name="model">foreg.o2o.request.record</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="log_id" />
+                            <field name="method_applied" />
+                            <field name="res_ref" />
+                            <field name="res_model" />
+                            <field name="res_id" />
+                        </group>
+                        <group>
+                            <field name="process_values_json" invisible="1" />
+                            <field
+                                name="process_values"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="foreg_o2o_request_record_view_tree" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.record.view.list</field>
+        <field name="model">foreg.o2o.request.record</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="log_id" optional="hide" />
+                <field name="method_applied" />
+                <field name="res_ref" />
+                <field name="res_model" />
+                <field name="res_id" />
+            </list>
+        </field>
+    </record>
+
+    <record id="foreg_o2o_request_record_view_search" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.record.view.search</field>
+        <field name="model">foreg.o2o.request.record</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="method_applied" />
+                <field name="res_model" />
+                <field name="res_id" />
+                <separator />
+                <filter
+                    name="filter_log_id"
+                    string="Log"
+                    context="{'group_by': 'log_id'}"
+                />
+                <filter
+                    name="filter_method_applied"
+                    string="Method Applied"
+                    context="{'group_by': 'method_applied'}"
+                />
+                <filter
+                    name="filter_res_model"
+                    string="Related Model"
+                    context="{'group_by': 'res_model'}"
+                />
+                <filter
+                    name="filter_res_id"
+                    string="Related ID"
+                    context="{'group_by': 'res_id'}"
+                />
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="foreg_o2o_request_record_action" model="ir.actions.act_window">
+        <field name="name">4EG O2O Request Records</field>
+        <field name="res_model">foreg.o2o.request.record</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

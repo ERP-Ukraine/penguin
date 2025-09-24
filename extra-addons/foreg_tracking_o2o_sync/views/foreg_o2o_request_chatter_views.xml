@@ -1,0 +1,31 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+
+    <record id="foreg_o2o_request_form_inherit" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.form.inherit</field>
+        <field name="model">foreg.o2o.request</field>
+        <field name="inherit_id" ref="foreg_o2o_sync.foreg_o2o_request_view_form" />
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

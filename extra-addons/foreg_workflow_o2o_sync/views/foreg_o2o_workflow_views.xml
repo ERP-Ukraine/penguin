@@ -1,0 +1,134 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <!-- Workflow Form View -->
+    <record id="foreg_o2o_workflow_view_form" model="ir.ui.view">
+        <field name="name">foreg.o2o.workflow.view.form</field>
+        <field name="model">foreg.o2o.workflow</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_run_workflow"
+                        string="Run Workflow"
+                        class="btn-primary"
+                        type="object"
+                        icon="fa-play"
+                    />
+                    <button
+                        name="action_generate_cron"
+                        string="Generate Scheduled Action"
+                        class="btn-primary"
+                        type="object"
+                        icon="fa-clock-o"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field
+                                name="name"
+                                placeholder="Workflow Name"
+                                required="1"
+                            />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="description" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Jobs" name="jobs">
+                            <field
+                                name="job_ids"
+                                context="{'default_workflow_id': id, 'list_view_ref': 'foreg_workflow_o2o_sync.foreg_o2o_workflow_job_view_tree_many2one', 'hide_workflow_id': True}"
+                            />
+                        </page>
+                        <page string="Crons" name="crons">
+                            <field
+                                name="cron_ids"
+                                context="{'default_o2o_workflow_id': id}"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Workflow List View -->
+    <record id="foreg_o2o_workflow_view_tree" model="ir.ui.view">
+        <field name="name">foreg.o2o.workflow.view.list</field>
+        <field name="model">foreg.o2o.workflow</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="active" column_invisible="1" />
+                <field name="company_id" groups="base.group_multi_company" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Workflow Search View -->
+    <record id="foreg_o2o_workflow_view_search" model="ir.ui.view">
+        <field name="name">foreg.o2o.workflow.view.search</field>
+        <field name="model">foreg.o2o.workflow</field>
+        <field name="arch" type="xml">
+            <search string="Search Foreg O2O Workflows">
+                <field name="name" />
+                <separator />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    string="Inactive"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Company"
+                        name="company"
+                        domain="[]"
+                        context="{'group_by': 'company_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for workflow -->
+    <record id="foreg_o2o_workflow_action" model="ir.actions.act_window">
+        <field name="name">Workflows</field>
+        <field name="res_model">foreg.o2o.workflow</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="foreg_o2o_workflow_view_search" />
+        <field name="context" eval="{'active_test': False}" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new workflow
+            </p>
+            <p>
+                Workflows help you define a sequence of jobs to be executed
+            </p>
+        </field>
+    </record>
+</odoo>

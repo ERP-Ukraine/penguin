@@ -1,0 +1,241 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <!-- Workflow Job Form View -->
+    <record id="foreg_o2o_workflow_job_view_form" model="ir.ui.view">
+        <field name="name">foreg.o2o.workflow.job.view.form</field>
+        <field name="model">foreg.o2o.workflow.job</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Job Name" required="1" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="general_info" string="General Information">
+                            <field
+                                name="workflow_id"
+                                invisible="context.get('hide_workflow_id')"
+                            />
+                            <field name="sequence" />
+                            <field name="active" />
+                            <field name="state" readonly="1" />
+                        </group>
+                        <group name="time_info" string="Timeline">
+                            <field name="datetime_start" readonly="1" />
+                            <field name="datetime_end" readonly="1" />
+                            <field name="duration" readonly="1" />
+                        </group>
+                    </group>
+                    <group>
+                        <group name="group_action" string="Action">
+                            <field name="action_type" />
+                            <field
+                                name="instance_id"
+                                invisible="action_type != 'send_request'"
+                            />
+                            <field
+                                name="request_id"
+                                invisible="action_type != 'send_request'"
+                            />
+                            <field
+                                name="webhook_url"
+                                invisible="action_type != 'call_webhook'"
+                            />
+                        </group>
+                        <group name="group_condition" string="Condition">
+                            <field name="execute_by" />
+                            <field
+                                name="job_id"
+                                invisible="execute_by in ['sequence', 'python_script']"
+                                domain="[('workflow_id', '=', workflow_id)]"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        string="Condition Script"
+                        invisible="execute_by != 'python_script'"
+                    >
+                        <field
+                            name="execute_by_python_script"
+                            widget="ace"
+                            options="{'mode': 'python'}"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
+                    <group
+                        string="Action Script"
+                        invisible="action_type != 'python_script'"
+                    >
+                        <field
+                            name="action_python_script"
+                            widget="ace"
+                            options="{'mode': 'python'}"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                    </group>
+                    <notebook>
+                        <page string="Input" name="input">
+                            <field name="input_json" invisible="1" />
+                            <field
+                                name="input_json_display"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </page>
+                        <page string="Output" name="output">
+                            <field name="output_json" invisible="1" />
+                            <field
+                                name="output_json_display"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Workflow Job List View -->
+    <record id="foreg_o2o_workflow_job_view_tree" model="ir.ui.view">
+        <field name="name">foreg.o2o.workflow.job.view.list</field>
+        <field name="model">foreg.o2o.workflow.job</field>
+        <field name="arch" type="xml">
+            <list
+                decoration-info="state=='pending'"
+                decoration-success="state=='done'"
+                decoration-danger="state=='failed'"
+                decoration-muted="state=='cancelled'"
+            >
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+                <field name="workflow_id" optional="hide" />
+                <field name="execute_by" />
+                <field name="datetime_start" />
+                <field name="datetime_end" />
+                <field name="duration" widget="float_time" />
+                <field name="state" />
+            </list>
+        </field>
+    </record>
+
+    <record id="foreg_o2o_workflow_job_view_tree_many2one" model="ir.ui.view">
+        <field name="name">foreg.o2o.workflow.job.view.list.many2one</field>
+        <field name="model">foreg.o2o.workflow.job</field>
+        <field name="inherit_id" ref="foreg_o2o_workflow_job_view_tree" />
+        <field name="mode">primary</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <list position="inside">
+                <field name="active" column_invisible="1" />
+                <button
+                    name="action_archive"
+                    type="object"
+                    icon="fa-toggle-on"
+                    title="Archive"
+                    invisible="not active"
+                />
+                <button
+                    name="action_unarchive"
+                    type="object"
+                    icon="fa-toggle-off"
+                    title="Unarchive"
+                    invisible="active"
+                />
+            </list>
+        </field>
+    </record>
+
+    <!-- Workflow Job Search View -->
+    <record id="foreg_o2o_workflow_job_view_search" model="ir.ui.view">
+        <field name="name">foreg.o2o.workflow.job.view.search</field>
+        <field name="model">foreg.o2o.workflow.job</field>
+        <field name="arch" type="xml">
+            <search string="Search Workflow Jobs">
+                <field name="name" />
+                <field name="workflow_id" />
+                <separator />
+                <filter
+                    string="Pending"
+                    name="pending"
+                    domain="[('state', '=', 'pending')]"
+                />
+                <filter string="Done" name="done" domain="[('state', '=', 'done')]" />
+                <filter
+                    string="Failed"
+                    name="failed"
+                    domain="[('state', '=', 'failed')]"
+                />
+                <filter
+                    string="Cancelled"
+                    name="cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                />
+                <separator />
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    string="Inactive"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+                <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Workflow"
+                        name="workflow"
+                        domain="[]"
+                        context="{'group_by': 'workflow_id'}"
+                    />
+                    <filter
+                        string="State"
+                        name="state"
+                        domain="[]"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        string="Execute By"
+                        name="execute_by"
+                        domain="[]"
+                        context="{'group_by': 'execute_by'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+     <!-- Action for workflow jobs -->
+    <record id="foreg_o2o_workflow_job_action" model="ir.actions.act_window">
+        <field name="name">Workflow Jobs</field>
+        <field name="res_model">foreg.o2o.workflow.job</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="foreg_o2o_workflow_job_view_search" />
+        <field name="context" eval="{'active_test': False}" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new workflow job
+            </p>
+            <p>
+                Jobs are the individual tasks to be executed as part of a workflow
+            </p>
+        </field>
+    </record>
+</odoo>

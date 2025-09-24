@@ -1,0 +1,36 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <menuitem id="foreg_webhook_menu_root" name="4EG Webhooks" sequence="10" />
+    <menuitem
+        id="foreg_webhook_menu_webhook"
+        name="Webhooks"
+        parent="foreg_webhook_menu_root"
+        action="foreg_webhook_action"
+        sequence="10"
+    />
+    <menuitem
+        id="foreg_webhook_menu_queue"
+        name="Queues"
+        parent="foreg_webhook_menu_root"
+        action="foreg_webhook_queue_action"
+        sequence="20"
+    />
+    <menuitem
+        id="foreg_webhook_menu_code_template"
+        name="Code Templates"
+        parent="foreg_webhook_menu_root"
+        action="foreg_webhook_code_template_action"
+        sequence="30"
+    />
+</odoo>

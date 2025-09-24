@@ -1,0 +1,221 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <record id="foreg_o2o_request_field_view_form" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.field.view.form</field>
+        <field name="model">foreg.o2o.request.field</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="request_id" />
+                            <field name="request_method" />
+                            <field name="model_id" />
+                            <field name="model_name" />
+                        </group>
+                        <group>
+                            <field name="source_field_id" />
+                            <field name="source_field_name" />
+                            <field name="source_field_type" />
+                            <field name="target_field_id" />
+                            <field name="target_field_name" />
+                        </group>
+                        <group>
+                            <field name="is_domain_field" />
+                            <field name="context" />
+                            <field name="use_in_create" />
+                            <field name="use_in_write" />
+                            <field name="apply_for_root_model" />
+                            <field name="apply_for_relation_model" />
+                            <field
+                                name="related_field_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                            />
+                            <field name="domain_related_field_ids" invisible="1" />
+                            <field name="active" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="foreg_o2o_request_field_view_tree" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.field.view.list</field>
+        <field name="model">foreg.o2o.request.field</field>
+        <field name="arch" type="xml">
+            <list editable="bottom">
+                <field name="request_id" optional="hide" column_invisible="1" />
+                <field name="request_method" optional="hide" />
+                <field name="model_id" options="{'no_create': True, 'no_open': True}" />
+                <field
+                    name="source_field_id"
+                    options="{'no_quick_create': True}"
+                    context="{'default_model_id': model_id, 'default_ttype': 'char', 'create_from_o2o': True}"
+                />
+                <field name="source_field_name" />
+                <field
+                    name="target_field_id"
+                    options="{'no_quick_create': True}"
+                    context="{'default_model_id': model_id, 'default_ttype': 'char', 'create_from_o2o': True}"
+                />
+                <field name="target_field_name" />
+                <field name="is_domain_field" />
+                <field name="use_in_create" />
+                <field name="use_in_write" />
+                <field name="apply_for_root_model" optional="hide" />
+                <field name="apply_for_relation_model" optional="hide" />
+                <field
+                    name="related_field_ids"
+                    optional="hide"
+                    widget="many2many_tags"
+                    options="{'no_create': True}"
+                />
+                <field
+                    name="domain_related_field_ids"
+                    optional="hide"
+                    widget="many2many_tags"
+                />
+                <button
+                    name="action_open_form"
+                    type="object"
+                    icon="fa-pencil"
+                    title="Open Form"
+                />
+                <button
+                    name="action_archive"
+                    type="object"
+                    icon="fa-toggle-on"
+                    title="Archive"
+                    invisible="not active"
+                />
+                <button
+                    name="action_unarchive"
+                    type="object"
+                    icon="fa-toggle-off"
+                    title="Unarchive"
+                    invisible="active"
+                />
+                <field name="active" column_invisible="1" />
+            </list>
+        </field>
+    </record>
+    <record id="foreg_o2o_request_field_view_tree_update" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.field.view.list.update</field>
+        <field name="model">foreg.o2o.request.field</field>
+        <field name="mode">primary</field>
+        <field
+            name="inherit_id"
+            ref="foreg_o2o_sync.foreg_o2o_request_field_view_tree"
+        />
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <field name="model_id" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="use_in_create" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="use_in_write" position="attributes">
+                <attribute name="column_invisible">1</attribute>
+            </field>
+            <field name="active" position="before">
+                <field name="context" />
+            </field>
+        </field>
+    </record>
+    <record id="foreg_o2o_request_field_view_tree_main" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.field.view.list.main</field>
+        <field name="model">foreg.o2o.request.field</field>
+        <field
+            name="inherit_id"
+            ref="foreg_o2o_sync.foreg_o2o_request_field_view_tree"
+        />
+        <field name="mode">primary</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <field name="request_id" position="attributes">
+                <attribute name="optional">show</attribute>
+                <attribute name="column_invisible">0</attribute>
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="active" position="before">
+                <field name="context" />
+            </field>
+        </field>
+    </record>
+    <record id="foreg_o2o_request_field_view_search" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.field.search</field>
+        <field name="model">foreg.o2o.request.field</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="source_field_name" />
+                <field name="source_field_id" />
+                <field name="target_field_name" />
+                <field name="target_field_id" />
+                <filter
+                    name="filter_archived"
+                    string="Archived"
+                    domain="[('active','=',False)]"
+                />
+                <separator />
+                <filter
+                    name="filter_is_domain_field"
+                    string="Is Domain Field"
+                    domain="[('is_domain_field','=',True)]"
+                />
+                <separator />
+                <filter
+                    name="filter_use_in_create"
+                    string="Use in Create"
+                    domain="[('use_in_create','=',True)]"
+                />
+                <filter
+                    name="filter_use_in_write"
+                    string="Use in Write"
+                    domain="[('use_in_write','=',True)]"
+                />
+                <separator />
+                <filter
+                    name="group_by_request_id"
+                    string="Request"
+                    domain="[]"
+                    context="{'group_by': 'request_id'}"
+                />
+                <filter
+                    name="group_by_request_method"
+                    string="Method"
+                    domain="[]"
+                    context="{'group_by': 'request_method'}"
+                />
+                <filter
+                    name="group_by_model_id"
+                    string="Model"
+                    domain="[]"
+                    context="{'group_by': 'model_id'}"
+                />
+            </search>
+        </field>
+    </record>
+    <!-- Action -->
+    <record id="foreg_o2o_request_field_action" model="ir.actions.act_window">
+        <field name="name">4EG O2O Request Fields</field>
+        <field name="res_model">foreg.o2o.request.field</field>
+        <field name="view_mode">list,form</field>
+        <field
+            name="context"
+        >{'list_view_ref': 'foreg_o2o_sync.foreg_o2o_request_field_view_tree_main'}</field>
+    </record>
+</odoo>

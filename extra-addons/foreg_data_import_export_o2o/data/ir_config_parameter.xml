@@ -1,0 +1,35 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <record id="4egrowth_data_import_export_o2o" model="ir.config_parameter">
+        <field name="key">4egrowth_data_import_export_o2o_models</field>
+        <field name="value">{
+    "foreg.o2o.instance": ["name", "host", "client_id", "client_secret", "token_type", "request_ids", "fixed_value_ids"],
+    "foreg.o2o.instance.fixed.value": ["instance_id", "model_id", "field_id", "value", "active"],
+    "foreg.o2o.request": ["sequence", "url", "name", "method", "model_id", "instance_id", "id_record", "read_filter", "read_offset", "read_offset_step", "read_limit", "read_order", "read_exclude_fields", "read_include_fields", "values", "method_name", "timeout", "log_ids", "field_ids", "cron_ids", "server_action_id", "mail_template_id"],
+    "foreg.o2o.request.field": ["request_id", "request_method", "model_id", "source_field_id", "source_field_name", "target_field_id", "target_field_name", "is_domain_field", "context", "use_in_create", "use_in_write", "active", "apply_for_root_model", "apply_for_relation_model", "related_field_ids"],
+    "foreg.o2o.workflow": ["active", "name", "cron_ids"],
+    "foreg.o2o.workflow.job": ["action_python_script", "action_type", "active", "execute_by", "execute_by_python_script", "instance_id", "job_id", "name", "request_id", "sequence", "webhook_url", "workflow_id"]
+}</field>
+    </record>
+
+    <record
+        id="4egrowth_data_import_export_o2o_export_sensitive_information"
+        model="ir.config_parameter"
+    >
+        <field name="key">o2o_export_sensitive_information</field>
+        <field name="value">{
+    "foreg.o2o.instance": ["username", "password", "access_token", "refresh_token", "expires_in", "refresh_expires_in", "openapi_filename", "token_sync_datetime"]
+}</field>
+    </record>
+</odoo>

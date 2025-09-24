@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+
+    <record id="product_product_saas_action" model="ir.actions.act_window">
+        <field name="name">SaaS Products Variants</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">list,kanban,form,activity</field>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+        <field name="domain">[('saas_id', 'not in', [0, False])]</field>
+        <field name="view_id" ref="product.product_product_tree_view" />
+        <field name="search_view_id" ref="product.product_search_form_view" />
+    </record>
+
+    <menuitem
+        id="saas_products_menu"
+        name="Product Variants"
+        action="product_product_saas_action"
+        parent="foreg_o2o_sync.saas_shops_menu"
+        sequence="10"
+    />
+
+</odoo>

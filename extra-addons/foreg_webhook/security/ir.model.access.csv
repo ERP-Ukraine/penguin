@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_foreg_webhook,foreg.webhook,model_foreg_webhook,base.group_user,1,1,1,1
+access_foreg_webhook_queue,foreg.webhook.queue,model_foreg_webhook_queue,base.group_user,1,1,0,1
+access_foreg_webhook_code_template,foreg.webhook.code.template,model_foreg_webhook_code_template,base.group_user,1,1,1,1

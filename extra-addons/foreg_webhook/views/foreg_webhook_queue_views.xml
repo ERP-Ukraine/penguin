@@ -1,0 +1,141 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <record id="foreg_webhook_queue_view_form" model="ir.ui.view">
+        <field name="name">foreg.webhook.queue.view.form</field>
+        <field name="model">foreg.webhook.queue</field>
+        <field name="arch" type="xml">
+            <form string="Webhook Queue">
+                <header>
+                    <button
+                        name="action_retry"
+                        type="object"
+                        string="Retry"
+                        class="btn-primary"
+                        invisible="state not in ['failed', 'retry']"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="webhook_id" />
+                            <field name="webhook_trigger" />
+                            <field name="create_date" />
+                        </group>
+                        <group>
+                            <field name="retry_count" />
+                            <field name="max_retries" />
+                            <field name="next_retry" invisible="not next_retry" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="error_message" invisible="not error_message" />
+                        <field name="payload" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="foreg_webhook_queue_view_tree" model="ir.ui.view">
+        <field name="name">foreg.webhook.queue.view.list</field>
+        <field name="model">foreg.webhook.queue</field>
+        <field name="arch" type="xml">
+            <list
+                decoration-danger="state == 'failed'"
+                decoration-warning="state == 'retry'"
+                decoration-info="state == 'pending'"
+                decoration-success="state == 'passed'"
+            >
+                <field name="create_date" />
+                <field name="webhook_id" />
+                <field name="webhook_trigger" />
+                <field name="state" />
+                <field name="retry_count" />
+                <field name="next_retry" optional="show" />
+                <button
+                    name="action_retry"
+                    type="object"
+                    string="Retry"
+                    class="btn-primary"
+                    invisible="state not in ['failed', 'retry']"
+                />
+            </list>
+        </field>
+    </record>
+    <record id="foreg_webhook_queue_view_search" model="ir.ui.view">
+        <field name="name">foreg.webhook.queue.view.search</field>
+        <field name="model">foreg.webhook.queue</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="webhook_id" />
+                <field name="webhook_trigger" />
+                <field name="state" />
+                <separator />
+                <filter
+                    string="Pending"
+                    name="pending"
+                    domain="[('state', '=', 'pending')]"
+                />
+                <filter
+                    string="Retry"
+                    name="retry"
+                    domain="[('state', '=', 'retry')]"
+                />
+                <filter
+                    string="Failed"
+                    name="failed"
+                    domain="[('state', '=', 'failed')]"
+                />
+                <filter
+                    string="Passed"
+                    name="passed"
+                    domain="[('state', '=', 'passed')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Webhook"
+                        name="group_by_webhook"
+                        context="{'group_by': 'webhook_id'}"
+                    />
+                    <filter
+                        string="State"
+                        name="group_by_state"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        string="Creation Date"
+                        name="group_by_create_date"
+                        context="{'group_by': 'create_date:day'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="foreg_webhook_queue_action" model="ir.actions.act_window">
+        <field name="name">4EG Webhook Queues</field>
+        <field name="res_model">foreg.webhook.queue</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="foreg_webhook_queue_server_action" model="ir.actions.server">
+        <field name="name">Process Webhook Queue</field>
+        <field name="model_id" ref="foreg_webhook.model_foreg_webhook_queue" />
+        <field name="binding_model_id" ref="foreg_webhook.model_foreg_webhook_queue" />
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                records.action_process_webhook_queue(force_run=True)
+        </field>
+    </record>
+</odoo>

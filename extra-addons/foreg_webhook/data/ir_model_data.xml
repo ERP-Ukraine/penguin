@@ -1,0 +1,28 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo noupdate="1">
+    <record id="model_foreg_webhook_queue" model="ir.model">
+        <field name="enable_cleanup" eval="True" />
+        <field name="cleanup_order">id_asc</field>
+        <field name="cleanup_domain_type">code</field>
+        <field name="cleanup_code_domain">
+<![CDATA[
+now = datetime.datetime.now()
+minus_30 = now - dateutil.relativedelta.relativedelta(days=30)
+domain = [('create_date', '<=',  minus_30)]
+]]>
+        </field>
+        <field name="cleanup_batch_count">10</field>
+        <field name="cleanup_batch_size">100</field>
+    </record>
+</odoo>

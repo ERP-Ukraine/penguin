@@ -1,0 +1,58 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <!-- Menu -->
+    <menuitem id="foreg_o2o_menu_root" name="4EG Odoo to Odoo" sequence="20" />
+    <menuitem
+        id="foreg_o2o_instance_menu"
+        name="Instances"
+        parent="foreg_o2o_menu_root"
+        action="foreg_o2o_instance_action"
+        sequence="2"
+    />
+    <menuitem
+        id="foreg_o2o_request_menu"
+        name="Requests"
+        parent="foreg_o2o_menu_root"
+        action="foreg_o2o_request_action"
+        sequence="3"
+    />
+    <menuitem
+        id="foreg_o2o_request_field_menu"
+        name="Mappings"
+        parent="foreg_o2o_menu_root"
+        action="foreg_o2o_request_field_action"
+        sequence="4"
+    />
+    <menuitem
+        id="foreg_o2o_request_log_menu"
+        name="Logs"
+        parent="foreg_o2o_menu_root"
+        action="foreg_o2o_request_log_action"
+        sequence="5"
+    />
+    <menuitem
+        id="foreg_o2o_request_record_menu"
+        name="Records"
+        parent="foreg_o2o_menu_root"
+        action="foreg_o2o_request_record_action"
+        sequence="6"
+    />
+    <menuitem
+        id="ir_model_fields_menu"
+        name="Fields"
+        parent="foreg_o2o_menu_root"
+        action="base.action_model_fields"
+        sequence="7"
+    />
+</odoo>

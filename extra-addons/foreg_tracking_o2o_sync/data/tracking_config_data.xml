@@ -1,0 +1,27 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+
+    <!-- Setup tracking for 4EG O2O Instance -->
+    <function model="foreg.o2o.instance" name="setup_tracking_fields" />
+
+    <!-- Setup tracking for 4EG O2O Instance Fixed Value -->
+    <function model="foreg.o2o.instance.fixed.value" name="setup_tracking_fields" />
+
+    <!-- Setup tracking for 4EG O2O Request -->
+    <function model="foreg.o2o.request" name="setup_tracking_fields" />
+
+    <!-- Setup tracking for 4EG O2O Request Field -->
+    <function model="foreg.o2o.request.field" name="setup_tracking_fields" />
+
+</odoo>

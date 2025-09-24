@@ -1,0 +1,237 @@
+<!--
+    Copyright (C) 2024-TODAY 4E Growth GmbH (<https://4egrowth.de>)
+    All Rights Reserved.
+
+    This software is proprietary and confidential. Unauthorized copying,
+    modification, distribution, or use of this software, via any medium,
+    is strictly prohibited without the express written permission of
+    4E Growth GmbH.
+
+    This software is provided under a license agreement and may be used
+    only in accordance with the terms of said agreement.
+-->
+<odoo>
+    <!-- List View -->
+    <record id="foreg_o2o_request_view_tree" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.list</field>
+        <field name="model">foreg.o2o.request</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle" />
+                <field name="name" optional="show" />
+                <field name="url" optional="hide" />
+                <field name="method" />
+                <field name="model_id" />
+                <field name="instance_id" optional="hide" />
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="foreg_o2o_request_view_form" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.form</field>
+        <field name="model">foreg.o2o.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_send_request"
+                        string="Send Request"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_create_cron"
+                        string="Create Scheduled Actions"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_create_server_action"
+                        string="Create Server Action"
+                        type="object"
+                        class="btn-primary"
+                        invisible="method not in ['update', 'read_one', 'create', 'call_defined_method']"
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="instance_id" />
+                            <field
+                                name="model_id"
+                                options="{'no_create': True, 'no_open': True}"
+                            />
+                            <field name="method" />
+                            <field name="name" />
+                            <field name="url" />
+                            <field name="timeout" />
+                            <field name="sequence" />
+                            <field
+                                name="mail_template_id"
+                                context="{'default_model': 'foreg.o2o.request'}"
+                            />
+                            <field name="last_sync_time" />
+                        </group>
+                        <group>
+                            <field name="model" invisible="1" />
+                            <field
+                                name="method_help_message"
+                                invisible="not method_help_message"
+                            />
+                            <field
+                                name="id_record"
+                                invisible="method not in ['read_one', 'update', 'call_method']"
+                            />
+                            <field
+                                name="read_filter"
+                                invisible="method != 'read'"
+                                widget="domain"
+                                options="{'model': 'model'}"
+                            />
+                            <field name="read_offset" invisible="method != 'read'" />
+                            <field
+                                name="read_offset_step"
+                                invisible="method != 'read'"
+                            />
+                            <field name="read_limit" invisible="method != 'read'" />
+                            <field name="read_order" invisible="method != 'read'" />
+                            <field
+                                name="read_exclude_fields"
+                                invisible="method not in ['read', 'read_one']"
+                            />
+                            <field
+                                name="read_include_fields"
+                                invisible="method not in ['read', 'read_one']"
+                            />
+                            <field
+                                name="read_include_fields_display"
+                                invisible="method not in ['read', 'read_one']"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                                groups="base.group_no_one"
+                            />
+                            <field
+                                name="method_name"
+                                invisible="method not in ['call_method', 'call_defined_method']"
+                            />
+                            <field
+                                name="values"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                                invisible="method not in ['update', 'create', 'call_defined_method', 'call_method']"
+                            />
+                            <field
+                                name="server_action_id"
+                                invisible="not server_action_id"
+                            />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page
+                            string="Fields"
+                            name="read_fields"
+                            invisible="method not in ['read', 'read_one']"
+                        >
+                            <field
+                                name="read_field_display_ids"
+                                context="{'default_request_method': 'read'}"
+                            />
+                        </page>
+                        <page
+                            string="Fields"
+                            name="update_fields"
+                            invisible="method != 'update'"
+                        >
+                            <field
+                                name="update_field_display_ids"
+                                context="{'default_request_method': 'update', 'list_view_ref': 'foreg_o2o_sync.foreg_o2o_request_field_view_tree_update'}"
+                            />
+                        </page>
+                        <page
+                            string="Fields"
+                            name="create_fields"
+                            invisible="method != 'create'"
+                        >
+                            <field
+                                name="create_field_display_ids"
+                                context="{'default_request_method': 'create', 'list_view_ref': 'foreg_o2o_sync.foreg_o2o_request_field_view_tree_update'}"
+                            />
+                        </page>
+                        <page
+                            string="Fields"
+                            name="call_method_fields"
+                            invisible="method != 'call_method'"
+                        >
+                            <field
+                                name="call_method_field_display_ids"
+                                context="{'default_request_method': 'call_method', 'list_view_ref': 'foreg_o2o_sync.foreg_o2o_request_field_view_tree_update'}"
+                            />
+                        </page>
+                        <page string="Context">
+                            <field
+                                name="context"
+                                widget="ace"
+                                options="{'mode': 'python'}"
+                            />
+                        </page>
+                        <page string="Logs">
+                            <field
+                                name="log_ids"
+                                context="{'form_view_ref': 'foreg_o2o_sync.foreg_o2o_request_log_view_form_simple'}"
+                            />
+                        </page>
+                        <page string="Scheduled Actions">
+                            <field name="cron_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="foreg_o2o_request_view_search" model="ir.ui.view">
+        <field name="name">foreg.o2o.request.search</field>
+        <field name="model">foreg.o2o.request</field>
+        <field name="arch" type="xml">
+            <search string="4EG O2O Request Search">
+                <field name="name" />
+                <field name="url" />
+                <field name="method" />
+                <field name="model_id" />
+                <field name="instance_id" />
+                <separator />
+                <filter
+                    string="Used"
+                    name="filter_used"
+                    domain="[('last_sync_time','!=', False)]"
+                />
+                <filter
+                    string="Not Used"
+                    name="filter_not_used"
+                    domain="[('last_sync_time','=', False)]"
+                />
+                <separator />
+                <filter
+                    name="filter_active"
+                    string="Active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    name="filter_inactive"
+                    string="Inactive"
+                    domain="[('active', '=', False)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="foreg_o2o_request_action" model="ir.actions.act_window">
+        <field name="name">4EG O2O Requests</field>
+        <field name="res_model">foreg.o2o.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="foreg_o2o_request_view_search" />
+    </record>
+</odoo>
