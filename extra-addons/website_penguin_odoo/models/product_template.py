@@ -11,7 +11,7 @@ class ProductTemplate(models.Model):
 
         for ptav in product_template_attribute_values:
             for var in ptav.ptav_product_variant_ids:
-                if var.qty_available < 1 and ptav.attribute_line_id.value_count > 1:
-                    vals[ptav.id] += [item.id for item in var.product_template_attribute_value_ids if item.id not in ptav.ids and item.attribute_line_id.value_count > 1]
+                if var.virtual_available < 1:
+                    vals[ptav.id] += [item for item in var.product_template_attribute_value_ids.ids if item not in ptav.ids]
                     
         return vals
