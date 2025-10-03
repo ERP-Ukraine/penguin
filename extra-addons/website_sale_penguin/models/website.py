@@ -22,12 +22,14 @@ class Website(models.Model):
             and self.env.user._is_portal()
             and partner_id.property_product_pricelist
         ):
-            request.session['website_sale_current_pl'] = (
-                partner_id.property_product_pricelist.id
-            )
-            request.session['website_sale_selected_pl_id'] = (
-                partner_id.property_product_pricelist.id
-            )
+            pricelist = partner_id.property_product_pricelist
+            parent_id = partner_id.parent_id
+
+            if parent_id and parent_id.property_product_pricelist:
+                pricelist = parent_id.property_product_pricelist
+
+            request.session['website_sale_current_pl'] = pricelist.id
+            request.session['website_sale_selected_pl_id'] = pricelist.id
         return super().sale_get_order(*args, **kwargs)
 
     def get_pricelist_available(self, show_visible=False):
@@ -37,5 +39,11 @@ class Website(models.Model):
             and self.env.user._is_portal()
             and partner_id.property_product_pricelist
         ):
-            return partner_id.property_product_pricelist
-        return super().get_pricelist_available(show_visible=False)
+            pricelist = partner_id.property_product_pricelist
+            parent_id = partner_id.parent_id
+
+            if parent_id and parent_id.property_product_pricelist:
+                pricelist = parent_id.property_product_pricelist
+            return pricelist
+
+        return super().get_pricelist_available(show_visible=show_visible)
