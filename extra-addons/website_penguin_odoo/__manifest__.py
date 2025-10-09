@@ -1,7 +1,7 @@
 {
     "name": "Penguin : Variants Management",
     "author": "Odoo PS",
-    "version": "18.0.0.0.0",
+    "version": "18.0.0.0.1",
     "website": "https://www.odoo.com",
     "depends": ["stock", "website_event", "website_sale"],
     "data": [
