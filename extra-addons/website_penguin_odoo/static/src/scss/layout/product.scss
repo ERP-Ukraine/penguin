@@ -1,0 +1,22 @@
+#product_details {
+    .o_variant_pills.list-inline-item {
+      border: 1px solid rgba(40, 39, 39, .25);
+      color: rgba(40, 39, 39, .5);
+      background-color: transparent !important;
+      &:not(.active,.css_not_available):hover {
+        background-color: o-color('o-color-5') !important;
+        color: o-color('o-color-4');
+      }
+      &.active{
+        border: 1px solid o-color('o-color-5');
+        color: o-color('o-color-5');
+      }
+      &.css_not_available {
+        background-color: o-color('o-color-3') !important;
+        border: 0;
+      }
+    }
+    ul.o_wsale_product_attribute li.list-inline-item .css_attribute_color.active {
+      border-color: o-color('o-color-5');
+    }
+}

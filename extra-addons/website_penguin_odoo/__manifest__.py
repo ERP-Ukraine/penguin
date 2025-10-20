@@ -1,9 +1,9 @@
 {
     "name": "Penguin : Variants Management",
     "author": "Odoo PS",
-    "version": "18.0.0.0.1",
+    "version": "18.0.0.0.2",
     "website": "https://www.odoo.com",
-    "depends": ["stock", "website_event", "website_sale"],
+    "depends": ["website_event", "website_sale"],
     "data": [
         # Backend
         'views/backend/event_event_views.xml',
@@ -12,7 +12,10 @@
     ],
     'assets': {
         'web.assets_frontend': [
-            'website_penguin/static/src/js/product_variant.js',
+            # SCSS
+            'website_penguin_odoo/static/src/scss/layout/product.scss',
+            # Global QWeb JS Templates
+            'website_penguin_odoo/static/src/js/product_variant.js',
         ],
     },
 }
