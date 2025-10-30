@@ -19,6 +19,12 @@
             <span t-else="" t-field="line.quantity" t-options="{'widget': 'float', 'decimal_precision': 'Quantity, Penguin Report Template'}"/>
         </xpath>
 
+        <xpath expr="//div[hasclass('page')]/t[@t-set='layout_document_title']" position="after">
+            <h2 class="mt16">
+                <span t-esc="layout_document_title"/>
+            </h2>
+        </xpath>
+
     </template>
 
     <template id="document_tax_totals" inherit_id="account.document_tax_totals">
