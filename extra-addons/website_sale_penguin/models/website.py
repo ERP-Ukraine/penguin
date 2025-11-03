@@ -20,13 +20,13 @@ class Website(models.Model):
         if (
             partner_id
             and self.env.user._is_portal()
-            and partner_id.property_product_pricelist
+            and partner_id.specific_property_product_pricelist
         ):
-            pricelist = partner_id.property_product_pricelist
+            pricelist = partner_id.specific_property_product_pricelist
             parent_id = partner_id.parent_id
 
-            if parent_id and parent_id.property_product_pricelist:
-                pricelist = parent_id.property_product_pricelist
+            if parent_id and parent_id.specific_property_product_pricelist:
+                pricelist = parent_id.specific_property_product_pricelist
 
             request.session['website_sale_current_pl'] = pricelist.id
             request.session['website_sale_selected_pl_id'] = pricelist.id
@@ -37,13 +37,13 @@ class Website(models.Model):
         if (
             partner_id
             and self.env.user._is_portal()
-            and partner_id.property_product_pricelist
+            and partner_id.specific_property_product_pricelist
         ):
-            pricelist = partner_id.property_product_pricelist
+            pricelist = partner_id.specific_property_product_pricelist
             parent_id = partner_id.parent_id
 
-            if parent_id and parent_id.property_product_pricelist:
-                pricelist = parent_id.property_product_pricelist
+            if parent_id and parent_id.specific_property_product_pricelist:
+                pricelist = parent_id.specific_property_product_pricelist
             return pricelist
 
         return super().get_pricelist_available(show_visible=show_visible)
