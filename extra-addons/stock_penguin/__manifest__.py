@@ -7,11 +7,12 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Operations/Inventory',
-    'version': '1.6',
+    'version': '1.7',
     'depends': ['stock'],
     'data': [
         'report/report_deliveryslip.xml',
         'report/report_stockpicking_operations.xml',
+        'views/stock_picking_views.xml',
     ],
     'installable': True,
     'auto_install': True,
