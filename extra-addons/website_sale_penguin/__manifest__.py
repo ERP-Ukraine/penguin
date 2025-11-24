@@ -7,8 +7,13 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '3.0',
-    'depends': ['website_penguin', 'website_sale'],
+    'version': '3.1',
+    'depends': [
+        'account',
+        'sale',
+        'website_penguin',
+        'website_sale',
+        ],
     'data': [
         'report/sale_report_templates.xml',
         'views/product_views.xml',
