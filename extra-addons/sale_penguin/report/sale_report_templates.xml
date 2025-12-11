@@ -25,7 +25,7 @@
         </xpath>
 
         <xpath expr="//div[@id='informations']" position="attributes">
-            <attribute name="class" add="mt-2 w-50" remove="mt32" separator=" "/>
+            <attribute name="class" add="mt-2" remove="mt32" separator=" "/>
         </xpath>
 
         <xpath expr="//div[@name='informations_reference']" position="attributes">
