@@ -27,11 +27,12 @@ class ProductTemplate(models.Model):
                 ]
             ):
                 for ptav in ptal.product_template_value_ids:
-                    for var in ptav.ptav_product_variant_ids:
-                        vals[ptav.id] += [
-                            item.id
-                            for item in var.product_template_attribute_value_ids
-                            if item.id not in ptav.ids
-                            and item.attribute_line_id.value_count > 1
-                        ]
+                    if vals.get(ptav.id):
+                        for var in ptav.ptav_product_variant_ids:
+                            vals[ptav.id] += [
+                                item.id
+                                for item in var.product_template_attribute_value_ids
+                                if item.id not in ptav.ids
+                                and item.attribute_line_id.value_count > 1
+                            ]
         return vals
