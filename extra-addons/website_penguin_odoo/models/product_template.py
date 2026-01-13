@@ -14,7 +14,7 @@ class ProductTemplate(models.Model):
             if all(
                 [
                     True if qty < 1 else False
-                    for qty in ptal.product_template_value_ids.ptav_product_variant_ids.mapped(
+                    for qty in ptal.product_template_value_ids.ptav_product_variant_ids.sudo().mapped(
                         'qty_available'
                     )
                 ]
