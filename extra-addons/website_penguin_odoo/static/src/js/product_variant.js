@@ -15,11 +15,9 @@ WebsiteSale.include({
 
     _toggleDisable: function ($parent, isCombinationPossible) {
         if(isCombinationPossible){
-            $parent.find("#o_wsale_cta_wrapper").removeClass("d-none");
             $parent.find(".css_not_available_msg")[0].style.display = "none"
 
         }else{
-            $parent.find("#o_wsale_cta_wrapper").addClass("d-none");
             $parent.find(".css_not_available_msg")[0].style.display = "block"
         }
     },
