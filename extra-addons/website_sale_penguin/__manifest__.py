@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Website/Website',
-    'version': '3.3',
+    'version': '3.4',
     'depends': [
         'account',
         'sale',

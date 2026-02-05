@@ -3,10 +3,10 @@
     <template id="penguin_report_invoice_document" inherit_id="account.report_invoice_document">
         <xpath expr="//div[hasclass('invoice_main')]" position="after">
             <div class="mb-4" t-if="o.website_comment">
-                <h2 class="mt-16">
+                <div class="mt-16">
                     <strong>Comment: </strong>
                     <span t-out="o.website_comment"/>
-                </h2>
+                </div>
             </div>
         </xpath>
     </template>
