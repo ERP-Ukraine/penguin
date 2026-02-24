@@ -4,8 +4,19 @@
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//list/field[@name='product_id']" position="after">
-                    <field name="move_lines_location_ids" widget="many2many_tags" optional="show"/>
+                <xpath expr="//page[@name='operations']" position="after">
+                    <page string="Detailed Operations" name="detailed_operations">
+                        <field name="move_line_ids_without_package" mode="list"
+                                widget="stock_move_one2many"
+                                readonly="1">
+                            <list>
+                                <field name="product_id"/>
+                                <field name="location_id"/>
+                                <field name="quantity"/>
+                                <field name="product_uom_id"/>
+                            </list>
+                        </field>
+                    </page>
                 </xpath>
             </field>
     </record>

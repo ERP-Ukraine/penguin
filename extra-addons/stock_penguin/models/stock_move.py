@@ -6,13 +6,6 @@ from odoo.tools import float_compare
 class StockMove(models.Model):
     _inherit = 'stock.move'
 
-    move_lines_location_ids = fields.Many2many(comodel_name='stock.location', compute='_compute_move_lines_location_ids', string='Source Locations')
-
-    @api.depends('move_line_ids.location_id')
-    def _compute_move_lines_location_ids(self):
-        for move in self:
-            move.move_lines_location_ids = move.move_line_ids.location_id
-
     def _update_reserved_quantity(self, need, location_id,
                                   lot_id=None, package_id=None,
                                   owner_id=None, strict=True):
