@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="penguin_variants" inherit_id="website_sale.variants">
+        <xpath expr="//t[@t-set='attribute_exclusions']" position="attributes">
+            <attribute name="t-value">product._get_attribute_exclusions_custom(parent_combination)</attribute>
+        </xpath>
+    </template>
+</odoo>
