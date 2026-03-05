@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* website_penguin_odoo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e-20260122\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-05 14:08+0000\n"
+"PO-Revision-Date: 2026-03-05 14:08+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_penguin_odoo
+#: model:ir.model,name:website_penguin_odoo.model_event_event
+msgid "Event"
+msgstr "Veranstaltung"
+
+#. module: website_penguin_odoo
+#: model:ir.model,name:website_penguin_odoo.model_product_template
+msgid "Product"
+msgstr "Produkt"
+
+#. module: website_penguin_odoo
+#: model_terms:ir.ui.view,arch_db:website_penguin_odoo.registration_template
+msgid "Register"
+msgstr ""
+
+#. module: website_penguin_odoo
+#: model_terms:ir.ui.view,arch_db:website_penguin_odoo.registration_template
+msgid "S'inscrire"
+msgstr ""
+
+#. module: website_penguin_odoo
+#: model:ir.model.fields,field_description:website_penguin_odoo.field_event_event__url
+msgid "URL of the event"
+msgstr ""
+
+#. module: website_penguin_odoo
+#: model:ir.model.fields,field_description:website_penguin_odoo.field_event_event__url_label
+msgid "URL's label of the event"
+msgstr ""
+
+#. module: website_penguin_odoo
+#: model_terms:ir.ui.view,arch_db:website_penguin_odoo.penguin_product
+msgid "Your selected item is currently not in stock"
+msgstr "Dein gewünschtes Produkte ist momentan nicht verfügbar"

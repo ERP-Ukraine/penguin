@@ -1,7 +1,7 @@
 {
     "name": "Penguin : Variants Management",
     "author": "Odoo PS",
-    "version": "18.0.0.0.5",
+    "version": "18.0.0.0.6",
     "website": "https://www.odoo.com",
     "depends": ["website_event", "website_sale"],
     "data": [
@@ -10,6 +10,7 @@
         # Frontend
         "views/event_templates_page_registration.xml",
         "views/variant_templates.xml",
+        "views/templates.xml",
     ],
     'assets': {
         'web.assets_frontend': [
