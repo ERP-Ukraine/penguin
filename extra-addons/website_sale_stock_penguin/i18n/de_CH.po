@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e-20220402\n"
+"Project-Id-Version: Odoo Server 18.0+e-20260122\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-12 11:12+0000\n"
-"PO-Revision-Date: 2022-08-12 11:12+0000\n"
+"POT-Creation-Date: 2026-03-05 14:26+0000\n"
+"PO-Revision-Date: 2026-03-05 14:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,24 @@ msgstr "Zugewiesener Verkäufer"
 
 #. module: website_sale_stock_penguin
 #: model_terms:ir.ui.view,arch_db:website_sale_stock_penguin.website_sale_pricelist_warehouse_form_view
+msgid "Configuration"
+msgstr ""
+
+#. module: website_sale_stock_penguin
+#: model:ir.model.fields,field_description:website_sale_stock_penguin.field_stock_warehouse__country_ids
+msgid "Country"
+msgstr ""
+
+#. module: website_sale_stock_penguin
+#: model_terms:ir.ui.view,arch_db:website_sale_stock_penguin.website_sale_pricelist_warehouse_form_view
 msgid "Inventory"
 msgstr "Bestand"
+
+#. module: website_sale_stock_penguin
+#. odoo-javascript
+#: code:addons/website_sale_stock_penguin/static/src/xml/website_sale_stock_product_availability.xml:0
+msgid "Notify me when back in stock"
+msgstr "Bitte informiere mich wenn es wieder verfügbar ist"
 
 #. module: website_sale_stock_penguin
 #: model:ir.model,name:website_sale_stock_penguin.model_product_pricelist
@@ -36,14 +52,14 @@ msgid "Pricelist"
 msgstr "Preisliste"
 
 #. module: website_sale_stock_penguin
-#: model:ir.model,name:website_sale_stock_penguin.model_product_template
-msgid "Product Template"
-msgstr "Produktvorlage"
-
-#. module: website_sale_stock_penguin
 #: model:ir.model,name:website_sale_stock_penguin.model_sale_order
 msgid "Sales Order"
-msgstr "Verkaufsauftrag "
+msgstr "Verkaufsauftrag"
+
+#. module: website_sale_stock_penguin
+#: model:ir.model,name:website_sale_stock_penguin.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkaufsauftragszeile"
 
 #. module: website_sale_stock_penguin
 #: model:ir.model.fields,field_description:website_sale_stock_penguin.field_product_pricelist__salesperson_id
@@ -51,11 +67,20 @@ msgid "Sales Person"
 msgstr "Verkäufer"
 
 #. module: website_sale_stock_penguin
+#: model:ir.model,name:website_sale_stock_penguin.model_stock_warehouse
 #: model:ir.model.fields,field_description:website_sale_stock_penguin.field_product_pricelist__warehouse_id
 msgid "Warehouse"
-msgstr "Lager"
+msgstr "Lagerhaus"
 
 #. module: website_sale_stock_penguin
 #: model:ir.model,name:website_sale_stock_penguin.model_website
 msgid "Website"
-msgstr "Webseite"
+msgstr ""
+
+#. module: website_sale_stock_penguin
+#: model:ir.model.fields,help:website_sale_stock_penguin.field_stock_warehouse__country_ids
+msgid ""
+"When choosing the warehouse from which the goods are to be shipped, the "
+"warehouse located in the same country as the customer will be selected "
+"first. Works only with multi warehouse option on"
+msgstr ""
