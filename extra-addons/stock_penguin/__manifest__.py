@@ -7,7 +7,7 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Operations/Inventory',
-    'version': '1.8',
+    'version': '1.9',
     'depends': ['stock'],
     'data': [
         'report/report_deliveryslip.xml',
