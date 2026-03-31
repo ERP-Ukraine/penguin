@@ -1,6 +1,6 @@
 {
     'name': 'Penguin Base',
-    'version': '1.1',
+    'version': '1.2',
     'category': 'Hidden',
     'depends': ['base'],
     'data': [

@@ -6,12 +6,13 @@
     'support': 'support@erp.co.ua',
     'license': 'LGPL-3',
     'category': 'Sales/Sales',
-    'version': '2.13',
+    'version': '2.14',
     'depends': [
         'product_penguin',
         'sale',
         'website_sale',
         'stock',
+        'base_penguin',
     ],
     'data': [
         'data/mail_data.xml',

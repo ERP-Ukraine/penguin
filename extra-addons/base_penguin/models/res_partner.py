@@ -25,3 +25,4 @@ class ResPartner(models.Model):
         ("benjamin_boss", "Benjamin Boss (Kalisti Europe)"),
         ("textile_buss", "Textile Business")
     ], "Customer Group")
+    is_btwob_customer = fields.Boolean(string='B2B customer')
