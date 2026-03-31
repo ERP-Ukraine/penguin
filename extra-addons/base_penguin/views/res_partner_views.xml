@@ -8,6 +8,9 @@
             <field name="industry_id" position="attributes">
                 <attribute name="invisible">False</attribute>
             </field>
+            <field name="lang" position="after">
+                <field name="is_btwob_customer"/>
+            </field>
         </field>
     </record>
 </odoo>

@@ -1,4 +1,4 @@
-from odoo import _, fields, models, SUPERUSER_ID
+from odoo import _, api, fields, models, SUPERUSER_ID
 
 
 class SaleOrder(models.Model):
@@ -9,6 +9,15 @@ class SaleOrder(models.Model):
         ('future_sale', 'Pre-ordered'),
         ('future_sale_confirmation', 'Pre-order confirmed'),
     ])
+    customer_type = fields.Selection(selection=[('btwob', 'B2B')], compute='_compute_customer_type', store=True)
+
+    @api.depends('partner_id.is_btwob_customer')
+    def _compute_customer_type(self):
+        for order in self:
+            if order.partner_id.is_btwob_customer:
+                order.customer_type = 'btwob'
+                continue
+            order.customer_type = False
 
     def action_send_preorder_confirmation_email(self):
         self.ensure_one()

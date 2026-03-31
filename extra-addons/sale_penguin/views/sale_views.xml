@@ -43,4 +43,30 @@
             </xpath>
         </field>
     </record>
+
+    <record id="sale_order_penguin_tree" model="ir.ui.view">
+        <field name="name">sale.order.penguin.list</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="customer_type" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sales_order_penguin_filter" model="ir.ui.view">
+        <field name="name">sale.order.penguin.list.select</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="customer_type"/>
+                <filter string="B2B customers" domain="[('customer_type', '=', 'btwob')]" name="btwob_customers_filter"/>
+            </search>
+            <group position="inside">
+                <filter string="Customer Type" domain="[]" context="{'group_by': 'customer_type'}" name="customer_type"/>
+            </group>
+        </field>
+    </record>
 </odoo>
